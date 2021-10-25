@@ -6,7 +6,7 @@ namespace Proyect
     /// <summary>
     /// Clase emprendedor.
     /// </summary>
-    public class Emprendedor : Entity
+    public class Emprendedor : User
     {
         private string qualifications;
 
@@ -56,37 +56,6 @@ namespace Proyect
             {
                 this.specializations = value;
             }
-        }
-/// <summary>
-/// Metodo para buscar por palabras clave
-/// </summary>
-/// <param name="words"></param>
-        public void SearchByKeywords(string words)
-        {
-            string[] keywords = words.Split(" ");
-
-        }
-/// <summary>
-/// Metodo para buscar por ubicacion
-/// </summary>
-/// <param name="ubication"></param>
-        public void SearchByUbications(string ubication)
-        {
-
-        }
-/// <summary>
-/// Metodo para buscar por tipo
-/// </summary>
-/// <param name="tipo"></param>
-        public void SearchByType(string tipo)
-        {
-            
-        }
-
-        private void AceptOffer(Offer oferta)
-        {
-            this.purchasedOffer.Add(oferta);
-            oferta.Buyer = this;
         }
     }
 }

@@ -5,20 +5,27 @@ namespace Proyect
     /// <summary>
     /// Superclase entity
     /// </summary>
-    public class Entity
+    public class User
     {
-        private string name;
-
-        private string ubication;
-
-        private string rubro;
+/// <summary>
+/// Nombre del usuario,sea una compania o emprendedor
+/// </summary>
+        protected string name;
+/// <summary>
+/// Ubicacion del usiario
+/// </summary>
+        protected string ubication;
+/// <summary>
+/// El rubro al que pertnece el usuario
+/// </summary>
+        protected string rubro;
 /// <summary>
 /// Constructor de entity
 /// </summary>
 /// <param name="name"></param>
 /// <param name="ubication"></param>
 /// <param name="rubro"></param>
-        public Entity(string name, string ubication, string rubro)
+        public User(string name, string ubication, string rubro)
         {
             this.Name = name;
             this.Ubication = ubication;
