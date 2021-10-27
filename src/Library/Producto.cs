@@ -13,10 +13,10 @@ namespace ClassLibrary
         private string ubication;
 
 /// <summary>
-/// Obtiene un string que determina los tipos del producto.
+/// Obtiene un obtiene una instancia de classificacion valida para un producto.
 /// </summary>
 /// <value></value>
-        public string Classification
+        public Classification Classification
         {
             get
             {
@@ -79,7 +79,7 @@ namespace ClassLibrary
 /// <param name="quantity"></param>
 /// <param name="price"></param>
 /// <param name="ubication"></param>
-        public Product(string classification, double quantity, double price, string ubication)
+        public Product(Classification classification, double quantity, double price, string ubication)
         {
             this.Classification = classification;
             this.Quantity = quantity;
