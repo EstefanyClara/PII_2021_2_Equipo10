@@ -25,7 +25,7 @@ namespace ClassLibrary
             }
         }
 /// <summary>
-/// Constructor de instancias de product.
+/// Constructor de instancias de Classification.
 /// </summary>
 /// <param name="classification"></param>
 
