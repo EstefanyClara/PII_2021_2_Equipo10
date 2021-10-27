@@ -5,7 +5,7 @@ namespace Proyect
     /// <summary>
     /// Esta clase representa la compania, 
     /// </summary>
-    public class Company: Entity
+    public class Company: User
     {
         public string name; 
         public string ubication; 
