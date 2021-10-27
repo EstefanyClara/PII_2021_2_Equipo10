@@ -4,6 +4,11 @@
         <name>Library</name>
     </assembly>
     <members>
+        <member name="T:proyectoParteDos.Company">
+            <summary>
+            Esta clase representa la compania, 
+            </summary>
+        </member>
         <member name="T:ClassLibrary.Train">
             <summary>
             Esta clase representa un tren muy básico.
