@@ -4,10 +4,166 @@
         <name>Library</name>
     </assembly>
     <members>
-        <member name="T:proyectoParteDos.Company">
+        <member name="T:Proyect.AppLogic">
+            <summary>
+            Clase singleton para guardar los datos de la Aplicacion
+            </summary>
+        </member>
+        <member name="P:Proyect.AppLogic.Companies">
+            <summary>
+            Obtiene las companias que estan registradas
+            </summary>
+            <value>companies</value>
+        </member>
+        <member name="P:Proyect.AppLogic.Entrepreneurs">
+            <summary>
+            Obtiene los emprendedores que estan registrados
+            </summary>
+            <value>entrepreneurs</value>
+        </member>
+        <member name="P:Proyect.AppLogic.Instance">
+            <summary>
+            Obtiene la instancia de AppLogic
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Proyect.AppLogic.SearchByKeywords(System.String)">
+            <summary>
+            Busca las ofertas con la palabra clave que se le pasa
+            </summary>
+            <param name="keyword"></param>
+        </member>
+        <member name="M:Proyect.AppLogic.SearchByUbication(System.String)">
+            <summary>
+            Busca ofertas por ubicacion
+            </summary>
+            <param name="ubication"></param>
+        </member>
+        <member name="T:Proyect.Company">
             <summary>
             Esta clase representa la compania, 
             </summary>
+        </member>
+        <member name="T:Proyect.Emprendedor">
+            <summary>
+            Clase emprendedor.
+            </summary>
+        </member>
+        <member name="M:Proyect.Emprendedor.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Constructor de emprendedor
+            </summary>
+            <param name="name"></param>
+            <param name="ubication"></param>
+            <param name="rubro"></param>
+            <param name="qualifications"></param>
+            <param name="specializations"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Proyect.Emprendedor.Qualifications">
+            <summary>
+            Propiedad get y set
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.Emprendedor.Specializations">
+            <summary>
+            Propiedad Specializations
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:Proyect.Offer">
+            <summary>
+            Representa la oferta de una compania
+            </summary>
+        </member>
+        <member name="M:Proyect.Offer.#ctor(System.Boolean,Proyect.Classification,System.Int32,System.Double,System.String,System.String,System.String)">
+            <summary>
+            Constructor de offer, el mismo, crea una instancia del producto
+            </summary>
+            <param name="ifConstant"></param>
+            <param name="tipo"></param>
+            <param name="quantity"></param>
+            <param name="cost"></param>
+            <param name="ubication"></param>
+            <param name="qualifications"></param>
+            <param name="keyWords"></param>
+        </member>
+        <member name="P:Proyect.Offer.Constant">
+            <summary>
+            Obtiene un valor que indica si la oferta es constante o no
+            </summary>
+            <value><c>true</c> si la oferta es constante, <c>false</c> en caso contrario.</value>
+        </member>
+        <member name="P:Proyect.Offer.Product">
+            <summary>
+            Obtiene el el producto de la oferta.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.Offer.Qualifications">
+            <summary>
+            Obteien las cualificaciones/habilitaciones neceraias para aceptar la oferta, esto lo establce cada compania
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.Offer.KeyWords">
+            <summary>
+            ´Obtiene el conjunto de palabras clave que se utilizan a la hora de buscar la oferta
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.Offer.Buyer">
+            <summary>
+            Obtiee el compardor de la oferta, quien la acepto luego de que la haya buscado
+            </summary>
+            <value><c>Emprendedor</c> si la oferta ya fue aceptada, lo que te dice tabien quien la acepto, <c>null</c> si no fue aceptada, por lo que se puede aceptar.</value>
+        </member>
+        <member name="T:Proyect.User">
+            <summary>
+            Superclase entity
+            </summary>
+        </member>
+        <member name="F:Proyect.User.name">
+            <summary>
+            Nombre del usuario,sea una compania o emprendedor
+            </summary>
+        </member>
+        <member name="F:Proyect.User.ubication">
+            <summary>
+            Ubicacion del usiario
+            </summary>
+        </member>
+        <member name="F:Proyect.User.rubro">
+            <summary>
+            El rubro al que pertnece el usuario
+            </summary>
+        </member>
+        <member name="M:Proyect.User.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Constructor de entity
+            </summary>
+            <param name="name"></param>
+            <param name="ubication"></param>
+            <param name="rubro"></param>
+        </member>
+        <member name="P:Proyect.User.Name">
+            <summary>
+            Propiedad get y set del atributo del nombre
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.User.Ubication">
+            <summary>
+            Propiedad get y set del atributo de la ubicacion
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.User.Rubro">
+            <summary>
+            Propiedad get y set del atributo del rubro
+            </summary>
+            <value></value>
         </member>
         <member name="T:ClassLibrary.Train">
             <summary>

@@ -1,4 +1,5 @@
-using System; 
+using System;
+using System.Collections;
 
 namespace Proyect
 {
@@ -10,13 +11,13 @@ namespace Proyect
         public string name; 
         public string ubication; 
         public string rubro; 
-        public Array offers; 
+        public ArrayList offers; 
 
-        public Company(string name, string ubication, string rubro)
+        public Company(string name, string ubication, string rubro) : base (name,ubication,rubro)
         {
-            this.Name=name; 
-            this.Ubication= ubication; 
-            this.Rubro= rubro; 
+            this.Name = name; 
+            this.Ubication = ubication; 
+            this.Rubro = rubro; 
         }
         public string Name
         {
@@ -26,7 +27,7 @@ namespace Proyect
             }   
             set
             {
-                this.name=value; 
+                this.name = value; 
             }
         }
         public string Ubication
@@ -37,7 +38,7 @@ namespace Proyect
             }
             set
             {
-                this.ubication=value; 
+                this.ubication = value; 
             }
         }
         public string Rubro
@@ -48,8 +49,20 @@ namespace Proyect
             }
             set
             {
-                this.rubro=value; 
+                this.rubro = value; 
             } 
+        }
+
+        public ArrayList Offers
+        {
+            get
+            {
+                return this.offers;
+            }
+            set
+            {
+                this.offers = value;
+            }
         }
         public  void PublicOffer()
         {

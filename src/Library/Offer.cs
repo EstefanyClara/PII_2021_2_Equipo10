@@ -9,7 +9,7 @@ namespace Proyect
     {
         private bool ifConstant;
 
-        private ProductOffer product;
+        private Product product;
 
         private string qualifications;
 
@@ -27,9 +27,9 @@ namespace Proyect
 /// <param name="ubication"></param>
 /// <param name="qualifications"></param>
 /// <param name="keyWords"></param>
-        public Offer(bool ifConstant, string tipo, double quantity, double cost, string ubication, string qualifications, string keyWords)
+        public Offer(bool ifConstant, Classification tipo, int quantity, double cost, string ubication, string qualifications, string keyWords)
         {
-            this.product = new ProductOffer(tipo,quantity,cost,ubication);
+            this.product = new Product(tipo,quantity,cost,ubication);
             this.Constant = ifConstant;
             this.Qualifications = qualifications;
 
@@ -65,7 +65,7 @@ namespace Proyect
 /// </summary>
 /// <value></value>
 
-        public PrductOffer Product
+       public Product Product
         {
             get
             {
@@ -76,6 +76,7 @@ namespace Proyect
                 this.product = value;
             }
         }
+        
 
 /// <summary>
 /// Obteien las cualificaciones/habilitaciones neceraias para aceptar la oferta, esto lo establce cada compania
