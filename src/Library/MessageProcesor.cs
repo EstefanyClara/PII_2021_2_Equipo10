@@ -1,4 +1,5 @@
 using System; 
+using System.Collections.Generic;
 
 namespace Proyect
 {
@@ -20,22 +21,16 @@ namespace Proyect
             string ubication = Console.ReadLine();
             Console.WriteLine(AppLogic.Instance.ValidRubrosMessage());
             Console.WriteLine("Rubro:");
-            bool hasta = true;
-            while (hasta)
-            {
-                string rubro = Console.ReadLine();
-                if (Rubros.Contains(rubro))
-                {
-                    hasta = false;
-                }
-                else
-                {
-                    Console.WriteLine($"El rubro '{rubro}' es invalido, intente de nuevo");
-                }
+            int rubroIndex = Convert.ToInt32(Console.ReadLine());
+            Rubro rubro = AppLogic.Instance.Rubros[rubroIndex-1];
+            Console.WriteLine(AppLogic.Instance.validQualificationsMessage());
+            Console.WriteLine("Hanilitaciones:");
+            int habilitacionesIndex = Convert.ToInt32(Console.ReadLine());
+            List<Qualifications> habilitaciones = new List<Qualifications>(){AppLogic.Instance.Qualifications[habilitacionesIndex-1]};
+            AppLogic.Instance.RegisterEntrepreneurs(name,ubication,rubro,habilitaciones,habilitaciones);
             }
         }
 
     }
 
     
-}

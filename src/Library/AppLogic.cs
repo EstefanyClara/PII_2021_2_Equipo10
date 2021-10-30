@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Text;
 using System.Collections.Generic;
+using LocationApi;
+using System.Threading.Tasks;
 
 namespace Proyect
 {
@@ -10,13 +12,14 @@ namespace Proyect
     /// </summary>
     public sealed class AppLogic
     {
+        private LocationApiClient client = new LocationApiClient();
         private readonly static AppLogic _instance = new AppLogic();
         private ArrayList companies;
         private ArrayList entrepreneurs;
 
-        private ArrayList validRubros = new ArrayList(){new Rubro("Alimentos"),new Rubro("Tecnologia"),new Rubro("Medicina")};
+        private List<Rubro> validRubros = new List<Rubro>(){new Rubro("Alimentos"),new Rubro("Tecnologia"),new Rubro("Medicina")};
 
-        private ArrayList validQualifications = new ArrayList(){new Qualifications("Vehiculo propio"),new Qualifications("Espacio para grandes volumenes de producto"),new Qualifications("Lugar habilitado para conservar desechos toxicos")};
+        private List<Qualifications> validQualifications = new List<Qualifications>(){new Qualifications("Vehiculo propio"),new Qualifications("Espacio para grandes volumenes de producto"),new Qualifications("Lugar habilitado para conservar desechos toxicos")};
 
         /// <summary>
         /// Obtiene las companias que estan registradas
@@ -40,7 +43,7 @@ namespace Proyect
         /// Obtiene los rubros habilitados
         /// </summary>
         /// <value></value>
-        public ArrayList Rubros
+        public List<Rubro> Rubros
         {
             get{return validRubros;}
         }
@@ -49,12 +52,10 @@ namespace Proyect
         /// Obtiene la lista de habilitciones registradas
         /// </summary>
         /// <value></value>
-        public ArrayList Qualifications
+        public List<Qualifications> Qualifications
         {
             get{return validQualifications;}
         }
-
-
         private AppLogic()
         {
             companies = new ArrayList();
@@ -74,69 +75,6 @@ namespace Proyect
         }
         
         /// <summary>
-        /// Busca las ofertas con la palabra clave que se le pasa
-        /// </summary>
-        /// <param name="keyword"></param>
-        public void SearchByKeywords(string keyword)
-        {
-            // Deberia funcionar, pero hay que adaptar para cumplir patrones
-            ArrayList offers = new ArrayList();
-            foreach (Company company in companies)
-            {
-                foreach (Offer offer in company.offers)
-                {
-                    foreach (string word in offer.KeyWords)
-                    {
-                        if(word == keyword)
-                        {
-                            offers.Add(offer);
-                        }
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Busca ofertas por ubicacion
-        /// </summary>
-        /// <param name="ubication"></param>
-        public void SearchByUbication(string ubication)
-        {
-            // Deberia funcionar, pero hay que adaptar para cumplir patrones
-            ArrayList offers = new ArrayList();
-            foreach (Company company in companies)
-            {
-                foreach (Offer offer in company.offers)
-                {
-                    if(offer.Product.Ubication == ubication)
-                    {
-                        offers.Add(offer);
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Busca ofertas por el tipo
-        /// </summary>
-        /// <param name="type"></param>
-        public void SearchByType(string type)
-        {
-            // Deberia funcionar, pero hay que adaptar para cumplir patrones
-            ArrayList offers = new ArrayList();
-            foreach (Company company in companies)
-            {
-                foreach (Offer offer in company.offers)
-                {
-                    if(offer.Product.Classification.Category == type)
-                    {
-                        offers.Add(offer);
-                    }
-                }
-            }
-        }
-
-        /// <summary>
         /// Metodo que registra a un emprendedor
         /// </summary>
         public void RegisterEntrepreneurs(string name, string ubication, Rubro rubro, List<Qualifications> habilitaciones,List<Qualifications> especializaciones)
@@ -152,10 +90,10 @@ namespace Proyect
         {
             StringBuilder message = new StringBuilder("Rubros habiliatdos:\n\n");
             int itemposition = 0;
-            foreach (string item in Rubros)
+            foreach (Rubro item in Rubros)
             {
                 itemposition++;
-                message.Append($"{itemposition}-"+item+"\n"); 
+                message.Append($"{itemposition}-"+item.RubroName+"\n"); 
             }
             return Convert.ToString(message);
         }
@@ -168,13 +106,74 @@ namespace Proyect
         {
             StringBuilder message = new StringBuilder("Habilitaciones permitidas:\n\n");
             int itemposition = 0;
-            foreach (string item in Rubros)
+            foreach (Qualifications item in Qualifications)
             {
                 itemposition++;
-                message.Append($"{itemposition}-"+item+"\n"); 
+                message.Append($"{itemposition}-"+item.QualificationName+"\n"); 
             }
             return Convert.ToString(message);
         }
 
+        /// <summary>
+        /// Metodo que se encarga de buscar las ofertas por palabras clave
+        /// </summary>
+        /// <param name="word"></param>
+        /// <returns></returns>
+        public ArrayList SearchOfferByKeyWords(string word)
+        {
+            return OfferSearch.SearchByKeywords(word);
+        }
+
+        /// <summary>
+        /// Metodo que se encarga de buscar las ofertas por tipo
+        /// </summary>
+        /// <param name="word"></param>
+        /// <returns></returns>
+        public ArrayList SearchOfferByType(string word)
+        {
+            return OfferSearch.SearchByType(word);
+        }
+
+        /// <summary>
+        /// Metodo que se encarga de buscar las ofertas por ubicacion
+        /// </summary>
+        /// <param name="word"></param>
+        /// <returns></returns>
+        public ArrayList SearchOfferByUbication(string word)
+        {
+            return OfferSearch.SearchByUbication(word);
+        }
+
+        /// <summary>
+        /// Metodo que permite obtener la distancia entre un emprendedor y un producto
+        /// </summary>
+        public async Task<double> ObteinOfferDistance(Emprendedor emprendedor, Offer offer)
+        {
+            string emprendedorUbication = emprendedor.Ubication;
+            string offerUbication = offer.Product.Ubication;
+            Location locationEmprendedor = await client.GetLocation(emprendedorUbication);
+            Location locationOffer = await client.GetLocation(offerUbication);
+            Distance distance = await client.GetDistance(locationEmprendedor, locationOffer);
+            double kilometers = distance.TravelDistance;
+            await client.DownloadRoute(locationEmprendedor.Latitude, locationEmprendedor.Longitude,
+            locationOffer.Latitude, locationOffer.Longitude, @"route.png");
+            return kilometers;
+        }
+
+        /// <summary>
+        /// Metodo que obtiene el mapa de la ubicacion de un emprendedor
+        /// </summary>
+        /// <param name="offer"></param>
+        /// <returns></returns>
+        public async Task ObteinOfferMap(Offer offer)
+        {
+            string offerUbication = offer.Product.Ubication;
+            Location locationOffer = await client.GetLocation(offerUbication);
+            await client.DownloadMap(locationOffer.Latitude, locationOffer.Longitude, @"map.png");
+        }
+
+        
+
     }
+
 }

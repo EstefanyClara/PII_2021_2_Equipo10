@@ -21,29 +21,61 @@
             </summary>
             <value>entrepreneurs</value>
         </member>
+        <member name="P:Proyect.AppLogic.Rubros">
+            <summary>
+            Obtiene los rubros habilitados
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.AppLogic.Qualifications">
+            <summary>
+            Obtiene la lista de habilitciones registradas
+            </summary>
+            <value></value>
+        </member>
         <member name="P:Proyect.AppLogic.Instance">
             <summary>
             Obtiene la instancia de AppLogic
             </summary>
             <value></value>
         </member>
-        <member name="M:Proyect.AppLogic.SearchByKeywords(System.String)">
+        <member name="M:Proyect.AppLogic.RegisterEntrepreneurs(System.String,System.String,Proyect.Rubro,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.Generic.List{Proyect.Qualifications})">
             <summary>
-            Busca las ofertas con la palabra clave que se le pasa
+            Metodo que registra a un emprendedor
             </summary>
-            <param name="keyword"></param>
         </member>
-        <member name="M:Proyect.AppLogic.SearchByUbication(System.String)">
+        <member name="M:Proyect.AppLogic.ValidRubrosMessage">
             <summary>
-            Busca ofertas por ubicacion
+            Metodo que retorna un mensaje con los rubros habilitaddos
             </summary>
-            <param name="ubication"></param>
+            <returns></returns>
         </member>
-        <member name="M:Proyect.AppLogic.SearchByType(System.String)">
+        <member name="M:Proyect.AppLogic.validQualificationsMessage">
             <summary>
-            Busca ofertas por el tipo
+            Metdo que retorna un mensaje con las Habilitaciones permitidas
             </summary>
-            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.AppLogic.SearchOfferByKeyWords(System.String)">
+            <summary>
+            Metodo que se encarga de buscar las ofertas por palabras clave
+            </summary>
+            <param name="word"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.AppLogic.SearchOfferByType(System.String)">
+            <summary>
+            Metodo que se encarga de buscar las ofertas por tipo
+            </summary>
+            <param name="word"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.AppLogic.SearchOfferByUbication(System.String)">
+            <summary>
+            Metodo que se encarga de buscar las ofertas por ubicacion
+            </summary>
+            <param name="word"></param>
+            <returns></returns>
         </member>
         <member name="T:Proyect.Classification">
             <summary>
@@ -66,7 +98,7 @@
             Lista de ofertas de la compania
             </summary>
         </member>
-        <member name="M:Proyect.Company.#ctor(System.String,System.String,System.String)">
+        <member name="M:Proyect.Company.#ctor(System.String,System.String,Proyect.Rubro)">
             <summary>
             Constructor de company
             </summary>
@@ -84,7 +116,7 @@
             Clase emprendedor.
             </summary>
         </member>
-        <member name="M:Proyect.Emprendedor.#ctor(System.String,System.String,System.String,System.String,System.String)">
+        <member name="M:Proyect.Emprendedor.#ctor(System.String,System.String,Proyect.Rubro,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.Generic.List{Proyect.Qualifications})">
             <summary>
             Constructor de emprendedor
             </summary>
@@ -106,6 +138,16 @@
             Propiedad Specializations
             </summary>
             <value></value>
+        </member>
+        <member name="T:Proyect.MessageProcesor">
+            <summary>
+            Clase que procesa los mensajes de telegram (en este caso va a procesar los mensajes de consola para probra la logica)
+            </summary>
+        </member>
+        <member name="M:Proyect.MessageProcesor.RegistEnterprenuer">
+            <summary>
+            Metodo que 
+            </summary>
         </member>
         <member name="T:Proyect.Offer">
             <summary>
@@ -154,6 +196,29 @@
             </summary>
             <value><c>Emprendedor</c> si la oferta ya fue aceptada, lo que te dice tabien quien la acepto, <c>null</c> si no fue aceptada, por lo que se puede aceptar.</value>
         </member>
+        <member name="T:Proyect.OfferSearch">
+            <summary>
+            Clase que se encarga de buscar las ofertas por los distintos metodos establecidos
+            </summary>
+        </member>
+        <member name="M:Proyect.OfferSearch.SearchByKeywords(System.String)">
+            <summary>
+            Busca las ofertas con la palabra clave que se le pasa
+            </summary>
+            <param name="words"></param>
+        </member>
+        <member name="M:Proyect.OfferSearch.SearchByUbication(System.String)">
+            <summary>
+            Busca ofertas por ubicacion
+            </summary>
+            <param name="ubication"></param>
+        </member>
+        <member name="M:Proyect.OfferSearch.SearchByType(System.String)">
+            <summary>
+            Busca ofertas por el tipo
+            </summary>
+            <param name="type"></param>
+        </member>
         <member name="T:Proyect.ProductOffer">
             <summary>
             Representa el producto de una oferta
@@ -192,6 +257,23 @@
             <param name="price"></param>
             <param name="ubication"></param>
         </member>
+        <member name="T:Proyect.Qualifications">
+            <summary>
+            Clase que representa las habilitaciones de una oferta o emprendedor
+            </summary>
+        </member>
+        <member name="P:Proyect.Qualifications.QualificationName">
+            <summary>
+            Propierti delnombre de la habilitacion
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Proyect.Qualifications.#ctor(System.String)">
+            <summary>
+            Constructor de instancias de qualification
+            </summary>
+            <param name="qualificationName"></param>
+        </member>
         <member name="T:Proyect.Rubro">
             <summary>
             Clase que representa el rubro de una compania o emprendedor
@@ -229,7 +311,7 @@
             El rubro al que pertnece el usuario
             </summary>
         </member>
-        <member name="M:Proyect.User.#ctor(System.String,System.String,System.String)">
+        <member name="M:Proyect.User.#ctor(System.String,System.String,Proyect.Rubro)">
             <summary>
             Constructor de entity
             </summary>
@@ -254,6 +336,137 @@
             Propiedad get y set del atributo del rubro
             </summary>
             <value></value>
+        </member>
+        <member name="T:LocationApi.Distance">
+            <summary>
+            Representa la distancia entre las coordenas o las direcciones de origen y destino retornada en los métodos
+            <see cref="M:LocationApi.LocationApiClient.GetDistance(LocationApi.Location,LocationApi.Location)"/> o
+            <see cref="M:LocationApi.LocationApiClient.GetDistance(System.String,System.String)"/>.
+            </summary>
+        </member>
+        <member name="P:LocationApi.Distance.Found">
+            <summary>
+            Indica si se encontraron o no las coordenas o las direcciones de origen y destino.
+            </summary>
+            <value>true si se encontró la dirección; false en caso contrario.</value>
+        </member>
+        <member name="P:LocationApi.Distance.TravelDistance">
+            <summary>
+            La distancia entre las coordenadas o las direcciones de origen y destino.
+            </summary>
+            <value>La distancia en metros.</value>
+        </member>
+        <member name="P:LocationApi.Distance.TravelDuration">
+            <summary>
+            El tiempo que se demora en llegar de las coordenadas o de las direcciones de origen a las de destino.
+            </summary>
+            <value>El tiempo que se demora en minutos.</value>
+        </member>
+        <member name="T:LocationApi.Location">
+            <summary>
+            Representa las coordenadas y otros datos de la ubicación de una dirección retornada en el método
+            <see cref="M:LocationApi.LocationApiClient.GetLocation(System.String,System.String,System.String,System.String)"/>.
+            </summary>
+        </member>
+        <member name="P:LocationApi.Location.Found">
+            <summary>
+            Indica si se encontró o no la dirección. En ese caso son válidos los demás valores. En caso contrario los
+            demás valores son indeterminados.
+            </summary>
+            <value>true si se encontró la dirección; false en caso contrario.</value>
+        </member>
+        <member name="P:LocationApi.Location.AddresLine">
+            <summary>
+            La dirección: calle y número, ruta y kilómetro, etc.
+            </summary>
+            <value>Por ejemplo, Avenida 8 de Octubre 2738.</value>
+        </member>
+        <member name="P:LocationApi.Location.CountryRegion">
+            <summary>
+            El país.
+            </summary>
+            <value>Por ejemplo, Uruguay</value>
+        </member>
+        <member name="P:LocationApi.Location.FormattedAddress">
+            <summary>
+            La dirección completa, incluyendo ciudad, código postal, etc.
+            </summary>
+            <value>Por ejemplo, Avenida 8 de Octubre 2738, Montevideo, 11200, Uruguay.</value>
+        </member>
+        <member name="P:LocationApi.Location.Locality">
+            <summary>
+            La localidad o ciudad.
+            </summary>
+            <value>Por ejemplo, Montevideo</value>
+        </member>
+        <member name="P:LocationApi.Location.PostalCode">
+            <summary>
+            El código postal.
+            </summary>
+            <value>Por ejemplo, 11200</value>
+        </member>
+        <member name="P:LocationApi.Location.Latitude">
+            <summary>
+            La latitud de la dirección.
+            </summary>
+            <value>El valor de la latitud en formato decimal.</value>
+        </member>
+        <member name="P:LocationApi.Location.Longitude">
+            <summary>
+            La longitud de la dirección.
+            </summary>
+            <value>El valor de la longitud en formato decimal.</value>
+        </member>
+        <member name="T:LocationApi.LocationApiClient">
+            <summary>
+            API de Localizacion
+            </summary>
+        </member>
+        <member name="M:LocationApi.LocationApiClient.GetLocation(System.String,System.String,System.String,System.String)">
+            <summary>
+            Obtiene las coordenadas de una dirección.
+            </summary>
+            <param name="address">La dirección.</param>
+            <param name="city">La ciudad. Es opcional. El valor predeterminado es Montevideo.</param>
+            <param name="department">El departamento, estado, provincia, etc. Es opcional. El valor predeterminado es `ontevideo.</param>
+            <param name="country">El país. Es opcional. El valor predeterminado es Uruguay.</param>
+            <returns>Las coordenadas de la dirección.</returns>
+        </member>
+        <member name="M:LocationApi.LocationApiClient.GetDistance(LocationApi.Location,LocationApi.Location)">
+            <summary>
+            Obtiene la distancia entre dos coordenadas.
+            </summary>
+            <param name="from">La coordenada de origen.</param>
+            <param name="to">La coordenada de destino.</param>
+            <returns>La distancia entre las dos coordenadas.</returns>
+        </member>
+        <member name="M:LocationApi.LocationApiClient.GetDistance(System.String,System.String)">
+            <summary>
+            Obtiene la distancia entre dos direcciones.
+            </summary>
+            <param name="from">La dirección de origen.</param>
+            <param name="to">La dirección de destino.</param>
+            <returns>La distancia entre las dos direcciones.</returns>
+        </member>
+        <member name="M:LocationApi.LocationApiClient.DownloadMap(System.Double,System.Double,System.String,System.Int32)">
+            <summary>
+            Descarga una mapa de una coordenada.
+            </summary>
+            <param name="latitude">La latitud de la coordenada.</param>
+            <param name="longitude">La longitud de la coordenada.</param>
+            <param name="path">La ruta del archivo donde guardar el mapa. El formato es PNG.</param>
+            <param name="zoomLevel">El nivel de zoom del mapa entre 1 y 20. Es opcional. El valor predeterminado es
+            15.</param>
+        </member>
+        <member name="M:LocationApi.LocationApiClient.DownloadRoute(System.Double,System.Double,System.Double,System.Double,System.String)">
+            <summary>
+            Un mapa con una ruta entre dos coordenadas.
+            </summary>
+            <param name="fromLatitude">La latitud de la coordenada de origen.</param>
+            <param name="fromLongitude">La longitu de la coordenada de origen.</param>
+            <param name="toLatitude">La latitud de la coordenada de destino.</param>
+            <param name="toLongitude">La longitud de la coordenada de destino.</param>
+            <param name="path">La ruta del archivo donde guardar el mapa. Es formato es PNG.</param>
         </member>
     </members>
 </doc>

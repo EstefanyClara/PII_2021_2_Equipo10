@@ -6,6 +6,8 @@
 
 using System;
 using Proyect;
+using System.Threading.Tasks;
+using LocationApi;
 
 namespace ConsoleApplication
 {

@@ -11,7 +11,7 @@ namespace   Proyect
 /// Propierti delnombre de la habilitacion
 /// </summary>
 /// <value></value>
-        public string Qualification
+        public string QualificationName
         {
             get
             {
@@ -29,7 +29,7 @@ namespace   Proyect
 
         public Qualifications(string qualificationName)
         {
-            this.Qualification = qualificationName;
+            this.QualificationName = qualificationName;
         }
     }
 }

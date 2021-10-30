@@ -32,9 +32,8 @@ namespace Proyect
             this.product = new ProductOffer(tipo,quantity,cost,ubication);
             this.Constant = ifConstant;
             this.Qualifications = qualifications;
-
+            
             this.KeyWords = new ArrayList();
-
             string[]  words = keyWords.Split(" ");
             foreach( string word in words)
             {
