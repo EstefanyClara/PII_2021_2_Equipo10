@@ -1,6 +1,6 @@
 using System.Collections;
 
-namespace ClassLibrary
+namespace   Proyect
 {
     /// <summary>
     /// Representa el producto de una oferta
@@ -10,7 +10,7 @@ namespace ClassLibrary
         private string validClassification;
 
 /// <summary>
-/// Determina la ubicacion de un producto.
+/// Propiedad de validClasification, el cual guarda el nombre del tipo del product,es decir, su clasificacion
 /// </summary>
 /// <value></value>
         public string ValidClassifications
@@ -25,7 +25,7 @@ namespace ClassLibrary
             }
         }
 /// <summary>
-/// Constructor de instancias de product.
+/// Constructor de instancias de clasification.
 /// </summary>
 /// <param name="classification"></param>
 

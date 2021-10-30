@@ -28,7 +28,7 @@ namespace Proyect
             this.Specializations = specializations;
         }
 /// <summary>
-/// Propiedad get y set
+/// Propiedad get y set de las habilitaciones
 /// </summary>
 /// <value></value>
         public string Qualifications

@@ -1,4 +1,5 @@
 using System; 
+using System.Collections;
 
 namespace Proyect
 {
@@ -7,53 +8,29 @@ namespace Proyect
     /// </summary>
     public class Company: User
     {
-        public string name; 
-        public string ubication; 
-        public string rubro; 
-        public Array offers; 
+/// <summary>
+/// Lista de ofertas de la compania
+/// </summary>
+        public ArrayList offers; 
 
-        public Company(string name, string ubication, string rubro)
+/// <summary>
+/// Constructor de company
+/// </summary>
+/// <param name="name"></param>
+/// <param name="ubication"></param>
+/// <param name="rubro"></param>
+        public Company(string name, string ubication, string rubro):base(name,ubication,rubro)
         {
-            this.Name=name; 
-            this.Ubication= ubication; 
-            this.Rubro= rubro; 
+
         }
-        public string Name
-        {
-            get
-            {
-                return this.name; 
-            }   
-            set
-            {
-                this.name=value; 
-            }
-        }
-        public string Ubication
-        {
-            get
-            {
-                return this.ubication; 
-            }
-            set
-            {
-                this.ubication=value; 
-            }
-        }
-        public string Rubro
-        {
-            get
-            {
-                return this.rubro; 
-            }
-            set
-            {
-                this.rubro=value; 
-            } 
-        }
+
+/// <summary>
+/// Publica una oferta,es decir,la crea y la guarda en su lista
+/// </summary>
         public  void PublicOffer()
         {
             
         }
-    }
+    
+}
 }

@@ -1,11 +1,11 @@
 using System.Collections;
 
-namespace ClassLibrary
+namespace Proyect
 {
     /// <summary>
     /// Representa el producto de una oferta
     /// </summary>
-    public class Product
+    public class ProductOffer
     {
         private Classification classification;
         private double quantity;
@@ -16,7 +16,7 @@ namespace ClassLibrary
 /// Obtiene un string que determina los tipos del producto.
 /// </summary>
 /// <value></value>
-        public string Classification
+        public Classification Classification
         {
             get
             {
@@ -79,12 +79,12 @@ namespace ClassLibrary
 /// <param name="quantity"></param>
 /// <param name="price"></param>
 /// <param name="ubication"></param>
-        public Product(string classification, double quantity, double price, string ubication)
+        public ProductOffer(string classification, double quantity, double price, string ubication)
         {
-            this.Classification = classification;
             this.Quantity = quantity;
             this.Price = price;
             this.Ubication = ubication;
+            
         }
 
 

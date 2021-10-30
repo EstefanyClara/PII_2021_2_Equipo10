@@ -65,7 +65,7 @@ namespace Proyect
 /// </summary>
 /// <value></value>
 
-        public PrductOffer Product
+        public ProductOffer Product
         {
             get
             {

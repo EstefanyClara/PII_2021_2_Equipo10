@@ -4,37 +4,221 @@
         <name>Library</name>
     </assembly>
     <members>
-        <member name="T:proyectoParteDos.Company">
+        <member name="T:Proyect.Classification">
+            <summary>
+            Representa el producto de una oferta
+            </summary>
+        </member>
+        <member name="P:Proyect.Classification.ValidClassifications">
+            <summary>
+            Propiedad de validClasification, el cual guarda el nombre del tipo del product,es decir, su clasificacion
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Proyect.Classification.#ctor(System.String)">
+            <summary>
+            Constructor de instancias de clasification.
+            </summary>
+            <param name="classification"></param>
+        </member>
+        <member name="T:Proyect.Company">
             <summary>
             Esta clase representa la compania, 
             </summary>
         </member>
-        <member name="T:ClassLibrary.Train">
+        <member name="F:Proyect.Company.offers">
             <summary>
-            Esta clase representa un tren muy básico.
+            Lista de ofertas de la compania
             </summary>
         </member>
-        <member name="P:ClassLibrary.Train.IsEngineStarted">
+        <member name="M:Proyect.Company.#ctor(System.String,System.String,System.String)">
             <summary>
-            Obtiene un valor que indica si las maquinas del tren han sido encendidas o no.
+            Constructor de company
             </summary>
-            <value><c>true</c> si las máquinas fueron encendidas, <c>false</c> en caso contrario.</value>
+            <param name="name"></param>
+            <param name="ubication"></param>
+            <param name="rubro"></param>
         </member>
-        <member name="M:ClassLibrary.Train.StartEngines">
+        <member name="M:Proyect.Company.PublicOffer">
             <summary>
-            Enciende las máquinas del tren.
+            Publica una oferta,es decir,la crea y la guarda en su lista
             </summary>
-            <returns>
-            <c>true</c> si las máquinas pueden ser encendidas, <c>false</c> en caso contrario.
-            </returns>
         </member>
-        <member name="M:ClassLibrary.Train.StopEngines">
+        <member name="T:Proyect.Emprendedor">
             <summary>
-            Detiene las máquinas del tren.
+            Clase emprendedor.
             </summary>
-            <returns>
-            <c>true</c> si las máquinas pueden ser detenidas, <c>false</c> en caso contrario.
-            </returns>
+        </member>
+        <member name="M:Proyect.Emprendedor.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Constructor de emprendedor
+            </summary>
+            <param name="name"></param>
+            <param name="ubication"></param>
+            <param name="rubro"></param>
+            <param name="qualifications"></param>
+            <param name="specializations"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Proyect.Emprendedor.Qualifications">
+            <summary>
+            Propiedad get y set de las habilitaciones
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.Emprendedor.Specializations">
+            <summary>
+            Propiedad Specializations
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:Proyect.Offer">
+            <summary>
+            Representa la oferta de una compania
+            </summary>
+        </member>
+        <member name="M:Proyect.Offer.#ctor(System.Boolean,System.String,System.Double,System.Double,System.String,System.String,System.String)">
+            <summary>
+            Constructor de offer, el mismo, crea una instancia del producto
+            </summary>
+            <param name="ifConstant"></param>
+            <param name="tipo"></param>
+            <param name="quantity"></param>
+            <param name="cost"></param>
+            <param name="ubication"></param>
+            <param name="qualifications"></param>
+            <param name="keyWords"></param>
+        </member>
+        <member name="P:Proyect.Offer.Constant">
+            <summary>
+            Obtiene un valor que indica si la oferta es constante o no
+            </summary>
+            <value><c>true</c> si la oferta es constante, <c>false</c> en caso contrario.</value>
+        </member>
+        <member name="P:Proyect.Offer.Product">
+            <summary>
+            Obtiene el el producto de la oferta.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.Offer.Qualifications">
+            <summary>
+            Obteien las cualificaciones/habilitaciones neceraias para aceptar la oferta, esto lo establce cada compania
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.Offer.KeyWords">
+            <summary>
+            ´Obtiene el conjunto de palabras clave que se utilizan a la hora de buscar la oferta
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.Offer.Buyer">
+            <summary>
+            Obtiee el compardor de la oferta, quien la acepto luego de que la haya buscado
+            </summary>
+            <value><c>Emprendedor</c> si la oferta ya fue aceptada, lo que te dice tabien quien la acepto, <c>null</c> si no fue aceptada, por lo que se puede aceptar.</value>
+        </member>
+        <member name="T:Proyect.ProductOffer">
+            <summary>
+            Representa el producto de una oferta
+            </summary>
+        </member>
+        <member name="P:Proyect.ProductOffer.Classification">
+            <summary>
+            Obtiene un string que determina los tipos del producto.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.ProductOffer.Quantity">
+            <summary>
+            Determina la cantidad de unidades de un producto.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.ProductOffer.Price">
+            <summary>
+            Determina el precio por unidad de producto
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.ProductOffer.Ubication">
+            <summary>
+            Determina la ubicacion de un producto.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Proyect.ProductOffer.#ctor(System.String,System.Double,System.Double,System.String)">
+            <summary>
+            Constructor de instancias de product.
+            </summary>
+            <param name="classification"></param>
+            <param name="quantity"></param>
+            <param name="price"></param>
+            <param name="ubication"></param>
+        </member>
+        <member name="T:Proyect.Rubro">
+            <summary>
+            Clase que representa el rubro de una compania o emprendedor
+            </summary>
+        </member>
+        <member name="P:Proyect.Rubro.RubroName">
+            <summary>
+            Propierti delnombre del rubro
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Proyect.Rubro.#ctor(System.String)">
+            <summary>
+            Constructor de instancias de rubro
+            </summary>
+            <param name="rubroName"></param>
+        </member>
+        <member name="T:Proyect.User">
+            <summary>
+            Superclase entity
+            </summary>
+        </member>
+        <member name="F:Proyect.User.name">
+            <summary>
+            Nombre del usuario,sea una compania o emprendedor
+            </summary>
+        </member>
+        <member name="F:Proyect.User.ubication">
+            <summary>
+            Ubicacion del usiario
+            </summary>
+        </member>
+        <member name="F:Proyect.User.rubro">
+            <summary>
+            El rubro al que pertnece el usuario
+            </summary>
+        </member>
+        <member name="M:Proyect.User.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Constructor de entity
+            </summary>
+            <param name="name"></param>
+            <param name="ubication"></param>
+            <param name="rubro"></param>
+        </member>
+        <member name="P:Proyect.User.Name">
+            <summary>
+            Propiedad get y set del atributo del nombre
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.User.Ubication">
+            <summary>
+            Propiedad get y set del atributo de la ubicacion
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.User.Rubro">
+            <summary>
+            Propiedad get y set del atributo del rubro
+            </summary>
+            <value></value>
         </member>
     </members>
 </doc>
