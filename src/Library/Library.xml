@@ -4,22 +4,57 @@
         <name>Library</name>
     </assembly>
     <members>
-        <member name="T:Proyect.Classification">
+        <member name="T:Proyect.AppLogic">
             <summary>
-            Representa el producto de una oferta
+            Clase singleton para guardar los datos de la Aplicacion
             </summary>
         </member>
-        <member name="P:Proyect.Classification.ValidClassifications">
+        <member name="P:Proyect.AppLogic.Companies">
             <summary>
-            Propiedad de validClasification, el cual guarda el nombre del tipo del product,es decir, su clasificacion
+            Obtiene las companias que estan registradas
+            </summary>
+            <value>companies</value>
+        </member>
+        <member name="P:Proyect.AppLogic.Entrepreneurs">
+            <summary>
+            Obtiene los emprendedores que estan registrados
+            </summary>
+            <value>entrepreneurs</value>
+        </member>
+        <member name="P:Proyect.AppLogic.Instance">
+            <summary>
+            Obtiene la instancia de AppLogic
             </summary>
             <value></value>
         </member>
-        <member name="M:Proyect.Classification.#ctor(System.String)">
+        <member name="M:Proyect.AppLogic.SearchByKeywords(System.String)">
             <summary>
-            Constructor de instancias de clasification.
+            Busca las ofertas con la palabra clave que se le pasa
             </summary>
-            <param name="classification"></param>
+            <param name="keyword"></param>
+        </member>
+        <member name="M:Proyect.AppLogic.SearchByUbication(System.String)">
+            <summary>
+            Busca ofertas por ubicacion
+            </summary>
+            <param name="ubication"></param>
+        </member>
+        <member name="M:Proyect.AppLogic.SearchByType(System.String)">
+            <summary>
+            Busca ofertas por el tipo
+            </summary>
+            <param name="type"></param>
+        </member>
+        <member name="T:Proyect.Classification">
+            <summary>
+            Es la clasificacion que va a tener cada producto
+            </summary>
+        </member>
+        <member name="P:Proyect.Classification.Category">
+            <summary>
+            Devuelve el nombre de la clasificacion
+            </summary>
+            <value></value>
         </member>
         <member name="T:Proyect.Company">
             <summary>
@@ -77,7 +112,7 @@
             Representa la oferta de una compania
             </summary>
         </member>
-        <member name="M:Proyect.Offer.#ctor(System.Boolean,System.String,System.Double,System.Double,System.String,System.String,System.String)">
+        <member name="M:Proyect.Offer.#ctor(System.Boolean,Proyect.Classification,System.Int32,System.Double,System.String,System.String,System.String)">
             <summary>
             Constructor de offer, el mismo, crea una instancia del producto
             </summary>
@@ -148,7 +183,7 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:Proyect.ProductOffer.#ctor(System.String,System.Double,System.Double,System.String)">
+        <member name="M:Proyect.ProductOffer.#ctor(Proyect.Classification,System.Double,System.Double,System.String)">
             <summary>
             Constructor de instancias de product.
             </summary>

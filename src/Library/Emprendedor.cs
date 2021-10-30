@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace Proyect
 {
@@ -8,9 +9,9 @@ namespace Proyect
     /// </summary>
     public class Emprendedor : User
     {
-        private string qualifications;
+        private List<Qualifications> qualifications;
 
-        private string specializations;
+        private List<Qualifications> specializations;
 
         private List<Offer> purchasedOffer;
 /// <summary>
@@ -22,7 +23,7 @@ namespace Proyect
 /// <param name="qualifications"></param>
 /// <param name="specializations"></param>
 /// <returns></returns>
-        public Emprendedor(string name, string ubication, string rubro, string qualifications, string specializations):base(name,ubication,rubro)
+        public Emprendedor(string name, string ubication, Rubro rubro, List<Qualifications> qualifications, List<Qualifications> specializations):base(name,ubication,rubro)
         {
             this.Qualifications = qualifications;
             this.Specializations = specializations;
@@ -31,7 +32,7 @@ namespace Proyect
 /// Propiedad get y set de las habilitaciones
 /// </summary>
 /// <value></value>
-        public string Qualifications
+        public List<Qualifications> Qualifications
         {
             get
             {
@@ -46,7 +47,7 @@ namespace Proyect
 /// Propiedad Specializations
 /// </summary>
 /// <value></value>
-        public string Specializations
+        public List<Qualifications> Specializations
         {
             get
             {

@@ -79,7 +79,7 @@ namespace Proyect
 /// <param name="quantity"></param>
 /// <param name="price"></param>
 /// <param name="ubication"></param>
-        public ProductOffer(string classification, double quantity, double price, string ubication)
+        public ProductOffer(Classification classification, double quantity, double price, string ubication)
         {
             this.Quantity = quantity;
             this.Price = price;

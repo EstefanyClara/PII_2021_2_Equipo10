@@ -27,7 +27,7 @@ namespace Proyect
 /// <param name="ubication"></param>
 /// <param name="qualifications"></param>
 /// <param name="keyWords"></param>
-        public Offer(bool ifConstant, string tipo, double quantity, double cost, string ubication, string qualifications, string keyWords)
+        public Offer(bool ifConstant, Classification tipo, int quantity, double cost, string ubication, string qualifications, string keyWords)
         {
             this.product = new ProductOffer(tipo,quantity,cost,ubication);
             this.Constant = ifConstant;
@@ -76,6 +76,7 @@ namespace Proyect
                 this.product = value;
             }
         }
+        
 
 /// <summary>
 /// Obteien las cualificaciones/habilitaciones neceraias para aceptar la oferta, esto lo establce cada compania

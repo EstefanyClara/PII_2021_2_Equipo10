@@ -18,14 +18,14 @@ namespace Proyect
 /// <summary>
 /// El rubro al que pertnece el usuario
 /// </summary>
-        protected string rubro;
+        protected Rubro rubro;
 /// <summary>
 /// Constructor de entity
 /// </summary>
 /// <param name="name"></param>
 /// <param name="ubication"></param>
 /// <param name="rubro"></param>
-        public User(string name, string ubication, string rubro)
+        public User(string name, string ubication, Rubro rubro)
         {
             this.Name = name;
             this.Ubication = ubication;
@@ -65,7 +65,7 @@ namespace Proyect
 /// Propiedad get y set del atributo del rubro
 /// </summary>
 /// <value></value>
-        public string Rubro
+        public Rubro Rubro
         {
             get
             {
