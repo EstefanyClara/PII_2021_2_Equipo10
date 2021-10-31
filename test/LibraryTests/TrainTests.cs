@@ -4,9 +4,9 @@
 // </copyright>
 //--------------------------------------------------------------------------------
 
-using ClassLibrary;
+//using ClassLibrary;
 using NUnit.Framework;
-
+/*
 namespace Tests
 {
     /// <summary>
@@ -18,7 +18,7 @@ namespace Tests
         /// <summary>
         /// El tren para probar.
         /// </summary>
-        private Train train;
+        //private Train train;
 
         /// <summary>
         /// Crea un tren para probar.
@@ -26,7 +26,7 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            this.train = new Train();
+            //this.train = new Train();
         }
 
         /// <summary>
@@ -52,4 +52,4 @@ namespace Tests
             Assert.False(this.train.IsEngineStarted);
         }
     }
-}
+}*/

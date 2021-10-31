@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Collections;
+using System;
 
 namespace Proyect
 {
@@ -11,11 +13,13 @@ namespace Proyect
 
         private ProductOffer product;
 
-        private string qualifications;
+        private List<Qualifications> qualifications;
 
         private ArrayList keyWords;
 
         private Emprendedor buyer;
+
+        private DateTime timeAccepted;
 
 /// <summary>
 /// Constructor de offer, el mismo, crea una instancia del producto
@@ -27,20 +31,12 @@ namespace Proyect
 /// <param name="ubication"></param>
 /// <param name="qualifications"></param>
 /// <param name="keyWords"></param>
-        public Offer(bool ifConstant, string tipo, double quantity, double cost, string ubication, string qualifications, string keyWords)
+        public Offer(bool ifConstant, Classification tipo, double quantity, double cost, string ubication, List<Qualifications> qualifications, ArrayList keyWords)
         {
             this.product = new ProductOffer(tipo,quantity,cost,ubication);
             this.Constant = ifConstant;
             this.Qualifications = qualifications;
-
-            this.KeyWords = new ArrayList();
-
-            string[]  words = keyWords.Split(" ");
-            foreach( string word in words)
-            {
-                this.KeyWords.Add(word);
-            }
-            
+            this.KeyWords = keyWords;
         }
 
 /// <summary>
@@ -65,7 +61,7 @@ namespace Proyect
 /// </summary>
 /// <value></value>
 
-        public PrductOffer Product
+        public ProductOffer Product
         {
             get
             {
@@ -76,13 +72,14 @@ namespace Proyect
                 this.product = value;
             }
         }
+        
 
 /// <summary>
 /// Obteien las cualificaciones/habilitaciones neceraias para aceptar la oferta, esto lo establce cada compania
 /// </summary>
 /// <value></value>
 
-        public string Qualifications
+        public List<Qualifications> Qualifications
         {
             get
             {
@@ -128,6 +125,23 @@ namespace Proyect
                 this.buyer = value;
             }
             
+        }
+
+        /// <summary>
+        /// Propierti para obtner la fecha y hora de cuando la oferta fue aceptada por un emprendedor
+        /// </summary>
+        /// <value></value>
+        public DateTime TimeAccepted
+        {
+            get
+            {
+                return this.timeAccepted;
+            }
+
+            set
+            {
+                this.timeAccepted = value;
+            }
         }
     }
 }
