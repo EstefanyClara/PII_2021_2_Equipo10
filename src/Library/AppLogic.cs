@@ -14,8 +14,8 @@ namespace Proyect
     {
         private LocationApiClient client = new LocationApiClient();
         private readonly static AppLogic _instance = new AppLogic();
-        private ArrayList companies;
-        private ArrayList entrepreneurs;
+        private List<Company> companies;
+        private List<Emprendedor> entrepreneurs;
 
         private List<Rubro> validRubros = new List<Rubro>(){new Rubro("Alimentos"),new Rubro("Tecnologia"),new Rubro("Medicina")};
 
@@ -27,18 +27,18 @@ namespace Proyect
         /// Obtiene las companias que estan registradas
         /// </summary>
         /// <value>companies</value>
-        public ArrayList Companies
+        public List<Company> Companies
         {
-            get{return new ArrayList(companies);}
+            get{return companies;}
         }
 
         /// <summary>
         /// Obtiene los emprendedores que estan registrados
         /// </summary>
         /// <value>entrepreneurs</value>
-        public ArrayList Entrepreneurs
+        public List<Emprendedor> Entrepreneurs
         {
-            get{ return new ArrayList(entrepreneurs);}
+            get{ return entrepreneurs;}
         }
 
         /// <summary>
@@ -69,8 +69,8 @@ namespace Proyect
         }
         private AppLogic()
         {
-            companies = new ArrayList();
-            entrepreneurs = new ArrayList();
+            companies = new List<Company>();
+            entrepreneurs = new List<Emprendedor>();
         }
 
         /// <summary>
