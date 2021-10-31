@@ -16,7 +16,6 @@ namespace Proyect
         private readonly static AppLogic _instance = new AppLogic();
         private List<Company> companies;
         private List<Emprendedor> entrepreneurs;
-
         private List<Rubro> validRubros = new List<Rubro>(){new Rubro("Alimentos"),new Rubro("Tecnologia"),new Rubro("Medicina")};
 
         private List<Qualifications> validQualifications = new List<Qualifications>(){new Qualifications("Vehiculo propio"),new Qualifications("Espacio para grandes volumenes de producto"),new Qualifications("Lugar habilitado para conservar desechos toxicos")};
@@ -92,7 +91,7 @@ namespace Proyect
         {
             try
             {
-            entrepreneurs.Add(new Emprendedor(name,ubication,rubro,habilitaciones, especializaciones));
+                entrepreneurs.Add(new Emprendedor(name,ubication,rubro,habilitaciones, especializaciones));
             }
             catch (EmptyUserBuilderException e)
             {
