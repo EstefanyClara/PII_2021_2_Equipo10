@@ -21,7 +21,6 @@ namespace ConsoleApplication
         /// </summary>
         public static void Main()
         {
-            AppLogic.Instance.G
             Console.WriteLine(Convert.ToString(DateTime.Now));
         }
     }
