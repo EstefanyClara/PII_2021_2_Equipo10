@@ -1,5 +1,6 @@
 using System; 
 using System.Collections;
+using System.Collections.Generic;
 
 namespace Proyect
 {
@@ -11,7 +12,7 @@ namespace Proyect
                 /// <summary>
                 /// Lista de ofertas de la compania
                 /// </summary>
-                public ArrayList offers; 
+                private ArrayList offers; 
 
                 /// <summary>
                 /// Constructor de company
@@ -25,11 +26,20 @@ namespace Proyect
                 }
 
                 /// <summary>
+                /// Metodo que retorna una lista con las ofertas publicadas por la empresa
+                /// </summary>
+                /// <value></value>
+                public ArrayList OffersPublished
+                {
+                        get{ return this.offers; }     
+                }
+
+                /// <summary>
                 /// Publica una oferta,es decir,la crea y la guarda en su lista
                 /// </summary>
-                public  void PublicOffer()
+                public  void PublicOffer(bool ifConstant, Classification tipo, int quantity, double cost, string ubication, List<Qualifications> qualifications, ArrayList keyWords)
                 {
-        
+                        OffersPublished.Add(new Offer(ifConstant, tipo, quantity, cost, ubication, qualifications, keyWords));
                 }
         }
 }

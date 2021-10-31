@@ -33,6 +33,12 @@
             </summary>
             <value></value>
         </member>
+        <member name="P:Proyect.AppLogic.Classifications">
+            <summary>
+            Obtiene la lista de clasificaciones/categorias registradas para los productos
+            </summary>
+            <value></value>
+        </member>
         <member name="P:Proyect.AppLogic.Instance">
             <summary>
             Obtiene la instancia de AppLogic
@@ -77,6 +83,46 @@
             <param name="word"></param>
             <returns></returns>
         </member>
+        <member name="M:Proyect.AppLogic.AccepOffer(Proyect.Emprendedor,Proyect.Offer)">
+            <summary>
+            Metodo para aceptar una oferta
+            </summary>
+            <param name="emprendedor"></param>
+            <param name="offer"></param>
+        </member>
+        <member name="M:Proyect.AppLogic.ObteinOfferDistance(Proyect.Emprendedor,Proyect.Offer)">
+            <summary>
+            Metodo que permite obtener la distancia entre un emprendedor y un producto
+            </summary>
+        </member>
+        <member name="M:Proyect.AppLogic.ObteinOfferMap(Proyect.Offer)">
+            <summary>
+            Metodo que obtiene el mapa de la ubicacion de un emprendedor
+            </summary>
+            <param name="offer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.AppLogic.GetConstantMaterials">
+            <summary>
+            Metodo que devuelbe un string con la lista de materiales constantes
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.AppLogic.GetOffersAccepted(Proyect.Company)">
+            <summary>
+            Obtiene un string con la indicando si sus ofertas fueron o no fueron aceptadas, en caso de que si, indica ademas la fecha de cuando fueron aceptadas
+            </summary>
+            <param name="company"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.AppLogic.GetPeriodTimeOffersAccepted(Proyect.Company,System.Int32)">
+            <summary>
+            Obtiene la cantidad de ofertas que furon aceptadas en un periodo de tiempo establecido por el usuario
+            </summary>
+            <param name="company"></param>
+            <param name="periodTime"></param>
+            <returns></returns>
+        </member>
         <member name="T:Proyect.Classification">
             <summary>
             Es la clasificacion que va a tener cada producto
@@ -87,6 +133,12 @@
             Devuelve el nombre de la clasificacion
             </summary>
             <value></value>
+        </member>
+        <member name="M:Proyect.Classification.#ctor(System.String)">
+            <summary>
+            Constructor de las clasificaciones
+            </summary>
+            <param name="category"></param>
         </member>
         <member name="T:Proyect.Company">
             <summary>
@@ -105,6 +157,12 @@
             <param name="name"></param>
             <param name="ubication"></param>
             <param name="rubro"></param>
+        </member>
+        <member name="P:Proyect.Company.OffersPublished">
+            <summary>
+            Metodo que retorna una lista con las ofertas publicadas por la empresa
+            </summary>
+            <value></value>
         </member>
         <member name="M:Proyect.Company.PublicOffer">
             <summary>
@@ -139,6 +197,11 @@
             </summary>
             <value></value>
         </member>
+        <member name="M:Proyect.Emprendedor.AddPurchasedOffer(Proyect.Offer)">
+            <summary>
+            Metdod para agregar una oferta a la lista de ofertas que el emprendedor acepto
+            </summary>
+        </member>
         <member name="T:Proyect.MessageProcesor">
             <summary>
             Clase que procesa los mensajes de telegram (en este caso va a procesar los mensajes de consola para probra la logica)
@@ -154,7 +217,7 @@
             Representa la oferta de una compania
             </summary>
         </member>
-        <member name="M:Proyect.Offer.#ctor(System.Boolean,Proyect.Classification,System.Int32,System.Double,System.String,System.String,System.String)">
+        <member name="M:Proyect.Offer.#ctor(System.Boolean,Proyect.Classification,System.Int32,System.Double,System.String,System.Collections.Generic.List{Proyect.Qualifications},System.String)">
             <summary>
             Constructor de offer, el mismo, crea una instancia del producto
             </summary>
@@ -195,6 +258,12 @@
             Obtiee el compardor de la oferta, quien la acepto luego de que la haya buscado
             </summary>
             <value><c>Emprendedor</c> si la oferta ya fue aceptada, lo que te dice tabien quien la acepto, <c>null</c> si no fue aceptada, por lo que se puede aceptar.</value>
+        </member>
+        <member name="P:Proyect.Offer.TimeAccepted">
+            <summary>
+            Propierti para obtner la fecha y hora de cuando la oferta fue aceptada por un emprendedor
+            </summary>
+            <value></value>
         </member>
         <member name="T:Proyect.OfferSearch">
             <summary>

@@ -8,7 +8,7 @@ namespace Proyect
     /// </summary>
     public static class OfferSearch
     {
-                /// <summary>
+        /// <summary>
         /// Busca las ofertas con la palabra clave que se le pasa
         /// </summary>
         /// <param name="words"></param>
@@ -19,7 +19,7 @@ namespace Proyect
             ArrayList offers = new ArrayList();
             foreach (Company company in AppLogic.Instance.Companies)
             {
-                foreach (Offer offer in company.offers)
+                foreach (Offer offer in company.OffersPublished)
                 {
 
                     if (offer.KeyWords.Contains(keywords))
@@ -41,7 +41,7 @@ namespace Proyect
             ArrayList offers = new ArrayList();
             foreach (Company company in AppLogic.Instance.Companies)
             {
-                foreach (Offer offer in company.offers)
+                foreach (Offer offer in company.OffersPublished)
                 {
                     if(offer.Product.Ubication == ubication)
                     {
@@ -62,7 +62,7 @@ namespace Proyect
             ArrayList offers = new ArrayList();
             foreach (Company company in AppLogic.Instance.Companies)
             {
-                foreach (Offer offer in company.offers)
+                foreach (Offer offer in company.OffersPublished)
                 {
                     if(offer.Product.Classification.Category == type)
                     {

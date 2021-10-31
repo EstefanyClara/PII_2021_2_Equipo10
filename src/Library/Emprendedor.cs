@@ -27,6 +27,7 @@ namespace Proyect
         {
             this.Qualifications = qualifications;
             this.Specializations = specializations;
+            this.purchasedOffer = new List<Offer>();
         }
 /// <summary>
 /// Propiedad get y set de las habilitaciones
@@ -57,6 +58,26 @@ namespace Proyect
             {
                 this.specializations = value;
             }
+        }
+
+        /// <summary>
+        /// Obtiene la lista de ofertas ofertas aceptadas por el emprendedor
+        /// </summary>
+        /// <value></value>
+        public List<Offer> PurchasedOffers
+        {
+            get
+            {
+                return this.purchasedOffer;
+            }
+        }
+
+        /// <summary>
+        /// Metdod para agregar una oferta a la lista de ofertas que el emprendedor acepto
+        /// </summary>
+        public void AddPurchasedOffer(Offer offer)
+        {
+            this.purchasedOffer.Add(offer);
         }
     }
 }

@@ -24,5 +24,14 @@ namespace Proyect
                 this.category = value;
             }
         }
+
+        /// <summary>
+        /// Constructor de las clasificaciones
+        /// </summary>
+        /// <param name="category"></param>
+        public Classification(string category)
+        {
+            this.Category = category;
+        }
     }
 }
