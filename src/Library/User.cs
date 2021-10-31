@@ -27,6 +27,10 @@ namespace Proyect
 /// <param name="rubro"></param>
         public User(string name, string ubication, Rubro rubro)
         {
+            if (name == "" || ubication == "")
+            {
+                throw new EmptyUserBuilderException("Los datos ingresados no son validos, nombre o ubicacion vacios");
+            }
             this.Name = name;
             this.Ubication = ubication;
             this.Rubro = rubro;

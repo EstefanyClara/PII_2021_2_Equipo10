@@ -31,7 +31,7 @@ namespace Proyect
 /// <param name="ubication"></param>
 /// <param name="qualifications"></param>
 /// <param name="keyWords"></param>
-        public Offer(bool ifConstant, Classification tipo, int quantity, double cost, string ubication, List<Qualifications> qualifications, ArrayList keyWords)
+        public Offer(bool ifConstant, Classification tipo, double quantity, double cost, string ubication, List<Qualifications> qualifications, ArrayList keyWords)
         {
             this.product = new ProductOffer(tipo,quantity,cost,ubication);
             this.Constant = ifConstant;

@@ -4,8 +4,10 @@
 // </copyright>
 //--------------------------------------------------------------------------------
 
-using System;
 using Proyect;
+using System;
+using System.Collections.Generic;
+using System.Collections;
 using System.Threading.Tasks;
 using LocationApi;
 
@@ -19,9 +21,15 @@ namespace ConsoleApplication
         /// <summary>
         /// Punto de entrada al programa principal.
         /// </summary>
-        public static void Main()
+        public static async Task Main()
         {
-            Console.WriteLine(Convert.ToString(DateTime.Now));
-        }
+            AppLogic.Instance.RegisterEntrepreneurs("Matias", "Cordoba", AppLogic.Instance.Rubros[0], AppLogic.Instance.Qualifications, AppLogic.Instance.Qualifications);
+            AppLogic.Instance.RegisterEntrepreneurs("Matias", "Cordoba", AppLogic.Instance.Rubros[1], new List<Qualifications>(){AppLogic.Instance.Qualifications[0],AppLogic.Instance.Qualifications[1]}, new List<Qualifications>(){AppLogic.Instance.Qualifications[0],AppLogic.Instance.Qualifications[1]});
+            Company c1 = new Company("MatiasCorp", "Parque Rodó",AppLogic.Instance.Rubros[1] );
+            AppLogic.Instance.PublicOffer(c1,true,AppLogic.Instance.Classifications[3], 300, 5000, "Parque Rodó", AppLogic.Instance.Qualifications, new ArrayList(){"Toxicos","Grandes volumenes"});
+            await AppLogic.Instance.ObteinOfferMap(c1.OffersPublished[0]);
+            Console.WriteLine(AppLogic.Instance.ValidRubrosMessage());
+            Console.WriteLine(AppLogic.Instance.validQualificationsMessage());        
+            }
     }
 }

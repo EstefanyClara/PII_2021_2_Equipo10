@@ -90,7 +90,15 @@ namespace Proyect
         /// </summary>
         public void RegisterEntrepreneurs(string name, string ubication, Rubro rubro, List<Qualifications> habilitaciones,List<Qualifications> especializaciones)
         {
+            try
+            {
             entrepreneurs.Add(new Emprendedor(name,ubication,rubro,habilitaciones, especializaciones));
+            }
+            catch (EmptyUserBuilderException e)
+            {
+                Console.WriteLine("Error al registrase");
+                throw e;
+            }
         }
 
         /// <summary>
@@ -126,6 +134,60 @@ namespace Proyect
         }
 
         /// <summary>
+        /// Remueve palabras clave de la oferta de una compania
+        /// </summary>
+        /// <param name="company"></param>
+        /// <param name="offer"></param>
+        /// <param name="keyWord"></param>
+        public void RemoveKeyWords(Company company,Offer offer, string keyWord)
+        {
+            company.RemoveKeyWords(offer,keyWord);
+        }
+
+        /// <summary>
+        /// Remueve las palabras clave de una oferta
+        /// </summary>
+        /// <param name="company"></param>
+        /// <param name="offer"></param>
+        /// <param name="keyWord"></param>
+        public void AddKeyWords(Company company, Offer offer, string keyWord)
+        {
+            company.AddKeyWords(offer,keyWord);
+        }
+
+        /// <summary>
+        /// Remueve la oferta de una compania
+        /// </summary>
+        /// <param name="company"></param>
+        /// <param name="offer"></param>
+        public void RemoveOffer(Company company, Offer offer)
+        {
+            company.RemoveOffer(offer);
+        }
+
+        /// <summary>
+        /// Remueve las habilitaciones de una compania 
+        /// </summary>
+        /// <param name="company"></param>
+        /// <param name="offer"></param>
+        /// <param name="qualification"></param>
+        public void RemoveQualification(Company company, Offer offer, Qualifications qualification)
+        {
+            company.RemoveQualification(offer, qualification);
+        }
+
+        /// <summary>
+        /// Agrega habilitaciones a una oferta
+        /// </summary>
+        /// <param name="company"></param>
+        /// <param name="offer"></param>
+        /// <param name="qualification"></param>
+        public void AddQualification(Company company, Offer offer, Qualifications qualification)
+        {
+            company.AddQualification(offer,qualification);
+        }
+
+        /// <summary>
         /// Publica una oferta de la compania que se le ingresa
         /// </summary>
         /// <param name="company"></param>
@@ -136,7 +198,7 @@ namespace Proyect
         /// <param name="ubication"></param>
         /// <param name="qualifications"></param>
         /// <param name="keyWords"></param>
-        public void PublicOffer(Company company,bool ifConstant, Classification tipo, int quantity, double cost, string ubication, List<Qualifications> qualifications, ArrayList keyWords)
+        public void PublicOffer(Company company,bool ifConstant, Classification tipo, double quantity, double cost, string ubication, List<Qualifications> qualifications, ArrayList keyWords)
         {
             company.PublicOffer(ifConstant,tipo,quantity,cost,ubication,qualifications,keyWords);
         }
@@ -156,7 +218,7 @@ namespace Proyect
         /// </summary>
         /// <param name="word"></param>
         /// <returns></returns>
-        public ArrayList SearchOfferByType(string word)
+        public ArrayList SearchOfferByType(string word) // duda
         {
             return OfferSearch.SearchByType(word);
         }
@@ -258,19 +320,7 @@ namespace Proyect
         /// <returns></returns>
         public string GetOffersAccepted(Company company)
         {
-            StringBuilder message = new StringBuilder();
-            foreach (Offer item in company.OffersPublished)
-            {
-                if (item.Buyer != null)
-                {
-                    message.Append($"{item.Product.Quantity} {item.Product.Classification} Accepted at {item.TimeAccepted}\n");
-                }
-                else 
-                {
-                    message.Append($"{item.Product.Quantity} of {item.Product.Classification} not Accepted");
-                }
-            }
-            return Convert.ToString(message);
+            return company.GetOffersAccepted();
         }
 
         /// <summary>
@@ -280,12 +330,7 @@ namespace Proyect
         /// <returns></returns>
         public string GetOffersAccepted(Emprendedor emprendedor)
         {
-            StringBuilder message = new StringBuilder();
-            foreach (Offer item in emprendedor.PurchasedOffers)
-            {    
-                message.Append($"{item.Product.Quantity} {item.Product.Classification} at a price of {item.Product.Price}$ Accepted at {item.TimeAccepted}\n");
-            }
-            return Convert.ToString(message);
+            return emprendedor.GetOffersAccepted();
         }
 
         /// <summary>
@@ -296,19 +341,7 @@ namespace Proyect
         /// <returns></returns>
         public int GetPeriodTimeOffersAccepted(Company company, int periodTime)
         {
-            int offersAccepted = 0;
-            foreach(Offer offer in company.OffersPublished)
-            {
-                if (offer.Buyer != null)
-                {
-                    int diference = Convert.ToInt32(offer.TimeAccepted - DateTime.Now);
-                    if(diference <= periodTime)
-                    {
-                        offersAccepted += 1;
-                    }
-                }
-            }
-            return offersAccepted;
+            return company.GetPeriodTimeOffersAccepted(periodTime);
         }
 
         /// <summary>
@@ -319,20 +352,7 @@ namespace Proyect
         /// <returns></returns>
         public int GetPeriodTimeOffersAccepted(Emprendedor emprendedor, int periodTime)
         {
-            int offersAccepted = 0;
-            foreach(Offer offer in emprendedor.PurchasedOffers)
-            {
-                if (offer.Buyer != null)
-                {
-                    int diference = Convert.ToInt32(offer.TimeAccepted - DateTime.Now);
-                    if(diference <= periodTime)
-                    {
-                        offersAccepted += 1;
-                    }
-                }
-            }
-            return offersAccepted;
+            return emprendedor.GetPeriodTimeOffersAccepted(periodTime);
         }
     }
-
 }

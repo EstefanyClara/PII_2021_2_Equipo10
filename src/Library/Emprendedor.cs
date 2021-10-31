@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections;
+using System.Text;
 
 namespace Proyect
 {
@@ -78,6 +79,42 @@ namespace Proyect
         public void AddPurchasedOffer(Offer offer)
         {
             this.purchasedOffer.Add(offer);
+        }
+
+        /// <summary>
+        /// Obtiene un string indicando las ofertas que fueron aceptadas por el por el emprendedor, junto con algunos datos
+        /// </summary>
+        /// <returns></returns>
+        public string GetOffersAccepted()
+        {
+            StringBuilder message = new StringBuilder();
+            foreach (Offer item in this.PurchasedOffers)
+            {    
+                message.Append($"{item.Product.Quantity} {item.Product.Classification} at a price of {item.Product.Price}$ Accepted at {item.TimeAccepted}\n");
+            }
+            return Convert.ToString(message);
+        }
+
+        /// <summary>
+        /// Obtiene la cantidad de ofertas que fueron aceptadas en eun periodo de tiempo
+        /// </summary>
+        /// <param name="periodTime"></param>
+        /// <returns></returns>
+        public int GetPeriodTimeOffersAccepted(int periodTime)
+        {
+            int offersAccepted = 0;
+            foreach(Offer offer in this.PurchasedOffers)
+            {
+                if (offer.Buyer != null)
+                {
+                    int diference = Convert.ToInt32(offer.TimeAccepted - DateTime.Now);
+                    if(diference <= periodTime)
+                    {
+                        offersAccepted += 1;
+                    }
+                }
+            }
+            return offersAccepted;
         }
     }
 }
