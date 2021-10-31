@@ -13,7 +13,7 @@ namespace Proyect
         private string ubication;
 
 /// <summary>
-/// Obtiene un string que determina los tipos del producto.
+/// Obtiene un obtiene una instancia de classificacion valida para un producto.
 /// </summary>
 /// <value></value>
         public Classification Classification
@@ -80,6 +80,7 @@ namespace Proyect
 /// <param name="price"></param>
 /// <param name="ubication"></param>
         public ProductOffer(Classification classification, double quantity, double price, string ubication)
+
         {
             this.Classification = classification;
             this.Quantity = quantity;
