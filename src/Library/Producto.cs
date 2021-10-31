@@ -81,6 +81,7 @@ namespace Proyect
 /// <param name="ubication"></param>
         public ProductOffer(Classification classification, double quantity, double price, string ubication)
         {
+            this.Classification = classification;
             this.Quantity = quantity;
             this.Price = price;
             this.Ubication = ubication;

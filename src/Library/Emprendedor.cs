@@ -90,7 +90,7 @@ namespace Proyect
             StringBuilder message = new StringBuilder();
             foreach (Offer item in this.PurchasedOffers)
             {    
-                message.Append($"{item.Product.Quantity} {item.Product.Classification} at a price of {item.Product.Price}$ Accepted at {item.TimeAccepted}\n");
+                message.Append($"{item.Product.Quantity} {item.Product.Classification.Category} at a price of {item.Product.Price}$ Accepted at {item.TimeAccepted}\n");
             }
             return Convert.ToString(message);
         }

@@ -1,8 +1,7 @@
-using System; 
 
 namespace proyectoParteDos
 {
-    public class Administartor 
+    public class Administartor
     {
 
     }

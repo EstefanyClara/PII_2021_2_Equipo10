@@ -66,11 +66,11 @@ namespace Proyect
                         {
                                 if (item.Buyer != null)
                                 {
-                                        message.Append($"{item.Product.Quantity} {item.Product.Classification} Accepted at {item.TimeAccepted}\n");
+                                        message.Append($"{item.Product.Quantity} {item.Product.Classification.Category} Accepted at {item.TimeAccepted}\n");
                                 }
                                 else 
                                 {
-                                        message.Append($"{item.Product.Quantity} of {item.Product.Classification} not Accepted");
+                                        message.Append($"{item.Product.Quantity} of {item.Product.Classification.Category} not Accepted\n");
                                 }
                         }
                         return Convert.ToString(message);
