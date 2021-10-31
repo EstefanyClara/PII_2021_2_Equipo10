@@ -14,12 +14,5 @@
             Punto de entrada al programa principal.
             </summary>
         </member>
-        <member name="M:ConsoleApplication.Program.ObteinOfferMap(Proyect.Offer)">
-            <summary>
-            vacio
-            </summary>
-            <param name="offer"></param>
-            <returns></returns>
-        </member>
     </members>
 </doc>
