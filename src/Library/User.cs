@@ -3,7 +3,7 @@ using System;
 namespace Proyect
 {
     /// <summary>
-    /// Superclase entity
+    /// Superclase user de Emprendedor y Company (quienes estan en una relaciontaxonomica con esta clase)
     /// </summary>
     public class User
     {
@@ -16,11 +16,11 @@ namespace Proyect
 /// </summary>
         protected string ubication;
 /// <summary>
-/// El rubro al que pertnece el usuario
+/// El rubro al que pertnece el usuario 
 /// </summary>
         protected Rubro rubro;
 /// <summary>
-/// Constructor de entity
+/// Constructor de User (recive el nombre ubicacion y el rubor, aspectos comunes al emprendedor y compania)
 /// </summary>
 /// <param name="name"></param>
 /// <param name="ubication"></param>

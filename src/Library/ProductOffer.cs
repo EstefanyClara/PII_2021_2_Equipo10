@@ -3,7 +3,7 @@ using System.Collections;
 namespace Proyect
 {
     /// <summary>
-    /// Representa el producto de una oferta
+    /// Representa el producto de una oferta (  Esta en una relacion de composicion con la clase Offer, siendo product la clase compuesta)
     /// </summary>
     public class ProductOffer
     {

@@ -87,7 +87,7 @@ namespace Proyect
         /// <summary>
         /// Metodo que registra a un emprendedor
         /// </summary>
-        public void RegisterEntrepreneurs(string name, string ubication, Rubro rubro, List<Qualifications> habilitaciones,List<Qualifications> especializaciones)
+        public string RegisterEntrepreneurs(string name, string ubication, Rubro rubro, List<Qualifications> habilitaciones,List<Qualifications> especializaciones)
         {
             try
             {
@@ -98,6 +98,8 @@ namespace Proyect
                 Console.WriteLine("Error al registrase");
                 throw e;
             }
+
+            return "Usted se a registrado con exito";
         }
 
         /// <summary>
@@ -165,7 +167,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Remueve las habilitaciones de una compania 
+        /// Remueve las habilitaciones de una oferta
         /// </summary>
         /// <param name="company"></param>
         /// <param name="offer"></param>

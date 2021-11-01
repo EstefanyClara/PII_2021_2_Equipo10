@@ -6,7 +6,7 @@ using System.Text;
 namespace Proyect
 {
         /// <summary>
-        /// Esta clase representa la compania, 
+        /// Esta clase representa la compania y hereda de user (cumple con el principio ISP, porque no depende de tipos que no usa, ya que utiliza todos los metodos y propiedades de user)
         /// </summary>
         public class Company: User
         {
@@ -36,7 +36,7 @@ namespace Proyect
                 }
 
                 /// <summary>
-                /// Publica una oferta,es decir,la crea y la guarda en su lista
+                /// Publica una oferta,es decir,la crea y la guarda en su lista(Sigue el patron creator)
                 /// </summary>
                 public  void PublicOffer(bool ifConstant, Classification tipo, double quantity, double cost, string ubication, List<Qualifications> qualifications, ArrayList keyWords)
                 {
@@ -56,7 +56,7 @@ namespace Proyect
                 }
 
                 /// <summary>
-                /// Obtiene un string con las ofertas que fueron aceptadas por emprendedores
+                /// Obtiene un string con todas las ofertas que fueron o no fueron aceptadas por emprendedores(por expert le asignamos esta responsabilidad)
                 /// </summary>
                 /// <returns></returns>
                 public string GetOffersAccepted()
@@ -77,7 +77,7 @@ namespace Proyect
                 }
 
                 /// <summary>
-                /// Obteien la cantidad de ofertas que publico la compania, que fueron aceptadas.
+                /// Obteien la cantidad de ofertas que publico la compania, que fueron aceptadas. (por expert)
                 /// </summary>
                 /// <param name="periodTime"></param>
                 /// <returns></returns>

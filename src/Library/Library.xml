@@ -209,7 +209,7 @@
         </member>
         <member name="T:Proyect.Company">
             <summary>
-            Esta clase representa la compania, 
+            Esta clase representa la compania y hereda de user (cumple con el principio ISP, porque no depende de tipos que no usa, ya que utiliza todos los metodos y propiedades de user)
             </summary>
         </member>
         <member name="F:Proyect.Company.offers">
@@ -233,7 +233,7 @@
         </member>
         <member name="M:Proyect.Company.PublicOffer(System.Boolean,Proyect.Classification,System.Double,System.Double,System.String,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.ArrayList)">
             <summary>
-            Publica una oferta,es decir,la crea y la guarda en su lista
+            Publica una oferta,es decir,la crea y la guarda en su lista(Sigue el patron creator)
             </summary>
         </member>
         <member name="M:Proyect.Company.RemoveOffer(Proyect.Offer)">
@@ -244,13 +244,13 @@
         </member>
         <member name="M:Proyect.Company.GetOffersAccepted">
             <summary>
-            Obtiene un string con las ofertas que fueron aceptadas por emprendedores
+            Obtiene un string con todas las ofertas que fueron o no fueron aceptadas por emprendedores(por expert le asignamos esta responsabilidad)
             </summary>
             <returns></returns>
         </member>
         <member name="M:Proyect.Company.GetPeriodTimeOffersAccepted(System.Int32)">
             <summary>
-            Obteien la cantidad de ofertas que publico la compania, que fueron aceptadas.
+            Obteien la cantidad de ofertas que publico la compania, que fueron aceptadas. (por expert)
             </summary>
             <param name="periodTime"></param>
             <returns></returns>
@@ -375,12 +375,12 @@
         </member>
         <member name="T:Proyect.Offer">
             <summary>
-            Representa la oferta de una compania
+            Representa la oferta de una compania 
             </summary>
         </member>
         <member name="M:Proyect.Offer.#ctor(System.Boolean,Proyect.Classification,System.Double,System.Double,System.String,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.ArrayList)">
             <summary>
-            Constructor de offer, el mismo, crea una instancia del producto
+            Constructor de offer, el mismo, crea una instancia del producto (Patron creator, Offer agrega objetos A)
             </summary>
             <param name="ifConstant"></param>
             <param name="tipo"></param>
@@ -406,7 +406,7 @@
             <summary>
             Obteien las cualificaciones/habilitaciones neceraias para aceptar la oferta, esto lo establce cada compania
             </summary>
-            <value></value>
+            <value>Qualifications</value>
         </member>
         <member name="P:Proyect.Offer.KeyWords">
             <summary>
@@ -451,7 +451,7 @@
         </member>
         <member name="T:Proyect.ProductOffer">
             <summary>
-            Representa el producto de una oferta
+            Representa el producto de una oferta (  Esta en una relacion de composicion con la clase Offer, siendo product la clase compuesta)
             </summary>
         </member>
         <member name="P:Proyect.ProductOffer.Classification">
@@ -523,7 +523,7 @@
         </member>
         <member name="T:Proyect.User">
             <summary>
-            Superclase entity
+            Superclase user de Emprendedor y Company (quienes estan en una relaciontaxonomica con esta clase)
             </summary>
         </member>
         <member name="F:Proyect.User.name">
@@ -538,12 +538,12 @@
         </member>
         <member name="F:Proyect.User.rubro">
             <summary>
-            El rubro al que pertnece el usuario
+            El rubro al que pertnece el usuario 
             </summary>
         </member>
         <member name="M:Proyect.User.#ctor(System.String,System.String,Proyect.Rubro)">
             <summary>
-            Constructor de entity
+            Constructor de User (recive el nombre ubicacion y el rubor, aspectos comunes al emprendedor y compania)
             </summary>
             <param name="name"></param>
             <param name="ubication"></param>

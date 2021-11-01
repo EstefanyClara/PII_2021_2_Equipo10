@@ -5,7 +5,7 @@ using System;
 namespace Proyect
 {
     /// <summary>
-    /// Representa la oferta de una compania
+    /// Representa la oferta de una compania 
     /// </summary>
     public class Offer
     {
@@ -22,7 +22,7 @@ namespace Proyect
         private DateTime timeAccepted;
 
 /// <summary>
-/// Constructor de offer, el mismo, crea una instancia del producto
+/// Constructor de offer, el mismo, crea una instancia del producto (Patron creator, Offer agrega objetos A)
 /// </summary>
 /// <param name="ifConstant"></param>
 /// <param name="tipo"></param>
@@ -77,7 +77,7 @@ namespace Proyect
 /// <summary>
 /// Obteien las cualificaciones/habilitaciones neceraias para aceptar la oferta, esto lo establce cada compania
 /// </summary>
-/// <value></value>
+/// <value>Qualifications</value>
 
         public List<Qualifications> Qualifications
         {
@@ -137,7 +137,6 @@ namespace Proyect
             {
                 return this.timeAccepted;
             }
-
             set
             {
                 this.timeAccepted = value;
