@@ -87,7 +87,7 @@
         </member>
         <member name="M:Proyect.AppLogic.RemoveQualification(Proyect.Company,Proyect.Offer,Proyect.Qualifications)">
             <summary>
-            Remueve las habilitaciones de una compania 
+            Remueve las habilitaciones de una oferta
             </summary>
             <param name="company"></param>
             <param name="offer"></param>
