@@ -1,20 +1,19 @@
-using System;
 using System.Collections;
 namespace Proyect
 {
 
     /// <summary>
-    /// Clase que se encarga de buscar las ofertas por los distintos metodos establecidos
+    /// Clase que se encarga de buscar las ofertas por los distintos metodos establecidos.
     /// </summary>
     public static class OfferSearch
     {
         /// <summary>
-        /// Busca las ofertas con la palabra clave que se le pasa
+        /// Busca las ofertas con la palabra clave que se le pasa.
         /// </summary>
-        /// <param name="words"></param>
+        /// <param name="words">Palabras claves de oferta.</param>
         public static ArrayList SearchByKeywords(string words)
         {
-            // Deberia funcionar, pero hay que adaptar para cumplir patrones
+            // Deberia funcionar, pero hay que adaptar para cumplir patrones.
             string[] keywords = words.Split(" ");
             ArrayList offers = new ArrayList();
             foreach (Company company in AppLogic.Instance.Companies)
@@ -32,12 +31,12 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Busca ofertas por ubicacion
+        /// Busca ofertas por ubicacion.
         /// </summary>
-        /// <param name="ubication"></param>
+        /// <param name="ubication">Ubicacion de oferta.</param>
         public static ArrayList SearchByUbication(string ubication)
         {
-            // Deberia funcionar, pero hay que adaptar para cumplir patrones
+            // Deberia funcionar, pero hay que adaptar para cumplir patrones.
             ArrayList offers = new ArrayList();
             foreach (Company company in AppLogic.Instance.Companies)
             {
@@ -53,12 +52,12 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Busca ofertas por el tipo
+        /// Busca ofertas por el tipo.
         /// </summary>
-        /// <param name="type"></param>
+        /// <param name="type">Tipo de oferta.</param>
         public static ArrayList SearchByType(string type)
         {
-            // Deberia funcionar, pero hay que adaptar para cumplir patrones
+            // Deberia funcionar, pero hay que adaptar para cumplir patrones.
             ArrayList offers = new ArrayList();
             foreach (Company company in AppLogic.Instance.Companies)
             {

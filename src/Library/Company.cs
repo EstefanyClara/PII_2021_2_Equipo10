@@ -6,28 +6,28 @@ using System.Text;
 namespace Proyect
 {
         /// <summary>
-        /// Esta clase representa la compania, 
+        /// Esta clase representa la compania. Hereda de User. 
         /// </summary>
         public class Company: User
         {
                 /// <summary>
-                /// Lista de ofertas de la compania
+                /// Lista de ofertas de la compania.
                 /// </summary>
                 private List<Offer> offers = new List<Offer>(); 
 
                 /// <summary>
-                /// Constructor de company
+                /// Inicializa una nueva instancia de la clase <see cref="Company"/>.
                 /// </summary>
-                /// <param name="name"></param>
-                /// <param name="ubication"></param>
-                /// <param name="rubro"></param>
-                public Company(string name, string ubication, Rubro rubro):base(name,ubication,rubro)
+                /// <param name="name">Nombre compania.</param>
+                /// <param name="ubication">Ubicacion de la compania.</param>
+                /// <param name="rubro">Rubro de la compania.</param>
+                public Company(string name, string ubication, Rubro rubro):base(name, ubication, rubro)
                 {
 
                 }
 
                 /// <summary>
-                /// Metodo que retorna una lista con las ofertas publicadas por la empresa
+                /// Metodo que retorna una lista con las ofertas publicadas por la empresa.
                 /// </summary>
                 /// <value></value>
                 public List<Offer> OffersPublished
@@ -36,7 +36,7 @@ namespace Proyect
                 }
 
                 /// <summary>
-                /// Publica una oferta,es decir,la crea y la guarda en su lista
+                /// Publica una oferta,es decir,la crea y la guarda en su lista.
                 /// </summary>
                 public  void PublicOffer(bool ifConstant, Classification tipo, double quantity, double cost, string ubication, List<Qualifications> qualifications, ArrayList keyWords)
                 {
@@ -44,9 +44,9 @@ namespace Proyect
                 }
 
                 /// <summary>
-                /// Remueve ofertas
+                /// Remueve ofertas.
                 /// </summary>
-                /// <param name="offer"></param>
+                /// <param name="offer">Oferta.</param>
                 public void RemoveOffer(Offer offer)
                 {
                         if (this.OffersPublished.Contains(offer))
@@ -56,9 +56,9 @@ namespace Proyect
                 }
 
                 /// <summary>
-                /// Obtiene un string con las ofertas que fueron aceptadas por emprendedores
+                /// Obtiene un string con las ofertas que fueron aceptadas por emprendedores.
                 /// </summary>
-                /// <returns></returns>
+                /// <returns>Las ofertas aceptadas.</returns>
                 public string GetOffersAccepted()
                 {
                         StringBuilder message = new StringBuilder();
@@ -77,10 +77,10 @@ namespace Proyect
                 }
 
                 /// <summary>
-                /// Obteien la cantidad de ofertas que publico la compania, que fueron aceptadas.
+                /// Obtiene la cantidad de ofertas que publico la compania, que fueron aceptadas.
                 /// </summary>
-                /// <param name="periodTime"></param>
-                /// <returns></returns>
+                /// <param name="periodTime">Periodo de tiempo.</param>
+                /// <returns>Las ofertas aceptadas en un periodo de tiempo.</returns>
                 public int GetPeriodTimeOffersAccepted(int periodTime)
                 {
                         int offersAccepted = 0;
@@ -99,10 +99,10 @@ namespace Proyect
                 }
 
                 /// <summary>
-                /// Remueve palabras clave de una oferta
+                /// Remueve palabras clave de una oferta.
                 /// </summary>
-                /// <param name="offer"></param>
-                /// <param name="keyWord"></param>
+                /// <param name="offer">La oferta.</param>
+                /// <param name="keyWord">La palabra clave de la oferta.</param>
                 public void RemoveKeyWords(Offer offer, string keyWord)
                 {
                         if (this.OffersPublished.Contains(offer))
@@ -115,10 +115,10 @@ namespace Proyect
                 }
 
                 /// <summary>
-                /// Agrega palabras clave a una oferta
+                /// Agrega palabras clave a una oferta.
                 /// </summary>
-                /// <param name="offer"></param>
-                /// <param name="keyWord"></param>
+                /// <param name="offer">La oferta.</param>
+                /// <param name="keyWord">La palabra clave de la oferta.</param>
                 public void AddKeyWords(Offer offer, string keyWord)
                 {
                         if (!this.OffersPublished.Contains(offer))
@@ -131,10 +131,10 @@ namespace Proyect
                 }
 
                 /// <summary>
-                /// Agrega uhabilitaciones a la oferta
+                /// Agrega habilitaciones a la oferta.
                 /// </summary>
-                /// <param name="offer"></param>
-                /// <param name="qualification"></param>
+                /// <param name="offer">La oferta.</param>
+                /// <param name="qualification">La habilitaciones de la oferta.</param>
                 public void AddQualification(Offer offer, Qualifications qualification)
                 {
                         if (this.OffersPublished.Contains(offer))
@@ -147,10 +147,10 @@ namespace Proyect
                 }
 
                 /// <summary>
-                /// Remueve la habilitacion de una oferta
+                /// Remueve la habilitacion de una oferta.
                 /// </summary>
-                /// <param name="offer"></param>
-                /// <param name="qualification"></param>
+                /// <param name="offer">La oferta.</param>
+                /// <param name="qualification">La habilitacion de la oferta.</param>
                 public void RemoveQualification(Offer offer, Qualifications qualification)
                 {
                         if (this.OffersPublished.Contains(offer))

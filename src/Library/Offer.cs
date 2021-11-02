@@ -5,7 +5,7 @@ using System;
 namespace Proyect
 {
     /// <summary>
-    /// Representa la oferta de una compania
+    /// Representa la oferta de una compania.
     /// </summary>
     public class Offer
     {
@@ -22,28 +22,27 @@ namespace Proyect
         private DateTime timeAccepted;
 
 /// <summary>
-/// Constructor de offer, el mismo, crea una instancia del producto
+/// Constructor de offer, el mismo, crea una instancia del producto.
 /// </summary>
-/// <param name="ifConstant"></param>
-/// <param name="tipo"></param>
-/// <param name="quantity"></param>
-/// <param name="cost"></param>
-/// <param name="ubication"></param>
-/// <param name="qualifications"></param>
-/// <param name="keyWords"></param>
+/// <param name="ifConstant">Si el producto es recurrente.</param>
+/// <param name="tipo">Tipo de procucto.</param>
+/// <param name="quantity">Cantidad del producto.</param>
+/// <param name="cost">Precio del producto.</param>
+/// <param name="ubication">Ubicacion del producto.</param>
+/// <param name="qualifications">Habilitaciones del producto.</param>
+/// <param name="keyWords">Palabras claves del producto.</param>
         public Offer(bool ifConstant, Classification tipo, double quantity, double cost, string ubication, List<Qualifications> qualifications, ArrayList keyWords)
         {
-            this.product = new ProductOffer(tipo,quantity,cost,ubication);
+            this.product = new ProductOffer(tipo, quantity, cost, ubication);
             this.Constant = ifConstant;
             this.Qualifications = qualifications;
             this.KeyWords = keyWords;
         }
 
-/// <summary>
-/// Obtiene un valor que indica si la oferta es constante o no
-/// </summary>
-/// <value><c>true</c> si la oferta es constante, <c>false</c> en caso contrario.</value>
-
+        /// <summary>
+        /// Obtiene un valor que indica si la oferta es constante o no.
+        /// </summary>
+        /// <value><c>true</c> si la oferta es constante, <c>false</c> en caso contrario.</value>
         public bool Constant
         {
             get
@@ -56,11 +55,10 @@ namespace Proyect
             }
         }
 
-/// <summary>
-/// Obtiene el el producto de la oferta.
-/// </summary>
-/// <value></value>
-
+        /// <summary>
+        /// Obtiene el el producto de la oferta.
+        /// </summary>
+        /// <value></value>
         public ProductOffer Product
         {
             get
@@ -72,13 +70,11 @@ namespace Proyect
                 this.product = value;
             }
         }
-        
-
-/// <summary>
-/// Obteien las cualificaciones/habilitaciones neceraias para aceptar la oferta, esto lo establce cada compania
-/// </summary>
-/// <value></value>
-
+    
+        /// <summary>
+        /// Obtiene las cualificaciones/habilitaciones necesarias para aceptar la oferta, esto lo establece cada compania.
+        /// </summary>
+        /// <value></value>
         public List<Qualifications> Qualifications
         {
             get
@@ -89,13 +85,12 @@ namespace Proyect
             {
                 this.qualifications = value;
             }
-            
         }
 
-/// <summary>
-/// ´Obtiene el conjunto de palabras clave que se utilizan a la hora de buscar la oferta
-/// </summary>
-/// <value></value>
+        /// <summary>
+        /// Obtiene el conjunto de palabras clave que se utilizan a la hora de buscar la oferta.
+        /// </summary>
+        /// <value></value>
         public ArrayList KeyWords
         {
             get
@@ -106,14 +101,12 @@ namespace Proyect
             {
                 this.keyWords = value;
             }
-            
         }
 
-/// <summary>
-/// Obtiee el compardor de la oferta, quien la acepto luego de que la haya buscado
-/// </summary>
-/// <value><c>Emprendedor</c> si la oferta ya fue aceptada, lo que te dice tabien quien la acepto, <c>null</c> si no fue aceptada, por lo que se puede aceptar.</value>
-
+        /// <summary>
+        /// Obtiene el compardor de la oferta, quien la acepto luego de que la haya buscado.
+        /// </summary>
+        /// <value><c>Emprendedor</c> si la oferta ya fue aceptada, lo que te dice tambien quien la acepto, <c>null</c> si no fue aceptada, por lo que se puede aceptar.</value>
         public Emprendedor Buyer
         {
             get
@@ -124,11 +117,10 @@ namespace Proyect
             {
                 this.buyer = value;
             }
-            
         }
 
         /// <summary>
-        /// Propierti para obtner la fecha y hora de cuando la oferta fue aceptada por un emprendedor
+        /// Propiedad para obtener la fecha y hora de cuando la oferta fue aceptada por un emprendedor.
         /// </summary>
         /// <value></value>
         public DateTime TimeAccepted

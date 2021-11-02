@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Proyect
 {
     /// <summary>
-    /// Clase singleton para guardar los datos de la Aplicacion
+    /// Clase singleton para guardar los datos de la Aplicacion.
     /// </summary>
     public sealed class AppLogic
     {
@@ -23,45 +23,45 @@ namespace Proyect
         private List<Classification> validClasification = new List<Classification>(){new Classification("Organicos"),new Classification("Plasticos"),new Classification("Alimentos"),new Classification("Toxicos")};
 
         /// <summary>
-        /// Obtiene las companias que estan registradas
+        /// Obtiene las companias que estan registradas.
         /// </summary>
-        /// <value>companies</value>
+        /// <value>Companias.</value>
         public List<Company> Companies
         {
             get{return companies;}
         }
 
         /// <summary>
-        /// Obtiene los emprendedores que estan registrados
+        /// Obtiene los emprendedores que estan registrados.
         /// </summary>
-        /// <value>entrepreneurs</value>
+        /// <value>Emprendedores.</value>
         public List<Emprendedor> Entrepreneurs
         {
             get{ return entrepreneurs;}
         }
 
         /// <summary>
-        /// Obtiene los rubros habilitados
+        /// Obtiene los rubros habilitados.
         /// </summary>
-        /// <value></value>
+        /// <value>Rubros.</value>
         public List<Rubro> Rubros
         {
             get{return validRubros;}
         }
 
         /// <summary>
-        /// Obtiene la lista de habilitciones registradas
+        /// Obtiene la lista de habilitaciones registradas.
         /// </summary>
-        /// <value></value>
+        /// <value>Habilitaciones.</value>
         public List<Qualifications> Qualifications
         {
             get{return validQualifications;}
         }
 
         /// <summary>
-        /// Obtiene la lista de clasificaciones/categorias registradas para los productos
+        /// Obtiene la lista de clasificaciones/categorias registradas para los productos.
         /// </summary>
-        /// <value></value>
+        /// <value>Clasificaciones.</value>
         public List<Classification> Classifications
         {
             get{ return validClasification;}
@@ -73,9 +73,9 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene la instancia de AppLogic
+        /// Obtiene la instancia de AppLogic.
         /// </summary>
-        /// <value></value>
+        /// <value>Instancias.</value>
         public static AppLogic Instance
         {
             get
@@ -85,13 +85,18 @@ namespace Proyect
         }
         
         /// <summary>
-        /// Metodo que registra a un emprendedor
+        /// Metodo que registra un emprendedor.
         /// </summary>
+        /// <param name="name">El nombre del emprendedor.</param>
+        /// <param name="ubication">La ubicacion del emprendedor.</param>
+        /// <param name="rubro">El rubro del emprendedor.</param>
+        /// <param name="habilitaciones">Las habilitaciones que tiene el emprendedor.</param>
+        /// <param name="especializaciones">Las especializaciones que tiene el emprendedor.</param>//  
         public void RegisterEntrepreneurs(string name, string ubication, Rubro rubro, List<Qualifications> habilitaciones,List<Qualifications> especializaciones)
         {
             try
             {
-                entrepreneurs.Add(new Emprendedor(name,ubication,rubro,habilitaciones, especializaciones));
+                entrepreneurs.Add(new Emprendedor(name, ubication, rubro, habilitaciones, especializaciones));
             }
             catch (EmptyUserBuilderException e)
             {
@@ -101,12 +106,12 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Metodo que retorna un mensaje con los rubros habilitaddos
+        /// Metodo que retorna un mensaje con los rubros habilitados.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Los rubros habilitados.</returns>
         public string ValidRubrosMessage()
         {
-            StringBuilder message = new StringBuilder("Rubros habiliatdos:\n\n");
+            StringBuilder message = new StringBuilder("Rubros habilitados:\n\n");
             int itemposition = 0;
             foreach (Rubro item in Rubros)
             {
@@ -117,9 +122,9 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Metdo que retorna un mensaje con las Habilitaciones permitidas
+        /// Metodo que retorna un mensaje con las Habilitaciones permitidas.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Habilitaciones permitidas.</returns>
         public string validQualificationsMessage()
         {
             StringBuilder message = new StringBuilder("Habilitaciones permitidas:\n\n");
@@ -133,110 +138,110 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Remueve palabras clave de la oferta de una compania
+        /// Remueve palabras clave de la oferta de una compania.
         /// </summary>
-        /// <param name="company"></param>
-        /// <param name="offer"></param>
-        /// <param name="keyWord"></param>
-        public void RemoveKeyWords(Company company,Offer offer, string keyWord)
+        /// <param name="company">La compania.</param>
+        /// <param name="offer">La oferta.</param>
+        /// <param name="keyWord">La palabra clave.</param>
+        public void RemoveKeyWords(Company company, Offer offer, string keyWord)
         {
-            company.RemoveKeyWords(offer,keyWord);
+            company.RemoveKeyWords(offer, keyWord);
         }
 
         /// <summary>
-        /// Remueve las palabras clave de una oferta
+        /// Agrega las palabras clave de una oferta.
         /// </summary>
-        /// <param name="company"></param>
-        /// <param name="offer"></param>
-        /// <param name="keyWord"></param>
+        /// <param name="company">La compania.</param>
+        /// <param name="offer">La oferta.</param>
+        /// <param name="keyWord">La palabra clave.</param>
         public void AddKeyWords(Company company, Offer offer, string keyWord)
         {
-            company.AddKeyWords(offer,keyWord);
+            company.AddKeyWords(offer, keyWord);
         }
 
         /// <summary>
-        /// Remueve la oferta de una compania
+        /// Remueve la oferta de una compania.
         /// </summary>
-        /// <param name="company"></param>
-        /// <param name="offer"></param>
+        /// <param name="company">La compania.</param>
+        /// <param name="offer">La oferta.</param>
         public void RemoveOffer(Company company, Offer offer)
         {
             company.RemoveOffer(offer);
         }
 
         /// <summary>
-        /// Remueve las habilitaciones de una compania 
+        /// Remueve las habilitaciones de una compania. 
         /// </summary>
-        /// <param name="company"></param>
-        /// <param name="offer"></param>
-        /// <param name="qualification"></param>
+        /// <param name="company">La compania.</param>
+        /// <param name="offer">La oferta.</param>
+        /// <param name="qualification">La habilitacion.</param>
         public void RemoveQualification(Company company, Offer offer, Qualifications qualification)
         {
             company.RemoveQualification(offer, qualification);
         }
 
         /// <summary>
-        /// Agrega habilitaciones a una oferta
+        /// Agrega habilitaciones a una oferta.
         /// </summary>
-        /// <param name="company"></param>
-        /// <param name="offer"></param>
-        /// <param name="qualification"></param>
+        /// <param name="company">La compania.</param>
+        /// <param name="offer">La oferta.</param>
+        /// <param name="qualification">La habilitacion.</param>
         public void AddQualification(Company company, Offer offer, Qualifications qualification)
         {
-            company.AddQualification(offer,qualification);
+            company.AddQualification(offer, qualification);
         }
 
         /// <summary>
-        /// Publica una oferta de la compania que se le ingresa
+        /// Publica una oferta de la compania que se le ingresa.
         /// </summary>
-        /// <param name="company"></param>
-        /// <param name="ifConstant"></param>
-        /// <param name="tipo"></param>
-        /// <param name="quantity"></param>
-        /// <param name="cost"></param>
-        /// <param name="ubication"></param>
-        /// <param name="qualifications"></param>
-        /// <param name="keyWords"></param>
+        /// <param name="company">La compania.</param>
+        /// <param name="ifConstant">Si es recurrente.</param>
+        /// <param name="tipo">La clasificacion.</param>
+        /// <param name="quantity">La cantidad.</param>
+        /// <param name="cost">El precio.</param>
+        /// <param name="ubication">La ubicacion.</param>
+        /// <param name="qualifications">Las hablitaciones.</param>
+        /// <param name="keyWords">La palabra clave.</param>
         public void PublicOffer(Company company,bool ifConstant, Classification tipo, double quantity, double cost, string ubication, List<Qualifications> qualifications, ArrayList keyWords)
         {
             company.PublicOffer(ifConstant,tipo,quantity,cost,ubication,qualifications,keyWords);
         }
 
         /// <summary>
-        /// Metodo que se encarga de buscar las ofertas por palabras clave
+        /// Metodo que se encarga de buscar las ofertas por palabras clave.
         /// </summary>
-        /// <param name="word"></param>
-        /// <returns></returns>
+        /// <param name="word">Palabra clave.</param>
+        /// <returns>Un ArrayList con las ofertas que tengan la palabra clave.</returns>
         public ArrayList SearchOfferByKeyWords(string word)
         {
             return OfferSearch.SearchByKeywords(word);
         }
 
         /// <summary>
-        /// Metodo que se encarga de buscar las ofertas por tipo
+        /// Metodo que se encarga de buscar las ofertas por tipo.
         /// </summary>
-        /// <param name="word"></param>
-        /// <returns></returns>
-        public ArrayList SearchOfferByType(string word) // duda
+        /// <param name="word">Tipo de oferta.</param>
+        /// <returns>Un ArrayList con todas las ofertas que sean de ese tipo.</returns>
+        public ArrayList SearchOfferByType(string word) // duda.
         {
             return OfferSearch.SearchByType(word);
         }
 
         /// <summary>
-        /// Metodo que se encarga de buscar las ofertas por ubicacion
+        /// Metodo que se encarga de buscar las ofertas por ubicacion.
         /// </summary>
-        /// <param name="word"></param>
-        /// <returns></returns>
+        /// <param name="word">Ubicacion de la oferta.</param>
+        /// <returns>Un ArrayList con todas las ofertas en la ubicacion dada.</returns>
         public ArrayList SearchOfferByUbication(string word)
         {
             return OfferSearch.SearchByUbication(word);
         }
 
         /// <summary>
-        /// Metodo para aceptar una oferta
+        /// Metodo para aceptar una oferta.
         /// </summary>
-        /// <param name="emprendedor"></param>
-        /// <param name="offer"></param>
+        /// <param name="emprendedor">Emprendedor.</param>
+        /// <param name="offer">Oferta a aceptar.</param>
         public string AccepOffer(Emprendedor emprendedor, Offer offer)
         {
             foreach(Qualifications item in offer.Qualifications)
@@ -253,7 +258,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Metodo que permite obtener la distancia entre un emprendedor y un producto
+        /// Metodo que permite obtener la distancia entre un emprendedor y un producto.
         /// </summary>
         public async Task<double> ObteinOfferDistance(Emprendedor emprendedor, Offer offer)
         {
@@ -269,21 +274,21 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Metodo que obtiene el mapa de la ubicacion de un emprendedor
+        /// Metodo que obtiene el mapa de la ubicacion de un emprendedor.
         /// </summary>
-        /// <param name="offer"></param>
-        /// <returns></returns>
+        /// <param name="offer">Oferta que se quiere buscar.</param>
+        /// <returns>Un mapa de la ubicacion del emprendedor.</returns>
         public async Task ObteinOfferMap(Offer offer)
         {
             string offerUbication = offer.Product.Ubication;
             Location locationOffer = await client.GetLocation(offerUbication);
-            await client.DownloadMap(locationOffer.Latitude, locationOffer.Longitude, @"map.png");
+            await client.DownloadMap (locationOffer.Latitude, locationOffer.Longitude, @"map.png");
         }
 
         /// <summary>
-        /// Metodo que devuelbe un string con la lista de materiales constantes
+        /// Metodo que devuelve un string con la lista de materiales constantes.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Un string con aquellos materiales que son recuerrentes.</returns>
         public (ArrayList, string) GetConstantMaterials()
         {
             Dictionary<Classification, int> clasificationDictionary = new Dictionary<Classification, int>();
@@ -313,17 +318,17 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene un string con la indicando si sus ofertas fueron o no fueron aceptadas, en caso de que si, indica ademas la fecha de cuando fueron aceptadas
+        /// Obtiene un string con la indicando si sus ofertas fueron o no fueron aceptadas, en caso de que si, indica ademas la fecha de cuando fueron aceptadas.
         /// </summary>
-        /// <param name="company"></param>
-        /// <returns></returns>
+        /// <param name="company">La compania.</param>
+        /// <returns>Un string con las ofertas que fueron aceptadas.</returns>
         public string GetOffersAccepted(Company company)
         {
             return company.GetOffersAccepted();
         }
 
         /// <summary>
-        /// Obtiene las ofertas aceptadas por el emprendedor, junto con la fecha de cuando las acepto
+        /// Obtiene las ofertas aceptadas por el emprendedor, junto con la fecha de cuando las acepto.
         /// </summary>
         /// <param name="emprendedor"></param>
         /// <returns></returns>
@@ -333,7 +338,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene la cantidad de ofertas que furon aceptadas en un periodo de tiempo establecido por el usuario
+        /// Obtiene la cantidad de ofertas que fueron aceptadas en un periodo de tiempo establecido por el usuario.
         /// </summary>
         /// <param name="company"></param>
         /// <param name="periodTime"></param>
@@ -344,7 +349,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene la cantidad de ofertas que furon aceptadas en un periodo de tiempo establecido por el usuario
+        /// Obtiene la cantidad de ofertas que fueron aceptadas en un periodo de tiempo establecido por el usuario.
         /// </summary>
         /// <param name="emprendedor"></param>
         /// <param name="periodTime"></param>
