@@ -4,5 +4,20 @@
         <name>LibraryTests</name>
     </assembly>
     <members>
+        <member name="T:Tests.AuthTests">
+            <summary>
+            Clase para testeo de creacion y autenticacion de las empresas y emprendedores
+            </summary>
+        </member>
+        <member name="M:Tests.AuthTests.Setup">
+            <summary>
+            Setup para los tests.
+            </summary>
+        </member>
+        <member name="M:Tests.AuthTests.CreateOffer">
+            <summary>
+            Se testea si se puede crear correctamente la oferta.
+            </summary>
+        </member>
     </members>
 </doc>

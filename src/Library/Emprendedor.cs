@@ -89,7 +89,8 @@ namespace Proyect
             StringBuilder message = new StringBuilder();
             foreach (Offer item in this.PurchasedOffers)
             {    
-                message.Append($"{item.Product.Quantity} {item.Product.Classification.Category} at a price of {item.Product.Price}$ Accepted at {item.TimeAccepted}\n");
+                // Cambio timAccepted por purchaseData, hay que testear
+                message.Append($"{item.Product.Quantity} {item.Product.Classification.Category} at a price of {item.Product.Price}$ Accepted at {item.PurchaseData.PurchaseDate}\n");
             }
             return Convert.ToString(message);
         }
@@ -104,9 +105,10 @@ namespace Proyect
             int offersAccepted = 0;
             foreach(Offer offer in this.PurchasedOffers)
             {
-                if (offer.Buyer != null)
+                // Cambio timAccepted por purchaseData, hay que testear
+                if (offer.PurchaseData != null)
                 {
-                    int diference = Convert.ToInt32(offer.TimeAccepted - DateTime.Now);
+                    int diference = Convert.ToInt32(offer.PurchaseData.PurchaseDate - DateTime.Now);
                     if(diference <= periodTime)
                     {
                         offersAccepted += 1;

@@ -17,9 +17,7 @@ namespace Proyect
 
         private ArrayList keyWords;
 
-        private Emprendedor buyer;
-
-        private DateTime timeAccepted;
+        private PurchaseData purchaseData;
 
 /// <summary>
 /// Constructor de offer, el mismo, crea una instancia del producto.
@@ -104,36 +102,13 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene el compardor de la oferta, quien la acepto luego de que la haya buscado.
-        /// </summary>
-        /// <value><c>Emprendedor</c> si la oferta ya fue aceptada, lo que te dice tambien quien la acepto, <c>null</c> si no fue aceptada, por lo que se puede aceptar.</value>
-        public Emprendedor Buyer
-        {
-            get
-            {
-                return this.buyer;
-            }
-            set
-            {
-                this.buyer = value;
-            }
-        }
-
-        /// <summary>
-        /// Propiedad para obtener la fecha y hora de cuando la oferta fue aceptada por un emprendedor.
+        /// Obtiene los datos relacionados con la compra de una oferta
         /// </summary>
         /// <value></value>
-        public DateTime TimeAccepted
+        public PurchaseData PurchaseData
         {
-            get
-            {
-                return this.timeAccepted;
-            }
-
-            set
-            {
-                this.timeAccepted = value;
-            }
+            get{return this.purchaseData;}
+            set{this.purchaseData = value;}
         }
     }
 }

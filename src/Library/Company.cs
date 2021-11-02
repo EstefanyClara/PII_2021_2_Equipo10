@@ -64,9 +64,10 @@ namespace Proyect
                         StringBuilder message = new StringBuilder();
                         foreach (Offer item in this.OffersPublished)
                         {
-                                if (item.Buyer != null)
+                                // Cambio buyer por purchaseData, hay que testear
+                                if (item.PurchaseData != null)
                                 {
-                                        message.Append($"{item.Product.Quantity} {item.Product.Classification.Category} Accepted at {item.TimeAccepted}\n");
+                                        message.Append($"{item.Product.Quantity} {item.Product.Classification.Category} Accepted at {item.PurchaseData.PurchaseDate}\n");
                                 }
                                 else 
                                 {
@@ -86,9 +87,10 @@ namespace Proyect
                         int offersAccepted = 0;
                         foreach(Offer offer in this.OffersPublished)
                         {
-                                if (offer.Buyer != null)
+                                // Cambio buyer por purchaseData, hay que testear
+                                if (offer.PurchaseData != null)
                                 {
-                                        int diference = Convert.ToInt32(offer.TimeAccepted - DateTime.Now);
+                                        int diference = Convert.ToInt32(offer.PurchaseData.PurchaseDate - DateTime.Now);
                                         if(diference <= periodTime)
                                         {
                                                 offersAccepted += 1;

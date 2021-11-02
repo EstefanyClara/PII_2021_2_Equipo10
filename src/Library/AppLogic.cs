@@ -251,8 +251,10 @@ namespace Proyect
                     return "Usted no dispone de las habilitaciones requeridas por la oferta";
                 }
             }
-            offer.Buyer = emprendedor;
-            offer.TimeAccepted = DateTime.Now;
+            PurchaseData pd = new PurchaseData(emprendedor);
+            offer.PurchaseData = pd;
+            // offer.Buyer = emprendedor;
+            // offer.TimeAccepted = DateTime.Now;
             emprendedor.AddPurchasedOffer(offer);
             return "Usted a aceptado la oferta con exito";
         }

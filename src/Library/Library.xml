@@ -415,15 +415,9 @@
             </summary>
             <value></value>
         </member>
-        <member name="P:Proyect.Offer.Buyer">
+        <member name="P:Proyect.Offer.PurchaseData">
             <summary>
-            Obtiene el compardor de la oferta, quien la acepto luego de que la haya buscado.
-            </summary>
-            <value><c>Emprendedor</c> si la oferta ya fue aceptada, lo que te dice tambien quien la acepto, <c>null</c> si no fue aceptada, por lo que se puede aceptar.</value>
-        </member>
-        <member name="P:Proyect.Offer.TimeAccepted">
-            <summary>
-            Propiedad para obtener la fecha y hora de cuando la oferta fue aceptada por un emprendedor.
+            Obtiene los datos relacionados con la compra de una oferta
             </summary>
             <value></value>
         </member>
@@ -487,6 +481,29 @@
             <param name="quantity">Cantidad del producto.</param>
             <param name="price">Precio del producto.</param>
             <param name="ubication">Ubicacion del producto.</param>
+        </member>
+        <member name="T:Proyect.PurchaseData">
+            <summary>
+            Clase para guardar la fecha y quien compró las ofertas
+            </summary>
+        </member>
+        <member name="P:Proyect.PurchaseData.Buyer">
+            <summary>
+            Metodo get del comprador
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.PurchaseData.PurchaseDate">
+            <summary>
+            Metodo get de la fecha de compra
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Proyect.PurchaseData.#ctor(Proyect.Emprendedor)">
+            <summary>
+            Constructor del registro de compra
+            </summary>
+            <param name="buyer"></param>
         </member>
         <member name="T:Proyect.Qualifications">
             <summary>
