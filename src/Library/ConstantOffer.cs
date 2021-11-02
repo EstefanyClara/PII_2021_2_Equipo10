@@ -16,7 +16,7 @@ namespace Proyect
 
         private ArrayList keyWords;
 
-        private List<PurchesedData> purchesedData;
+        private List<PurchaseData> purchesedData;
 
         /// <summary>
         /// Constructor de la oferta constante
@@ -32,7 +32,7 @@ namespace Proyect
             this.product = new ProductOffer(tipo,quantity,cost,ubicacion);
             this.Qualifications = qualifications;
             this.KeyWords = keyWords;
-            this.purchesedData = new List<PurchesedData>();
+            this.purchesedData = new List<PurchaseData>();
 
         }
 
@@ -84,7 +84,7 @@ namespace Proyect
         /// Obtiene la informacion de el o los compardores de esta oferta constante
         /// </summary>
         /// <value></value>
-        public List<PurchesedData> PurchesedData
+        public List<PurchaseData> PurchesedData
         {
             get
             {
@@ -100,9 +100,9 @@ namespace Proyect
         {
             bool ofertaAceptada = false;
             StringBuilder message = new StringBuilder();
-            foreach(PurchesedData item in this.PurchesedData)
+            foreach(PurchaseData item in this.PurchesedData)
             {
-                message.Append($"{this.Product.Quantity} {this.Product.Classification.Category} (Constant offer) Accepted at {item.TimeAccepted} by {item.Buyer.Name}\n");
+                message.Append($"{this.Product.Quantity} {this.Product.Classification.Category} (Constant offer) Accepted at {item.PurchaseDate} by {item.Buyer.Name}\n");
                 ofertaAceptada = true;
             }
             if (!ofertaAceptada)
@@ -120,11 +120,11 @@ namespace Proyect
         public string GetPeriodTimeOffersAcceptedData(int periodTime)
         {
             StringBuilder message = new StringBuilder();
-            PurchesedData lastPurches = this.PurchesedData[this.PurchesedData.Count - 1];
-            int diference = Convert.ToInt32(lastPurches.TimeAccepted - DateTime.Now);
+            PurchaseData lastPurches = this.PurchesedData[this.PurchesedData.Count - 1];
+            int diference = Convert.ToInt32(lastPurches.PurchaseDate - DateTime.Now);
             if(diference <= periodTime)
             {
-                message.Append($"{this.Product.Quantity} {this.Product.Classification.Category} Accepted at {lastPurches.TimeAccepted} by {lastPurches.Buyer.Name}\n");
+                message.Append($"{this.Product.Quantity} {this.Product.Classification.Category} Accepted at {lastPurches.PurchaseDate} by {lastPurches.Buyer.Name}\n");
                 return Convert.ToString(message);
             }
             return "NonAccepte";
@@ -137,15 +137,15 @@ namespace Proyect
         /// <returns> la fecha de compra del emprendedor ingresado</returns>
         public DateTime GetOfferBuyerTimeData(Emprendedor emprendedor)
         {
-            PurchesedData dateBuyerData = this.PurchesedData[0];
-            foreach (PurchesedData item in this.PurchesedData)
+            PurchaseData dateBuyerData = this.PurchesedData[0];
+            foreach (PurchaseData item in this.PurchesedData)
             {
                 if (item.Buyer == emprendedor)
                 {
                     dateBuyerData = item;
                 }
             }
-            return dateBuyerData.TimeAccepted;
+            return dateBuyerData.PurchaseDate;
         }
 
         /// <summary>
@@ -155,7 +155,7 @@ namespace Proyect
         /// <param name="timeAccepted"></param>
         public void PutBuyer(Emprendedor emprendedor, DateTime timeAccepted)
         {
-            this.PurchesedData.Add(new PurchesedData(emprendedor, timeAccepted));
+            this.PurchesedData.Add(new PurchaseData(emprendedor));
         }
     }
 }

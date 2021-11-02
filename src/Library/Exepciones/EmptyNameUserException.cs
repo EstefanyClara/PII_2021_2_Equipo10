@@ -15,14 +15,14 @@ namespace Proyect
         public EmptyUserBuilderException () { }
 
         /// <summary>
-        /// Constructor con mensaje
+        /// Constructor con mensaje.
         /// </summary>
         /// <param name="message"></param>
         /// <returns></returns>
         public EmptyUserBuilderException (string message) : base(message) { }
         
         /// <summary>
-        /// Construtor con mensaje y excepcion encadenada
+        /// Construtor con mensaje y excepcion encadenada.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="inner"></param>
@@ -30,7 +30,7 @@ namespace Proyect
         public EmptyUserBuilderException (string message, System.Exception inner) : base(message, inner) { }
         
         /// <summary>
-        /// Constructor con atributo serialization
+        /// Constructor con atributo serialization.
         /// </summary>
         /// <param name="info"></param>
         /// <param name="context"></param>

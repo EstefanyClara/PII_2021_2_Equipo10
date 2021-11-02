@@ -1,9 +1,9 @@
 using System.Text;
 using System.Collections.Generic;
 using System;
+
 namespace Proyect
 {
-
     /// <summary>
     /// Clase que se encarga de buscar las ofertas por los distintos metodos establecidos
     /// </summary>
@@ -13,7 +13,6 @@ namespace Proyect
 
         private OfferSearch()
         {
-            
         }
 
         /// <summary>
@@ -94,11 +93,11 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene la informacion de un oferta en fomra de mensaje
+        /// Obtiene la informacion de un oferta en fomra de mensaje.
         /// </summary>
         /// <param name="offer"></param>
         /// <param name="company"></param>
-        /// <returns>La infromacion de la oferta</returns>
+        /// <returns>La infromacion de la oferta.</returns>
         public string GetOffersMessages(IOffer offer, Company company)
         {
             StringBuilder offerMessage = new StringBuilder();

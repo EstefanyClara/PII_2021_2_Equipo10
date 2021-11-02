@@ -16,7 +16,7 @@ namespace Proyect
 
         private ArrayList keyWords;
 
-        private PurchesedData purchesedData;
+        private PurchaseData purchesedData;
 
         /// <summary>
         /// Constructor de la oferta constante
@@ -82,7 +82,7 @@ namespace Proyect
         /// Obtiene la informacion de el o los compardores de esta oferta constante
         /// </summary>
         /// <value></value>
-        public PurchesedData PurchesedData
+        public PurchaseData PurchesedData
         {
             get
             {
@@ -103,7 +103,7 @@ namespace Proyect
             StringBuilder message = new StringBuilder();
             if (this.PurchesedData != null)
             {
-                message.Append($"{this.Product.Quantity} {this.Product.Classification.Category} Accepted at {this.PurchesedData.TimeAccepted} by {this.PurchesedData.Buyer}\n");
+                message.Append($"{this.Product.Quantity} {this.Product.Classification.Category} Accepted at {this.PurchesedData.PurchaseDate} by {this.PurchesedData.Buyer}\n");
             }
             else
             {
@@ -120,10 +120,10 @@ namespace Proyect
         public string GetPeriodTimeOffersAcceptedData(int periodTime)
         {
             StringBuilder message = new StringBuilder();
-            int diference = Convert.ToInt32(this.PurchesedData.TimeAccepted - DateTime.Now);
+            int diference = Convert.ToInt32(this.PurchesedData.PurchaseDate - DateTime.Now);
             if(diference <= periodTime)
             {
-                message.Append($"{this.Product.Quantity} {this.Product.Classification.Category} Accepted at {this.PurchesedData.TimeAccepted} by {this.PurchesedData.Buyer}\n");
+                message.Append($"{this.Product.Quantity} {this.Product.Classification.Category} Accepted at {this.PurchesedData.PurchaseDate} by {this.PurchesedData.Buyer}\n");
                 return Convert.ToString(message);
             }
             return "NonAccepte";
@@ -140,7 +140,7 @@ namespace Proyect
             {
                 return DateTime.Now;
             }
-            return this.PurchesedData.TimeAccepted;
+            return this.PurchesedData.PurchaseDate;
         }
 
         /// <summary>
@@ -150,7 +150,7 @@ namespace Proyect
         /// <param name="timeAccepted"></param>
         public void PutBuyer(Emprendedor emprendedor, DateTime timeAccepted)
         {
-            this.PurchesedData = new PurchesedData(emprendedor,timeAccepted);
+            this.PurchesedData = new PurchaseData(emprendedor);
         }
     }
 }
