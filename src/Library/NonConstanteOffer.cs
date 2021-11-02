@@ -95,9 +95,9 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene la informacion de compra de la oferta (por patron expert)
+        /// Obtiene la informacion de compra de la oferta (por patron expert).
         /// </summary>
-        /// <returns>Un string con la informacion de quien lo compro</returns>
+        /// <returns>Un string con la informacion de quien lo compro.</returns>
         public string GetPurchesedData()
         {
             StringBuilder message = new StringBuilder();

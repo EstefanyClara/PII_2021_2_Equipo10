@@ -113,10 +113,10 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene la informacion de compra del ultimo emprendedor que acepta la oferta
+        /// Obtiene la informacion de compra del ultimo emprendedor que acepta la oferta.
         /// </summary>
         /// <param name="periodTime"></param>
-        /// <returns>mensaje con la infromacion de compra de la oferta, si la misma entra dentro del rango estipulado, en caso contrario, mensaje que indica dicha situacion</returns>
+        /// <returns>mensaje con la infromacion de compra de la oferta, si la misma entra dentro del rango estipulado, en caso contrario, mensaje que indica dicha situacion.</returns>
         public string GetPeriodTimeOffersAcceptedData(int periodTime)
         {
             StringBuilder message = new StringBuilder();
