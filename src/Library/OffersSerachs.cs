@@ -1,76 +1,115 @@
-using System;
+using System.Text;
 using System.Collections;
+using System.Collections.Generic;
+using System;
 namespace Proyect
 {
 
     /// <summary>
     /// Clase que se encarga de buscar las ofertas por los distintos metodos establecidos
     /// </summary>
-    public static class OfferSearch
+    public sealed class OfferSearch
     {
+        private readonly static OfferSearch _instance = new OfferSearch();
+
+        private OfferSearch()
+        {
+            
+        }
+
+        /// <summary>
+        /// Obtiene la instancia de OfferSearch
+        /// </summary>
+        /// <value></value>
+        public static OfferSearch Instance
+        {
+            get
+            {
+                return _instance;
+            }
+        }
+
         /// <summary>
         /// Busca las ofertas con la palabra clave que se le pasa
         /// </summary>
-        /// <param name="words"></param>
-        public static ArrayList SearchByKeywords(string words)
+        /// <param name="word"></param>
+        public List<string> SearchByKeywords(string word)
         {
-            // Deberia funcionar, pero hay que adaptar para cumplir patrones
-            string[] keywords = words.Split(" ");
-            ArrayList offers = new ArrayList();
+            string keyWord = word.Replace(".","");
+            keyWord = keyWord.Replace(",","");
+            keyWord = keyWord.Replace(" ","");
+            List<string> offersList = new List<string>();
             foreach (Company company in AppLogic.Instance.Companies)
             {
-                foreach (Offer offer in company.OffersPublished)
+                foreach (IOffer offer in company.OffersPublished)
                 {
-
-                    if (offer.KeyWords.Contains(keywords))
+                    if (offer.KeyWords.Contains(keyWord))
                     {
-                        offers.Add(offer);
+                        offersList.Add(GetOffersMessages(offer,company));
                     }
                 }
             }
-            return offers;
+            return offersList;
         }
 
         /// <summary>
         /// Busca ofertas por ubicacion
         /// </summary>
         /// <param name="ubication"></param>
-        public static ArrayList SearchByUbication(string ubication)
+        public List<string> SearchByUbication(string ubication)
         {
             // Deberia funcionar, pero hay que adaptar para cumplir patrones
-            ArrayList offers = new ArrayList();
+            List<string> offersList = new List<string>();
             foreach (Company company in AppLogic.Instance.Companies)
             {
-                foreach (Offer offer in company.OffersPublished)
+                foreach (IOffer offer in company.OffersPublished)
                 {
                     if(offer.Product.Ubication == ubication)
                     {
-                        offers.Add(offer);
+                        offersList.Add(GetOffersMessages(offer,company));
                     }
                 }
             }
-            return offers;
+            return offersList;
         }
 
         /// <summary>
         /// Busca ofertas por el tipo
         /// </summary>
         /// <param name="type"></param>
-        public static ArrayList SearchByType(string type)
+        public List<string> SearchByType(string type)
         {
             // Deberia funcionar, pero hay que adaptar para cumplir patrones
-            ArrayList offers = new ArrayList();
+            List<string> offersList = new List<string>();
             foreach (Company company in AppLogic.Instance.Companies)
             {
-                foreach (Offer offer in company.OffersPublished)
+                foreach (IOffer offer in company.OffersPublished)
                 {
                     if(offer.Product.Classification.Category == type)
                     {
-                        offers.Add(offer);
+                        offersList.Add(GetOffersMessages(offer,company));
                     }
                 }
             }
-            return offers;
+            return offersList;
+        }
+
+        /// <summary>
+        /// Obtiene la informacion de un oferta en fomra de mensaje
+        /// </summary>
+        /// <param name="offer"></param>
+        /// <param name="company"></param>
+        /// <returns>La infromacion de la oferta</returns>
+        public string GetOffersMessages(IOffer offer, Company company)
+        {
+            StringBuilder offerMessage = new StringBuilder();
+            StringBuilder qualificationMessage = new StringBuilder();
+            foreach (Qualifications item in offer.Qualifications)
+            {
+                qualificationMessage.Append($"|{item.QualificationName}|");
+            }
+            offerMessage.Append($"{offer.Product.Quantity} de {offer.Product.Classification.Category}\n\nCompania ofertora: {company.Name}\nPrecio: {offer.Product.Price}$\nUbicacion: {offer.Product.Ubication}\nHabilitaciones necesarias: {qualificationMessage}");
+            return Convert.ToString(offerMessage);
         }
     }
 }

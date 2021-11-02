@@ -13,7 +13,7 @@ namespace Proyect
                 /// <summary>
                 /// Lista de ofertas de la compania
                 /// </summary>
-                private List<Offer> offers = new List<Offer>(); 
+                private List<IOffer> offers = new List<IOffer>(); 
 
                 /// <summary>
                 /// Constructor de company
@@ -30,29 +30,46 @@ namespace Proyect
                 /// Metodo que retorna una lista con las ofertas publicadas por la empresa
                 /// </summary>
                 /// <value></value>
-                public List<Offer> OffersPublished
+                public List<IOffer> OffersPublished
                 {
                         get{ return this.offers; }     
                 }
 
                 /// <summary>
-                /// Publica una oferta,es decir,la crea y la guarda en su lista(Sigue el patron creator)
+                /// Crea una instancia de una oferta constante y se la agrega a la lisat de ofertas de la compania
                 /// </summary>
-                public  void PublicOffer(bool ifConstant, Classification tipo, double quantity, double cost, string ubication, List<Qualifications> qualifications, ArrayList keyWords)
+                /// <param name="tipo"></param>
+                /// <param name="quantity"></param>
+                /// <param name="cost"></param>
+                /// <param name="ubication"></param>
+                /// <param name="qualifications"></param>
+                /// <param name="keyWords"></param>
+                public  void PublicConstantOffer(Classification tipo, double quantity, double cost, string ubication, List<Qualifications> qualifications, ArrayList keyWords)
                 {
-                        OffersPublished.Add(new Offer(ifConstant, tipo, quantity, cost, ubication, qualifications, keyWords));
+                        OffersPublished.Add(new ConstantOffer(tipo, quantity, cost, ubication, qualifications, keyWords));
+                }
+
+                /// <summary>
+                /// Crea una instacion de una oferta no constante y se la agrega a la lista de ofertas de la compania
+                /// </summary>
+                /// <param name="tipo"></param>
+                /// <param name="quantity"></param>
+                /// <param name="cost"></param>
+                /// <param name="ubication"></param>
+                /// <param name="qualifications"></param>
+                /// <param name="keyWords"></param>
+                public  void PublicNonConstantOffer(Classification tipo, double quantity, double cost, string ubication, List<Qualifications> qualifications, ArrayList keyWords)
+                {
+                        OffersPublished.Add(new NonConstantOffer(tipo, quantity, cost, ubication, qualifications, keyWords));
                 }
 
                 /// <summary>
                 /// Remueve ofertas
                 /// </summary>
                 /// <param name="offer"></param>
-                public void RemoveOffer(Offer offer)
+                public void RemoveOffer(IOffer offer)
                 {
-                        if (this.OffersPublished.Contains(offer))
-                        {
-                                this.OffersPublished.Remove(offer);
-                        }
+                        this.OffersPublished.Remove(offer);
                 }
 
                 /// <summary>
@@ -62,40 +79,36 @@ namespace Proyect
                 public string GetOffersAccepted()
                 {
                         StringBuilder message = new StringBuilder();
-                        foreach (Offer item in this.OffersPublished)
+                        message.Append("La informacion de compra de sus ofertas es la siguiente\n\n");
+                        foreach (IOffer item in this.OffersPublished)
                         {
-                                if (item.Buyer != null)
-                                {
-                                        message.Append($"{item.Product.Quantity} {item.Product.Classification.Category} Accepted at {item.TimeAccepted}\n");
-                                }
-                                else 
-                                {
-                                        message.Append($"{item.Product.Quantity} of {item.Product.Classification.Category} not Accepted\n");
-                                }
+                                message.Append(item.GetPurchesedData());
                         }
                         return Convert.ToString(message);
                 }
 
+
+
                 /// <summary>
-                /// Obteien la cantidad de ofertas que publico la compania, que fueron aceptadas. (por expert)
+                /// Obteien la cantidad de ofertas que publico la compania, que fueron aceptadas en cierto tiempo estipulado. (por expert)
                 /// </summary>
                 /// <param name="periodTime"></param>
-                /// <returns></returns>
-                public int GetPeriodTimeOffersAccepted(int periodTime)
+                /// <returns>retorna un mensaje con la informacion de compra de las ofertas que entran en el rango indicado</returns>
+                public string GetPeriodTimeOffersAccepted(int periodTime)
                 {
                         int offersAccepted = 0;
-                        foreach(Offer offer in this.OffersPublished)
+                        StringBuilder lastMessage = new StringBuilder();
+                        foreach(IOffer offer in this.OffersPublished)
                         {
-                                if (offer.Buyer != null)
+                                string message = offer.GetPeriodTimeOffersAcceptedData(periodTime);
+                                if (message != "NonAccepted")
                                 {
-                                        int diference = Convert.ToInt32(offer.TimeAccepted - DateTime.Now);
-                                        if(diference <= periodTime)
-                                        {
-                                                offersAccepted += 1;
-                                        }
+                                        lastMessage.Append(message);
+                                        offersAccepted += 1;
                                 }
                         }
-                        return offersAccepted;
+                        lastMessage.Append($"En los ultimos {periodTime} días le aceptaron {offersAccepted} ofertas");
+                        return Convert.ToString(lastMessage);
                 }
 
                 /// <summary>
@@ -103,15 +116,9 @@ namespace Proyect
                 /// </summary>
                 /// <param name="offer"></param>
                 /// <param name="keyWord"></param>
-                public void RemoveKeyWords(Offer offer, string keyWord)
+                public void RemoveKeyWords(IOffer offer, string keyWord)
                 {
-                        if (this.OffersPublished.Contains(offer))
-                        {
-                                if (offer.KeyWords.Contains(keyWord))
-                                {
-                                        offer.KeyWords.Remove(keyWord);
-                                }
-                        }
+                        offer.KeyWords.Remove(keyWord);
                 }
 
                 /// <summary>
@@ -119,15 +126,14 @@ namespace Proyect
                 /// </summary>
                 /// <param name="offer"></param>
                 /// <param name="keyWord"></param>
-                public void AddKeyWords(Offer offer, string keyWord)
-                {
-                        if (!this.OffersPublished.Contains(offer))
+                public string AddKeyWords(IOffer offer, string keyWord)
+                {                
+                        if (!offer.KeyWords.Contains(keyWord))
                         {
-                                if (!offer.KeyWords.Contains(keyWord))
-                                {
-                                        offer.KeyWords.Add(keyWord);
-                                }
+                                offer.KeyWords.Add(keyWord);
+                                return $"Se agrego {keyWord} a la oferta de {offer.Product.Quantity} de {offer.Product.Classification.Category}";
                         }
+                        return $"{keyWord} ya se encuntra como palabra clave en la oferta seleccionada";
                 }
 
                 /// <summary>
@@ -135,15 +141,9 @@ namespace Proyect
                 /// </summary>
                 /// <param name="offer"></param>
                 /// <param name="qualification"></param>
-                public void AddQualification(Offer offer, Qualifications qualification)
+                public void AddQualification(IOffer offer, Qualifications qualification)
                 {
-                        if (this.OffersPublished.Contains(offer))
-                        {
-                                if (!offer.Qualifications.Contains(qualification))
-                                {
-                                        offer.Qualifications.Add(qualification);
-                                }
-                        }
+                        offer.Qualifications.Add(qualification);
                 }
 
                 /// <summary>
@@ -151,15 +151,9 @@ namespace Proyect
                 /// </summary>
                 /// <param name="offer"></param>
                 /// <param name="qualification"></param>
-                public void RemoveQualification(Offer offer, Qualifications qualification)
+                public void RemoveQualification(IOffer offer, Qualifications qualification)
                 {
-                        if (this.OffersPublished.Contains(offer))
-                        {
-                                if (offer.Qualifications.Contains(qualification))
-                                {
-                                        offer.Qualifications.Remove(qualification);
-                                }
-                        }
+                        offer.Qualifications.Remove(qualification);
                 }
         }
 }

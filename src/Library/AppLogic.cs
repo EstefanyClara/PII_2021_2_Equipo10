@@ -12,7 +12,7 @@ namespace Proyect
     /// </summary>
     public sealed class AppLogic
     {
-        private LocationApiClient client = new LocationApiClient();
+        private LocationApiClient client = APILocationContainer.Instance.APIdeLocalizacion;
         private readonly static AppLogic _instance = new AppLogic();
         private List<Company> companies;
         private List<Emprendedor> entrepreneurs;
@@ -87,7 +87,7 @@ namespace Proyect
         /// <summary>
         /// Metodo que registra a un emprendedor
         /// </summary>
-        public string RegisterEntrepreneurs(string name, string ubication, Rubro rubro, List<Qualifications> habilitaciones,List<Qualifications> especializaciones)
+        public string RegisterEntrepreneurs(string name, string ubication, Rubro rubro, List<Qualifications> habilitaciones,ArrayList especializaciones)
         {
             try
             {
@@ -140,9 +140,10 @@ namespace Proyect
         /// <param name="company"></param>
         /// <param name="offer"></param>
         /// <param name="keyWord"></param>
-        public void RemoveKeyWords(Company company,Offer offer, string keyWord)
+        public string RemoveKeyWords(Company company,IOffer offer, string keyWord)
         {
             company.RemoveKeyWords(offer,keyWord);
+            return $"{keyWord} removida con exito";
         }
 
         /// <summary>
@@ -151,9 +152,9 @@ namespace Proyect
         /// <param name="company"></param>
         /// <param name="offer"></param>
         /// <param name="keyWord"></param>
-        public void AddKeyWords(Company company, Offer offer, string keyWord)
+        public string AddKeyWords(Company company, IOffer offer, string keyWord)
         {
-            company.AddKeyWords(offer,keyWord);
+            return company.AddKeyWords(offer,keyWord);
         }
 
         /// <summary>
@@ -161,9 +162,10 @@ namespace Proyect
         /// </summary>
         /// <param name="company"></param>
         /// <param name="offer"></param>
-        public void RemoveOffer(Company company, Offer offer)
+        public string RemoveOffer(Company company, IOffer offer)
         {
             company.RemoveOffer(offer);
+            return "Oferta removida con exito";
         }
 
         /// <summary>
@@ -172,9 +174,10 @@ namespace Proyect
         /// <param name="company"></param>
         /// <param name="offer"></param>
         /// <param name="qualification"></param>
-        public void RemoveQualification(Company company, Offer offer, Qualifications qualification)
+        public string RemoveQualification(Company company, IOffer offer, Qualifications qualification)
         {
             company.RemoveQualification(offer, qualification);
+            return "Habilitacion removida";
         }
 
         /// <summary>
@@ -183,35 +186,51 @@ namespace Proyect
         /// <param name="company"></param>
         /// <param name="offer"></param>
         /// <param name="qualification"></param>
-        public void AddQualification(Company company, Offer offer, Qualifications qualification)
+        public string AddQualification(Company company, IOffer offer, Qualifications qualification)
         {
             company.AddQualification(offer,qualification);
+            return "Se a agrgado la habilitacion";
         }
 
         /// <summary>
-        /// Publica una oferta de la compania que se le ingresa
+        /// Publica una oferta constante de la compania que se le ingresa
         /// </summary>
         /// <param name="company"></param>
-        /// <param name="ifConstant"></param>
         /// <param name="tipo"></param>
         /// <param name="quantity"></param>
         /// <param name="cost"></param>
         /// <param name="ubication"></param>
         /// <param name="qualifications"></param>
         /// <param name="keyWords"></param>
-        public void PublicOffer(Company company,bool ifConstant, Classification tipo, double quantity, double cost, string ubication, List<Qualifications> qualifications, ArrayList keyWords)
+        public string PublicConstantOffer(Company company, Classification tipo, double quantity, double cost, string ubication, List<Qualifications> qualifications, ArrayList keyWords)
         {
-            company.PublicOffer(ifConstant,tipo,quantity,cost,ubication,qualifications,keyWords);
+            company.PublicConstantOffer(tipo,quantity,cost,ubication,qualifications,keyWords);
+            return "Oferta publicada con exito";
         }
 
+        /// <summary>
+        /// Publica una oferta no constante de la compania que se le ingresa
+        /// </summary>
+        /// <param name="company"></param>
+        /// <param name="tipo"></param>
+        /// <param name="quantity"></param>
+        /// <param name="cost"></param>
+        /// <param name="ubication"></param>
+        /// <param name="qualifications"></param>
+        /// <param name="keyWords"></param>
+        public string PublicNonConstantOffer(Company company, Classification tipo, double quantity, double cost, string ubication, List<Qualifications> qualifications, ArrayList keyWords)
+        {
+            company.PublicNonConstantOffer(tipo,quantity,cost,ubication,qualifications,keyWords);
+            return "Oferta publicada con exito";
+        }
         /// <summary>
         /// Metodo que se encarga de buscar las ofertas por palabras clave
         /// </summary>
         /// <param name="word"></param>
         /// <returns></returns>
-        public ArrayList SearchOfferByKeyWords(string word)
+        public List<string> SearchOfferByKeyWords(string word)
         {
-            return OfferSearch.SearchByKeywords(word);
+            return OfferSearch.Instance.SearchByKeywords(word);
         }
 
         /// <summary>
@@ -219,9 +238,9 @@ namespace Proyect
         /// </summary>
         /// <param name="word"></param>
         /// <returns></returns>
-        public ArrayList SearchOfferByType(string word) // duda
+        public List<string> SearchOfferByType(string word)
         {
-            return OfferSearch.SearchByType(word);
+            return OfferSearch.Instance.SearchByType(word);
         }
 
         /// <summary>
@@ -229,9 +248,9 @@ namespace Proyect
         /// </summary>
         /// <param name="word"></param>
         /// <returns></returns>
-        public ArrayList SearchOfferByUbication(string word)
+        public List<string> SearchOfferByUbication(string word)
         {
-            return OfferSearch.SearchByUbication(word);
+            return OfferSearch.Instance.SearchByUbication(word);
         }
 
         /// <summary>
@@ -239,7 +258,7 @@ namespace Proyect
         /// </summary>
         /// <param name="emprendedor"></param>
         /// <param name="offer"></param>
-        public string AccepOffer(Emprendedor emprendedor, Offer offer)
+        public string AccepOffer(Emprendedor emprendedor, IOffer offer)
         {
             foreach(Qualifications item in offer.Qualifications)
             {
@@ -248,8 +267,7 @@ namespace Proyect
                     return "Usted no dispone de las habilitaciones requeridas por la oferta";
                 }
             }
-            offer.Buyer = emprendedor;
-            offer.TimeAccepted = DateTime.Now;
+            offer.PutBuyer(emprendedor, DateTime.Now);
             emprendedor.AddPurchasedOffer(offer);
             return "Usted a aceptado la oferta con exito";
         }
@@ -257,7 +275,7 @@ namespace Proyect
         /// <summary>
         /// Metodo que permite obtener la distancia entre un emprendedor y un producto
         /// </summary>
-        public async Task<double> ObteinOfferDistance(Emprendedor emprendedor, Offer offer)
+        public async Task<string> ObteinOfferDistance(Emprendedor emprendedor, IOffer offer)
         {
             string emprendedorUbication = emprendedor.Ubication;
             string offerUbication = offer.Product.Ubication;
@@ -267,7 +285,7 @@ namespace Proyect
             double kilometers = distance.TravelDistance;
             await client.DownloadRoute(locationEmprendedor.Latitude, locationEmprendedor.Longitude,
             locationOffer.Latitude, locationOffer.Longitude, @"route.png");
-            return kilometers;
+            return Convert.ToString(kilometers);
         }
 
         /// <summary>
@@ -275,7 +293,7 @@ namespace Proyect
         /// </summary>
         /// <param name="offer"></param>
         /// <returns></returns>
-        public async Task ObteinOfferMap(Offer offer)
+        public async Task ObteinOfferMap(IOffer offer)
         {
             string offerUbication = offer.Product.Ubication;
             Location locationOffer = await client.GetLocation(offerUbication);
@@ -286,7 +304,7 @@ namespace Proyect
         /// Metodo que devuelbe un string con la lista de materiales constantes
         /// </summary>
         /// <returns></returns>
-        public (ArrayList, string) GetConstantMaterials()
+        public string GetConstantMaterials()
         {
             Dictionary<Classification, int> clasificationDictionary = new Dictionary<Classification, int>();
             ArrayList constantMaterials = new ArrayList();
@@ -296,9 +314,9 @@ namespace Proyect
             }
             foreach (Company company in Companies)
             {
-                foreach (Offer offer in company.OffersPublished)
+                foreach (IOffer offer in company.OffersPublished)
                 {
-                    if (offer.Constant)
+                    if (offer.GetType().Equals(typeof(ConstantOffer)))
                     {
                         constantMaterials.Add(offer.Product);
                         clasificationDictionary[offer.Product.Classification] += 1;
@@ -309,9 +327,12 @@ namespace Proyect
             message.Append("Los tipos de materiales mas constantes en nuestras ofertas son:\n\n");
             foreach(Classification item in Classifications)
             {
-                message.Append($"{item.Category} con {clasificationDictionary[item]} ofertas\n");
+                if(clasificationDictionary[item] > 0)
+                {
+                message.Append($"Materiales {item.Category} con {clasificationDictionary[item]} oferta/s\n");
+                }
             }
-            return (constantMaterials,Convert.ToString(message));
+            return Convert.ToString(message);
         }
 
         /// <summary>
@@ -340,7 +361,7 @@ namespace Proyect
         /// <param name="company"></param>
         /// <param name="periodTime"></param>
         /// <returns></returns>
-        public int GetPeriodTimeOffersAccepted(Company company, int periodTime)
+        public string GetPeriodTimeOffersAccepted(Company company, int periodTime)
         {
             return company.GetPeriodTimeOffersAccepted(periodTime);
         }
@@ -351,7 +372,7 @@ namespace Proyect
         /// <param name="emprendedor"></param>
         /// <param name="periodTime"></param>
         /// <returns></returns>
-        public int GetPeriodTimeOffersAccepted(Emprendedor emprendedor, int periodTime)
+        public string GetPeriodTimeOffersAccepted(Emprendedor emprendedor, int periodTime)
         {
             return emprendedor.GetPeriodTimeOffersAccepted(periodTime);
         }
