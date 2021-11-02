@@ -3,7 +3,7 @@ using System;
 namespace Proyect
 {
     /// <summary>
-    /// Superclase entity
+    /// Superclase user de Emprendedor y Company (quienes estan en una relaciontaxonomica con esta clase)
     /// </summary>
     public class User
     {
@@ -16,17 +16,21 @@ namespace Proyect
 /// </summary>
         protected string ubication;
 /// <summary>
-/// El rubro al que pertnece el usuario
+/// El rubro al que pertnece el usuario 
 /// </summary>
-        protected string rubro;
+        protected Rubro rubro;
 /// <summary>
-/// Constructor de entity
+/// Constructor de User (recive el nombre ubicacion y el rubor, aspectos comunes al emprendedor y compania)
 /// </summary>
 /// <param name="name"></param>
 /// <param name="ubication"></param>
 /// <param name="rubro"></param>
-        public User(string name, string ubication, string rubro)
+        public User(string name, string ubication, Rubro rubro)
         {
+            if (name == "" || ubication == "")
+            {
+                throw new EmptyUserBuilderException("Los datos ingresados no son validos, nombre o ubicacion vacios");
+            }
             this.Name = name;
             this.Ubication = ubication;
             this.Rubro = rubro;
@@ -65,7 +69,7 @@ namespace Proyect
 /// Propiedad get y set del atributo del rubro
 /// </summary>
 /// <value></value>
-        public string Rubro
+        public Rubro Rubro
         {
             get
             {

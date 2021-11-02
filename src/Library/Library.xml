@@ -4,37 +4,899 @@
         <name>Library</name>
     </assembly>
     <members>
-        <member name="T:proyectoParteDos.Company">
+        <member name="T:Proyect.APILocationContainer">
             <summary>
-            Esta clase representa la compania, 
+            Cntenedor de la instncia de la api de localizacion
             </summary>
         </member>
-        <member name="T:ClassLibrary.Train">
+        <member name="P:Proyect.APILocationContainer.Instance">
             <summary>
-            Esta clase representa un tren muy básico.
+            Obtiene la instancia de la instancia del contenedor de la api
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.APILocationContainer.APIdeLocalizacion">
+            <summary>
+            Obtiene la instancia de la api de localizacion
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:Proyect.AppLogic">
+            <summary>
+            Clase singleton para guardar los datos de la Aplicacion
             </summary>
         </member>
-        <member name="P:ClassLibrary.Train.IsEngineStarted">
+        <member name="P:Proyect.AppLogic.Companies">
             <summary>
-            Obtiene un valor que indica si las maquinas del tren han sido encendidas o no.
+            Obtiene las companias que estan registradas
             </summary>
-            <value><c>true</c> si las máquinas fueron encendidas, <c>false</c> en caso contrario.</value>
+            <value>companies</value>
         </member>
-        <member name="M:ClassLibrary.Train.StartEngines">
+        <member name="P:Proyect.AppLogic.Entrepreneurs">
             <summary>
-            Enciende las máquinas del tren.
+            Obtiene los emprendedores que estan registrados
             </summary>
-            <returns>
-            <c>true</c> si las máquinas pueden ser encendidas, <c>false</c> en caso contrario.
-            </returns>
+            <value>entrepreneurs</value>
         </member>
-        <member name="M:ClassLibrary.Train.StopEngines">
+        <member name="P:Proyect.AppLogic.Rubros">
             <summary>
-            Detiene las máquinas del tren.
+            Obtiene los rubros habilitados
             </summary>
-            <returns>
-            <c>true</c> si las máquinas pueden ser detenidas, <c>false</c> en caso contrario.
-            </returns>
+            <value></value>
+        </member>
+        <member name="P:Proyect.AppLogic.Qualifications">
+            <summary>
+            Obtiene la lista de habilitciones registradas
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.AppLogic.Classifications">
+            <summary>
+            Obtiene la lista de clasificaciones/categorias registradas para los productos
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.AppLogic.Instance">
+            <summary>
+            Obtiene la instancia de AppLogic
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Proyect.AppLogic.RegisterEntrepreneurs(System.String,System.String,Proyect.Rubro,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.ArrayList)">
+            <summary>
+            Metodo que registra a un emprendedor
+            </summary>
+        </member>
+        <member name="M:Proyect.AppLogic.ValidRubrosMessage">
+            <summary>
+            Metodo que retorna un mensaje con los rubros habilitaddos
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.AppLogic.validQualificationsMessage">
+            <summary>
+            Metdo que retorna un mensaje con las Habilitaciones permitidas
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.AppLogic.RemoveKeyWords(Proyect.Company,Proyect.IOffer,System.String)">
+            <summary>
+            Remueve palabras clave de la oferta de una compania
+            </summary>
+            <param name="company"></param>
+            <param name="offer"></param>
+            <param name="keyWord"></param>
+        </member>
+        <member name="M:Proyect.AppLogic.AddKeyWords(Proyect.Company,Proyect.IOffer,System.String)">
+            <summary>
+            Remueve las palabras clave de una oferta
+            </summary>
+            <param name="company"></param>
+            <param name="offer"></param>
+            <param name="keyWord"></param>
+        </member>
+        <member name="M:Proyect.AppLogic.RemoveOffer(Proyect.Company,Proyect.IOffer)">
+            <summary>
+            Remueve la oferta de una compania
+            </summary>
+            <param name="company"></param>
+            <param name="offer"></param>
+        </member>
+        <member name="M:Proyect.AppLogic.RemoveQualification(Proyect.Company,Proyect.IOffer,Proyect.Qualifications)">
+            <summary>
+            Remueve las habilitaciones de una oferta
+            </summary>
+            <param name="company"></param>
+            <param name="offer"></param>
+            <param name="qualification"></param>
+        </member>
+        <member name="M:Proyect.AppLogic.AddQualification(Proyect.Company,Proyect.IOffer,Proyect.Qualifications)">
+            <summary>
+            Agrega habilitaciones a una oferta
+            </summary>
+            <param name="company"></param>
+            <param name="offer"></param>
+            <param name="qualification"></param>
+        </member>
+        <member name="M:Proyect.AppLogic.PublicConstantOffer(Proyect.Company,Proyect.Classification,System.Double,System.Double,System.String,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.ArrayList)">
+            <summary>
+            Publica una oferta constante de la compania que se le ingresa
+            </summary>
+            <param name="company"></param>
+            <param name="tipo"></param>
+            <param name="quantity"></param>
+            <param name="cost"></param>
+            <param name="ubication"></param>
+            <param name="qualifications"></param>
+            <param name="keyWords"></param>
+        </member>
+        <member name="M:Proyect.AppLogic.PublicNonConstantOffer(Proyect.Company,Proyect.Classification,System.Double,System.Double,System.String,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.ArrayList)">
+            <summary>
+            Publica una oferta no constante de la compania que se le ingresa
+            </summary>
+            <param name="company"></param>
+            <param name="tipo"></param>
+            <param name="quantity"></param>
+            <param name="cost"></param>
+            <param name="ubication"></param>
+            <param name="qualifications"></param>
+            <param name="keyWords"></param>
+        </member>
+        <member name="M:Proyect.AppLogic.SearchOfferByKeyWords(System.String)">
+            <summary>
+            Metodo que se encarga de buscar las ofertas por palabras clave
+            </summary>
+            <param name="word"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.AppLogic.SearchOfferByType(System.String)">
+            <summary>
+            Metodo que se encarga de buscar las ofertas por tipo
+            </summary>
+            <param name="word"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.AppLogic.SearchOfferByUbication(System.String)">
+            <summary>
+            Metodo que se encarga de buscar las ofertas por ubicacion
+            </summary>
+            <param name="word"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.AppLogic.AccepOffer(Proyect.Emprendedor,Proyect.IOffer)">
+            <summary>
+            Metodo para aceptar una oferta
+            </summary>
+            <param name="emprendedor"></param>
+            <param name="offer"></param>
+        </member>
+        <member name="M:Proyect.AppLogic.ObteinOfferDistance(Proyect.Emprendedor,Proyect.IOffer)">
+            <summary>
+            Metodo que permite obtener la distancia entre un emprendedor y un producto
+            </summary>
+        </member>
+        <member name="M:Proyect.AppLogic.ObteinOfferMap(Proyect.IOffer)">
+            <summary>
+            Metodo que obtiene el mapa de la ubicacion de un emprendedor
+            </summary>
+            <param name="offer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.AppLogic.GetConstantMaterials">
+            <summary>
+            Metodo que devuelbe un string con la lista de materiales constantes
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.AppLogic.GetOffersAccepted(Proyect.Company)">
+            <summary>
+            Obtiene un string con la indicando si sus ofertas fueron o no fueron aceptadas, en caso de que si, indica ademas la fecha de cuando fueron aceptadas
+            </summary>
+            <param name="company"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.AppLogic.GetOffersAccepted(Proyect.Emprendedor)">
+            <summary>
+            Obtiene las ofertas aceptadas por el emprendedor, junto con la fecha de cuando las acepto
+            </summary>
+            <param name="emprendedor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.AppLogic.GetPeriodTimeOffersAccepted(Proyect.Company,System.Int32)">
+            <summary>
+            Obtiene la cantidad de ofertas que furon aceptadas en un periodo de tiempo establecido por el usuario
+            </summary>
+            <param name="company"></param>
+            <param name="periodTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.AppLogic.GetPeriodTimeOffersAccepted(Proyect.Emprendedor,System.Int32)">
+            <summary>
+            Obtiene la cantidad de ofertas que furon aceptadas en un periodo de tiempo establecido por el usuario
+            </summary>
+            <param name="emprendedor"></param>
+            <param name="periodTime"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Proyect.Classification">
+            <summary>
+            Es la clasificacion que va a tener cada producto
+            </summary>
+        </member>
+        <member name="P:Proyect.Classification.Category">
+            <summary>
+            Devuelve el nombre de la clasificacion
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Proyect.Classification.#ctor(System.String)">
+            <summary>
+            Constructor de las clasificaciones
+            </summary>
+            <param name="category"></param>
+        </member>
+        <member name="T:Proyect.Company">
+            <summary>
+            Esta clase representa la compania y hereda de user (cumple con el principio ISP, porque no depende de tipos que no usa, ya que utiliza todos los metodos y propiedades de user)
+            </summary>
+        </member>
+        <member name="F:Proyect.Company.offers">
+            <summary>
+            Lista de ofertas de la compania
+            </summary>
+        </member>
+        <member name="M:Proyect.Company.#ctor(System.String,System.String,Proyect.Rubro)">
+            <summary>
+            Constructor de company
+            </summary>
+            <param name="name"></param>
+            <param name="ubication"></param>
+            <param name="rubro"></param>
+        </member>
+        <member name="P:Proyect.Company.OffersPublished">
+            <summary>
+            Metodo que retorna una lista con las ofertas publicadas por la empresa
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Proyect.Company.PublicConstantOffer(Proyect.Classification,System.Double,System.Double,System.String,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.ArrayList)">
+            <summary>
+            Crea una instancia de una oferta constante y se la agrega a la lisat de ofertas de la compania
+            </summary>
+            <param name="tipo"></param>
+            <param name="quantity"></param>
+            <param name="cost"></param>
+            <param name="ubication"></param>
+            <param name="qualifications"></param>
+            <param name="keyWords"></param>
+        </member>
+        <member name="M:Proyect.Company.PublicNonConstantOffer(Proyect.Classification,System.Double,System.Double,System.String,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.ArrayList)">
+            <summary>
+            Crea una instacion de una oferta no constante y se la agrega a la lista de ofertas de la compania
+            </summary>
+            <param name="tipo"></param>
+            <param name="quantity"></param>
+            <param name="cost"></param>
+            <param name="ubication"></param>
+            <param name="qualifications"></param>
+            <param name="keyWords"></param>
+        </member>
+        <member name="M:Proyect.Company.RemoveOffer(Proyect.IOffer)">
+            <summary>
+            Remueve ofertas
+            </summary>
+            <param name="offer"></param>
+        </member>
+        <member name="M:Proyect.Company.GetOffersAccepted">
+            <summary>
+            Obtiene un string con todas las ofertas que fueron o no fueron aceptadas por emprendedores(por expert le asignamos esta responsabilidad)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.Company.GetPeriodTimeOffersAccepted(System.Int32)">
+            <summary>
+            Obteien la cantidad de ofertas que publico la compania, que fueron aceptadas en cierto tiempo estipulado. (por expert)
+            </summary>
+            <param name="periodTime"></param>
+            <returns>retorna un mensaje con la informacion de compra de las ofertas que entran en el rango indicado</returns>
+        </member>
+        <member name="M:Proyect.Company.RemoveKeyWords(Proyect.IOffer,System.String)">
+            <summary>
+            Remueve palabras clave de una oferta
+            </summary>
+            <param name="offer"></param>
+            <param name="keyWord"></param>
+        </member>
+        <member name="M:Proyect.Company.AddKeyWords(Proyect.IOffer,System.String)">
+            <summary>
+            Agrega palabras clave a una oferta
+            </summary>
+            <param name="offer"></param>
+            <param name="keyWord"></param>
+        </member>
+        <member name="M:Proyect.Company.AddQualification(Proyect.IOffer,Proyect.Qualifications)">
+            <summary>
+            Agrega uhabilitaciones a la oferta
+            </summary>
+            <param name="offer"></param>
+            <param name="qualification"></param>
+        </member>
+        <member name="M:Proyect.Company.RemoveQualification(Proyect.IOffer,Proyect.Qualifications)">
+            <summary>
+            Remueve la habilitacion de una oferta
+            </summary>
+            <param name="offer"></param>
+            <param name="qualification"></param>
+        </member>
+        <member name="T:Proyect.ConstantOffer">
+            <summary>
+            Representa las ofertas constantes de las companias
+            </summary>
+        </member>
+        <member name="M:Proyect.ConstantOffer.#ctor(Proyect.Classification,System.Double,System.Double,System.String,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.ArrayList)">
+            <summary>
+            Constructor de la oferta constante
+            </summary>
+            <param name="tipo"></param>
+            <param name="quantity"></param>
+            <param name="cost"></param>
+            <param name="ubicacion"></param>
+            <param name="qualifications"></param>
+            <param name="keyWords"></param>
+        </member>
+        <member name="P:Proyect.ConstantOffer.Product">
+            <summary>
+            Obtiene el producto de una oferta
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.ConstantOffer.Qualifications">
+            <summary>
+            Obtiene ka lista de las habilitaciones de una oferta
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.ConstantOffer.KeyWords">
+            <summary>
+            Obtiene la lista de palbras clave de la oferta
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.ConstantOffer.PurchesedData">
+            <summary>
+            Obtiene la informacion de el o los compardores de esta oferta constante
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Proyect.ConstantOffer.GetPurchesedData">
+            <summary>
+            Obtiene la informacion de compra de la oferta (por patron expert)
+            </summary>
+            <returns>Devuelve un string con la informacion de compra</returns>
+        </member>
+        <member name="M:Proyect.ConstantOffer.GetPeriodTimeOffersAcceptedData(System.Int32)">
+            <summary>
+            Obtiene la informacion de compra del ultimo emprendedor que acepta la oferta
+            </summary>
+            <param name="periodTime"></param>
+            <returns>mensaje con la infromacion de compra de la oferta, si la misma entra dentro del rango estipulado, en caso contrario, mensaje que indica dicha situacion</returns>
+        </member>
+        <member name="M:Proyect.ConstantOffer.GetOfferBuyerTimeData(Proyect.Emprendedor)">
+            <summary>
+            Obtiene la fecha de compra del emprendedor ingresado (expert).
+            </summary>
+            <param name="emprendedor"></param>
+            <returns> la fecha de compra del emprendedor ingresado</returns>
+        </member>
+        <member name="M:Proyect.ConstantOffer.PutBuyer(Proyect.Emprendedor,System.DateTime)">
+            <summary>
+            Agrega un nuevo comprador a la lista de compradores de esta oferta constante
+            </summary>
+            <param name="emprendedor"></param>
+            <param name="timeAccepted"></param>
+        </member>
+        <member name="T:Proyect.Emprendedor">
+            <summary>
+            Clase emprendedor.
+            </summary>
+        </member>
+        <member name="M:Proyect.Emprendedor.#ctor(System.String,System.String,Proyect.Rubro,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.ArrayList)">
+            <summary>
+            Constructor de emprendedor
+            </summary>
+            <param name="name"></param>
+            <param name="ubication"></param>
+            <param name="rubro"></param>
+            <param name="qualifications"></param>
+            <param name="specializations"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Proyect.Emprendedor.Qualifications">
+            <summary>
+            Propiedad get y set de las habilitaciones
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.Emprendedor.Specializations">
+            <summary>
+            Propiedad Specializations
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.Emprendedor.PurchasedOffers">
+            <summary>
+            Obtiene la lista de ofertas ofertas aceptadas por el emprendedor
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Proyect.Emprendedor.AddPurchasedOffer(Proyect.IOffer)">
+            <summary>
+            Metdod para agregar una oferta a la lista de ofertas que el emprendedor acepto
+            </summary>
+        </member>
+        <member name="M:Proyect.Emprendedor.GetOffersAccepted">
+            <summary>
+            Obtiene un string indicando las ofertas que fueron aceptadas por el por el emprendedor, junto con algunos datos
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.Emprendedor.GetPeriodTimeOffersAccepted(System.Int32)">
+            <summary>
+            Obtiene la cantidad de ofertas que fueron aceptadas en eun periodo de tiempo
+            </summary>
+            <param name="periodTime"></param>
+            <returns>mensaje con las ofertas que acepto en un periodo de tiempo</returns>
+        </member>
+        <member name="T:Proyect.EmptyUserBuilderException">
+            <summary>
+            Excepcion para cuando el usurio ingresa un dato vacio cuando se registra
+            </summary>
+        </member>
+        <member name="M:Proyect.EmptyUserBuilderException.#ctor">
+            <summary>
+            Constructor vacio
+            </summary>
+        </member>
+        <member name="M:Proyect.EmptyUserBuilderException.#ctor(System.String)">
+            <summary>
+            Constructor con mensaje
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.EmptyUserBuilderException.#ctor(System.String,System.Exception)">
+            <summary>
+            Construtor con mensaje y excepcion encadenada
+            </summary>
+            <param name="message"></param>
+            <param name="inner"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.EmptyUserBuilderException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Constructor con atributo serialization
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Proyect.IOffer">
+            <summary>
+            Interfaz para las ofertas de una compania
+            </summary>
+        </member>
+        <member name="P:Proyect.IOffer.Product">
+            <summary>
+            Obtiene el producto de la oferta
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.IOffer.Qualifications">
+            <summary>
+            Obtiene las habilitaciones de la oferta
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.IOffer.KeyWords">
+            <summary>
+            Obteien la lista de palabras clave de una oferta
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Proyect.IOffer.GetPurchesedData">
+            <summary>
+            Obtiene la informacion de compra de la oferta
+            </summary>
+            <returns>mensaje con la infromacion de compra de todas sus ofertas</returns>
+        </member>
+        <member name="M:Proyect.IOffer.GetPeriodTimeOffersAcceptedData(System.Int32)">
+            <summary>
+            Obtien todas las ofertas que le fueron aceptadas en un periodo de tiempo
+            </summary>
+            <param name="periodTime"></param>
+            <returns>mensaje con la informacion de compra de sus ofertas</returns>
+        </member>
+        <member name="M:Proyect.IOffer.GetOfferBuyerTimeData(Proyect.Emprendedor)">
+            <summary>
+            Obtiene la fecha en la que el imprendedor ingresado acepto la oferta
+            </summary>
+            <param name="emprendedor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.IOffer.PutBuyer(Proyect.Emprendedor,System.DateTime)">
+            <summary>
+            Le asigna el emprendedor y la fecha de compra a la oferta, una vez es comprada
+            </summary>
+            <param name="emprendedor"></param>
+            <param name="timeAccepted"></param>
+        </member>
+        <member name="T:Proyect.MessageProcesor">
+            <summary>
+            Clase que procesa los mensajes de telegram (en este caso va a procesar los mensajes de consola para probra la logica)
+            </summary>
+        </member>
+        <member name="T:Proyect.NonConstantOffer">
+            <summary>
+            Representa las ofertas constantes de las companias
+            </summary>
+        </member>
+        <member name="M:Proyect.NonConstantOffer.#ctor(Proyect.Classification,System.Double,System.Double,System.String,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.ArrayList)">
+            <summary>
+            Constructor de la oferta constante
+            </summary>
+            <param name="tipo"></param>
+            <param name="quantity"></param>
+            <param name="cost"></param>
+            <param name="ubicacion"></param>
+            <param name="qualifications"></param>
+            <param name="keyWords"></param>
+        </member>
+        <member name="P:Proyect.NonConstantOffer.Product">
+            <summary>
+            Obtiene el producto de una oferta
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.NonConstantOffer.Qualifications">
+            <summary>
+            Obtiene ka lista de las habilitaciones de una oferta
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.NonConstantOffer.KeyWords">
+            <summary>
+            Obtiene la lista de palbras clave de la oferta
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.NonConstantOffer.PurchesedData">
+            <summary>
+            Obtiene la informacion de el o los compardores de esta oferta constante
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Proyect.NonConstantOffer.GetPurchesedData">
+            <summary>
+            Obtiene la informacion de compra de la oferta (por patron expert)
+            </summary>
+            <returns>Un string con la informacion de quien lo compro</returns>
+        </member>
+        <member name="M:Proyect.NonConstantOffer.GetPeriodTimeOffersAcceptedData(System.Int32)">
+            <summary>
+            Obtiene la informacion de compra de la oferta (expert)
+            </summary>
+            <param name="periodTime"></param>
+            <returns>si la oferta se compro antes de la fecha estipulada, devuelve la iformacion de compra, en caso contrario, devuelve un striing indicando dicha situacion</returns>
+        </member>
+        <member name="M:Proyect.NonConstantOffer.GetOfferBuyerTimeData(Proyect.Emprendedor)">
+            <summary>
+            Obtiene la fecha de compra del emprendedor ingresado
+            </summary>
+            <param name="emprendedor"></param>
+            <returns>retorna la fecha de cmpra de la oferta</returns>
+        </member>
+        <member name="M:Proyect.NonConstantOffer.PutBuyer(Proyect.Emprendedor,System.DateTime)">
+            <summary>
+            Coloca el emprendedor y la fecha de compra, en la informacion de compra
+            </summary>
+            <param name="emprendedor"></param>
+            <param name="timeAccepted"></param>
+        </member>
+        <member name="T:Proyect.OfferSearch">
+            <summary>
+            Clase que se encarga de buscar las ofertas por los distintos metodos establecidos
+            </summary>
+        </member>
+        <member name="P:Proyect.OfferSearch.Instance">
+            <summary>
+            Obtiene la instancia de OfferSearch
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Proyect.OfferSearch.SearchByKeywords(System.String)">
+            <summary>
+            Busca las ofertas con la palabra clave que se le pasa
+            </summary>
+            <param name="word"></param>
+        </member>
+        <member name="M:Proyect.OfferSearch.SearchByUbication(System.String)">
+            <summary>
+            Busca ofertas por ubicacion
+            </summary>
+            <param name="ubication"></param>
+        </member>
+        <member name="M:Proyect.OfferSearch.SearchByType(System.String)">
+            <summary>
+            Busca ofertas por el tipo
+            </summary>
+            <param name="type"></param>
+        </member>
+        <member name="M:Proyect.OfferSearch.GetOffersMessages(Proyect.IOffer,Proyect.Company)">
+            <summary>
+            Obtiene la informacion de un oferta en fomra de mensaje
+            </summary>
+            <param name="offer"></param>
+            <param name="company"></param>
+            <returns>La infromacion de la oferta</returns>
+        </member>
+        <member name="T:Proyect.ProductOffer">
+            <summary>
+            Representa el producto de una oferta (  Esta en una relacion de composicion con la clase Offer, siendo product la clase compuesta)
+            </summary>
+        </member>
+        <member name="P:Proyect.ProductOffer.Classification">
+            <summary>
+            Obtiene un string que determina los tipos del producto.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.ProductOffer.Quantity">
+            <summary>
+            Determina la cantidad de unidades de un producto.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.ProductOffer.Price">
+            <summary>
+            Determina el precio por unidad de producto
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.ProductOffer.Ubication">
+            <summary>
+            Determina la ubicacion de un producto.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Proyect.ProductOffer.#ctor(Proyect.Classification,System.Double,System.Double,System.String)">
+            <summary>
+            Constructor de instancias de product.
+            </summary>
+            <param name="classification"></param>
+            <param name="quantity"></param>
+            <param name="price"></param>
+            <param name="ubication"></param>
+        </member>
+        <member name="T:Proyect.PurchesedData">
+            <summary>
+            Clase que representa la informacion de compra de una oferta
+            </summary>
+        </member>
+        <member name="M:Proyect.PurchesedData.#ctor(Proyect.Emprendedor,System.DateTime)">
+            <summary>
+            Constructor de PurchesedData
+            </summary>
+        </member>
+        <member name="T:Proyect.Qualifications">
+            <summary>
+            Clase que representa las habilitaciones de una oferta o emprendedor
+            </summary>
+        </member>
+        <member name="P:Proyect.Qualifications.QualificationName">
+            <summary>
+            Propierti delnombre de la habilitacion
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Proyect.Qualifications.#ctor(System.String)">
+            <summary>
+            Constructor de instancias de qualification
+            </summary>
+            <param name="qualificationName"></param>
+        </member>
+        <member name="T:Proyect.Rubro">
+            <summary>
+            Clase que representa el rubro de una compania o emprendedor
+            </summary>
+        </member>
+        <member name="P:Proyect.Rubro.RubroName">
+            <summary>
+            Propierti delnombre del rubro
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Proyect.Rubro.#ctor(System.String)">
+            <summary>
+            Constructor de instancias de rubro
+            </summary>
+            <param name="rubroName"></param>
+        </member>
+        <member name="T:Proyect.User">
+            <summary>
+            Superclase user de Emprendedor y Company (quienes estan en una relaciontaxonomica con esta clase)
+            </summary>
+        </member>
+        <member name="F:Proyect.User.name">
+            <summary>
+            Nombre del usuario,sea una compania o emprendedor
+            </summary>
+        </member>
+        <member name="F:Proyect.User.ubication">
+            <summary>
+            Ubicacion del usiario
+            </summary>
+        </member>
+        <member name="F:Proyect.User.rubro">
+            <summary>
+            El rubro al que pertnece el usuario 
+            </summary>
+        </member>
+        <member name="M:Proyect.User.#ctor(System.String,System.String,Proyect.Rubro)">
+            <summary>
+            Constructor de User (recive el nombre ubicacion y el rubor, aspectos comunes al emprendedor y compania)
+            </summary>
+            <param name="name"></param>
+            <param name="ubication"></param>
+            <param name="rubro"></param>
+        </member>
+        <member name="P:Proyect.User.Name">
+            <summary>
+            Propiedad get y set del atributo del nombre
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.User.Ubication">
+            <summary>
+            Propiedad get y set del atributo de la ubicacion
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.User.Rubro">
+            <summary>
+            Propiedad get y set del atributo del rubro
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:LocationApi.Distance">
+            <summary>
+            Representa la distancia entre las coordenas o las direcciones de origen y destino retornada en los métodos
+            <see cref="M:LocationApi.LocationApiClient.GetDistance(LocationApi.Location,LocationApi.Location)"/> o
+            <see cref="M:LocationApi.LocationApiClient.GetDistance(System.String,System.String)"/>.
+            </summary>
+        </member>
+        <member name="P:LocationApi.Distance.Found">
+            <summary>
+            Indica si se encontraron o no las coordenas o las direcciones de origen y destino.
+            </summary>
+            <value>true si se encontró la dirección; false en caso contrario.</value>
+        </member>
+        <member name="P:LocationApi.Distance.TravelDistance">
+            <summary>
+            La distancia entre las coordenadas o las direcciones de origen y destino.
+            </summary>
+            <value>La distancia en metros.</value>
+        </member>
+        <member name="P:LocationApi.Distance.TravelDuration">
+            <summary>
+            El tiempo que se demora en llegar de las coordenadas o de las direcciones de origen a las de destino.
+            </summary>
+            <value>El tiempo que se demora en minutos.</value>
+        </member>
+        <member name="T:LocationApi.Location">
+            <summary>
+            Representa las coordenadas y otros datos de la ubicación de una dirección retornada en el método
+            <see cref="M:LocationApi.LocationApiClient.GetLocation(System.String,System.String,System.String,System.String)"/>.
+            </summary>
+        </member>
+        <member name="P:LocationApi.Location.Found">
+            <summary>
+            Indica si se encontró o no la dirección. En ese caso son válidos los demás valores. En caso contrario los
+            demás valores son indeterminados.
+            </summary>
+            <value>true si se encontró la dirección; false en caso contrario.</value>
+        </member>
+        <member name="P:LocationApi.Location.AddresLine">
+            <summary>
+            La dirección: calle y número, ruta y kilómetro, etc.
+            </summary>
+            <value>Por ejemplo, Avenida 8 de Octubre 2738.</value>
+        </member>
+        <member name="P:LocationApi.Location.CountryRegion">
+            <summary>
+            El país.
+            </summary>
+            <value>Por ejemplo, Uruguay</value>
+        </member>
+        <member name="P:LocationApi.Location.FormattedAddress">
+            <summary>
+            La dirección completa, incluyendo ciudad, código postal, etc.
+            </summary>
+            <value>Por ejemplo, Avenida 8 de Octubre 2738, Montevideo, 11200, Uruguay.</value>
+        </member>
+        <member name="P:LocationApi.Location.Locality">
+            <summary>
+            La localidad o ciudad.
+            </summary>
+            <value>Por ejemplo, Montevideo</value>
+        </member>
+        <member name="P:LocationApi.Location.PostalCode">
+            <summary>
+            El código postal.
+            </summary>
+            <value>Por ejemplo, 11200</value>
+        </member>
+        <member name="P:LocationApi.Location.Latitude">
+            <summary>
+            La latitud de la dirección.
+            </summary>
+            <value>El valor de la latitud en formato decimal.</value>
+        </member>
+        <member name="P:LocationApi.Location.Longitude">
+            <summary>
+            La longitud de la dirección.
+            </summary>
+            <value>El valor de la longitud en formato decimal.</value>
+        </member>
+        <member name="T:LocationApi.LocationApiClient">
+            <summary>
+            API de Localizacion
+            </summary>
+        </member>
+        <member name="M:LocationApi.LocationApiClient.GetLocation(System.String,System.String,System.String,System.String)">
+            <summary>
+            Obtiene las coordenadas de una dirección.
+            </summary>
+            <param name="address">La dirección.</param>
+            <param name="city">La ciudad. Es opcional. El valor predeterminado es Montevideo.</param>
+            <param name="department">El departamento, estado, provincia, etc. Es opcional. El valor predeterminado es `ontevideo.</param>
+            <param name="country">El país. Es opcional. El valor predeterminado es Uruguay.</param>
+            <returns>Las coordenadas de la dirección.</returns>
+        </member>
+        <member name="M:LocationApi.LocationApiClient.GetDistance(LocationApi.Location,LocationApi.Location)">
+            <summary>
+            Obtiene la distancia entre dos coordenadas.
+            </summary>
+            <param name="from">La coordenada de origen.</param>
+            <param name="to">La coordenada de destino.</param>
+            <returns>La distancia entre las dos coordenadas.</returns>
+        </member>
+        <member name="M:LocationApi.LocationApiClient.GetDistance(System.String,System.String)">
+            <summary>
+            Obtiene la distancia entre dos direcciones.
+            </summary>
+            <param name="from">La dirección de origen.</param>
+            <param name="to">La dirección de destino.</param>
+            <returns>La distancia entre las dos direcciones.</returns>
+        </member>
+        <member name="M:LocationApi.LocationApiClient.DownloadMap(System.Double,System.Double,System.String,System.Int32)">
+            <summary>
+            Descarga una mapa de una coordenada.
+            </summary>
+            <param name="latitude">La latitud de la coordenada.</param>
+            <param name="longitude">La longitud de la coordenada.</param>
+            <param name="path">La ruta del archivo donde guardar el mapa. El formato es PNG.</param>
+            <param name="zoomLevel">El nivel de zoom del mapa entre 1 y 20. Es opcional. El valor predeterminado es
+            15.</param>
+        </member>
+        <member name="M:LocationApi.LocationApiClient.DownloadRoute(System.Double,System.Double,System.Double,System.Double,System.String)">
+            <summary>
+            Un mapa con una ruta entre dos coordenadas.
+            </summary>
+            <param name="fromLatitude">La latitud de la coordenada de origen.</param>
+            <param name="fromLongitude">La longitu de la coordenada de origen.</param>
+            <param name="toLatitude">La latitud de la coordenada de destino.</param>
+            <param name="toLongitude">La longitud de la coordenada de destino.</param>
+            <param name="path">La ruta del archivo donde guardar el mapa. Es formato es PNG.</param>
         </member>
     </members>
 </doc>

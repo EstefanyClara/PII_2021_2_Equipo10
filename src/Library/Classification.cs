@@ -1,37 +1,37 @@
-using System.Collections;
+using System;
 
-namespace ClassLibrary
+namespace Proyect
 {
     /// <summary>
-    /// Representa el producto de una oferta
+    /// Es la clasificacion que va a tener cada producto
     /// </summary>
     public class Classification
     {
-        private string validClassification;
+        private string category;
 
-/// <summary>
-/// Determina la ubicacion de un producto.
-/// </summary>
-/// <value></value>
-        public string ValidClassifications
+        /// <summary>
+        /// Devuelve el nombre de la clasificacion
+        /// </summary>
+        /// <value></value>
+        public string Category
         {
             get
             {
-                return this.validClassification;
+                return this.category;
             }
             set
             {
-                this.validClassification = value;
+                this.category = value;
             }
         }
-/// <summary>
-/// Constructor de instancias de product.
-/// </summary>
-/// <param name="classification"></param>
 
-        public Classification(string classification)
+        /// <summary>
+        /// Constructor de las clasificaciones
+        /// </summary>
+        /// <param name="category"></param>
+        public Classification(string category)
         {
-            this.ValidClassifications= classification;
+            this.Category = category;
         }
     }
 }
