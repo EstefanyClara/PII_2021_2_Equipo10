@@ -6,28 +6,28 @@ using System.Text;
 namespace Proyect
 {
         /// <summary>
-        /// Esta clase representa la compania y hereda de user (cumple con el principio ISP, porque no depende de tipos que no usa, ya que utiliza todos los metodos y propiedades de user)
+        /// Esta clase representa la compania y hereda de user (cumple con el principio ISP, porque no depende de tipos que no usa, ya que utiliza todos los metodos y propiedades de user).
         /// </summary>
         public class Company: User
         {
                 /// <summary>
-                /// Lista de ofertas de la compania
+                /// Lista de ofertas de la compania.
                 /// </summary>
                 private List<IOffer> offers = new List<IOffer>(); 
 
                 /// <summary>
-                /// Constructor de company
+                /// Inicializa una nueva instancia de la clase <see cref="Company"/>.
                 /// </summary>
-                /// <param name="name"></param>
-                /// <param name="ubication"></param>
-                /// <param name="rubro"></param>
-                public Company(string name, string ubication, Rubro rubro):base(name,ubication,rubro)
+                /// <param name="name">Nombre compania.</param>
+                /// <param name="ubication">Ubicacion de la compania.</param>
+                /// <param name="rubro">Rubro de la compania.</param>
+                public Company(string name, string ubication, Rubro rubro):base(name, ubication, rubro)
                 {
 
                 }
 
                 /// <summary>
-                /// Metodo que retorna una lista con las ofertas publicadas por la empresa
+                /// Metodo que retorna una lista con las ofertas publicadas por la empresa.
                 /// </summary>
                 /// <value></value>
                 public List<IOffer> OffersPublished
@@ -36,7 +36,7 @@ namespace Proyect
                 }
 
                 /// <summary>
-                /// Crea una instancia de una oferta constante y se la agrega a la lisat de ofertas de la compania
+                /// Crea una instancia de una oferta constante y se la agrega a la lisat de ofertas de la compania.
                 /// </summary>
                 /// <param name="tipo"></param>
                 /// <param name="quantity"></param>
@@ -64,18 +64,18 @@ namespace Proyect
                 }
 
                 /// <summary>
-                /// Remueve ofertas
+                /// Remueve ofertas.
                 /// </summary>
-                /// <param name="offer"></param>
+                /// <param name="offer">Oferta.</param>
                 public void RemoveOffer(IOffer offer)
                 {
                         this.OffersPublished.Remove(offer);
                 }
 
                 /// <summary>
-                /// Obtiene un string con todas las ofertas que fueron o no fueron aceptadas por emprendedores(por expert le asignamos esta responsabilidad)
+                /// Obtiene un string con todas las ofertas que fueron o no fueron aceptadas por emprendedores(por expert le asignamos esta responsabilidad).
                 /// </summary>
-                /// <returns></returns>
+                /// <returns>Las ofertas aceptadas.</returns>
                 public string GetOffersAccepted()
                 {
                         StringBuilder message = new StringBuilder();
@@ -90,10 +90,10 @@ namespace Proyect
 
 
                 /// <summary>
-                /// Obteien la cantidad de ofertas que publico la compania, que fueron aceptadas en cierto tiempo estipulado. (por expert)
+                /// Obtiene la cantidad de ofertas que publico la compania, que fueron aceptadas.
                 /// </summary>
-                /// <param name="periodTime"></param>
-                /// <returns>retorna un mensaje con la informacion de compra de las ofertas que entran en el rango indicado</returns>
+                /// <param name="periodTime">Periodo de tiempo.</param>
+                /// <returns>Las ofertas aceptadas en un periodo de tiempo.</returns>
                 public string GetPeriodTimeOffersAccepted(int periodTime)
                 {
                         int offersAccepted = 0;
@@ -112,20 +112,20 @@ namespace Proyect
                 }
 
                 /// <summary>
-                /// Remueve palabras clave de una oferta
+                /// Remueve palabras clave de una oferta.
                 /// </summary>
-                /// <param name="offer"></param>
-                /// <param name="keyWord"></param>
+                /// <param name="offer">La oferta.</param>
+                /// <param name="keyWord">La palabra clave de la oferta.</param>
                 public void RemoveKeyWords(IOffer offer, string keyWord)
                 {
                         offer.KeyWords.Remove(keyWord);
                 }
 
                 /// <summary>
-                /// Agrega palabras clave a una oferta
+                /// Agrega palabras clave a una oferta.
                 /// </summary>
-                /// <param name="offer"></param>
-                /// <param name="keyWord"></param>
+                /// <param name="offer">La oferta.</param>
+                /// <param name="keyWord">La palabra clave de la oferta.</param>
                 public string AddKeyWords(IOffer offer, string keyWord)
                 {                
                         if (!offer.KeyWords.Contains(keyWord))
@@ -137,20 +137,20 @@ namespace Proyect
                 }
 
                 /// <summary>
-                /// Agrega uhabilitaciones a la oferta
+                /// Agrega habilitaciones a la oferta.
                 /// </summary>
-                /// <param name="offer"></param>
-                /// <param name="qualification"></param>
+                /// <param name="offer">La oferta.</param>
+                /// <param name="qualification">La habilitaciones de la oferta.</param>
                 public void AddQualification(IOffer offer, Qualifications qualification)
                 {
                         offer.Qualifications.Add(qualification);
                 }
 
                 /// <summary>
-                /// Remueve la habilitacion de una oferta
+                /// Remueve la habilitacion de una oferta.
                 /// </summary>
-                /// <param name="offer"></param>
-                /// <param name="qualification"></param>
+                /// <param name="offer">La oferta.</param>
+                /// <param name="qualification">La habilitacion de la oferta.</param>
                 public void RemoveQualification(IOffer offer, Qualifications qualification)
                 {
                         offer.Qualifications.Remove(qualification);

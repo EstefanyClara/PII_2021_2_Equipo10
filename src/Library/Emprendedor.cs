@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.Collections;
 using System.Text;
+using System.Collections;
 
 namespace Proyect
 {
     /// <summary>
-    /// Clase emprendedor.
+    /// Clase emprendedor. 
     /// </summary>
     public class Emprendedor : User
     {
@@ -15,25 +15,25 @@ namespace Proyect
         private ArrayList specializations;
 
         private List<IOffer> purchasedOffer;
-/// <summary>
-/// Constructor de emprendedor
-/// </summary>
-/// <param name="name"></param>
-/// <param name="ubication"></param>
-/// <param name="rubro"></param>
-/// <param name="qualifications"></param>
-/// <param name="specializations"></param>
-/// <returns></returns>
+        /// <summary>
+        /// Constructor de emprendedor.
+        /// </summary>
+        /// <param name="name">Nombre del emprendedor.</param>
+        /// <param name="ubication">Ubicacion del emprendedor.</param>
+        /// <param name="rubro">Rubro del emprendedor.</param>
+        /// <param name="qualifications">Hablitaciones del emprendedor.</param>
+        /// <param name="specializations">Especializaciones del emprendedor.</param>
+        /// <returns></returns>
         public Emprendedor(string name, string ubication, Rubro rubro, List<Qualifications> qualifications, ArrayList specializations):base(name,ubication,rubro)
         {
             this.Qualifications = qualifications;
             this.Specializations = specializations;
             this.purchasedOffer = new List<IOffer>();
         }
-/// <summary>
-/// Propiedad get y set de las habilitaciones
-/// </summary>
-/// <value></value>
+        /// <summary>
+        /// Propiedad get y set de las habilitaciones.
+        /// </summary>
+        /// <value></value>
         public List<Qualifications> Qualifications
         {
             get
@@ -45,10 +45,10 @@ namespace Proyect
                 this.qualifications = value;
             }
         }
-/// <summary>
-/// Propiedad Specializations
-/// </summary>
-/// <value></value>
+        /// <summary>
+        /// Propiedad Specializations.
+        /// </summary>
+        /// <value></value>
         public ArrayList Specializations
         {
             get
@@ -62,7 +62,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene la lista de ofertas ofertas aceptadas por el emprendedor
+        /// Obtiene la lista de ofertas ofertas aceptadas por el emprendedor.
         /// </summary>
         /// <value></value>
         public List<IOffer> PurchasedOffers
@@ -74,7 +74,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Metdod para agregar una oferta a la lista de ofertas que el emprendedor acepto
+        /// Metodo para agregar una oferta a la lista de ofertas que el emprendedor acepto.
         /// </summary>
         public void AddPurchasedOffer(IOffer offer)
         {
@@ -82,7 +82,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene un string indicando las ofertas que fueron aceptadas por el por el emprendedor, junto con algunos datos
+        /// Obtiene un string indicando las ofertas que fueron aceptadas por el por el emprendedor, junto con algunos datos.
         /// </summary>
         /// <returns></returns>
         public string GetOffersAccepted()
@@ -96,10 +96,10 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene la cantidad de ofertas que fueron aceptadas en eun periodo de tiempo
+        /// Obtiene la cantidad de ofertas que fueron aceptadas en un periodo de tiempo.
         /// </summary>
-        /// <param name="periodTime"></param>
-        /// <returns>mensaje con las ofertas que acepto en un periodo de tiempo</returns>
+        /// <param name="periodTime">Periodo de tiempo.</param>
+        /// <returns></returns>
         public string GetPeriodTimeOffersAccepted(int periodTime)
         {
             StringBuilder message = new StringBuilder();

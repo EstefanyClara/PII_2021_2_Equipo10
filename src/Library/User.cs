@@ -1,30 +1,28 @@
-using System;
-
 namespace Proyect
 {
     /// <summary>
-    /// Superclase user de Emprendedor y Company (quienes estan en una relaciontaxonomica con esta clase)
+    /// Superclase user de Emprendedor y Company (quienes estan en una relaciontaxonomica con esta clase).
     /// </summary>
     public class User
     {
-/// <summary>
-/// Nombre del usuario,sea una compania o emprendedor
-/// </summary>
+        /// <summary>
+        /// Nombre del usuario,sea una compania o emprendedor.
+        /// </summary>
         protected string name;
-/// <summary>
-/// Ubicacion del usiario
-/// </summary>
+        /// <summary>
+        /// Ubicacion del usiario
+        /// </summary>
         protected string ubication;
-/// <summary>
-/// El rubro al que pertnece el usuario 
-/// </summary>
+        /// <summary>
+        /// El rubro al que pertnece el usuario.
+        /// </summary>
         protected Rubro rubro;
-/// <summary>
-/// Constructor de User (recive el nombre ubicacion y el rubor, aspectos comunes al emprendedor y compania)
-/// </summary>
-/// <param name="name"></param>
-/// <param name="ubication"></param>
-/// <param name="rubro"></param>
+        /// <summary>
+        /// Constructor de entity.
+        /// </summary>
+        /// <param name="name">Nombre del usuario.</param>
+        /// <param name="ubication">Ubicacion del usuario.</param>
+        /// <param name="rubro">Rubro del usuario.</param>
         public User(string name, string ubication, Rubro rubro)
         {
             if (name == "" || ubication == "")
@@ -35,10 +33,10 @@ namespace Proyect
             this.Ubication = ubication;
             this.Rubro = rubro;
         }
-/// <summary>
-/// Propiedad get y set del atributo del nombre
-/// </summary>
-/// <value></value>
+        /// <summary>
+        /// Propiedad get y set del atributo del nombre.
+        /// </summary>
+        /// <value></value>
         public string Name
         {
             get
@@ -50,10 +48,10 @@ namespace Proyect
                 this.name = value;
             }
         }
-/// <summary>
-/// Propiedad get y set del atributo de la ubicacion
-/// </summary>
-/// <value></value>
+        /// <summary>
+        /// Propiedad get y set del atributo de la ubicacion.
+        /// </summary>
+        /// <value></value>
         public string Ubication
         {
             get
@@ -65,10 +63,10 @@ namespace Proyect
                 this.ubication = value;
             }
         }
-/// <summary>
-/// Propiedad get y set del atributo del rubro
-/// </summary>
-/// <value></value>
+        /// <summary>
+        /// Propiedad get y set del atributo del rubro.
+        /// </summary>
+        /// <value></value>
         public Rubro Rubro
         {
             get
@@ -80,6 +78,5 @@ namespace Proyect
                 this.rubro = value;
             }
         }
-
     }
 }

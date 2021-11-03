@@ -1,16 +1,14 @@
-using System;
-
 namespace Proyect
 {
     /// <summary>
-    /// Es la clasificacion que va a tener cada producto
+    /// Es la clasificacion que va a tener cada producto.
     /// </summary>
     public class Classification
     {
         private string category;
 
         /// <summary>
-        /// Devuelve el nombre de la clasificacion
+        /// Devuelve el nombre de la clasificacion.
         /// </summary>
         /// <value></value>
         public string Category
@@ -24,11 +22,10 @@ namespace Proyect
                 this.category = value;
             }
         }
-
         /// <summary>
-        /// Constructor de las clasificaciones
+        /// Constructor de las clasificaciones.
         /// </summary>
-        /// <param name="category"></param>
+        /// <param name="category">Categoria de clasificación.</param>
         public Classification(string category)
         {
             this.Category = category;

@@ -1,14 +1,14 @@
 namespace   Proyect
 {
     /// <summary>
-    /// Clase que representa las habilitaciones de una oferta o emprendedor
+    /// Clase que representa las habilitaciones de una oferta o emprendedor.
     /// </summary>
     public class Qualifications
     {
         private string qualificationName;
 
 /// <summary>
-/// Propierti delnombre de la habilitacion
+/// Propiedad delnombre de la habilitacion.
 /// </summary>
 /// <value></value>
         public string QualificationName
@@ -22,11 +22,10 @@ namespace   Proyect
                 this.qualificationName = value;
             }
         }
-/// <summary>
-/// Constructor de instancias de qualification
-/// </summary>
-/// <param name="qualificationName"></param>
-
+        /// <summary>
+        /// Constructor de instancias de hablilitaciones.
+        /// </summary>
+        /// <param name="qualificationName">Nombre de las habilitaciones.</param>
         public Qualifications(string qualificationName)
         {
             this.QualificationName = qualificationName;
