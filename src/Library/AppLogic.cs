@@ -264,6 +264,17 @@ namespace Proyect
         }
 
         /// <summary>
+        /// Metodo que se encarga de buscar las ofertas por palabra clave.
+        /// Le delega la responsabilidada a OfferSearch (Por SRP).
+        /// </summary>
+        /// <param name="keyWord"></param>
+        /// <returns></returns>
+        public List<string> SearchOfferByKeywords(string keyWord)
+        {
+            return OfferSearch.Instance.SearchByKeywords(keyWord);
+        }
+
+        /// <summary>
         /// Metodo para aceptar una oferta.
         /// Como app logic es la que conoce todos los datos para habilitar la operacion, teien eesta responsabilidad.
         /// </summary>
