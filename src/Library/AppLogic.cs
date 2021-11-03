@@ -112,6 +112,28 @@ namespace Proyect
         }
 
         /// <summary>
+        /// Registra a una compania
+        /// </summary>
+        /// <param name="companyToken"></param>
+        /// <param name="userChat_Id"></param>
+        /// <param name="name"></param>
+        /// <param name="ubication"></param>
+        /// <param name="rubro"></param>
+        /// <returns>mensaje de confirmacion</returns>
+        public string RegistrarCompany(string companyToken, string userChat_Id, string name, string ubication, Rubro rubro)
+        {
+            Company company = Administrator.Instance.Invite(companyToken, userChat_Id, name, ubication, rubro);
+            if (company == null)
+            {
+                return "No se puedo registrar, codigo invalido";
+            }else
+            {
+                Companies.Add(company);
+                return "Se a registrado con exito";
+            }
+        }
+
+        /// <summary>
         /// Metodo que retorna un mensaje con los rubros habilitados (Por expert).
         /// </summary>
         /// <returns>Los rubros habilitados.</returns>
