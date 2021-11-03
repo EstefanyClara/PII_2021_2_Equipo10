@@ -109,7 +109,7 @@ namespace Proyect
             {
                 qualificationMessage.Append($"|{item.QualificationName}|");
             }
-            offerMessage.Append($"{offer.Product.Quantity} de {offer.Product.Classification.Category}\n\nCompania ofertora: {company.Name}\nPrecio: {offer.Product.Price}$\nUbicacion: {offer.Product.Ubication}\nHabilitaciones necesarias: {qualificationMessage}");
+            offerMessage.Append($"{offer.Product.Quantity} de {offer.Product.Classification.Category}\n\nCompania ofertora: {company.Name}\nPrecio: {offer.Product.Price}$\nUbicacion: {offer.Product.Ubication}\nFecha de publicacion: {offer.DatePublished}\nHabilitaciones necesarias: {qualificationMessage}");
             return Convert.ToString(offerMessage);
         }
     }

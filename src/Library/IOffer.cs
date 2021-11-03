@@ -27,7 +27,11 @@ namespace Proyect
         /// <value>keyWords</value>
         ArrayList KeyWords{get;set;}
 
-        
+        /// <summary>
+        /// Obtiene la fecha de publicacion de la oferta.
+        /// </summary>
+        /// <value>DateTime</value>
+        string DatePublished{get;}
 
         /// <summary>
         /// Obtiene la informacion de compra de la oferta.

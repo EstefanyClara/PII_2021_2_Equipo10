@@ -18,6 +18,8 @@ namespace Proyect
 
         private List<PurchaseData> purchesedData;
 
+        private string datePublished;
+
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="ConstantOffer"/>
         /// </summary>
@@ -33,7 +35,7 @@ namespace Proyect
             this.Qualifications = qualifications;
             this.KeyWords = keyWords;
             this.purchesedData = new List<PurchaseData>();
-
+            this.datePublished = "Siempre";
         }
 
         /// <summary>
@@ -91,6 +93,12 @@ namespace Proyect
                 return this.purchesedData;
             }
         }
+
+        /// <summary>
+        /// Obtiene la fecha de publicacion de la oferta.
+        /// </summary>
+        /// <value></value>
+        public string DatePublished{get {return this.datePublished;}}
 
         /// <summary>
         /// Obtiene la informacion de compra de la oferta (por patron expert).
