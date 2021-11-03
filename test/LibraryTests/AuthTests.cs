@@ -17,7 +17,7 @@ namespace Tests
         private User emprendedor1;
         private Rubro rubro1;
         private List<Qualifications> qualifications;
-        private List<Qualifications> specializations;
+        private ArrayList specializations;
         private Qualifications q1;
         private Qualifications s1;
         private Classification tipo;
@@ -37,7 +37,7 @@ namespace Tests
             tipo = new Classification("Reciclable");
 
             qualifications = new List<Qualifications>();
-            specializations = new List<Qualifications>();
+            specializations = new ArrayList();
 
             q1 = new Qualifications("Calificacion1");
             qualifications.Add(q1);
@@ -54,8 +54,7 @@ namespace Tests
         [Test]
         public void CreateOffer()
         {
-            Offer o = new Offer(false,tipo,20,100,"Parque Battle",qualifications,keyWords);
-            Assert.AreEqual(false,o.Constant);
+            NonConstantOffer o = new NonConstantOffer(tipo,20,100,"Parque Battle",qualifications,keyWords);
             Assert.AreEqual("Reciclable",o.Product.Classification.Category);
             Assert.AreEqual(20,o.Product.Quantity);
             Assert.AreEqual(100,o.Product.Price);
@@ -67,11 +66,10 @@ namespace Tests
         [Test]
         public void PurchaseOffer()
         {
-            Offer o = new Offer(false,tipo,20,100,"Parque Battle",qualifications,keyWords);
+            NonConstantOffer o = new NonConstantOffer(tipo,20,100,"Parque Battle",qualifications,keyWords);
             string actual = AppLogic.Instance.AccepOffer((Emprendedor)emprendedor1,o);
-            string expected = "Usted no dispone de las habilitaciones requeridas por la oferta";
+            string expected = "Usted a aceptado la oferta con exito";
             Assert.AreEqual(expected,actual);
         }
-
     }
 }
