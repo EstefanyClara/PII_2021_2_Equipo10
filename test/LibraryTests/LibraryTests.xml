@@ -49,6 +49,11 @@
             Se testea que se pueda registrar una emprendedor.
             </summary>
         </member>
+        <member name="M:Tests.AuthTests.FailedRegisterEntrepreneursTest">
+            <summary>
+            Se testea que si no se ingresan datos, no se pueda crear al emprendedor
+            </summary>
+        </member>
         <member name="M:Tests.AuthTests.SearchByKeywordsTest">
             <summary>
             Se testea que se puedan encontrar ofertas por keywords
