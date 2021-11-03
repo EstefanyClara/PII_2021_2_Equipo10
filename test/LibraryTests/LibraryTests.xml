@@ -14,7 +14,7 @@
             Setup para los tests.
             </summary>
         </member>
-        <member name="M:Tests.AuthTests.CreateOffer">
+        <member name="M:Tests.AuthTests.CreateOfferTest">
             <summary>
             Se testea si se puede crear correctamente la oferta.
             </summary>
