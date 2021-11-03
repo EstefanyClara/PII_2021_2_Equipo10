@@ -8,7 +8,7 @@ namespace   Proyect
         private string qualificationName;
 
 /// <summary>
-/// Propiedad delnombre de la habilitacion.
+/// Propiedad del nombre de la habilitacion.
 /// </summary>
 /// <value></value>
         public string QualificationName
@@ -23,7 +23,7 @@ namespace   Proyect
             }
         }
         /// <summary>
-        /// Constructor de instancias de hablilitaciones.
+        /// Inicializa una nueva instancia de la clase <see cref="Qualifications"/>
         /// </summary>
         /// <param name="qualificationName">Nombre de las habilitaciones.</param>
         public Qualifications(string qualificationName)

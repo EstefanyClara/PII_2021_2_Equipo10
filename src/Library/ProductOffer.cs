@@ -13,7 +13,6 @@ namespace Proyect
         /// <summary>
         /// Obtiene un obtiene una instancia de clasificacion valida para un producto.
         /// </summary>
-        /// <value></value>
         public Classification Classification
         {
             get
@@ -28,7 +27,6 @@ namespace Proyect
         /// <summary>
         /// Determina la cantidad de unidades de un producto.
         /// </summary>
-        /// <value></value>
         public double Quantity
         {
             get
@@ -43,7 +41,6 @@ namespace Proyect
         /// <summary>
         /// Determina el precio por unidad de producto.
         /// </summary>
-        /// <value></value>
         public double Price
         {
             get
@@ -58,7 +55,6 @@ namespace Proyect
         /// <summary>
         /// Determina la ubicacion de un producto.
         /// </summary>
-        /// <value></value>
         public string Ubication
         {
             get
@@ -71,7 +67,7 @@ namespace Proyect
             }
         }
         /// <summary>
-        /// Constructor de instancias de producto.
+        /// Inicializa una nueva instancia de la clase <see cref="ProductOffer"/>
         /// </summary>
         /// <param name="classification">Clasificacion del producto.</param>
         /// <param name="quantity">Cantidad del producto.</param>

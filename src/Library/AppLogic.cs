@@ -25,7 +25,7 @@ namespace Proyect
         /// <summary>
         /// Obtiene las companias que estan registradas.
         /// </summary>
-        /// <value>Companias.</value>
+        /// <value>companies.</value>
         public List<Company> Companies
         {
             get{return companies;}
@@ -34,16 +34,16 @@ namespace Proyect
         /// <summary>
         /// Obtiene los emprendedores que estan registrados.
         /// </summary>
-        /// <value>Emprendedores.</value>
+        /// <value>entrepreneurs.</value>
         public List<Emprendedor> Entrepreneurs
         {
-            get{ return entrepreneurs;}
+            get{return entrepreneurs;}
         }
 
         /// <summary>
         /// Obtiene los rubros habilitados.
         /// </summary>
-        /// <value>Rubros.</value>
+        /// <value>validRubros.</value>
         public List<Rubro> Rubros
         {
             get{return validRubros;}
@@ -52,7 +52,7 @@ namespace Proyect
         /// <summary>
         /// Obtiene la lista de habilitaciones registradas.
         /// </summary>
-        /// <value>Habilitaciones.</value>
+        /// <value>validQualifications.</value>
         public List<Qualifications> Qualifications
         {
             get{return validQualifications;}
@@ -61,10 +61,10 @@ namespace Proyect
         /// <summary>
         /// Obtiene la lista de clasificaciones/categorias registradas para los productos.
         /// </summary>
-        /// <value>Clasificaciones.</value>
+        /// <value>validClasification.</value>
         public List<Classification> Classifications
         {
-            get{ return validClasification;}
+            get{return validClasification;}
         }
         private AppLogic()
         {
@@ -75,7 +75,7 @@ namespace Proyect
         /// <summary>
         /// Obtiene la instancia de AppLogic.
         /// </summary>
-        /// <value>Instancias.</value>
+        /// <value>_instance.</value>
         public static AppLogic Instance
         {
             get
@@ -85,7 +85,7 @@ namespace Proyect
         }
         
         /// <summary>
-        /// Metodo que registra un emprendedor.
+        /// Inicializa una nueva instancia de la clase <see cref="Emprendedor"/>.
         /// </summary>
         /// <param name="name">El nombre del emprendedor.</param>
         /// <param name="ubication">La ubicacion del emprendedor.</param>
@@ -269,7 +269,7 @@ namespace Proyect
                     return "Usted no dispone de las habilitaciones requeridas por la oferta";
                 }
             }
-            offer.PutBuyer(emprendedor, DateTime.Now);
+            offer.PutBuyer(emprendedor);
             emprendedor.AddPurchasedOffer(offer);
             return "Usted a aceptado la oferta con exito";
         }
@@ -277,6 +277,8 @@ namespace Proyect
         /// <summary>
         /// Metodo que permite obtener la distancia entre un emprendedor y un producto.
         /// </summary>
+        /// <param name="emprendedor">Emprendedor.</param>
+        /// <param name="offer">La Oferta.</param>
         public async Task<string> ObteinOfferDistance(Emprendedor emprendedor, IOffer offer)
         {
             string emprendedorUbication = emprendedor.Ubication;
@@ -350,8 +352,8 @@ namespace Proyect
         /// <summary>
         /// Obtiene las ofertas aceptadas por el emprendedor, junto con la fecha de cuando las acepto.
         /// </summary>
-        /// <param name="emprendedor"></param>
-        /// <returns></returns>
+        /// <param name="emprendedor">Emprendedor.</param>
+        /// <returns>Un string con las ofertas que fueron aceptadas.</returns>
         public string GetOffersAccepted(Emprendedor emprendedor)
         {
             return emprendedor.GetOffersAccepted();
@@ -360,8 +362,8 @@ namespace Proyect
         /// <summary>
         /// Obtiene la cantidad de ofertas que fueron aceptadas en un periodo de tiempo establecido por el usuario.
         /// </summary>
-        /// <param name="company"></param>
-        /// <param name="periodTime"></param>
+        /// <param name="company">Compania.</param>
+        /// <param name="periodTime">Periodo de tiempo establecido por el usuario.</param>
         /// <returns></returns>
         public string GetPeriodTimeOffersAccepted(Company company, int periodTime)
         {
@@ -371,8 +373,8 @@ namespace Proyect
         /// <summary>
         /// Obtiene la cantidad de ofertas que fueron aceptadas en un periodo de tiempo establecido por el usuario.
         /// </summary>
-        /// <param name="emprendedor"></param>
-        /// <param name="periodTime"></param>
+        /// <param name="emprendedor">Emprendedor.</param>
+        /// <param name="periodTime">Periodo de tiempo establecido por el usuario.</param>
         /// <returns></returns>
         public string GetPeriodTimeOffersAccepted(Emprendedor emprendedor, int periodTime)
         {
