@@ -4,6 +4,16 @@
         <name>Library</name>
     </assembly>
     <members>
+        <member name="T:Proyect.Administrator">
+            <summary>
+            Esta clase administrador invita a los usuarios a registarse. 
+            </summary>
+        </member>
+        <member name="M:Proyect.Administrator.invite">
+            <summary>
+            Este metodo invita a una compania y la registra.
+            </summary>
+        </member>
         <member name="T:Proyect.AppLogic">
             <summary>
             Clase singleton para guardar los datos de la Aplicacion.
@@ -220,7 +230,7 @@
         </member>
         <member name="M:Proyect.Company.#ctor(System.String,System.String,Proyect.Rubro)">
             <summary>
-            Inicializa una nueva instancia de la clase <see cref="T:Proyect.Company"/>.
+            Inicializa una nueva instancia de la clase.
             </summary>
             <param name="name">Nombre compania.</param>
             <param name="ubication">Ubicacion de la compania.</param>

@@ -24,7 +24,7 @@ namespace ConsoleApplication
         /// <returns>Task.</returns>
         public static async Task Main()
         {
-            AppLogic.Instance.RegisterEntrepreneurs("Matias", "Palacio Legislativo", AppLogic.Instance.Rubros[0], AppLogic.Instance.Qualifications, AppLogic.Instance.Qualifications);
+            /*AppLogic.Instance.RegisterEntrepreneurs("Matias", "Palacio Legislativo", AppLogic.Instance.Rubros[0], AppLogic.Instance.Qualifications, AppLogic.Instance.Qualifications);
             AppLogic.Instance.RegisterEntrepreneurs("Matias", "Cordoba", AppLogic.Instance.Rubros[1], new List<Qualifications>() { AppLogic.Instance.Qualifications[0], AppLogic.Instance.Qualifications[1] }, new List<Qualifications>() { AppLogic.Instance.Qualifications[0], AppLogic.Instance.Qualifications[1] });
             Company c1 = new Company("MatiasCorp", "Parque Rodó", AppLogic.Instance.Rubros[1]);
             AppLogic.Instance.Companies.Add(c1);
@@ -36,7 +36,9 @@ namespace ConsoleApplication
             Console.WriteLine(AppLogic.Instance.validQualificationsMessage());
             Console.WriteLine(AppLogic.Instance.GetConstantMaterials().Item2);
             Console.WriteLine(AppLogic.Instance.GetOffersAccepted(c1));
-            Console.WriteLine(AppLogic.Instance.GetOffersAccepted(AppLogic.Instance.Entrepreneurs[0]));
+            Console.WriteLine(AppLogic.Instance.GetOffersAccepted(AppLogic.Instance.Entrepreneurs[0]));*/
+            Administrator adm= new Administrator(); 
+            adm.invite(); 
         }
     }
 }
