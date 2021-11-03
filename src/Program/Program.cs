@@ -38,7 +38,7 @@ namespace ConsoleApplication
             Console.WriteLine(AppLogic.Instance.GetConstantMaterials());
             Console.WriteLine(AppLogic.Instance.GetOffersAccepted(c1));
             Console.WriteLine(AppLogic.Instance.GetOffersAccepted(AppLogic.Instance.Entrepreneurs[0]));
-            Console.WriteLine(AppLogic.Instance.SearchOfferByType("Toxicos")[0]+);
+            Console.WriteLine(AppLogic.Instance.SearchOfferByType("Toxicos")[0]);
             Console.WriteLine("-----------------------------------------------------------------------");
 
             #region LucasTest

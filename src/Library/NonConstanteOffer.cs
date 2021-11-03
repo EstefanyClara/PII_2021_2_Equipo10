@@ -18,6 +18,8 @@ namespace Proyect
 
         private PurchaseData purchesedData;
 
+        private string datePublished;
+
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="NonConstantOffer"/>
         /// </summary>
@@ -32,6 +34,7 @@ namespace Proyect
             this.product = new ProductOffer(tipo,quantity,cost,ubicacion);
             this.Qualifications = qualifications;
             this.KeyWords = keyWords;
+            this.datePublished = Convert.ToString(DateTime.Now);
         }
 
         /// <summary>
@@ -93,6 +96,12 @@ namespace Proyect
                 this.purchesedData = value;
             }
         }
+
+        /// <summary>
+        /// Obtiene la fecha de publicacion de la oferta.
+        /// </summary>
+        /// <value>dateTime</value>
+        public string DatePublished{get {return this.datePublished;}}
 
         /// <summary>
         /// Obtiene la informacion de compra de la oferta (por patron expert).
