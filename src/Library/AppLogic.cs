@@ -250,6 +250,11 @@ namespace Proyect
             return OfferSearch.Instance.SearchByUbication(word);
         }
 
+        public List<string> SearchOfferByKeywords(string keyWord)
+        {
+            return OfferSearch.Instance.SearchByKeywords(keyWord);
+        }
+
         /// <summary>
         /// Metodo para aceptar una oferta.
         /// </summary>
