@@ -59,8 +59,8 @@ namespace Tests
             s1 = new Qualifications("Especializacion");
             specializations.Add(s1);
 
-            empresa1 = new Company("SECOM","Parque Battle",rubro1);
-            emprendedor1 = new Emprendedor("Juan","Parque Battle",rubro1,qualifications,specializations);
+            empresa1 = new Company("WER","SECOM","Parque Battle",rubro1);
+            emprendedor1 = new Emprendedor("WER","Juan","Parque Battle",rubro1,qualifications,specializations);
 
             o = new NonConstantOffer(tipo,20,100,"Parque Battle",qualifications,keyWords);
             o2 = new ConstantOffer(tipo,20,100,"Parque Battle",qualifications2,keyWords2);
@@ -145,7 +145,7 @@ namespace Tests
         [Test]
         public void RegisterEntrepreneursTest()
         {
-            string actual = AppLogic.Instance.RegisterEntrepreneurs("SECOM","Parque Battle",rubro1,qualifications,specializations);
+            string actual = AppLogic.Instance.RegisterEntrepreneurs("WER","SECOM","Parque Battle",rubro1,qualifications,specializations);
             string expected = "Usted se a registrado con exito";
             Assert.AreEqual(expected,actual);
         }

@@ -6,7 +6,7 @@
     <members>
         <member name="T:Proyect.APILocationContainer">
             <summary>
-            Contenedor de la instncia de la api de localizacion.
+            Contenedor de la instancia de la api de localizacion (clase singleton, solo hay una instancia).
             </summary>
         </member>
         <member name="P:Proyect.APILocationContainer.Instance">
@@ -24,6 +24,8 @@
         <member name="T:Proyect.AppLogic">
             <summary>
             Clase singleton para guardar los datos de la Aplicacion.
+            Solo hay una instancia de esta clase, y es la que colabora con todas las demas.
+            Esta clase, ademas guarda las instancias tanto de campanias y de emprendedores (La usa de manera cercana).
             </summary>
         </member>
         <member name="P:Proyect.AppLogic.Companies">
@@ -62,31 +64,34 @@
             </summary>
             <value>_instance.</value>
         </member>
-        <member name="M:Proyect.AppLogic.RegisterEntrepreneurs(System.String,System.String,Proyect.Rubro,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.ArrayList)">
+        <member name="M:Proyect.AppLogic.RegisterEntrepreneurs(System.String,System.String,System.String,Proyect.Rubro,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.ArrayList)">
             <summary>
             Inicializa una nueva instancia de la clase <see cref="T:Proyect.Emprendedor"/>.
+            Utiliza el patron creator.
             </summary>
             <param name="name">El nombre del emprendedor.</param>
             <param name="ubication">La ubicacion del emprendedor.</param>
             <param name="rubro">El rubro del emprendedor.</param>
             <param name="habilitaciones">Las habilitaciones que tiene el emprendedor.</param>
-            <param name="especializaciones">Las especializaciones que tiene el emprendedor.</param>//  
+            <param name="especializaciones">Las especializaciones que tiene el emprendedor.</param>
+            <param name="userChat_Id">Id que tiene el emprendedor.</param> 
         </member>
         <member name="M:Proyect.AppLogic.ValidRubrosMessage">
             <summary>
-            Metodo que retorna un mensaje con los rubros habilitados.
+            Metodo que retorna un mensaje con los rubros habilitados (Por expert).
             </summary>
             <returns>Los rubros habilitados.</returns>
         </member>
         <member name="M:Proyect.AppLogic.validQualificationsMessage">
             <summary>
-            Metodo que retorna un mensaje con las Habilitaciones permitidas.
+            Metodo que retorna un mensaje con las Habilitaciones permitidas (Por expert).
             </summary>
             <returns>Habilitaciones permitidas.</returns>
         </member>
         <member name="M:Proyect.AppLogic.RemoveKeyWords(Proyect.Company,Proyect.IOffer,System.String)">
             <summary>
             Remueve palabras clave de la oferta de una compania.
+            Le delega la responsabilidad a company (La experta).
             </summary>
             <param name="company">La compania.</param>
             <param name="offer">La oferta.</param>
@@ -95,6 +100,7 @@
         <member name="M:Proyect.AppLogic.AddKeyWords(Proyect.Company,Proyect.IOffer,System.String)">
             <summary>
             Agrega las palabras clave de una oferta.
+            Le delaga la responsabilidad a Company (La epxerta).
             </summary>
             <param name="company">La compania.</param>
             <param name="offer">La oferta.</param>
@@ -103,6 +109,7 @@
         <member name="M:Proyect.AppLogic.RemoveOffer(Proyect.Company,Proyect.IOffer)">
             <summary>
             Remueve la oferta de una compania.
+            Le delega la responsabilidad a company (La experta).
             </summary>
             <param name="company">La compania.</param>
             <param name="offer">La oferta.</param>
@@ -110,6 +117,7 @@
         <member name="M:Proyect.AppLogic.RemoveQualification(Proyect.Company,Proyect.IOffer,Proyect.Qualifications)">
             <summary>
             Remueve las habilitaciones de una compania. 
+            Le delega la responsabilidad a compani (La experta).
             </summary>
             <param name="company">La compania.</param>
             <param name="offer">La oferta.</param>
@@ -118,6 +126,7 @@
         <member name="M:Proyect.AppLogic.AddQualification(Proyect.Company,Proyect.IOffer,Proyect.Qualifications)">
             <summary>
             Agrega habilitaciones a una oferta.
+            Le delega la responsabilidad a company (La experta)
             </summary>
             <param name="company">La compania.</param>
             <param name="offer">La oferta.</param>
@@ -126,6 +135,7 @@
         <member name="M:Proyect.AppLogic.PublicConstantOffer(Proyect.Company,Proyect.Classification,System.Double,System.Double,System.String,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.ArrayList)">
             <summary>
             Publica una constante oferta de la compania que se le ingresa.
+            ÑLe delaga la responsabilidad a company (Por patron creator).
             </summary>
             <param name="company">La compania.</param>
             <param name="tipo">La clasificacion.</param>
@@ -138,6 +148,7 @@
         <member name="M:Proyect.AppLogic.PublicNonConstantOffer(Proyect.Company,Proyect.Classification,System.Double,System.Double,System.String,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.ArrayList)">
             <summary>
             Publica una oferta no constnte de la compania que se le ingresa.
+            Le delega la responsabilidad a company (Por patron creator).
             </summary>
             <param name="company">La compania.</param>
             <param name="tipo">La clasificacion.</param>
@@ -151,6 +162,7 @@
         <member name="M:Proyect.AppLogic.SearchOfferByType(System.String)">
             <summary>
             Metodo que se encarga de buscar las ofertas por tipo.
+            Le delega la responsabilidada a OfferSearch (Por SRP).
             </summary>
             <param name="word">Tipo de oferta.</param>
             <returns>Un ArrayList con todas las ofertas que sean de ese tipo.</returns>
@@ -158,13 +170,23 @@
         <member name="M:Proyect.AppLogic.SearchOfferByUbication(System.String)">
             <summary>
             Metodo que se encarga de buscar las ofertas por ubicacion.
+            Le delega la responsabilidada a OfferSearch (Por SRP).
             </summary>
             <param name="word">Ubicacion de la oferta.</param>
             <returns>Un ArrayList con todas las ofertas en la ubicacion dada.</returns>
         </member>
+        <member name="M:Proyect.AppLogic.SearchOfferByKeywords(System.String)">
+            <summary>
+            Metodo que se encarga de buscar las ofertas por palabra clave.
+            Le delega la responsabilidada a OfferSearch (Por SRP).
+            </summary>
+            <param name="keyWord"></param>
+            <returns></returns>
+        </member>
         <member name="M:Proyect.AppLogic.AccepOffer(Proyect.Emprendedor,Proyect.IOffer)">
             <summary>
             Metodo para aceptar una oferta.
+            Como app logic es la que conoce todos los datos para habilitar la operacion, teien eesta responsabilidad.
             </summary>
             <param name="emprendedor">Emprendedor.</param>
             <param name="offer">Oferta a aceptar.</param>
@@ -186,12 +208,15 @@
         <member name="M:Proyect.AppLogic.GetConstantMaterials">
             <summary>
             Metodo que devuelve un string con la lista de materiales constantes.
+            Por expert tiene esta responsabilidad.
             </summary>
             <returns>Un string con aquellos materiales que son recuerrentes.</returns>
         </member>
         <member name="M:Proyect.AppLogic.GetOffersAccepted(Proyect.Company)">
             <summary>
             Obtiene un string con la indicando si sus ofertas fueron o no fueron aceptadas, en caso de que si, indica ademas la fecha de cuando fueron aceptadas.
+            Le delega la responsabilidad a Company (La experta).
+            Le delega la responsabilidad a emprendedor, la experta.
             </summary>
             <param name="company">La compania.</param>
             <returns>Un string con las ofertas que fueron aceptadas.</returns>
@@ -199,6 +224,8 @@
         <member name="M:Proyect.AppLogic.GetOffersAccepted(Proyect.Emprendedor)">
             <summary>
             Obtiene las ofertas aceptadas por el emprendedor, junto con la fecha de cuando las acepto.
+            Le delega la responsabilidad a emprendedor, la experta.
+            Es una operacion polimorfica.
             </summary>
             <param name="emprendedor">Emprendedor.</param>
             <returns>Un string con las ofertas que fueron aceptadas.</returns>
@@ -206,6 +233,8 @@
         <member name="M:Proyect.AppLogic.GetPeriodTimeOffersAccepted(Proyect.Company,System.Int32)">
             <summary>
             Obtiene la cantidad de ofertas que fueron aceptadas en un periodo de tiempo establecido por el usuario.
+            Le delega la responsabilidad a company (La experta).
+            Es una operacion polimorfica.
             </summary>
             <param name="company">Compania.</param>
             <param name="periodTime">Periodo de tiempo establecido por el usuario.</param>
@@ -214,6 +243,8 @@
         <member name="M:Proyect.AppLogic.GetPeriodTimeOffersAccepted(Proyect.Emprendedor,System.Int32)">
             <summary>
             Obtiene la cantidad de ofertas que fueron aceptadas en un periodo de tiempo establecido por el usuario.
+            Le delega la responasabilidad a emprendedor (La experta).
+            Es una operaciion polimorfica.
             </summary>
             <param name="emprendedor">Emprendedor.</param>
             <param name="periodTime">Periodo de tiempo establecido por el usuario.</param>
@@ -246,13 +277,14 @@
             Lista de ofertas de la compania.
             </summary>
         </member>
-        <member name="M:Proyect.Company.#ctor(System.String,System.String,Proyect.Rubro)">
+        <member name="M:Proyect.Company.#ctor(System.String,System.String,System.String,Proyect.Rubro)">
             <summary>
             Inicializa una nueva instancia de la clase <see cref="T:Proyect.Company"/>.
             </summary>
             <param name="name">Nombre compania.</param>
             <param name="ubication">Ubicacion de la compania.</param>
             <param name="rubro">Rubro de la compania.</param>
+            <param name="userChat_Id">Id de la compania.</param>
         </member>
         <member name="P:Proyect.Company.OffersPublished">
             <summary>
@@ -263,6 +295,8 @@
         <member name="M:Proyect.Company.PublicConstantOffer(Proyect.Classification,System.Double,System.Double,System.String,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.ArrayList)">
             <summary>
             Crea una instancia de una oferta constante y se la agrega a la lisat de ofertas de la compania.
+            Se Asigno esta responsabilidad por expert (La clase company es la que conoce la lista de ls ofertas que publica).
+            Tambien, se asigno esta reponsabilidad siguinedo el patron creator, company contiene objetos IOffer
             </summary>
             <param name="tipo"></param>
             <param name="quantity"></param>
@@ -273,7 +307,9 @@
         </member>
         <member name="M:Proyect.Company.PublicNonConstantOffer(Proyect.Classification,System.Double,System.Double,System.String,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.ArrayList)">
             <summary>
-            Crea una instacion de una oferta no constante y se la agrega a la lista de ofertas de la compania
+            Crea una instacion de una oferta no constante y se la agrega a la lista de ofertas de la compania.
+            Se Asigno esta responsabilidad por expert (La clase company es la que conoce la lista de ls ofertas que publica).
+            Tambien, se asigno esta reponsabilidad siguinedo el patron creator, company contiene objetos IOffer.
             </summary>
             <param name="tipo"></param>
             <param name="quantity"></param>
@@ -284,54 +320,56 @@
         </member>
         <member name="M:Proyect.Company.RemoveOffer(Proyect.IOffer)">
             <summary>
-            Remueve ofertas.
+            Remueve ofertas (Por Expert).
             </summary>
             <param name="offer">Oferta.</param>
         </member>
         <member name="M:Proyect.Company.GetOffersAccepted">
             <summary>
             Obtiene un string con todas las ofertas que fueron o no fueron aceptadas por emprendedores(por expert le asignamos esta responsabilidad).
+            Es una operacion polimorfica.
             </summary>
             <returns>Las ofertas aceptadas.</returns>
         </member>
-        <member name="M:Proyect.Company.GetPeriodTimeOffersAccepted(System.Int32)">
+        <member name="M:Proyect.Company.GetOffersAccepted(System.Int32)">
             <summary>
-            Obtiene la cantidad de ofertas que publico la compania, que fueron aceptadas.
+            Obtiene la cantidad de ofertas que publico la compania, que fueron aceptadas en un periodo de tiempo (Por expert).
+            Es una operwacion polimorfica.
             </summary>
             <param name="periodTime">Periodo de tiempo.</param>
             <returns>Las ofertas aceptadas en un periodo de tiempo.</returns>
         </member>
         <member name="M:Proyect.Company.RemoveKeyWords(Proyect.IOffer,System.String)">
             <summary>
-            Remueve palabras clave de una oferta.
+            Remueve palabras clave de una oferta (Por expert).
             </summary>
             <param name="offer">La oferta.</param>
             <param name="keyWord">La palabra clave de la oferta.</param>
         </member>
         <member name="M:Proyect.Company.AddKeyWords(Proyect.IOffer,System.String)">
             <summary>
-            Agrega palabras clave a una oferta.
+            Agrega palabras clave a una oferta (Por expert).
             </summary>
             <param name="offer">La oferta.</param>
             <param name="keyWord">La palabra clave de la oferta.</param>
         </member>
         <member name="M:Proyect.Company.AddQualification(Proyect.IOffer,Proyect.Qualifications)">
             <summary>
-            Agrega habilitaciones a la oferta.
+            Agrega habilitaciones a la oferta (Por expert).
             </summary>
             <param name="offer">La oferta.</param>
             <param name="qualification">La habilitaciones de la oferta.</param>
         </member>
         <member name="M:Proyect.Company.RemoveQualification(Proyect.IOffer,Proyect.Qualifications)">
             <summary>
-            Remueve la habilitacion de una oferta.
+            Remueve la habilitacion de una oferta (Por expert).
             </summary>
             <param name="offer">La oferta.</param>
             <param name="qualification">La habilitacion de la oferta.</param>
         </member>
         <member name="T:Proyect.ConstantOffer">
             <summary>
-            Representa las ofertas constantes de las companias.
+            Representa las ofertas constantes de las companias (Es del tipo IOffer, a quien usa, por lo que cumple con ISP).
             </summary>
         </member>
         <member name="M:Proyect.ConstantOffer.#ctor(Proyect.Classification,System.Double,System.Double,System.String,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.ArrayList)">
@@ -377,30 +415,30 @@
         </member>
         <member name="M:Proyect.ConstantOffer.GetPeriodTimeOffersAcceptedData(System.Int32)">
             <summary>
-            Obtiene la informacion de compra del ultimo emprendedor que acepta la oferta.
+            Obtiene la informacion de compra del ultimo emprendedor que acepta la oferta (Patron expert).
             </summary>
             <param name="periodTime"></param>
             <returns>Mensaje con la infromacion de compra de la oferta, si la misma entra dentro del rango estipulado, en caso contrario, mensaje que indica dicha situacion.</returns>
         </member>
         <member name="M:Proyect.ConstantOffer.GetOfferBuyerTimeData(Proyect.Emprendedor)">
             <summary>
-            Obtiene la fecha de compra del emprendedor ingresado (expert).
+            Obtiene la fecha de compra del emprendedor ingresado (Patron expert).
             </summary>
             <param name="emprendedor"></param>
             <returns> La fecha de compra del emprendedor ingresado</returns>
         </member>
         <member name="M:Proyect.ConstantOffer.PutBuyer(Proyect.Emprendedor)">
             <summary>
-            Agrega un nuevo comprador a la lista de compradores de esta oferta constante.
+            Agrega un nuevo comprador a la lista de compradores de esta oferta constante (Se utiliza creator, y expert).
             </summary>
             <param name="emprendedor"></param>
         </member>
         <member name="T:Proyect.Emprendedor">
             <summary>
-            Esta clase representa un Emprendedor. 
+            Esta clase representa un Emprendedor, hereda de user (Tienen relaciontaxonomica). 
             </summary>
         </member>
-        <member name="M:Proyect.Emprendedor.#ctor(System.String,System.String,Proyect.Rubro,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.ArrayList)">
+        <member name="M:Proyect.Emprendedor.#ctor(System.String,System.String,System.String,Proyect.Rubro,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.ArrayList)">
             <summary>
             Inicializa una nueva instancia de la clase <see cref="T:Proyect.Emprendedor"/>
             </summary>
@@ -409,6 +447,7 @@
             <param name="rubro">Rubro del emprendedor.</param>
             <param name="qualifications">Hablitaciones del emprendedor.</param>
             <param name="specializations">Especializaciones del emprendedor.</param>
+            <param name="userChat_Id">Id del emprendedor.</param>
         </member>
         <member name="P:Proyect.Emprendedor.Qualifications">
             <summary>
@@ -430,19 +469,21 @@
         </member>
         <member name="M:Proyect.Emprendedor.AddPurchasedOffer(Proyect.IOffer)">
             <summary>
-            Metodo para agregar una oferta a la lista de ofertas que el emprendedor acepto.
+            Metodo para agregar una oferta a la lista de ofertas que el emprendedor acepto (Por expert).
             </summary>
             <param name="offer"></param>
         </member>
         <member name="M:Proyect.Emprendedor.GetOffersAccepted">
             <summary>
-            Obtiene un string indicando las ofertas que fueron aceptadas por el por el emprendedor, junto con algunos datos.
+            Obtiene un string indicando las ofertas que fueron aceptadas por el por el emprendedor (Expert).
+            Es una operacion polimorfica.
             </summary>
             <returns>message</returns>
         </member>
-        <member name="M:Proyect.Emprendedor.GetPeriodTimeOffersAccepted(System.Int32)">
+        <member name="M:Proyect.Emprendedor.GetOffersAccepted(System.Int32)">
             <summary>
-            Obtiene la cantidad de ofertas que fueron aceptadas en un periodo de tiempo.
+            Obtiene la cantidad de ofertas que fueron aceptadas en un periodo de tiempo (Expert).
+            Es una operacion polimorfica.
             </summary>
             <param name="periodTime">Periodo de tiempo.</param>
             <returns>message</returns>
@@ -479,6 +520,41 @@
             <param name="info"></param>
             <param name="context"></param>
             <returns></returns>
+        </member>
+        <member name="T:Proyect.IObservable">
+            <summary>
+            Interfaz observable para las notificaciones a cada emprendedor (Patron observer).
+            </summary>
+        </member>
+        <member name="P:Proyect.IObservable.emprendedoresRegistrados">
+            <summary>
+            Obtiene la lista de usuarios emprendedores registrados.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Proyect.IObservable.AddUser(Proyect.IObserver)">
+            <summary>
+            Agrega un emprendedor a lalista de emprendedores a notificar.
+            </summary>
+            <param name="emprendedor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.IObservable.RemoveUser(Proyect.IObserver)">
+            <summary>
+            Remueve un emprendedor de la lista de emprendedores a notificar.
+            </summary>
+            <param name="emprendedor"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Proyect.IObserver">
+            <summary>
+            Interfaz observer para que el emprendedor se entere de un cambio (Patron observer).
+            </summary>
+        </member>
+        <member name="M:Proyect.IObserver.Actualizacion">
+            <summary>
+            Mertodo pque hace que el usuario se entere del cambio
+            </summary>
         </member>
         <member name="T:Proyect.IOffer">
             <summary>
@@ -535,7 +611,7 @@
         </member>
         <member name="T:Proyect.NonConstantOffer">
             <summary>
-            Esta clase representa las ofertas constantes de las companias..
+            Esta clase representa las ofertas constantes de las companias (Cumple con ISP).
             </summary>
         </member>
         <member name="M:Proyect.NonConstantOffer.#ctor(Proyect.Classification,System.Double,System.Double,System.String,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.ArrayList)">
@@ -601,7 +677,8 @@
         </member>
         <member name="T:Proyect.OfferSearch">
             <summary>
-            Clase que se encarga de buscar las ofertas por los distintos metodos establecidos.
+            Clase que se encarga de buscar las ofertas por los distintos metodos establecidos (Por SRP).
+            Es una clase singleton (solo hay una instancia de la misma).
             </summary>
         </member>
         <member name="P:Proyect.OfferSearch.Instance">
@@ -633,7 +710,7 @@
         </member>
         <member name="M:Proyect.OfferSearch.GetOffersMessages(Proyect.IOffer,Proyect.Company)">
             <summary>
-            Obtiene la informacion de un oferta en fomra de mensaje.
+            Obtiene la informacion de un oferta en forma de mensaje.
             </summary>
             <param name="offer"></param>
             <param name="company"></param>
@@ -675,7 +752,7 @@
         </member>
         <member name="T:Proyect.PurchaseData">
             <summary>
-            Clase para guardar la fecha y quien compró las ofertas.
+            Clase para guardar la fecha y quien compró las ofertas (Por SRP).
             </summary>
         </member>
         <member name="P:Proyect.PurchaseData.Buyer">
@@ -748,13 +825,19 @@
             El rubro al que pertnece el usuario.
             </summary>
         </member>
-        <member name="M:Proyect.User.#ctor(System.String,System.String,Proyect.Rubro)">
+        <member name="F:Proyect.User.userChat_Id">
+            <summary>
+            El id del usuario
+            </summary>
+        </member>
+        <member name="M:Proyect.User.#ctor(System.String,System.String,Proyect.Rubro,System.String)">
             <summary>
             Inicializa una nueva instancia de la clase <see cref="T:Proyect.User"/>
             </summary>
             <param name="name">Nombre del usuario.</param>
             <param name="ubication">Ubicacion del usuario.</param>
             <param name="rubro">Rubro del usuario.</param>
+            <param name="userChat_Id">Id del usuario.</param>
         </member>
         <member name="P:Proyect.User.Name">
             <summary>
@@ -773,6 +856,12 @@
             Propiedad get y set del atributo del rubro.
             </summary>
             <value></value>
+        </member>
+        <member name="P:Proyect.User.UserChat_Id">
+            <summary>
+            Obtiene el id del usuario, para asi lograr identificarlo.
+            </summary>
+            <value>Id.</value>
         </member>
         <member name="T:LocationApi.Distance">
             <summary>

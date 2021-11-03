@@ -27,6 +27,8 @@ namespace Proyect
         /// <value>keyWords</value>
         ArrayList KeyWords{get;set;}
 
+        
+
         /// <summary>
         /// Obtiene la informacion de compra de la oferta.
         /// </summary>
