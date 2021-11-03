@@ -18,7 +18,7 @@ namespace Proyect
         /// </summary>
         protected Rubro rubro;
         /// <summary>
-        /// Constructor de entity.
+        /// Inicializa una nueva instancia de la clase <see cref="User"/>
         /// </summary>
         /// <param name="name">Nombre del usuario.</param>
         /// <param name="ubication">Ubicacion del usuario.</param>

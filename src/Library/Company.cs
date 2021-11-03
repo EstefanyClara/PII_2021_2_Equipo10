@@ -29,7 +29,7 @@ namespace Proyect
                 /// <summary>
                 /// Metodo que retorna una lista con las ofertas publicadas por la empresa.
                 /// </summary>
-                /// <value></value>
+                /// <value>this.offers</value>
                 public List<IOffer> OffersPublished
                 {
                         get{ return this.offers; }     

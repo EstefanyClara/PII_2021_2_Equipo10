@@ -7,10 +7,10 @@ namespace   Proyect
     {
         private string rubroName;
 
-/// <summary>
-/// Propierti delnombre del rubro.
-/// </summary>
-/// <value></value>
+        /// <summary>
+        /// Propierty del nombre del rubro.
+        /// </summary>
+        /// <value></value>
         public string RubroName
         {
             get
@@ -23,7 +23,7 @@ namespace   Proyect
             }
         }
         /// <summary>
-        /// Constructor de instancias de rubro.
+        /// Inicializa una nueva instancia de la clase <see cref="Rubro"/>
         /// </summary>
         /// <param name="rubroName">Nombre del rubro.</param>
         public Rubro(string rubroName)

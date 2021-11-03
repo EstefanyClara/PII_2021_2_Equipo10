@@ -6,7 +6,7 @@ using System;
 namespace Proyect
 {
     /// <summary>
-    /// Representa las ofertas constantes de las companias
+    /// Representa las ofertas constantes de las companias.
     /// </summary>
     public class ConstantOffer : IOffer
     {
@@ -19,7 +19,7 @@ namespace Proyect
         private List<PurchaseData> purchesedData;
 
         /// <summary>
-        /// Constructor de la oferta constante
+        /// Inicializa una nueva instancia de la clase <see cref="ConstantOffer"/>
         /// </summary>
         /// <param name="tipo"></param>
         /// <param name="quantity"></param>
@@ -37,9 +37,9 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene el producto de una oferta
+        /// Obtiene el producto de una oferta.
         /// </summary>
-        /// <value></value>
+        /// <value>this.product</value>
         public ProductOffer Product
         {
             get
@@ -49,9 +49,9 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene ka lista de las habilitaciones de una oferta
+        /// Obtiene la lista de las habilitaciones de una oferta.
         /// </summary>
-        /// <value></value>
+        /// <value>this.qualifications</value>
         public List<Qualifications> Qualifications
         {
             get
@@ -65,7 +65,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene la lista de palbras clave de la oferta
+        /// Obtiene la lista de palbras clave de la oferta.
         /// </summary>
         /// <value></value>
         public ArrayList KeyWords
@@ -81,7 +81,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene la informacion de el o los compardores de esta oferta constante
+        /// Obtiene la informacion de el o los compardores de esta oferta constante.
         /// </summary>
         /// <value></value>
         public List<PurchaseData> PurchesedData
@@ -93,9 +93,9 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene la informacion de compra de la oferta (por patron expert)
+        /// Obtiene la informacion de compra de la oferta (por patron expert).
         /// </summary>
-        /// <returns>Devuelve un string con la informacion de compra</returns>
+        /// <returns>Devuelve un string con la informacion de compra.</returns>
         public string GetPurchesedData()
         {
             bool ofertaAceptada = false;
@@ -116,7 +116,7 @@ namespace Proyect
         /// Obtiene la informacion de compra del ultimo emprendedor que acepta la oferta.
         /// </summary>
         /// <param name="periodTime"></param>
-        /// <returns>mensaje con la infromacion de compra de la oferta, si la misma entra dentro del rango estipulado, en caso contrario, mensaje que indica dicha situacion.</returns>
+        /// <returns>Mensaje con la infromacion de compra de la oferta, si la misma entra dentro del rango estipulado, en caso contrario, mensaje que indica dicha situacion.</returns>
         public string GetPeriodTimeOffersAcceptedData(int periodTime)
         {
             StringBuilder message = new StringBuilder();
@@ -134,7 +134,7 @@ namespace Proyect
         /// Obtiene la fecha de compra del emprendedor ingresado (expert).
         /// </summary>
         /// <param name="emprendedor"></param>
-        /// <returns> la fecha de compra del emprendedor ingresado</returns>
+        /// <returns> La fecha de compra del emprendedor ingresado</returns>
         public DateTime GetOfferBuyerTimeData(Emprendedor emprendedor)
         {
             PurchaseData dateBuyerData = this.PurchesedData[0];
@@ -149,7 +149,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Agrega un nuevo comprador a la lista de compradores de esta oferta constante
+        /// Agrega un nuevo comprador a la lista de compradores de esta oferta constante.
         /// </summary>
         /// <param name="emprendedor"></param>
         /// <param name="timeAccepted"></param>

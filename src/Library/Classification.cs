@@ -1,16 +1,16 @@
 namespace Proyect
 {
     /// <summary>
-    /// Es la clasificacion que va a tener cada producto.
+    /// Esta clase representa una clasificacion para un producto.
     /// </summary>
     public class Classification
     {
         private string category;
 
         /// <summary>
-        /// Devuelve el nombre de la clasificacion.
+        /// Obtiene el valor de una clasificacion para un Producto.
         /// </summary>
-        /// <value></value>
+        /// <value>this.category</value>
         public string Category
         {
             get
@@ -23,7 +23,7 @@ namespace Proyect
             }
         }
         /// <summary>
-        /// Constructor de las clasificaciones.
+        /// Inicializa una nueva instancia de la clase <see cref="Classification"/>.
         /// </summary>
         /// <param name="category">Categoria de clasificación.</param>
         public Classification(string category)
@@ -32,3 +32,4 @@ namespace Proyect
         }
     }
 }
+

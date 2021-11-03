@@ -16,7 +16,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene la instancia de OfferSearch
+        /// Obtiene la instancia de OfferSearch.
         /// </summary>
         /// <value></value>
         public static OfferSearch Instance
@@ -31,6 +31,7 @@ namespace Proyect
         /// Busca las ofertas con la palabra clave que se le pasa.
         /// </summary>
         /// <param name="word">Palabras claves de oferta.</param>
+        /// <returns>una lista con las offertas</returns>
         public List<string> SearchByKeywords(string word)
         {
             string keyWord = word.Replace(".","");
@@ -54,6 +55,7 @@ namespace Proyect
         /// Busca ofertas por ubicacion.
         /// </summary>
         /// <param name="ubication">Ubicacion de oferta.</param>
+        /// <returns>una lista con las offertas</returns>
         public List<string> SearchByUbication(string ubication)
         {
             List<string> offersList = new List<string>();
@@ -74,6 +76,7 @@ namespace Proyect
         /// Busca ofertas por el tipo.
         /// </summary>
         /// <param name="type">Tipo de oferta.</param>
+        /// <returns>una lista con las offertas</returns>
         public List<string> SearchByType(string type)
         {
             // Deberia funcionar, pero hay que adaptar para cumplir patrones

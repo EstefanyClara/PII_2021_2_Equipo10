@@ -6,7 +6,7 @@ using System.Collections;
 namespace Proyect
 {
     /// <summary>
-    /// Clase emprendedor. 
+    /// Esta clase representa un Emprendedor. 
     /// </summary>
     public class Emprendedor : User
     {
@@ -16,14 +16,13 @@ namespace Proyect
 
         private List<IOffer> purchasedOffer;
         /// <summary>
-        /// Constructor de emprendedor.
+        /// Inicializa una nueva instancia de la clase <see cref="Emprendedor"/>
         /// </summary>
         /// <param name="name">Nombre del emprendedor.</param>
         /// <param name="ubication">Ubicacion del emprendedor.</param>
         /// <param name="rubro">Rubro del emprendedor.</param>
         /// <param name="qualifications">Hablitaciones del emprendedor.</param>
         /// <param name="specializations">Especializaciones del emprendedor.</param>
-        /// <returns></returns>
         public Emprendedor(string name, string ubication, Rubro rubro, List<Qualifications> qualifications, ArrayList specializations):base(name,ubication,rubro)
         {
             this.Qualifications = qualifications;
@@ -33,7 +32,7 @@ namespace Proyect
         /// <summary>
         /// Propiedad get y set de las habilitaciones.
         /// </summary>
-        /// <value></value>
+        /// <value>this.qualifications</value>
         public List<Qualifications> Qualifications
         {
             get
@@ -48,7 +47,7 @@ namespace Proyect
         /// <summary>
         /// Propiedad Specializations.
         /// </summary>
-        /// <value></value>
+        /// <value>this.specializations</value>
         public ArrayList Specializations
         {
             get
@@ -64,7 +63,7 @@ namespace Proyect
         /// <summary>
         /// Obtiene la lista de ofertas ofertas aceptadas por el emprendedor.
         /// </summary>
-        /// <value></value>
+        /// <value>this.purchasedOffer</value>
         public List<IOffer> PurchasedOffers
         {
             get
@@ -76,6 +75,7 @@ namespace Proyect
         /// <summary>
         /// Metodo para agregar una oferta a la lista de ofertas que el emprendedor acepto.
         /// </summary>
+        /// <param name="offer"></param>
         public void AddPurchasedOffer(IOffer offer)
         {
             this.purchasedOffer.Add(offer);
@@ -84,7 +84,7 @@ namespace Proyect
         /// <summary>
         /// Obtiene un string indicando las ofertas que fueron aceptadas por el por el emprendedor, junto con algunos datos.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>message</returns>
         public string GetOffersAccepted()
         {
             StringBuilder message = new StringBuilder();
@@ -99,7 +99,7 @@ namespace Proyect
         /// Obtiene la cantidad de ofertas que fueron aceptadas en un periodo de tiempo.
         /// </summary>
         /// <param name="periodTime">Periodo de tiempo.</param>
-        /// <returns></returns>
+        /// <returns>message</returns>
         public string GetPeriodTimeOffersAccepted(int periodTime)
         {
             StringBuilder message = new StringBuilder();
