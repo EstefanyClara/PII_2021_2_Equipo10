@@ -82,6 +82,9 @@ namespace Tests
             Assert.AreEqual(keyWords,o.KeyWords);
         }
 
+        /// <summary>
+        /// Se testea si se publicó correctamente una oferta.
+        /// </summary>
         [Test]
         public void PublishOfferTest()
         {
@@ -90,6 +93,9 @@ namespace Tests
             Assert.AreEqual(expected,actual);
         }
 
+        /// <summary>
+        /// Se testea si un emprendedor tiene las habilitaciones requeridas para aceptar una oferta.
+        /// </summary>
         [Test]
         public void RequiredQualificationsTest()
         {
@@ -98,6 +104,9 @@ namespace Tests
             Assert.AreEqual(expected,actual);
         }
 
+        /// <summary>
+        /// Se testea que el emprendedor no tiene las habilitaciones requeridas para aceptar la oferta.
+        /// </summary>
         [Test]
         public void FailedRequiredQualificationsTest()
         {
@@ -106,6 +115,9 @@ namespace Tests
             Assert.AreEqual(expected,actual);
         }
 
+        /// <summary>
+        /// Se testea que se pueden agregar Keywords a una oferta
+        /// </summary>
         [Test]
         public void AddKeywordsTest()
         {
@@ -115,6 +127,9 @@ namespace Tests
             Assert.AreEqual(expected,actual);
         }
 
+        /// <summary>
+        /// Se testea que, si al intentar agregar una palabra clave que ya se encuentra en una oferta, no te va a dejar.
+        /// </summary>
         [Test]
         public void KeywordAlreadyInProductTest()
         {
@@ -124,6 +139,9 @@ namespace Tests
             Assert.AreEqual(expected,actual);
         }
 
+        /// <summary>
+        /// Se testea que se pueda registrar una emprendedor.
+        /// </summary>
         [Test]
         public void RegisterEntrepreneursTest()
         {
@@ -133,6 +151,9 @@ namespace Tests
         }
 
         /*
+        /// <summary>
+        /// Se testea que si no se ingresan datos, no se pueda crear al emprendedor
+        /// </summary>
         [Test]
         public void FailedRegisterEntrepreneursTest()
         {
@@ -142,6 +163,9 @@ namespace Tests
         }
         */
 
+        /// <summary>
+        /// Se testea que se puedan encontrar ofertas por keywords
+        /// </summary>
         [Test]
         public void SearchByKeywordsTest()
         {
@@ -152,6 +176,9 @@ namespace Tests
             Assert.AreEqual(expected,actual);
         }
 
+        /// <summary>
+        /// Se testea que un emprendedor pueda comprar una oferta
+        /// </summary>
         [Test]
         public void PurchaseOfferTest()
         {
