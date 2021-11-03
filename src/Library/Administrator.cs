@@ -28,7 +28,6 @@ namespace Proyect
                 string nameRubro=Console.ReadLine();
                 Rubro rubro= new Rubro(nameRubro);
                 Company company=new Company(name, ubication, rubro);
-                Console.WriteLine($"El nombre de la compania"+ name +"la ubicacion:"+ubication+ "el rubro"+nameRubro); 
             }
             else
             {
