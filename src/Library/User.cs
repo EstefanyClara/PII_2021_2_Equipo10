@@ -17,13 +17,19 @@ namespace Proyect
         /// El rubro al que pertnece el usuario.
         /// </summary>
         protected Rubro rubro;
+
+        /// <summary>
+        /// El id del usuario
+        /// </summary>
+        protected string userChat_Id;
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="User"/>
         /// </summary>
         /// <param name="name">Nombre del usuario.</param>
         /// <param name="ubication">Ubicacion del usuario.</param>
         /// <param name="rubro">Rubro del usuario.</param>
-        public User(string name, string ubication, Rubro rubro)
+        /// <param name="userChat_Id">Id del usuario.</param>
+        public User(string name, string ubication, Rubro rubro, string userChat_Id)
         {
             if (name == "" || ubication == "")
             {
@@ -32,6 +38,7 @@ namespace Proyect
             this.Name = name;
             this.Ubication = ubication;
             this.Rubro = rubro;
+            this.UserChat_Id = userChat_Id;
         }
         /// <summary>
         /// Propiedad get y set del atributo del nombre.
@@ -76,6 +83,22 @@ namespace Proyect
             set
             {
                 this.rubro = value;
+            }
+        }
+
+        /// <summary>
+        /// Obtiene el id del usuario, para asi lograr identificarlo.
+        /// </summary>
+        /// <value>Id.</value>
+        public string UserChat_Id
+        {
+            get
+            {
+                return this.userChat_Id;
+            }
+            set 
+            {
+                this.userChat_Id = value;
             }
         }
     }

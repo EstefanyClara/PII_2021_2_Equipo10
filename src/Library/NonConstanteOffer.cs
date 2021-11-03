@@ -6,7 +6,7 @@ using System;
 namespace Proyect
 {
     /// <summary>
-    /// Esta clase representa las ofertas constantes de las companias..
+    /// Esta clase representa las ofertas constantes de las companias (Cumple con ISP).
     /// </summary>
     public class NonConstantOffer : IOffer
     {

@@ -6,7 +6,7 @@ using System.Collections;
 namespace Proyect
 {
     /// <summary>
-    /// Esta clase representa un Emprendedor. 
+    /// Esta clase representa un Emprendedor, hereda de user (Tienen relaciontaxonomica). 
     /// </summary>
     public class Emprendedor : User
     {
@@ -23,7 +23,8 @@ namespace Proyect
         /// <param name="rubro">Rubro del emprendedor.</param>
         /// <param name="qualifications">Hablitaciones del emprendedor.</param>
         /// <param name="specializations">Especializaciones del emprendedor.</param>
-        public Emprendedor(string name, string ubication, Rubro rubro, List<Qualifications> qualifications, ArrayList specializations):base(name,ubication,rubro)
+        /// <param name="userChat_Id">Id del emprendedor.</param>
+        public Emprendedor(string userChat_Id, string name, string ubication, Rubro rubro, List<Qualifications> qualifications, ArrayList specializations):base(name, ubication, rubro, userChat_Id)
         {
             this.Qualifications = qualifications;
             this.Specializations = specializations;
@@ -73,7 +74,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Metodo para agregar una oferta a la lista de ofertas que el emprendedor acepto.
+        /// Metodo para agregar una oferta a la lista de ofertas que el emprendedor acepto (Por expert).
         /// </summary>
         /// <param name="offer"></param>
         public void AddPurchasedOffer(IOffer offer)
@@ -82,7 +83,8 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene un string indicando las ofertas que fueron aceptadas por el por el emprendedor, junto con algunos datos.
+        /// Obtiene un string indicando las ofertas que fueron aceptadas por el por el emprendedor (Expert).
+        /// Es una operacion polimorfica.
         /// </summary>
         /// <returns>message</returns>
         public string GetOffersAccepted()
@@ -96,11 +98,12 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene la cantidad de ofertas que fueron aceptadas en un periodo de tiempo.
+        /// Obtiene la cantidad de ofertas que fueron aceptadas en un periodo de tiempo (Expert).
+        /// Es una operacion polimorfica.
         /// </summary>
         /// <param name="periodTime">Periodo de tiempo.</param>
         /// <returns>message</returns>
-        public string GetPeriodTimeOffersAccepted(int periodTime)
+        public string GetOffersAccepted(int periodTime)
         {
             StringBuilder message = new StringBuilder();
             int offersAccepted = 0;

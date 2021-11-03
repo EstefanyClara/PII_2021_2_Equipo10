@@ -5,7 +5,8 @@ using System;
 namespace Proyect
 {
     /// <summary>
-    /// Clase que se encarga de buscar las ofertas por los distintos metodos establecidos.
+    /// Clase que se encarga de buscar las ofertas por los distintos metodos establecidos (Por SRP).
+    /// Es una clase singleton (solo hay una instancia de la misma).
     /// </summary>
     public sealed class OfferSearch
     {
@@ -95,7 +96,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene la informacion de un oferta en fomra de mensaje.
+        /// Obtiene la informacion de un oferta en forma de mensaje.
         /// </summary>
         /// <param name="offer"></param>
         /// <param name="company"></param>

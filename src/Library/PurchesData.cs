@@ -3,7 +3,7 @@ using System;
 namespace Proyect
 {
     /// <summary>
-    /// Clase para guardar la fecha y quien compró las ofertas.
+    /// Clase para guardar la fecha y quien compró las ofertas (Por SRP).
     /// </summary>
     public class PurchaseData
     {

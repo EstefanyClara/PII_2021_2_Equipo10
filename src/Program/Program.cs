@@ -23,9 +23,9 @@ namespace ConsoleApplication
         /// <returns>Task.</returns>
         public static async Task Main()
         {
-            AppLogic.Instance.RegisterEntrepreneurs("Matias", "Palacio Legislativo", AppLogic.Instance.Rubros[0], AppLogic.Instance.Qualifications, new ArrayList(){"Desechos organicos"});
-            AppLogic.Instance.RegisterEntrepreneurs("Matias", "Cordoba", AppLogic.Instance.Rubros[1], new List<Qualifications>(){AppLogic.Instance.Qualifications[0], AppLogic.Instance.Qualifications[1]}, new ArrayList(){"Desechos plasticos"});
-            Company c1 = new Company("MatiasCorp", "Parque Rodó", AppLogic.Instance.Rubros[1]);
+            AppLogic.Instance.RegisterEntrepreneurs("ABD","Matias", "Palacio Legislativo", AppLogic.Instance.Rubros[0], AppLogic.Instance.Qualifications, new ArrayList(){"Desechos organicos"});
+            AppLogic.Instance.RegisterEntrepreneurs("ACD","Matias", "Cordoba", AppLogic.Instance.Rubros[1], new List<Qualifications>(){AppLogic.Instance.Qualifications[0], AppLogic.Instance.Qualifications[1]}, new ArrayList(){"Desechos plasticos"});
+            Company c1 = new Company("GFYT","MatiasCorp", "Parque Rodó", AppLogic.Instance.Rubros[1]);
             AppLogic.Instance.Companies.Add(c1);
             AppLogic.Instance.PublicConstantOffer(c1, AppLogic.Instance.Classifications[3], 300, 5000, "Parque Rodó", AppLogic.Instance.Qualifications, new ArrayList(){"Toxicos","Grandes volumenes"});
             AppLogic.Instance.AccepOffer(AppLogic.Instance.Entrepreneurs[0], c1.OffersPublished[0]);

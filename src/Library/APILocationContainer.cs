@@ -2,7 +2,7 @@ using LocationApi;
 namespace Proyect
 {
     /// <summary>
-    /// Contenedor de la instncia de la api de localizacion.
+    /// Contenedor de la instancia de la api de localizacion (clase singleton, solo hay una instancia).
     /// </summary>
     public sealed class APILocationContainer
     {

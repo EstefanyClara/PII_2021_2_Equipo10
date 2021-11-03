@@ -6,7 +6,7 @@ using System;
 namespace Proyect
 {
     /// <summary>
-    /// Representa las ofertas constantes de las companias.
+    /// Representa las ofertas constantes de las companias (Es del tipo IOffer, a quien usa, por lo que cumple con ISP).
     /// </summary>
     public class ConstantOffer : IOffer
     {
@@ -113,7 +113,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene la informacion de compra del ultimo emprendedor que acepta la oferta.
+        /// Obtiene la informacion de compra del ultimo emprendedor que acepta la oferta (Patron expert).
         /// </summary>
         /// <param name="periodTime"></param>
         /// <returns>Mensaje con la infromacion de compra de la oferta, si la misma entra dentro del rango estipulado, en caso contrario, mensaje que indica dicha situacion.</returns>
@@ -131,7 +131,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene la fecha de compra del emprendedor ingresado (expert).
+        /// Obtiene la fecha de compra del emprendedor ingresado (Patron expert).
         /// </summary>
         /// <param name="emprendedor"></param>
         /// <returns> La fecha de compra del emprendedor ingresado</returns>
@@ -149,7 +149,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Agrega un nuevo comprador a la lista de compradores de esta oferta constante.
+        /// Agrega un nuevo comprador a la lista de compradores de esta oferta constante (Se utiliza creator, y expert).
         /// </summary>
         /// <param name="emprendedor"></param>
         public void PutBuyer(Emprendedor emprendedor)

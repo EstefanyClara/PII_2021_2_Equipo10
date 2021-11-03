@@ -21,7 +21,8 @@ namespace Proyect
                 /// <param name="name">Nombre compania.</param>
                 /// <param name="ubication">Ubicacion de la compania.</param>
                 /// <param name="rubro">Rubro de la compania.</param>
-                public Company(string name, string ubication, Rubro rubro):base(name, ubication, rubro)
+                /// <param name="userChat_Id">Id de la compania.</param>
+                public Company(string userChat_Id, string name, string ubication, Rubro rubro):base(name, ubication, rubro, userChat_Id)
                 {
 
                 }
@@ -37,6 +38,8 @@ namespace Proyect
 
                 /// <summary>
                 /// Crea una instancia de una oferta constante y se la agrega a la lisat de ofertas de la compania.
+                /// Se Asigno esta responsabilidad por expert (La clase company es la que conoce la lista de ls ofertas que publica).
+                /// Tambien, se asigno esta reponsabilidad siguinedo el patron creator, company contiene objetos IOffer
                 /// </summary>
                 /// <param name="tipo"></param>
                 /// <param name="quantity"></param>
@@ -50,7 +53,9 @@ namespace Proyect
                 }
 
                 /// <summary>
-                /// Crea una instacion de una oferta no constante y se la agrega a la lista de ofertas de la compania
+                /// Crea una instacion de una oferta no constante y se la agrega a la lista de ofertas de la compania.
+                /// Se Asigno esta responsabilidad por expert (La clase company es la que conoce la lista de ls ofertas que publica).
+                /// Tambien, se asigno esta reponsabilidad siguinedo el patron creator, company contiene objetos IOffer.
                 /// </summary>
                 /// <param name="tipo"></param>
                 /// <param name="quantity"></param>
@@ -64,7 +69,7 @@ namespace Proyect
                 }
 
                 /// <summary>
-                /// Remueve ofertas.
+                /// Remueve ofertas (Por Expert).
                 /// </summary>
                 /// <param name="offer">Oferta.</param>
                 public void RemoveOffer(IOffer offer)
@@ -74,6 +79,7 @@ namespace Proyect
 
                 /// <summary>
                 /// Obtiene un string con todas las ofertas que fueron o no fueron aceptadas por emprendedores(por expert le asignamos esta responsabilidad).
+                /// Es una operacion polimorfica.
                 /// </summary>
                 /// <returns>Las ofertas aceptadas.</returns>
                 public string GetOffersAccepted()
@@ -90,11 +96,12 @@ namespace Proyect
 
 
                 /// <summary>
-                /// Obtiene la cantidad de ofertas que publico la compania, que fueron aceptadas.
+                /// Obtiene la cantidad de ofertas que publico la compania, que fueron aceptadas en un periodo de tiempo (Por expert).
+                /// Es una operwacion polimorfica.
                 /// </summary>
                 /// <param name="periodTime">Periodo de tiempo.</param>
                 /// <returns>Las ofertas aceptadas en un periodo de tiempo.</returns>
-                public string GetPeriodTimeOffersAccepted(int periodTime)
+                public string GetOffersAccepted(int periodTime)
                 {
                         int offersAccepted = 0;
                         StringBuilder lastMessage = new StringBuilder();
@@ -112,7 +119,7 @@ namespace Proyect
                 }
 
                 /// <summary>
-                /// Remueve palabras clave de una oferta.
+                /// Remueve palabras clave de una oferta (Por expert).
                 /// </summary>
                 /// <param name="offer">La oferta.</param>
                 /// <param name="keyWord">La palabra clave de la oferta.</param>
@@ -122,7 +129,7 @@ namespace Proyect
                 }
 
                 /// <summary>
-                /// Agrega palabras clave a una oferta.
+                /// Agrega palabras clave a una oferta (Por expert).
                 /// </summary>
                 /// <param name="offer">La oferta.</param>
                 /// <param name="keyWord">La palabra clave de la oferta.</param>
@@ -137,7 +144,7 @@ namespace Proyect
                 }
 
                 /// <summary>
-                /// Agrega habilitaciones a la oferta.
+                /// Agrega habilitaciones a la oferta (Por expert).
                 /// </summary>
                 /// <param name="offer">La oferta.</param>
                 /// <param name="qualification">La habilitaciones de la oferta.</param>
@@ -147,7 +154,7 @@ namespace Proyect
                 }
 
                 /// <summary>
-                /// Remueve la habilitacion de una oferta.
+                /// Remueve la habilitacion de una oferta (Por expert).
                 /// </summary>
                 /// <param name="offer">La oferta.</param>
                 /// <param name="qualification">La habilitacion de la oferta.</param>
