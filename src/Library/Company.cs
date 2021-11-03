@@ -16,7 +16,7 @@ namespace Proyect
                 private List<Offer> offers = new List<Offer>(); 
 
                 /// <summary>
-                /// Inicializa una nueva instancia de la clase <see cref="Company"/>.
+                /// Inicializa una nueva instancia de la clase.
                 /// </summary>
                 /// <param name="name">Nombre compania.</param>
                 /// <param name="ubication">Ubicacion de la compania.</param>
