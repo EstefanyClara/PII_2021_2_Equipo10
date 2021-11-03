@@ -152,8 +152,7 @@ namespace Proyect
         /// Agrega un nuevo comprador a la lista de compradores de esta oferta constante.
         /// </summary>
         /// <param name="emprendedor"></param>
-        /// <param name="timeAccepted"></param>
-        public void PutBuyer(Emprendedor emprendedor, DateTime timeAccepted)
+        public void PutBuyer(Emprendedor emprendedor)
         {
             this.PurchesedData.Add(new PurchaseData(emprendedor));
         }

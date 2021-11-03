@@ -264,7 +264,7 @@ namespace Proyect
                     return "Usted no dispone de las habilitaciones requeridas por la oferta";
                 }
             }
-            offer.PutBuyer(emprendedor, DateTime.Now);
+            offer.PutBuyer(emprendedor);
             emprendedor.AddPurchasedOffer(offer);
             return "Usted a aceptado la oferta con exito";
         }

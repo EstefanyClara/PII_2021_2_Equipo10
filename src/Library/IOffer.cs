@@ -50,7 +50,6 @@ namespace Proyect
         /// Le asigna el emprendedor y la fecha de compra a la oferta, una vez es comprada.
         /// </summary>
         /// <param name="emprendedor"></param>
-        /// <param name="timeAccepted"></param>
-        void PutBuyer(Emprendedor emprendedor, DateTime timeAccepted);
+        void PutBuyer(Emprendedor emprendedor);
     }
 }
