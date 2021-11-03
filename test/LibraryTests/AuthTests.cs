@@ -178,7 +178,7 @@ namespace Tests
             AppLogic.Instance.Companies.Add((Company)empresa1);
             AppLogic.Instance.PublicConstantOffer((Company)empresa1,tipo,200,75,"Pocitos",qualifications2,keyWords2);
             string actual = (AppLogic.Instance.SearchOfferByKeywords("Toxico")[0]);
-            string expected = "200 de Reciclable\n\nCompania ofertora: SECOM\nPrecio: 75$\nUbicacion: Pocitos\nHabilitaciones necesarias: |Vehiculo propio||Espacio para grandes volumenes de producto||Lugar habilitado para conservar desechos toxicos|";
+            string expected = "200 de Reciclable\n\nCompania ofertora: SECOM\nPrecio: 75$\nUbicacion: Pocitos\nFecha de publicacion: Siempre\nHabilitaciones necesarias: |Vehiculo propio||Espacio para grandes volumenes de producto||Lugar habilitado para conservar desechos toxicos|";
             Assert.AreEqual(expected,actual);
         }
 
