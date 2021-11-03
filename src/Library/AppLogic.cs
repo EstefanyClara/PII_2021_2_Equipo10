@@ -104,7 +104,7 @@ namespace Proyect
             }
             catch (EmptyUserBuilderException e)
             {
-                Console.WriteLine("Error al registrase");
+                Console.WriteLine(e.Message);
                 throw e;
             }
 
