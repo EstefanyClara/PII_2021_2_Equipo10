@@ -150,18 +150,24 @@ namespace Tests
             Assert.AreEqual(expected,actual);
         }
 
-        /*
+        
         /// <summary>
         /// Se testea que si no se ingresan datos, no se pueda crear al emprendedor
         /// </summary>
         [Test]
         public void FailedRegisterEntrepreneursTest()
         {
-            string actual = AppLogic.Instance.RegisterEntrepreneurs("","Parque Battle",rubro1,qualifications,specializations);
-            string expected = null;
-            Assert.AreEqual(expected,actual);
+            try
+            {
+                string actual = AppLogic.Instance.RegisterEntrepreneurs("WSQ","","Parque Battle",rubro1,qualifications,specializations);
+            }
+            catch(EmptyUserBuilderException e)
+            {
+                string actual = e.Message;
+                string expected = "Los datos ingresados no son validos, nombre o ubicacion vacios";
+                Assert.AreEqual(expected,actual);
+            }
         }
-        */
 
         /// <summary>
         /// Se testea que se puedan encontrar ofertas por keywords
