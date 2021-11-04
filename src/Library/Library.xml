@@ -733,59 +733,6 @@
             </summary>
             <param name="emprendedor"></param>
         </member>
-        <member name="T:Proyect.Offer">
-            <summary>
-            Representa la oferta de una compania.
-            </summary>
-        </member>
-        <member name="M:Proyect.Offer.#ctor(System.Boolean,Proyect.Classification,System.Double,System.Double,System.String,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.ArrayList)">
-            <summary>
-            Constructor de offer, el mismo, crea una instancia del producto.
-            </summary>
-            <param name="ifConstant">Si el producto es recurrente.</param>
-            <param name="tipo">Tipo de procucto.</param>
-            <param name="quantity">Cantidad del producto.</param>
-            <param name="cost">Precio del producto.</param>
-            <param name="ubication">Ubicacion del producto.</param>
-            <param name="qualifications">Habilitaciones del producto.</param>
-            <param name="keyWords">Palabras claves del producto.</param>
-        </member>
-        <member name="P:Proyect.Offer.Constant">
-            <summary>
-            Obtiene un valor que indica si la oferta es constante o no.
-            </summary>
-            <value><c>true</c> si la oferta es constante, <c>false</c> en caso contrario.</value>
-        </member>
-        <member name="P:Proyect.Offer.Product">
-            <summary>
-            Obtiene el el producto de la oferta.
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:Proyect.Offer.Qualifications">
-            <summary>
-            Obtiene las cualificaciones/habilitaciones necesarias para aceptar la oferta, esto lo establece cada compania.
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:Proyect.Offer.KeyWords">
-            <summary>
-            Obtiene el conjunto de palabras clave que se utilizan a la hora de buscar la oferta.
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:Proyect.Offer.Buyer">
-            <summary>
-            Obtiene el compardor de la oferta, quien la acepto luego de que la haya buscado.
-            </summary>
-            <value><c>Emprendedor</c> si la oferta ya fue aceptada, lo que te dice tambien quien la acepto, <c>null</c> si no fue aceptada, por lo que se puede aceptar.</value>
-        </member>
-        <member name="P:Proyect.Offer.TimeAccepted">
-            <summary>
-            Propiedad para obtener la fecha y hora de cuando la oferta fue aceptada por un emprendedor.
-            </summary>
-            <value></value>
-        </member>
         <member name="T:Proyect.OfferSearch">
             <summary>
             Clase que se encarga de buscar las ofertas por los distintos metodos establecidos (Por SRP).
@@ -973,33 +920,6 @@
             Obtiene el id del usuario, para asi lograr identificarlo.
             </summary>
             <value>Id.</value>
-        </member>
-        <member name="T:ClassLibrary.Train">
-            <summary>
-            Esta clase representa un tren muy básico.
-            </summary>
-        </member>
-        <member name="P:ClassLibrary.Train.IsEngineStarted">
-            <summary>
-            Obtiene un valor que indica si las maquinas del tren han sido encendidas o no.
-            </summary>
-            <value><c>true</c> si las máquinas fueron encendidas, <c>false</c> en caso contrario.</value>
-        </member>
-        <member name="M:ClassLibrary.Train.StartEngines">
-            <summary>
-            Enciende las máquinas del tren.
-            </summary>
-            <returns>
-            <c>true</c> si las máquinas pueden ser encendidas, <c>false</c> en caso contrario.
-            </returns>
-        </member>
-        <member name="M:ClassLibrary.Train.StopEngines">
-            <summary>
-            Detiene las máquinas del tren.
-            </summary>
-            <returns>
-            <c>true</c> si las máquinas pueden ser detenidas, <c>false</c> en caso contrario.
-            </returns>
         </member>
         <member name="T:LocationApi.Distance">
             <summary>

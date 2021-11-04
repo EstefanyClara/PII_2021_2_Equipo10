@@ -14,6 +14,16 @@
             Setup para los tests.
             </summary>
         </member>
+        <member name="M:Tests.AuthTests.RegisterCompanyTest">
+            <summary>
+            Se testea que se registra una company, al no ser null, sé que se creo un objeto de tipo user.
+            </summary>
+        </member>
+        <member name="M:Tests.AuthTests.RegisterNotValidTokenTest">
+            <summary>
+            Se testea que si el token no es uno aprobado por el administrado, no se va a registrar a la company.
+            </summary>
+        </member>
         <member name="M:Tests.AuthTests.CreateOfferTest">
             <summary>
             Se testea si se puede crear correctamente la oferta.
@@ -36,7 +46,7 @@
         </member>
         <member name="M:Tests.AuthTests.AddKeywordsTest">
             <summary>
-            Se testea que se pueden agregar Keywords a una oferta
+            Se testea que se pueden agregar Keywords a una oferta.
             </summary>
         </member>
         <member name="M:Tests.AuthTests.KeywordAlreadyInProductTest">
@@ -51,17 +61,27 @@
         </member>
         <member name="M:Tests.AuthTests.FailedRegisterEntrepreneursTest">
             <summary>
-            Se testea que si no se ingresan datos, no se pueda crear al emprendedor
+            Se testea que si no se ingresan datos, no se pueda crear al emprendedor.
             </summary>
         </member>
         <member name="M:Tests.AuthTests.SearchByKeywordsTest">
             <summary>
-            Se testea que se puedan encontrar ofertas por keywords
+            Se testea que se puedan encontrar ofertas por keywords.
             </summary>
         </member>
         <member name="M:Tests.AuthTests.PurchaseOfferTest">
             <summary>
-            Se testea que un emprendedor pueda comprar una oferta
+            Se testea que un emprendedor pueda comprar una oferta.
+            </summary>
+        </member>
+        <member name="M:Tests.AuthTests.CompanyOffersInPeriodOfTimeTest">
+            <summary>
+            Se testea de poder ver cuantas ofertas de esta company se aceptaron por emprendedores en un periodo de tiempo.
+            </summary>
+        </member>
+        <member name="M:Tests.AuthTests.EntrepreneurOffersInPeriodOfTimeTest">
+            <summary>
+            Se testea de poder ver las ofertas aceptadas por este emprendedor durante un periodo de tiempo.
             </summary>
         </member>
     </members>

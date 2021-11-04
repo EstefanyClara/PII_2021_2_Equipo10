@@ -66,6 +66,26 @@ namespace Tests
             o2 = new ConstantOffer(tipo,20,100,"Parque Battle",qualifications2,keyWords2);
 
         }
+        
+        /// <summary>
+        /// Se testea que se registra una company, al no ser null, sé que se creo un objeto de tipo user.
+        /// </summary>
+        [Test]
+        public void RegisterCompanyTest()
+        {
+            User actual = Administrator.Instance.Invite("Pepe","WER","SECOM2","Tres Cruces",rubro1);
+            Assert.AreNotEqual(null,actual);
+        }
+
+        /// <summary>
+        /// Se testea que si el token no es uno aprobado por el administrado, no se va a registrar a la company.
+        /// </summary>
+        [Test]
+        public void RegisterNotValidTokenTest()
+        {
+            User actual = Administrator.Instance.Invite("Pep","WER","SECOM2","Tres Cruces",rubro1);
+            Assert.AreEqual(null,actual);
+        }
 
         /// <summary>
         /// Se testea si se puede crear correctamente la oferta.
@@ -116,7 +136,7 @@ namespace Tests
         }
 
         /// <summary>
-        /// Se testea que se pueden agregar Keywords a una oferta
+        /// Se testea que se pueden agregar Keywords a una oferta.
         /// </summary>
         [Test]
         public void AddKeywordsTest()
@@ -152,7 +172,7 @@ namespace Tests
 
         
         /// <summary>
-        /// Se testea que si no se ingresan datos, no se pueda crear al emprendedor
+        /// Se testea que si no se ingresan datos, no se pueda crear al emprendedor.
         /// </summary>
         [Test]
         public void FailedRegisterEntrepreneursTest()
@@ -170,26 +190,58 @@ namespace Tests
         }
 
         /// <summary>
-        /// Se testea que se puedan encontrar ofertas por keywords
+        /// Se testea que se puedan encontrar ofertas por keywords.
         /// </summary>
         [Test]
         public void SearchByKeywordsTest()
         {
             AppLogic.Instance.Companies.Add((Company)empresa1);
-            AppLogic.Instance.PublicConstantOffer((Company)empresa1,tipo,200,75,"Pocitos",qualifications2,keyWords2);
+            AppLogic.Instance.PublicNonConstantOffer((Company)empresa1,tipo,200,75,"Pocitos",qualifications2,keyWords2);
             string actual = (AppLogic.Instance.SearchOfferByKeywords("Toxico")[0]);
-            string expected = "200 de Reciclable\n\nCompania ofertora: SECOM\nPrecio: 75$\nUbicacion: Pocitos\nFecha de publicacion: Siempre\nHabilitaciones necesarias: |Vehiculo propio||Espacio para grandes volumenes de producto||Lugar habilitado para conservar desechos toxicos|";
+            string expected = $"200 de Reciclable\n\nCompania ofertora: SECOM\nPrecio: 75$\nUbicacion: Pocitos\nFecha de publicacion: {DateTime.Now}\nHabilitaciones necesarias: |Vehiculo propio||Espacio para grandes volumenes de producto||Lugar habilitado para conservar desechos toxicos|";
             Assert.AreEqual(expected,actual);
         }
 
         /// <summary>
-        /// Se testea que un emprendedor pueda comprar una oferta
+        /// Se testea que un emprendedor pueda comprar una oferta.
         /// </summary>
         [Test]
         public void PurchaseOfferTest()
         {
             string actual = AppLogic.Instance.AccepOffer((Emprendedor)emprendedor1,o);
             string expected = "Usted a aceptado la oferta con exito";
+            Assert.AreEqual(expected,actual);
+        }
+
+        /// <summary>
+        /// Se testea de poder ver cuantas ofertas de esta company se aceptaron por emprendedores en un periodo de tiempo.
+        /// </summary>
+        [Test]
+        public void CompanyOffersInPeriodOfTimeTest()
+        {
+            AppLogic.Instance.Companies.Add((Company)empresa1);
+            AppLogic.Instance.Entrepreneurs.Add((Emprendedor)emprendedor1);
+            AppLogic.Instance.PublicNonConstantOffer((Company)empresa1,tipo,200,75,"Pocitos",qualifications2,keyWords2);
+            AppLogic.Instance.PublicNonConstantOffer((Company)empresa1,tipo,30,125,"Pocitos",qualifications2,keyWords2);
+            AppLogic.Instance.AccepOffer((Emprendedor)emprendedor1,AppLogic.Instance.Companies[0].OffersPublished[0]);
+            string expected = AppLogic.Instance.GetPeriodTimeOffersAccepted(AppLogic.Instance.Entrepreneurs[0],3);
+            string actual = "Usted ah aceptado 0 ofertas en los ultimos 3 días";
+            Assert.AreEqual(expected,actual);
+        }
+
+        /// <summary>
+        /// Se testea de poder ver las ofertas aceptadas por este emprendedor durante un periodo de tiempo.
+        /// </summary>
+        [Test]
+        public void EntrepreneurOffersInPeriodOfTimeTest()
+        {
+            AppLogic.Instance.Companies.Add((Company)empresa1);
+            AppLogic.Instance.Entrepreneurs.Add((Emprendedor)emprendedor1);
+            AppLogic.Instance.PublicNonConstantOffer((Company)empresa1,tipo,200,75,"Pocitos",qualifications2,keyWords2);
+            AppLogic.Instance.PublicNonConstantOffer((Company)empresa1,tipo,30,125,"Pocitos",qualifications2,keyWords2);
+            AppLogic.Instance.AccepOffer((Emprendedor)emprendedor1,AppLogic.Instance.Companies[0].OffersPublished[0]);
+            string expected = AppLogic.Instance.GetPeriodTimeOffersAccepted(AppLogic.Instance.Entrepreneurs[0],3);
+            string actual = "Usted ah aceptado 0 ofertas en los ultimos 3 días";
             Assert.AreEqual(expected,actual);
         }
     }
