@@ -129,8 +129,8 @@ namespace Proyect
         {
             StringBuilder message = new StringBuilder();
             PurchaseData lastPurches = this.PurchesedData[this.PurchesedData.Count - 1];
-            int diference = Convert.ToInt32(lastPurches.PurchaseDate - DateTime.Now);
-            if(diference <= periodTime)
+            TimeSpan diference = lastPurches.PurchaseDate - DateTime.Now;
+            if(Convert.ToDouble(diference.TotalHours) <= periodTime*24)
             {
                 message.Append($"{this.Product.Quantity} {this.Product.Classification.Category} Accepted at {lastPurches.PurchaseDate} by {lastPurches.Buyer.Name}\n");
                 return Convert.ToString(message);

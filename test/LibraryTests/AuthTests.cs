@@ -196,9 +196,9 @@ namespace Tests
         public void SearchByKeywordsTest()
         {
             AppLogic.Instance.Companies.Add((Company)empresa1);
-            AppLogic.Instance.PublicNonConstantOffer((Company)empresa1,tipo,200,75,"Pocitos",qualifications2,keyWords2);
+            AppLogic.Instance.PublicConstantOffer((Company)empresa1,tipo,200,75,"Pocitos",qualifications2,keyWords2);
             string actual = (AppLogic.Instance.SearchOfferByKeywords("Toxico")[0]);
-            string expected = $"200 de Reciclable\n\nCompania ofertora: SECOM\nPrecio: 75$\nUbicacion: Pocitos\nFecha de publicacion: {DateTime.Now}\nHabilitaciones necesarias: |Vehiculo propio||Espacio para grandes volumenes de producto||Lugar habilitado para conservar desechos toxicos|";
+            string expected = $"200 de Reciclable\n\nCompania ofertora: SECOM\nPrecio: 75$\nUbicacion: Pocitos\nFecha de publicacion: Siempre\nHabilitaciones necesarias: |Vehiculo propio||Espacio para grandes volumenes de producto||Lugar habilitado para conservar desechos toxicos|";
             Assert.AreEqual(expected,actual);
         }
 
@@ -221,11 +221,12 @@ namespace Tests
         {
             AppLogic.Instance.Companies.Add((Company)empresa1);
             AppLogic.Instance.Entrepreneurs.Add((Emprendedor)emprendedor1);
-            AppLogic.Instance.PublicNonConstantOffer((Company)empresa1,tipo,200,75,"Pocitos",qualifications2,keyWords2);
-            AppLogic.Instance.PublicNonConstantOffer((Company)empresa1,tipo,30,125,"Pocitos",qualifications2,keyWords2);
+            AppLogic.Instance.PublicNonConstantOffer((Company)empresa1,tipo,200,75,"Pocitos",qualifications,keyWords2);
+            AppLogic.Instance.PublicNonConstantOffer((Company)empresa1,tipo,30,125,"Pocitos",qualifications,keyWords2);
             AppLogic.Instance.AccepOffer((Emprendedor)emprendedor1,AppLogic.Instance.Companies[0].OffersPublished[0]);
-            string expected = AppLogic.Instance.GetPeriodTimeOffersAccepted(AppLogic.Instance.Entrepreneurs[0],3);
-            string actual = "Usted ah aceptado 0 ofertas en los ultimos 3 días";
+            AppLogic.Instance.AccepOffer((Emprendedor)emprendedor1,AppLogic.Instance.Companies[0].OffersPublished[1]);
+            string expected = AppLogic.Instance.GetPeriodTimeOffersAccepted(AppLogic.Instance.Entrepreneurs[0],10);
+            string actual = "200 Reciclable at a price of 75$\n30 Reciclable at a price of 125$\nUsted ah aceptado 2 ofertas en los ultimos 10 días";
             Assert.AreEqual(expected,actual);
         }
 
@@ -237,11 +238,11 @@ namespace Tests
         {
             AppLogic.Instance.Companies.Add((Company)empresa1);
             AppLogic.Instance.Entrepreneurs.Add((Emprendedor)emprendedor1);
-            AppLogic.Instance.PublicNonConstantOffer((Company)empresa1,tipo,200,75,"Pocitos",qualifications2,keyWords2);
-            AppLogic.Instance.PublicNonConstantOffer((Company)empresa1,tipo,30,125,"Pocitos",qualifications2,keyWords2);
+            AppLogic.Instance.PublicNonConstantOffer((Company)empresa1,tipo,200,75,"Pocitos",qualifications,keyWords2);
+            AppLogic.Instance.PublicNonConstantOffer((Company)empresa1,tipo,30,125,"Pocitos",qualifications,keyWords2);
             AppLogic.Instance.AccepOffer((Emprendedor)emprendedor1,AppLogic.Instance.Companies[0].OffersPublished[0]);
             string expected = AppLogic.Instance.GetPeriodTimeOffersAccepted(AppLogic.Instance.Entrepreneurs[0],3);
-            string actual = "Usted ah aceptado 0 ofertas en los ultimos 3 días";
+            string actual = "200 Reciclable at a price of 75$\nUsted ah aceptado 1 ofertas en los ultimos 3 días";
             Assert.AreEqual(expected,actual);
         }
     }

@@ -110,10 +110,10 @@ namespace Proyect
             foreach(IOffer offer in this.PurchasedOffers)
             {
                 DateTime fecha = offer.GetOfferBuyerTimeData(this);
-                int diference = Convert.ToInt32(fecha - DateTime.Now);
-                if(diference <= periodTime)
+                TimeSpan diference = fecha - DateTime.Now;
+                if(Convert.ToDouble(diference.TotalHours) <= periodTime*24)
                 {
-                    message.Append($"{offer.Product.Quantity} {offer.Product.Classification.Category} at a price of {offer.Product.Price}$ Accepted at {offer.GetOfferBuyerTimeData(this)}\n");
+                    message.Append($"{offer.Product.Quantity} {offer.Product.Classification.Category} at a price of {offer.Product.Price}$\n");
                     offersAccepted += 1;
                 }
             }
