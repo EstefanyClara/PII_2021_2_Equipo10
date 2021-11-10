@@ -12,9 +12,7 @@ namespace Proyect
 
         private APILocationContainer()
         {
-
             this.client = new LocationApiClient();
-
         }
 
         /// <summary>
@@ -23,9 +21,7 @@ namespace Proyect
         /// <value>_instance</value>
         public static APILocationContainer Instance
         {
-
             get{return _instance;}
-
         }
 
         /// <summary>
@@ -34,9 +30,7 @@ namespace Proyect
         /// <value>this.client</value>
         public LocationApiClient APIdeLocalizacion
         {
-
             get{return this.client;}
-
         }
 
     }

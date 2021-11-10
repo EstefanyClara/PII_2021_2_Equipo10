@@ -15,11 +15,15 @@ namespace Proyect
     public sealed class AppLogic
     {
         private LocationApiClient client = APILocationContainer.Instance.APIdeLocalizacion;
-        private readonly static AppLogic _instance = new AppLogic();
-        private List<Company> companies;
-        private List<Emprendedor> entrepreneurs;
-        private List<Rubro> validRubros = new List<Rubro>(){new Rubro("Alimentos"),new Rubro("Tecnologia"),new Rubro("Medicina")};
 
+        private readonly static AppLogic _instance = new AppLogic();
+
+        private List<Company> companies;
+
+        private List<Emprendedor> entrepreneurs;
+
+        private List<Rubro> validRubros = new List<Rubro>(){new Rubro("Alimentos"),new Rubro("Tecnologia"),new Rubro("Medicina")};
+        
         private List<Qualifications> validQualifications = new List<Qualifications>(){new Qualifications("Vehiculo propio"),new Qualifications("Espacio para grandes volumenes de producto"),new Qualifications("Lugar habilitado para conservar desechos toxicos")};
 
         private List<Classification> validClasification = new List<Classification>(){new Classification("Organicos"),new Classification("Plasticos"),new Classification("Alimentos"),new Classification("Toxicos")};
@@ -180,7 +184,7 @@ namespace Proyect
 
         /// <summary>
         /// Agrega las palabras clave de una oferta.
-        /// Le delaga la responsabilidad a Company (La epxerta).
+        /// Le delaga la responsabilidad a Company (La experta).
         /// </summary>
         /// <param name="company">La compania.</param>
         /// <param name="offer">La oferta.</param>
@@ -246,7 +250,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Publica una oferta no constnte de la compania que se le ingresa.
+        /// Publica una oferta no constante de la compania que se le ingresa.
         /// Le delega la responsabilidad a company (Por patron creator).
         /// </summary>
         /// <param name="company">La compania.</param>
@@ -254,7 +258,7 @@ namespace Proyect
         /// <param name="quantity">La cantidad.</param>
         /// <param name="cost">El precio.</param>
         /// <param name="ubication">La ubicacion.</param>
-        /// <param name="qualifications">Las hablitaciones.</param>
+        /// <param name="qualifications">Las habilitaciones.</param>
         /// <param name="keyWords">La palabra clave.</param>
         /// <returns>mensaje de confirmacion</returns>
         public string PublicNonConstantOffer(Company company, Classification tipo, double quantity, double cost, string ubication, List<Qualifications> qualifications, ArrayList keyWords)
@@ -276,7 +280,7 @@ namespace Proyect
 
         /// <summary>
         /// Metodo que se encarga de buscar las ofertas por ubicacion.
-        /// Le delega la responsabilidada a OfferSearch (Por SRP).
+        /// Le delega la responsabilidad a OfferSearch (Por SRP).
         /// </summary>
         /// <param name="word">Ubicacion de la oferta.</param>
         /// <returns>Un ArrayList con todas las ofertas en la ubicacion dada.</returns>
@@ -287,7 +291,7 @@ namespace Proyect
 
         /// <summary>
         /// Metodo que se encarga de buscar las ofertas por palabra clave.
-        /// Le delega la responsabilidada a OfferSearch (Por SRP).
+        /// Le delega la responsabilidad a OfferSearch (Por SRP).
         /// </summary>
         /// <param name="keyWord"></param>
         /// <returns></returns>
@@ -298,7 +302,7 @@ namespace Proyect
 
         /// <summary>
         /// Metodo para aceptar una oferta.
-        /// Como app logic es la que conoce todos los datos para habilitar la operacion, teien eesta responsabilidad.
+        /// Como app logic es la que conoce todos los datos para habilitar la operacion, tienen esta responsabilidad.
         /// </summary>
         /// <param name="emprendedor">Emprendedor.</param>
         /// <param name="offer">Oferta a aceptar.</param>
@@ -350,7 +354,7 @@ namespace Proyect
         /// Metodo que devuelve un string con la lista de materiales constantes.
         /// Por expert tiene esta responsabilidad.
         /// </summary>
-        /// <returns>Un string con aquellos materiales que son recuerrentes.</returns>
+        /// <returns>Un string con aquellos materiales que son recurrentes.</returns>
         public string GetConstantMaterials()
         {
             Dictionary<Classification, int> clasificationDictionary = new Dictionary<Classification, int>();
@@ -421,8 +425,8 @@ namespace Proyect
 
         /// <summary>
         /// Obtiene la cantidad de ofertas que fueron aceptadas en un periodo de tiempo establecido por el usuario.
-        /// Le delega la responasabilidad a emprendedor (La experta).
-        /// Es una operaciion polimorfica.
+        /// Le delega la responsabilidad a emprendedor (La experta).
+        /// Es una operacion polimorfica.
         /// </summary>
         /// <param name="emprendedor">Emprendedor.</param>
         /// <param name="periodTime">Periodo de tiempo establecido por el usuario.</param>

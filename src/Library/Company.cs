@@ -97,7 +97,7 @@ namespace Proyect
 
                 /// <summary>
                 /// Obtiene la cantidad de ofertas que publico la compania, que fueron aceptadas en un periodo de tiempo (Por expert).
-                /// Es una operwacion polimorfica.
+                /// Es una operacion polimorfica.
                 /// </summary>
                 /// <param name="periodTime">Periodo de tiempo.</param>
                 /// <returns>Las ofertas aceptadas en un periodo de tiempo.</returns>

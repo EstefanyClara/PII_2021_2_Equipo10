@@ -22,6 +22,7 @@ namespace Proyect
                 this.category = value;
             }
         }
+        
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="Classification"/>.
         /// </summary>

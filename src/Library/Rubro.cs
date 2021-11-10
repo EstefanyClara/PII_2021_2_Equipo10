@@ -8,7 +8,7 @@ namespace   Proyect
         private string rubroName;
 
         /// <summary>
-        /// Propierty del nombre del rubro.
+        /// Property del nombre del rubro.
         /// </summary>
         /// <value></value>
         public string RubroName
@@ -22,8 +22,9 @@ namespace   Proyect
                 this.rubroName = value;
             }
         }
+        
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="Rubro"/>
+        /// Inicializa una nueva instancia de la clase <see cref="Rubro"/>.
         /// </summary>
         /// <param name="rubroName">Nombre del rubro.</param>
         public Rubro(string rubroName)

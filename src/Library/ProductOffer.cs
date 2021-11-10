@@ -24,6 +24,7 @@ namespace Proyect
                 this.classification = value;
             }
         }
+        
         /// <summary>
         /// Determina la cantidad de unidades de un producto.
         /// </summary>
@@ -38,6 +39,7 @@ namespace Proyect
                 this.quantity = value;
             }
         }
+
         /// <summary>
         /// Determina el precio por unidad de producto.
         /// </summary>
@@ -52,6 +54,7 @@ namespace Proyect
                 this.price = value;
             }
         }
+
         /// <summary>
         /// Determina la ubicacion de un producto.
         /// </summary>
@@ -66,8 +69,9 @@ namespace Proyect
                 this.ubication = value;
             }
         }
+
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="ProductOffer"/>
+        /// Inicializa una nueva instancia de la clase <see cref="ProductOffer"/>.
         /// </summary>
         /// <param name="classification">Clasificacion del producto.</param>
         /// <param name="quantity">Cantidad del producto.</param>
@@ -81,5 +85,6 @@ namespace Proyect
             this.Price = price;
             this.Ubication = ubication; 
         }
+
     }
 }

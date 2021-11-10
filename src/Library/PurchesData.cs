@@ -11,7 +11,7 @@ namespace Proyect
         private DateTime purchaseDate;
 
         /// <summary>
-        /// Metodo get del comprador.
+        /// Metodo get y set del comprador.
         /// </summary>
         public Emprendedor Buyer
         {
@@ -26,7 +26,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Metodo get de la fecha de compra.
+        /// Metodo get y set de la fecha de compra.
         /// </summary>
         public DateTime PurchaseDate
         {
@@ -42,7 +42,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="PurchaseData"/>
+        /// Inicializa una nueva instancia de la clase <see cref="PurchaseData"/>.
         /// </summary>
         /// <param name="buyer"></param>
         public PurchaseData(Emprendedor buyer)

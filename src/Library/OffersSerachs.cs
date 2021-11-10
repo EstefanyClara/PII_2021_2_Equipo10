@@ -14,6 +14,7 @@ namespace Proyect
 
         private OfferSearch()
         {
+            
         }
 
         /// <summary>
@@ -32,7 +33,7 @@ namespace Proyect
         /// Busca las ofertas con la palabra clave que se le pasa.
         /// </summary>
         /// <param name="word">Palabras claves de oferta.</param>
-        /// <returns>una lista con las offertas</returns>
+        /// <returns>una lista con las ofertas</returns>
         public List<string> SearchByKeywords(string word)
         {
             string keyWord = word.Replace(".","");
@@ -56,7 +57,7 @@ namespace Proyect
         /// Busca ofertas por ubicacion.
         /// </summary>
         /// <param name="ubication">Ubicacion de oferta.</param>
-        /// <returns>una lista con las offertas</returns>
+        /// <returns>una lista con las ofertas</returns>
         public List<string> SearchByUbication(string ubication)
         {
             List<string> offersList = new List<string>();
@@ -77,7 +78,7 @@ namespace Proyect
         /// Busca ofertas por el tipo.
         /// </summary>
         /// <param name="type">Tipo de oferta.</param>
-        /// <returns>una lista con las offertas</returns>
+        /// <returns>una lista con las ofertas</returns>
         public List<string> SearchByType(string type)
         {
             // Deberia funcionar, pero hay que adaptar para cumplir patrones
@@ -112,5 +113,6 @@ namespace Proyect
             offerMessage.Append($"{offer.Product.Quantity} de {offer.Product.Classification.Category}\n\nCompania ofertora: {company.Name}\nPrecio: {offer.Product.Price}$\nUbicacion: {offer.Product.Ubication}\nFecha de publicacion: {offer.DatePublished}\nHabilitaciones necesarias: {qualificationMessage}");
             return Convert.ToString(offerMessage);
         }
+
     }
 }

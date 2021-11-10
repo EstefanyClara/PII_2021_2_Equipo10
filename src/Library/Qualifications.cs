@@ -7,10 +7,10 @@ namespace   Proyect
     {
         private string qualificationName;
 
-/// <summary>
-/// Propiedad del nombre de la habilitacion.
-/// </summary>
-/// <value></value>
+        /// <summary>
+        /// Propiedad del nombre de la habilitacion.
+        /// </summary>
+        /// <value></value>
         public string QualificationName
         {
             get
@@ -22,8 +22,9 @@ namespace   Proyect
                 this.qualificationName = value;
             }
         }
+        
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="Qualifications"/>
+        /// Inicializa una nueva instancia de la clase <see cref="Qualifications"/>.
         /// </summary>
         /// <param name="qualificationName">Nombre de las habilitaciones.</param>
         public Qualifications(string qualificationName)

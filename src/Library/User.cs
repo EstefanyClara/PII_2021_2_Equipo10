@@ -9,21 +9,24 @@ namespace Proyect
         /// Nombre del usuario,sea una compania o emprendedor.
         /// </summary>
         protected string name;
+
         /// <summary>
-        /// Ubicacion del usiario
+        /// Ubicacion del usiario.
         /// </summary>
         protected string ubication;
+
         /// <summary>
-        /// El rubro al que pertnece el usuario.
+        /// El rubro al que pertenece el usuario.
         /// </summary>
         protected Rubro rubro;
 
         /// <summary>
-        /// El id del usuario
+        /// Id del usuario.
         /// </summary>
         protected string userChat_Id;
+
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="User"/>
+        /// Inicializa una nueva instancia de la clase <see cref="User"/>.
         /// </summary>
         /// <param name="name">Nombre del usuario.</param>
         /// <param name="ubication">Ubicacion del usuario.</param>
@@ -40,6 +43,7 @@ namespace Proyect
             this.Rubro = rubro;
             this.UserChat_Id = userChat_Id;
         }
+
         /// <summary>
         /// Propiedad get y set del atributo del nombre.
         /// </summary>
@@ -55,6 +59,7 @@ namespace Proyect
                 this.name = value;
             }
         }
+
         /// <summary>
         /// Propiedad get y set del atributo de la ubicacion.
         /// </summary>
@@ -70,6 +75,7 @@ namespace Proyect
                 this.ubication = value;
             }
         }
+        
         /// <summary>
         /// Propiedad get y set del atributo del rubro.
         /// </summary>

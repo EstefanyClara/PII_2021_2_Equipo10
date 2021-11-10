@@ -5,8 +5,8 @@ using System.Text;
 namespace Proyect
 {
     /// <summary>
-    /// Esta clase administrador invita a los usuarios a registarse.
-    /// Clase singleton, solo una instancia de administrdor. 
+    /// Esta clase administrador invita a los usuarios a registrarse.
+    /// Clase singleton, solo una instancia de administrador. 
     /// </summary>
     public sealed class Administrator
     {
@@ -33,7 +33,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obteien la lista de tokes que el administardo coloca.
+        /// Obteien la lista de tokes que el administrador coloca.
         /// </summary>
         /// <value></value>
         public List<string> Tokens

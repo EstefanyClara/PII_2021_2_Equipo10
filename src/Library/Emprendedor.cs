@@ -30,6 +30,7 @@ namespace Proyect
             this.Specializations = specializations;
             this.purchasedOffer = new List<IOffer>();
         }
+
         /// <summary>
         /// Propiedad get y set de las habilitaciones.
         /// </summary>
@@ -45,6 +46,7 @@ namespace Proyect
                 this.qualifications = value;
             }
         }
+
         /// <summary>
         /// Propiedad Specializations.
         /// </summary>
