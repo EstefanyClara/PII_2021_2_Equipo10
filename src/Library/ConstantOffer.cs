@@ -90,7 +90,14 @@ namespace Proyect
         {
             get
             {
-                return this.purchesedData;
+                if (this.purchesedData.Count == 0)
+                {
+                    return null;
+                }
+                else
+                {
+                    return this.purchesedData;
+                }
             }
         }
 
@@ -101,41 +108,19 @@ namespace Proyect
         public string DatePublished{get {return this.datePublished;}}
 
         /// <summary>
-        /// Obtiene la informacion de compra de la oferta (por patron expert).
-        /// </summary>
-        /// <returns>Devuelve un string con la informacion de compra.</returns>
-        public string GetPurchesedData()
-        {
-            bool ofertaAceptada = false;
-            StringBuilder message = new StringBuilder();
-            foreach(PurchaseData item in this.PurchesedData)
-            {
-                message.Append($"{this.Product.Quantity} {this.Product.Classification.Category} (Constant offer) Accepted at {item.PurchaseDate} by {item.Buyer.Name}\n");
-                ofertaAceptada = true;
-            }
-            if (!ofertaAceptada)
-            {
-                message.Append($"{this.Product.Quantity} of {this.Product.Classification.Category} (Constant offer) not Accepted\n");
-            }
-            return Convert.ToString(message);
-        }
-
-        /// <summary>
         /// Obtiene la informacion de compra del ultimo emprendedor que acepta la oferta (Patron expert).
         /// </summary>
         /// <param name="periodTime"></param>
         /// <returns>Mensaje con la infromacion de compra de la oferta, si la misma entra dentro del rango estipulado, en caso contrario, mensaje que indica dicha situacion.</returns>
-        public string GetPeriodTimeOffersAcceptedData(int periodTime)
+        public bool GetPeriodTimeOffersAcceptedData(int periodTime)
         {
-            StringBuilder message = new StringBuilder();
             PurchaseData lastPurches = this.PurchesedData[this.PurchesedData.Count - 1];
             TimeSpan diference = lastPurches.PurchaseDate - DateTime.Now;
             if(Convert.ToDouble(diference.TotalHours) <= periodTime*24)
             {
-                message.Append($"{this.Product.Quantity} {this.Product.Classification.Category} Accepted at {lastPurches.PurchaseDate} by {lastPurches.Buyer.Name}\n");
-                return Convert.ToString(message);
+                return true;
             }
-            return "NonAccepte";
+            return false;
         }
 
         /// <summary>

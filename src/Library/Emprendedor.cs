@@ -23,8 +23,7 @@ namespace Proyect
         /// <param name="rubro">Rubro del emprendedor.</param>
         /// <param name="qualifications">Hablitaciones del emprendedor.</param>
         /// <param name="specializations">Especializaciones del emprendedor.</param>
-        /// <param name="userChat_Id">Id del emprendedor.</param>
-        public Emprendedor(string userChat_Id, string name, string ubication, Rubro rubro, List<Qualifications> qualifications, ArrayList specializations):base(name, ubication, rubro, userChat_Id)
+        public Emprendedor(string name, string ubication, Rubro rubro, List<Qualifications> qualifications, ArrayList specializations):base(name, ubication, rubro)
         {
             this.Qualifications = qualifications;
             this.Specializations = specializations;
@@ -83,42 +82,24 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene un string indicando las ofertas que fueron aceptadas por el por el emprendedor (Expert).
-        /// Es una operacion polimorfica.
-        /// </summary>
-        /// <returns>message</returns>
-        public string GetOffersAccepted()
-        {
-            StringBuilder message = new StringBuilder();
-            foreach (IOffer item in this.PurchasedOffers)
-            {
-                message.Append($"{item.Product.Quantity} {item.Product.Classification.Category} at a price of {item.Product.Price}$ Accepted at {item.GetOfferBuyerTimeData(this)}\n");
-            }
-            return Convert.ToString(message);
-        }
-
-        /// <summary>
         /// Obtiene la cantidad de ofertas que fueron aceptadas en un periodo de tiempo (Expert).
         /// Es una operacion polimorfica.
         /// </summary>
         /// <param name="periodTime">Periodo de tiempo.</param>
         /// <returns>message</returns>
-        public string GetOffersAccepted(int periodTime)
+        public List<IOffer> GetOffersAccepted(int periodTime)
         {
-            StringBuilder message = new StringBuilder();
-            int offersAccepted = 0;
+            List<IOffer> ofertas = new List<IOffer>();
             foreach(IOffer offer in this.PurchasedOffers)
             {
                 DateTime fecha = offer.GetOfferBuyerTimeData(this);
                 TimeSpan diference = fecha - DateTime.Now;
                 if(Convert.ToDouble(diference.TotalHours) <= periodTime*24)
                 {
-                    message.Append($"{offer.Product.Quantity} {offer.Product.Classification.Category} at a price of {offer.Product.Price}$\n");
-                    offersAccepted += 1;
+                    ofertas.Add(offer);
                 }
             }
-            message.Append($"Usted ah aceptado {offersAccepted} ofertas en los ultimos {periodTime} días");
-            return Convert.ToString(message);
+            return ofertas;
         }
     }
 }

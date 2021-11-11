@@ -104,38 +104,18 @@ namespace Proyect
         public string DatePublished{get {return this.datePublished;}}
 
         /// <summary>
-        /// Obtiene la informacion de compra de la oferta (por patron expert).
-        /// </summary>
-        /// <returns>Un string con la informacion de quien lo compro.</returns>
-        public string GetPurchesedData()
-        {
-            StringBuilder message = new StringBuilder();
-            if (this.PurchesedData != null)
-            {
-                message.Append($"{this.Product.Quantity} {this.Product.Classification.Category} Accepted at {this.PurchesedData.PurchaseDate} by {this.PurchesedData.Buyer}\n");
-            }
-            else
-            {
-                message.Append($"{this.Product.Quantity} of {this.Product.Classification.Category} not Accepted\n");
-            }
-            return Convert.ToString(message);
-        }
-
-        /// <summary>
         /// Obtiene la informacion de compra de la oferta (expert).
         /// </summary>
         /// <param name="periodTime"></param>
         /// <returns>si la oferta se compro antes de la fecha estipulada, devuelve la iformacion de compra, en caso contrario, devuelve un striing indicando dicha situacion</returns>
-        public string GetPeriodTimeOffersAcceptedData(int periodTime)
+        public bool GetPeriodTimeOffersAcceptedData(int periodTime)
         {
-            StringBuilder message = new StringBuilder();
-            int diference = Convert.ToInt32(this.PurchesedData.PurchaseDate - DateTime.Now);
-            if(diference <= periodTime)
+            TimeSpan diference = this.PurchesedData.PurchaseDate - DateTime.Now;
+            if(Convert.ToDouble(diference.TotalHours) <= periodTime*24)
             {
-                message.Append($"{this.Product.Quantity} {this.Product.Classification.Category} Accepted at {this.PurchesedData.PurchaseDate} by {this.PurchesedData.Buyer}\n");
-                return Convert.ToString(message);
+                return true;
             }
-            return "NonAccepte";
+            return false;
         }
 
         /// <summary>

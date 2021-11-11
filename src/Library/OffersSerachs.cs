@@ -33,19 +33,19 @@ namespace Proyect
         /// </summary>
         /// <param name="word">Palabras claves de oferta.</param>
         /// <returns>una lista con las offertas</returns>
-        public List<string> SearchByKeywords(string word)
+        public List<IOffer> SearchByKeywords(string word)
         {
             string keyWord = word.Replace(".","");
             keyWord = keyWord.Replace(",","");
             keyWord = keyWord.Replace(" ","");
-            List<string> offersList = new List<string>();
-            foreach (Company company in AppLogic.Instance.Companies)
+            List<IOffer> offersList = new List<IOffer>();
+            foreach (Company company in AppLogic.Instance.Companies.Values)
             {
                 foreach (IOffer offer in company.OffersPublished)
                 {
                     if (offer.KeyWords.Contains(keyWord))
                     {
-                        offersList.Add(GetOffersMessages(offer,company));
+                        offersList.Add(offer);
                     }
                 }
             }
@@ -57,16 +57,16 @@ namespace Proyect
         /// </summary>
         /// <param name="ubication">Ubicacion de oferta.</param>
         /// <returns>una lista con las offertas</returns>
-        public List<string> SearchByUbication(string ubication)
+        public List<IOffer> SearchByUbication(string ubication)
         {
-            List<string> offersList = new List<string>();
-            foreach (Company company in AppLogic.Instance.Companies)
+            List<IOffer> offersList = new List<IOffer>();
+            foreach (Company company in AppLogic.Instance.Companies.Values)
             {
                 foreach (IOffer offer in company.OffersPublished)
                 {
                     if(offer.Product.Ubication == ubication)
                     {
-                        offersList.Add(GetOffersMessages(offer,company));
+                        offersList.Add(offer);
                     }
                 }
             }
@@ -78,39 +78,20 @@ namespace Proyect
         /// </summary>
         /// <param name="type">Tipo de oferta.</param>
         /// <returns>una lista con las offertas</returns>
-        public List<string> SearchByType(string type)
+        public List<IOffer> SearchByType(string type)
         {
-            // Deberia funcionar, pero hay que adaptar para cumplir patrones
-            List<string> offersList = new List<string>();
-            foreach (Company company in AppLogic.Instance.Companies)
+            List<IOffer> offersList = new List<IOffer>();
+            foreach (Company company in AppLogic.Instance.Companies.Values)
             {
                 foreach (IOffer offer in company.OffersPublished)
                 {
                     if(offer.Product.Classification.Category == type)
                     {
-                        offersList.Add(GetOffersMessages(offer,company));
+                        offersList.Add(offer);
                     }
                 }
             }
             return offersList;
-        }
-
-        /// <summary>
-        /// Obtiene la informacion de un oferta en forma de mensaje.
-        /// </summary>
-        /// <param name="offer"></param>
-        /// <param name="company"></param>
-        /// <returns>La infromacion de la oferta.</returns>
-        public string GetOffersMessages(IOffer offer, Company company)
-        {
-            StringBuilder offerMessage = new StringBuilder();
-            StringBuilder qualificationMessage = new StringBuilder();
-            foreach (Qualifications item in offer.Qualifications)
-            {
-                qualificationMessage.Append($"|{item.QualificationName}|");
-            }
-            offerMessage.Append($"{offer.Product.Quantity} de {offer.Product.Classification.Category}\n\nCompania ofertora: {company.Name}\nPrecio: {offer.Product.Price}$\nUbicacion: {offer.Product.Ubication}\nFecha de publicacion: {offer.DatePublished}\nHabilitaciones necesarias: {qualificationMessage}");
-            return Convert.ToString(offerMessage);
         }
     }
 }

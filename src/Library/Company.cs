@@ -21,8 +21,7 @@ namespace Proyect
                 /// <param name="name">Nombre compania.</param>
                 /// <param name="ubication">Ubicacion de la compania.</param>
                 /// <param name="rubro">Rubro de la compania.</param>
-                /// <param name="userChat_Id">Id de la compania.</param>
-                public Company(string userChat_Id, string name, string ubication, Rubro rubro):base(name, ubication, rubro, userChat_Id)
+                public Company(string name, string ubication, Rubro rubro):base(name, ubication, rubro)
                 {
 
                 }
@@ -65,16 +64,21 @@ namespace Proyect
                 /// <param name="keyWords"></param>
                 public  void PublicNonConstantOffer(Classification tipo, double quantity, double cost, string ubication, List<Qualifications> qualifications, ArrayList keyWords)
                 {
-                        OffersPublished.Add(new NonConstantOffer(tipo, quantity, cost, ubication, qualifications, keyWords));
+                        this.OffersPublished.Add(new NonConstantOffer(tipo, quantity, cost, ubication, qualifications, keyWords));
                 }
 
                 /// <summary>
                 /// Remueve ofertas (Por Expert).
                 /// </summary>
                 /// <param name="offer">Oferta.</param>
-                public void RemoveOffer(IOffer offer)
+                public bool RemoveOffer(IOffer offer)
                 {
-                        this.OffersPublished.Remove(offer);
+                        if (this.OffersPublished.Contains(offer))
+                        {
+                                this.OffersPublished.Remove(offer);
+                                return true;
+                        }
+                        return false;
                 }
 
                 /// <summary>
@@ -82,15 +86,17 @@ namespace Proyect
                 /// Es una operacion polimorfica.
                 /// </summary>
                 /// <returns>Las ofertas aceptadas.</returns>
-                public string GetOffersAccepted()
+                public List<IOffer> GetOffersAccepted()
                 {
-                        StringBuilder message = new StringBuilder();
-                        message.Append("La informacion de compra de sus ofertas es la siguiente\n\n");
+                        List<IOffer> ofertas = new List<IOffer>();
                         foreach (IOffer item in this.OffersPublished)
                         {
-                                message.Append(item.GetPurchesedData());
+                                if (item != null)
+                                {
+                                        ofertas.Add(item);
+                                }
                         }
-                        return Convert.ToString(message);
+                        return ofertas;
                 }
 
 
@@ -101,21 +107,17 @@ namespace Proyect
                 /// </summary>
                 /// <param name="periodTime">Periodo de tiempo.</param>
                 /// <returns>Las ofertas aceptadas en un periodo de tiempo.</returns>
-                public string GetOffersAccepted(int periodTime)
+                public List<IOffer> GetOffersAccepted(int periodTime)
                 {
-                        int offersAccepted = 0;
-                        StringBuilder lastMessage = new StringBuilder();
+                        List<IOffer> ofertas = new List<IOffer>();
                         foreach(IOffer offer in this.OffersPublished)
                         {
-                                string message = offer.GetPeriodTimeOffersAcceptedData(periodTime);
-                                if (message != "NonAccepted")
+                                if (offer.GetPeriodTimeOffersAcceptedData(periodTime))
                                 {
-                                        lastMessage.Append(message);
-                                        offersAccepted += 1;
+                                        ofertas.Add(offer);
                                 }
                         }
-                        lastMessage.Append($"En los ultimos {periodTime} días le aceptaron {offersAccepted} ofertas");
-                        return Convert.ToString(lastMessage);
+                        return ofertas;
                 }
 
                 /// <summary>
@@ -123,9 +125,14 @@ namespace Proyect
                 /// </summary>
                 /// <param name="offer">La oferta.</param>
                 /// <param name="keyWord">La palabra clave de la oferta.</param>
-                public void RemoveKeyWords(IOffer offer, string keyWord)
+                public bool RemoveKeyWords(IOffer offer, string keyWord)
                 {
-                        offer.KeyWords.Remove(keyWord);
+                        if (offer.KeyWords.Contains(keyWord))
+                        {
+                                offer.KeyWords.Remove(keyWord);
+                                return true;
+                        }
+                        return false;
                 }
 
                 /// <summary>
@@ -133,14 +140,14 @@ namespace Proyect
                 /// </summary>
                 /// <param name="offer">La oferta.</param>
                 /// <param name="keyWord">La palabra clave de la oferta.</param>
-                public string AddKeyWords(IOffer offer, string keyWord)
+                public bool AddKeyWords(IOffer offer, string keyWord)
                 {                
                         if (!offer.KeyWords.Contains(keyWord))
                         {
                                 offer.KeyWords.Add(keyWord);
-                                return $"Se agrego {keyWord} a la oferta de {offer.Product.Quantity} de {offer.Product.Classification.Category}";
+                                return true;
                         }
-                        return $"{keyWord} ya se encuntra como palabra clave en la oferta seleccionada";
+                        return false;
                 }
 
                 /// <summary>
@@ -148,9 +155,14 @@ namespace Proyect
                 /// </summary>
                 /// <param name="offer">La oferta.</param>
                 /// <param name="qualification">La habilitaciones de la oferta.</param>
-                public void AddQualification(IOffer offer, Qualifications qualification)
+                public bool AddQualification(IOffer offer, Qualifications qualification)
                 {
+                        if (offer.Qualifications.Contains(qualification))
+                        {
+                                return false;
+                        }
                         offer.Qualifications.Add(qualification);
+                        return true;
                 }
 
                 /// <summary>
@@ -158,9 +170,14 @@ namespace Proyect
                 /// </summary>
                 /// <param name="offer">La oferta.</param>
                 /// <param name="qualification">La habilitacion de la oferta.</param>
-                public void RemoveQualification(IOffer offer, Qualifications qualification)
+                public bool RemoveQualification(IOffer offer, Qualifications qualification)
                 {
+                        if (!offer.Qualifications.Contains(qualification))
+                        {
+                                return false;
+                        }
                         offer.Qualifications.Remove(qualification);
+                        return true;
                 }
         }
 }

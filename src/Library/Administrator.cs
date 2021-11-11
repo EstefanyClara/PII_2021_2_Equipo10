@@ -47,16 +47,23 @@ namespace Proyect
         /// Metodo que crea una compania si la misma ingreso un token correcto (Utiliza Creator).
         /// </summary>
         /// <param name="companyToken"></param>
-        /// <param name="userChat_Id"></param>
         /// <param name="name"></param>
         /// <param name="ubication"></param>
         /// <param name="rubro"></param>
         /// <returns></returns>
-        public Company Invite(string companyToken, string userChat_Id, string name, string ubication, Rubro rubro)
+        public Company Invite(string companyToken, string name, string ubication, Rubro rubro)
         {   
             if (tokens.Contains(companyToken))
             {
-                return new Company(userChat_Id, name, ubication, rubro);
+                try
+                {
+                    return new Company(name, ubication, rubro);
+                }
+                catch (EmptyUserBuilderException e)
+                {
+                    Console.WriteLine(e.Message);
+                    throw e;
+                }
             }else 
             {
                 return null;

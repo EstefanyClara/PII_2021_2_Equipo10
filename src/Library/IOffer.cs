@@ -34,17 +34,11 @@ namespace Proyect
         string DatePublished{get;}
 
         /// <summary>
-        /// Obtiene la informacion de compra de la oferta.
-        /// </summary>
-        /// <returns>mensaje con la infromacion de compra de todas sus ofertas.</returns>
-        string GetPurchesedData();
-
-        /// <summary>
         /// Obtien todas las ofertas que le fueron aceptadas en un periodo de tiempo.
         /// </summary>
         /// <param name="periodTime"></param>
         /// <returns>mensaje con la informacion de compra de sus ofertas</returns>
-        string GetPeriodTimeOffersAcceptedData(int periodTime);
+        bool GetPeriodTimeOffersAcceptedData(int periodTime);
 
         /// <summary>
         /// Obtiene la fecha en la que el imprendedor ingresado acepto la oferta.
