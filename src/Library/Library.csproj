@@ -20,5 +20,8 @@
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
     <AdditionalFiles Include="..\..\.analyzers\stylecop.json" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\PII_LocationApiClient\src\Library\Library.csproj" />
+  </ItemGroup>
 
 </Project>

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Text;
 using System.Collections.Generic;
-using LocationApi;
+using Ucu.Poo.Locations.Client;
 using System.Threading.Tasks;
 
 namespace Proyect
@@ -285,11 +285,11 @@ namespace Proyect
         {
             string emprendedorUbication = emprendedor.Ubication;
             string offerUbication = offer.Product.Ubication;
-            Location locationEmprendedor = await client.GetLocation(emprendedorUbication);
-            Location locationOffer = await client.GetLocation(offerUbication);
-            Distance distance = await client.GetDistance(locationEmprendedor, locationOffer);
+            Location locationEmprendedor = await client.GetLocationAsync(emprendedorUbication);
+            Location locationOffer = await client.GetLocationAsync(offerUbication);
+            Distance distance = await client.GetDistanceAsync(locationEmprendedor, locationOffer);
             double kilometers = distance.TravelDistance;
-            await client.DownloadRoute(locationEmprendedor.Latitude, locationEmprendedor.Longitude,
+            await client.DownloadRouteAsync(locationEmprendedor.Latitude, locationEmprendedor.Longitude,
             locationOffer.Latitude, locationOffer.Longitude, @"route.png");
             return Convert.ToString(kilometers);
         }
@@ -302,8 +302,8 @@ namespace Proyect
         public async Task ObteinOfferMap(IOffer offer)
         {
             string offerUbication = offer.Product.Ubication;
-            Location locationOffer = await client.GetLocation(offerUbication);
-            await client.DownloadMap (locationOffer.Latitude, locationOffer.Longitude, @"map.png");
+            Location locationOffer = await client.GetLocationAsync(offerUbication);
+            await client.DownloadMapAsync(locationOffer.Latitude, locationOffer.Longitude, @"map.png");
         }
 
         /// <summary>

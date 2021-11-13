@@ -22,7 +22,7 @@ namespace ConsoleApplication
         /// </summary>
         /// <returns>Task.</returns>
         public static async Task Main()
-        {
+        {/*
             AppLogic.Instance.RegisterEntrepreneurs("ABD","Matias", "Palacio Legislativo", AppLogic.Instance.Rubros[0], AppLogic.Instance.Qualifications, new ArrayList(){"Desechos organicos"});
             AppLogic.Instance.RegisterEntrepreneurs("GBY","Matias", "Cordoba", AppLogic.Instance.Rubros[1], new List<Qualifications>(){AppLogic.Instance.Qualifications[0], AppLogic.Instance.Qualifications[1]}, new ArrayList(){"Desechos plasticos"});
             Company c1 = new Company("AFT","MatiasCorp", "Parque Rodó", AppLogic.Instance.Rubros[1]);
@@ -60,6 +60,7 @@ namespace ConsoleApplication
             Console.WriteLine(AppLogic.Instance.SearchOfferByKeywords("Toxicos")[0]);
             
             #endregion
+            */
         }
     }
 }

@@ -22,12 +22,11 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:Proyect.Administrator.Invite(System.String,System.String,System.String,System.String,Proyect.Rubro)">
+        <member name="M:Proyect.Administrator.Invite(System.String,System.String,System.String,Proyect.Rubro)">
             <summary>
             Metodo que crea una compania si la misma ingreso un token correcto (Utiliza Creator).
             </summary>
             <param name="companyToken"></param>
-            <param name="userChat_Id"></param>
             <param name="name"></param>
             <param name="ubication"></param>
             <param name="rubro"></param>
@@ -115,18 +114,6 @@
             <param name="ubication"></param>
             <param name="rubro"></param>
             <returns>mensaje de confirmacion</returns>
-        </member>
-        <member name="M:Proyect.AppLogic.ValidRubrosMessage">
-            <summary>
-            Metodo que retorna un mensaje con los rubros habilitados (Por expert).
-            </summary>
-            <returns>Los rubros habilitados.</returns>
-        </member>
-        <member name="M:Proyect.AppLogic.validQualificationsMessage">
-            <summary>
-            Metodo que retorna un mensaje con las Habilitaciones permitidas (Por expert).
-            </summary>
-            <returns>Habilitaciones permitidas.</returns>
         </member>
         <member name="M:Proyect.AppLogic.RemoveKeyWords(Proyect.Company,Proyect.IOffer,System.String)">
             <summary>
@@ -317,14 +304,13 @@
             Lista de ofertas de la compania.
             </summary>
         </member>
-        <member name="M:Proyect.Company.#ctor(System.String,System.String,System.String,Proyect.Rubro)">
+        <member name="M:Proyect.Company.#ctor(System.String,System.String,Proyect.Rubro)">
             <summary>
             Inicializa una nueva instancia de la clase <see cref="T:Proyect.Company"/>.
             </summary>
             <param name="name">Nombre compania.</param>
             <param name="ubication">Ubicacion de la compania.</param>
             <param name="rubro">Rubro de la compania.</param>
-            <param name="userChat_Id">Id de la compania.</param>
         </member>
         <member name="P:Proyect.Company.OffersPublished">
             <summary>
@@ -453,12 +439,6 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:Proyect.ConstantOffer.GetPurchesedData">
-            <summary>
-            Obtiene la informacion de compra de la oferta (por patron expert).
-            </summary>
-            <returns>Devuelve un string con la informacion de compra.</returns>
-        </member>
         <member name="M:Proyect.ConstantOffer.GetPeriodTimeOffersAcceptedData(System.Int32)">
             <summary>
             Obtiene la informacion de compra del ultimo emprendedor que acepta la oferta (Patron expert).
@@ -484,7 +464,7 @@
             Esta clase representa un Emprendedor, hereda de user (Tienen relaciontaxonomica). 
             </summary>
         </member>
-        <member name="M:Proyect.Emprendedor.#ctor(System.String,System.String,System.String,Proyect.Rubro,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.ArrayList)">
+        <member name="M:Proyect.Emprendedor.#ctor(System.String,System.String,Proyect.Rubro,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.ArrayList)">
             <summary>
             Inicializa una nueva instancia de la clase <see cref="T:Proyect.Emprendedor"/>
             </summary>
@@ -493,7 +473,6 @@
             <param name="rubro">Rubro del emprendedor.</param>
             <param name="qualifications">Hablitaciones del emprendedor.</param>
             <param name="specializations">Especializaciones del emprendedor.</param>
-            <param name="userChat_Id">Id del emprendedor.</param>
         </member>
         <member name="P:Proyect.Emprendedor.Qualifications">
             <summary>
@@ -518,13 +497,6 @@
             Metodo para agregar una oferta a la lista de ofertas que el emprendedor acepto (Por expert).
             </summary>
             <param name="offer"></param>
-        </member>
-        <member name="M:Proyect.Emprendedor.GetOffersAccepted">
-            <summary>
-            Obtiene un string indicando las ofertas que fueron aceptadas por el por el emprendedor (Expert).
-            Es una operacion polimorfica.
-            </summary>
-            <returns>message</returns>
         </member>
         <member name="M:Proyect.Emprendedor.GetOffersAccepted(System.Int32)">
             <summary>
@@ -631,12 +603,6 @@
             </summary>
             <value>DateTime</value>
         </member>
-        <member name="M:Proyect.IOffer.GetPurchesedData">
-            <summary>
-            Obtiene la informacion de compra de la oferta.
-            </summary>
-            <returns>mensaje con la infromacion de compra de todas sus ofertas.</returns>
-        </member>
         <member name="M:Proyect.IOffer.GetPeriodTimeOffersAcceptedData(System.Int32)">
             <summary>
             Obtien todas las ofertas que le fueron aceptadas en un periodo de tiempo.
@@ -707,12 +673,6 @@
             </summary>
             <value>dateTime</value>
         </member>
-        <member name="M:Proyect.NonConstantOffer.GetPurchesedData">
-            <summary>
-            Obtiene la informacion de compra de la oferta (por patron expert).
-            </summary>
-            <returns>Un string con la informacion de quien lo compro.</returns>
-        </member>
         <member name="M:Proyect.NonConstantOffer.GetPeriodTimeOffersAcceptedData(System.Int32)">
             <summary>
             Obtiene la informacion de compra de la oferta (expert).
@@ -765,14 +725,6 @@
             </summary>
             <param name="type">Tipo de oferta.</param>
             <returns>una lista con las offertas</returns>
-        </member>
-        <member name="M:Proyect.OfferSearch.GetOffersMessages(Proyect.IOffer,Proyect.Company)">
-            <summary>
-            Obtiene la informacion de un oferta en forma de mensaje.
-            </summary>
-            <param name="offer"></param>
-            <param name="company"></param>
-            <returns>La infromacion de la oferta.</returns>
         </member>
         <member name="T:Proyect.ProductOffer">
             <summary>
@@ -883,19 +835,13 @@
             El rubro al que pertnece el usuario.
             </summary>
         </member>
-        <member name="F:Proyect.User.userChat_Id">
-            <summary>
-            El id del usuario
-            </summary>
-        </member>
-        <member name="M:Proyect.User.#ctor(System.String,System.String,Proyect.Rubro,System.String)">
+        <member name="M:Proyect.User.#ctor(System.String,System.String,Proyect.Rubro)">
             <summary>
             Inicializa una nueva instancia de la clase <see cref="T:Proyect.User"/>
             </summary>
             <param name="name">Nombre del usuario.</param>
             <param name="ubication">Ubicacion del usuario.</param>
             <param name="rubro">Rubro del usuario.</param>
-            <param name="userChat_Id">Id del usuario.</param>
         </member>
         <member name="P:Proyect.User.Name">
             <summary>
@@ -914,12 +860,6 @@
             Propiedad get y set del atributo del rubro.
             </summary>
             <value></value>
-        </member>
-        <member name="P:Proyect.User.UserChat_Id">
-            <summary>
-            Obtiene el id del usuario, para asi lograr identificarlo.
-            </summary>
-            <value>Id.</value>
         </member>
         <member name="T:LocationApi.Distance">
             <summary>
