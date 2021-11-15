@@ -6,7 +6,7 @@ namespace Proyect
 {
     /// <summary>
     /// Esta clase administrador invita a los usuarios a registarse.
-    /// Clase singleton, solo una instancia de administrdor. 
+    /// Clase singleton, solo una instancia de administrador. 
     /// </summary>
     public sealed class Administrator
     {
@@ -69,7 +69,6 @@ namespace Proyect
                 return null;
             }
         }
-
         private void PrecargarDatos()
         {
             tokens.Add("Pepe");
