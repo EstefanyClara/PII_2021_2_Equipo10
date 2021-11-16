@@ -5,62 +5,113 @@
 //--------------------------------------------------------------------------------
 
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
-using Proyect;
+using Telegram.Bot.Extensions.Polling;
+using Telegram.Bot;
+using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
 
-namespace ConsoleApplication
+namespace Ucu.Poo.TelegramBot
 {
     /// <summary>
-    /// Programa de consola de demostración.
+    /// Un programa que implementa un bot de Telegram.
     /// </summary>
     public static class Program
     {
+        // La instancia del bot.
+        private static TelegramBotClient Bot;
+
+        // El token provisto por Telegram al crear el bot.
+        //
+        // *Importante*:
+        // Para probar este ejemplo, crea un bot nuevo y eeemplaza este token por el de tu bot.
+        private static string Token = "";
+
+        //private static IHandler firstHandler;
+
         /// <summary>
-        /// Main.
+        /// Punto de entrada al programa.
         /// </summary>
-        /// <returns>Task.</returns>
-        public static async Task Main()
-        {/*
-            AppLogic.Instance.RegisterEntrepreneurs("ABD","Matias", "Palacio Legislativo", AppLogic.Instance.Rubros[0], AppLogic.Instance.Qualifications, new ArrayList(){"Desechos organicos"});
-            AppLogic.Instance.RegisterEntrepreneurs("GBY","Matias", "Cordoba", AppLogic.Instance.Rubros[1], new List<Qualifications>(){AppLogic.Instance.Qualifications[0], AppLogic.Instance.Qualifications[1]}, new ArrayList(){"Desechos plasticos"});
-            Company c1 = new Company("AFT","MatiasCorp", "Parque Rodó", AppLogic.Instance.Rubros[1]);
-            Company c2 = new Company("ABR","LucasCorp","Pocitos",AppLogic.Instance.Rubros[0]);
-            AppLogic.Instance.Companies.Add(c1);
-            AppLogic.Instance.Companies.Add(c2);
-            AppLogic.Instance.PublicConstantOffer(c1, AppLogic.Instance.Classifications[3], 300, 5000, "Parque Rodó", AppLogic.Instance.Qualifications, new ArrayList(){"Toxicos","Grandes volumenes"});
-            AppLogic.Instance.AccepOffer(AppLogic.Instance.Entrepreneurs[0], c1.OffersPublished[0]);
-            await AppLogic.Instance.ObteinOfferMap(c1.OffersPublished[0]).ConfigureAwait(true);
-            Console.WriteLine(await AppLogic.Instance.ObteinOfferDistance(AppLogic.Instance.Entrepreneurs[0], c1.OffersPublished[0]).ConfigureAwait(true) + " Kilometers");
-            Console.WriteLine(AppLogic.Instance.ValidRubrosMessage());
-            Console.WriteLine(AppLogic.Instance.validQualificationsMessage());
-            Console.WriteLine(AppLogic.Instance.GetConstantMaterials());
-            Console.WriteLine(AppLogic.Instance.GetOffersAccepted(c1));
-            Console.WriteLine(AppLogic.Instance.GetOffersAccepted(AppLogic.Instance.Entrepreneurs[0]));
-            Console.WriteLine(AppLogic.Instance.SearchOfferByType("Toxicos")[0]);
-            Console.WriteLine("-----------------------------------------------------------------------");
+        public static void Main()
+        {
+            Bot = new TelegramBotClient(Token);
 
-            #region LucasTest
-            
-            Classification tipo = new Classification("Reciclable");
-            ArrayList keyWords = new ArrayList();
-            ArrayList keyWords2 = new ArrayList();
-            keyWords2.Add("Reciclable");
-            keyWords2.Add("Toxicos");
-            List<Qualifications> qualifications = new List<Qualifications>();
-            ArrayList specializations = new ArrayList();
+            //firstHandler =
+                //new HelloHandler(
+                //new GoodByeHandler(
+                //new PhotoHandler(Bot, null)
+            //));
 
-            Qualifications q1 = new Qualifications("Calificacion1");
-            qualifications.Add(q1);
-            Qualifications s1 = new Qualifications("Especializacion");
-            specializations.Add(s1);
+            var cts = new CancellationTokenSource();
 
-            AppLogic.Instance.PublicConstantOffer(c2,tipo,20,100,"Parque Battle",qualifications,keyWords2);
-            Console.WriteLine(AppLogic.Instance.SearchOfferByKeywords("Toxicos")[0]);
-            
-            #endregion
-            */
+            // Comenzamos a escuchar mensajes. Esto se hace en otro hilo (en background). El primer método
+            // HandleUpdateAsync es invocado por el bot cuando se recibe un mensaje. El segundo método HandleErrorAsync
+            // es invocado cuando ocurre un error.
+            Bot.StartReceiving(
+                new DefaultUpdateHandler(HandleUpdateAsync, HandleErrorAsync),
+                cts.Token
+            );
+
+            Console.WriteLine($"Bot is up!");
+
+            // Esperamos a que el usuario aprete Enter en la consola para terminar el bot.
+            Console.ReadLine();
+
+            // Terminamos el bot.
+            cts.Cancel();
+        }
+
+        /// <summary>
+        /// Maneja las actualizaciones del bot (todo lo que llega), incluyendo mensajes, ediciones de mensajes,
+        /// respuestas a botones, etc. En este ejemplo sólo manejamos mensajes de texto.
+        /// </summary>
+        public static async Task HandleUpdateAsync(Update update, CancellationToken cancellationToken)
+        {
+            try
+            {
+                // Sólo respondemos a mensajes de texto
+                if (update.Type == UpdateType.Message)
+                {
+                    await HandleMessageReceived(update.Message);
+                }
+            }
+            catch(Exception e)
+            {
+                await HandleErrorAsync(e, cancellationToken);
+            }
+        }
+
+        /// <summary>
+        /// Maneja los mensajes que se envían al bot.
+        /// Lo único que hacemos por ahora es escuchar 3 tipos de mensajes:
+        /// - "hola": responde con texto
+        /// - "chau": responde con texto
+        /// - "foto": responde con una foto
+        /// </summary>
+        /// <param name="message">El mensaje recibido</param>
+        /// <returns></returns>
+        private static async Task HandleMessageReceived(Message message)
+        {
+            Console.WriteLine($"Received a message from {message.From.FirstName} saying: {message.Text}");
+
+            string response = string.Empty;
+
+            //firstHandler.Handle(message, out response);
+
+            if (!string.IsNullOrEmpty(response))
+            {
+                await Bot.SendTextMessageAsync(message.Chat.Id, response);
+            }
+        }
+
+        /// <summary>
+        /// Manejo de excepciones. Por ahora simplemente la imprimimos en la consola.
+        /// </summary>
+        public static Task HandleErrorAsync(Exception exception, CancellationToken cancellationToken)
+        {
+            Console.WriteLine(exception.Message);
+            return Task.CompletedTask;
         }
     }
 }
