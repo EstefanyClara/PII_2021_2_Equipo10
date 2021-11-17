@@ -1,4 +1,5 @@
-
+using System;
+using System.Collections.Generic;
 
 namespace Proyect
 {
@@ -9,12 +10,29 @@ namespace Proyect
     {
         private readonly static DataUserContainer _instance = new DataUserContainer();
 
-        private DataUserContainer client;
+        private Dictionary<string,List<List<string>>> userDataHistory;
 
         private DataUserContainer()
         {
-            this.client = new DataUserContainer();
-            
+            this.userDataHistory = new Dictionary<string, List<List<string>>> ();
+        }
+
+        /// <summary>
+        /// Obtiene la instancia de la clase.
+        /// </summary>
+        /// <value>La instancia de la clase.</value>
+        public static DataUserContainer Instance
+        {
+            get{return _instance;}
+        }
+
+        /// <summary>
+        /// Obtiene el diccionario donde se guardan los mensajes de un usuario.
+        /// </summary>
+        /// <value>Diccionario con clave el chat ID de un usuario, y lista de la histroia de usuario.</value>
+        public Dictionary<string,List<List<string>>> UserDataHistory
+        {
+            get{return this.userDataHistory;}
         }
 
     }

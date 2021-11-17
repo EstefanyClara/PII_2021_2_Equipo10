@@ -26,11 +26,12 @@ namespace Proyect
         /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         protected override bool InternalHandle(Message message, out string response)
         {
+
             if (message.Text.ToLower().Equals("/registrar"))
             {
-                response = "Bienvenido a C4BOT\nTenes Token:";
+                response = "Bienvenido a C4BOT\n¿Tenes Token?";
                 return true;
-            }
+            }if (DataUserContainer.Instance.UserDataHistory[])
 
             response = string.Empty;
             return false;
