@@ -15,8 +15,8 @@ namespace Proyect
     {
         private LocationApiClient client = APILocationContainer.Instance.APIdeLocalizacion;
         private readonly static AppLogic _instance = new AppLogic();
-        private Dictionary<string, Company> companies;
-        private Dictionary<string, Emprendedor> entrepreneurs;
+        private List<Company> companies;
+        private List<Emprendedor> entrepreneurs;
         private List<Rubro> validRubros = new List<Rubro>(){new Rubro("Alimentos"),new Rubro("Tecnologia"),new Rubro("Medicina")};
 
         private List<Qualifications> validQualifications = new List<Qualifications>(){new Qualifications("Vehiculo propio"),new Qualifications("Espacio para grandes volumenes de producto"),new Qualifications("Lugar habilitado para conservar desechos toxicos")};
@@ -27,7 +27,7 @@ namespace Proyect
         /// Obtiene las companias que estan registradas.
         /// </summary>
         /// <value>companies.</value>
-        public Dictionary<string, Company> Companies
+        public List<Company> Companies
         {
             get{return companies;}
         }
@@ -36,7 +36,7 @@ namespace Proyect
         /// Obtiene los emprendedores que estan registrados.
         /// </summary>
         /// <value>entrepreneurs.</value>
-        public Dictionary<string, Emprendedor> Entrepreneurs
+        public List<Emprendedor> Entrepreneurs
         {
             get{return entrepreneurs;}
         }
@@ -69,8 +69,8 @@ namespace Proyect
         }
         private AppLogic()
         {
-            companies = new Dictionary<string, Company>();
-            entrepreneurs = new Dictionary<string, Emprendedor>();
+            companies = new List<Company>();
+            entrepreneurs = new List<Emprendedor>();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace Proyect
         {
             try
             {
-                entrepreneurs.Add(userChat_Id, new Emprendedor(name, ubication, rubro, habilitaciones, especializaciones));
+                entrepreneurs.Add(new Emprendedor(name, ubication, rubro, habilitaciones, especializaciones));
             }
             catch (EmptyUserBuilderException e)
             {
@@ -125,7 +125,7 @@ namespace Proyect
                 return false;
             }else
             {
-                Companies.Add(userChat_Id, company);
+                Companies.Add(company);
                 return true;
             }
         }
@@ -318,7 +318,7 @@ namespace Proyect
             {
                 clasificationDictionary.Add(item,0);
             }
-            foreach (Company company in Companies.Values)
+            foreach (Company company in Companies)
             {
                 foreach (IOffer offer in company.OffersPublished)
                 {
