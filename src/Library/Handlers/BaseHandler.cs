@@ -5,11 +5,7 @@ using Telegram.Bot.Types;
 namespace Proyect
 {
     /// <summary>
-    /// Clase base para implementar el patrón Chain of Responsibility. En ese patrón se pasa un mensaje a través de una
-    /// cadena de "handlers" que pueden procesar o no el mensaje. Cada "handler" decide si procesa el mensaje, o si se lo
-    /// pasa al siguiente. Esta clase base implmementa la responsabilidad de recibir el mensaje y pasarlo al siguiente
-    /// "handler" en caso que el mensaje no sea procesado. La responsabilidad de decidir si el mensaje se procesa o no, y
-    /// de procesarlo, se delega a las clases sucesoras de esta clase base.
+    /// Clase base para implementar el patrón Chain of Responsibility.
     /// </summary>
     public abstract class BaseHandler : IHandler
     {
