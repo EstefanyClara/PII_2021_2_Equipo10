@@ -11,6 +11,7 @@ using Telegram.Bot.Extensions.Polling;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
+using Proyect;
 
 namespace Ucu.Poo.TelegramBot
 {
@@ -28,7 +29,7 @@ namespace Ucu.Poo.TelegramBot
         // Para probar este ejemplo, crea un bot nuevo y eeemplaza este token por el de tu bot.
         private static string Token = "2101777088:AAFz3DmdRIvOU2omgOF17kozROw2kIY5WJY";
 
-        //private static IHandler firstHandler;
+        private static IHandler firstHandler;
 
         /// <summary>
         /// Punto de entrada al programa.
@@ -37,11 +38,7 @@ namespace Ucu.Poo.TelegramBot
         {
             Bot = new TelegramBotClient(Token);
 
-            //firstHandler =
-                //new HelloHandler(
-                //new GoodByeHandler(
-                //new PhotoHandler(Bot, null)
-            //));
+            firstHandler = new RegisterHandler(null);
 
             var cts = new CancellationTokenSource();
 
@@ -73,7 +70,7 @@ namespace Ucu.Poo.TelegramBot
                 // Sólo respondemos a mensajes de texto
                 if (update.Type == UpdateType.Message)
                 {
-                    await HandleMessageReceived(update.Message);
+                    await HandleMessageReceived(new TelegramAdapter(update.Message));
                 }
             }
             catch(Exception e)
@@ -91,17 +88,17 @@ namespace Ucu.Poo.TelegramBot
         /// </summary>
         /// <param name="message">El mensaje recibido</param>
         /// <returns></returns>
-        private static async Task HandleMessageReceived(Message message)
+        private static async Task HandleMessageReceived(IMessage message)
         {
-            Console.WriteLine($"Received a message from {message.From.FirstName} saying: {message.Text}");
+            Console.WriteLine($"Received a message saying: {message.Text}");
 
             string response = string.Empty;
 
-            //firstHandler.Handle(message, out response);
+            firstHandler.Handle(message, out response);
 
             if (!string.IsNullOrEmpty(response))
             {
-                await Bot.SendTextMessageAsync(message.Chat.Id, response);
+                await Bot.SendTextMessageAsync(message.msg.Id, response);
             }
         }
 

@@ -569,7 +569,7 @@
             <param name="keywords">La lista de comandos.</param>
             <param name="next">El próximo "handler".</param>
         </member>
-        <member name="M:Proyect.BaseHandler.InternalHandle(Telegram.Bot.Types.Message,System.String@)">
+        <member name="M:Proyect.BaseHandler.InternalHandle(Proyect.IMessage,System.String@)">
             <summary>
             Este método debe ser sobreescrito por las clases sucesores. La clase sucesora procesa el mensaje y retorna
             true o no lo procesa y retorna false.
@@ -594,7 +594,7 @@
             <param name="message">El mensaje a procesar.</param>
             <returns>true si el mensaje puede ser pocesado; false en caso contrario.</returns>
         </member>
-        <member name="M:Proyect.BaseHandler.Handle(Telegram.Bot.Types.Message,System.String@)">
+        <member name="M:Proyect.BaseHandler.Handle(Proyect.IMessage,System.String@)">
             <summary>
             Procesa el mensaje o la pasa al siguiente "handler" si existe.
             </summary>
@@ -614,6 +614,18 @@
             Clase contenedora del historia de mensajes que un usuario manda
             </summary>
         </member>
+        <member name="P:Proyect.DataUserContainer.Instance">
+            <summary>
+            Obtiene la instancia de la clase.
+            </summary>
+            <value>La instancia de la clase.</value>
+        </member>
+        <member name="P:Proyect.DataUserContainer.UserDataHistory">
+            <summary>
+            Obtiene el diccionario donde se guardan los mensajes de un usuario.
+            </summary>
+            <value>Diccionario con clave el chat ID de un usuario, y lista de la histroia de usuario.</value>
+        </member>
         <!-- Badly formed XML comment ignored for member "T:Proyect.IHandler" -->
         <member name="P:Proyect.IHandler.Next">
             <summary>
@@ -621,7 +633,7 @@
             </summary>
             <value>El "handler" que será invocado si este "handler" no procesa el mensaje.</value>
         </member>
-        <member name="M:Proyect.IHandler.Handle(Telegram.Bot.Types.Message,System.String@)">
+        <member name="M:Proyect.IHandler.Handle(Proyect.IMessage,System.String@)">
             <summary>
             Procesa el mensaje o la pasa al siguiente "handler" si existe.
             </summary>
@@ -647,13 +659,28 @@
             </summary>
             <param name="next">El próximo "handler".</param>
         </member>
-        <member name="M:Proyect.RegisterHandler.InternalHandle(Telegram.Bot.Types.Message,System.String@)">
+        <member name="M:Proyect.RegisterHandler.InternalHandle(Proyect.IMessage,System.String@)">
             <summary>
             Procesa el mensaje "/registrar" y retorna true; retorna false en caso contrario.
             </summary>
             <param name="message">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
             <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
+        </member>
+        <member name="T:Proyect.IMessage">
+            <summary>
+            Interfaz para los mensajes.
+            </summary>
+        </member>
+        <member name="P:Proyect.IMessage.Id">
+            <summary>
+            Id del usuario.
+            </summary>
+        </member>
+        <member name="P:Proyect.IMessage.Text">
+            <summary>
+            El mensaje.
+            </summary>
         </member>
         <member name="T:Proyect.IOffer">
             <summary>
@@ -895,6 +922,27 @@
             Inicializa una nueva instancia de la clase <see cref="T:Proyect.Rubro"/>
             </summary>
             <param name="rubroName">Nombre del rubro.</param>
+        </member>
+        <member name="T:Proyect.TelegramAdapter">
+            <summary>
+            Adaptador de mensajes de Telegram a mensajes de la interfaz de usuario.
+            </summary>
+        </member>
+        <member name="M:Proyect.TelegramAdapter.#ctor(Telegram.Bot.Types.Message)">
+            <summary>
+            Crea una nueva instancia de la clase <see cref="T:Proyect.TelegramAdapter"/>.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="P:Proyect.TelegramAdapter.Text">
+            <summary>
+            El mensaje recibido.
+            </summary>
+        </member>
+        <member name="P:Proyect.TelegramAdapter.Id">
+            <summary>
+            Identificador del usuario que envió el mensaje.
+            </summary>
         </member>
         <member name="T:Proyect.User">
             <summary>

@@ -7,7 +7,7 @@ namespace Proyect
     /// <summary>
     /// Clase base para implementar el patrón Chain of Responsibility.
     /// </summary>
-    public abstract class RegisterHandler : BaseHandler
+    public class RegisterHandler : BaseHandler
     {
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="RegisterHandler"/>. Esta clase procesa el mensaje "/Registrar" de un usuario.

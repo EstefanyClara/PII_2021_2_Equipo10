@@ -20,7 +20,7 @@
             respuestas a botones, etc. En este ejemplo sólo manejamos mensajes de texto.
             </summary>
         </member>
-        <member name="M:Ucu.Poo.TelegramBot.Program.HandleMessageReceived(Telegram.Bot.Types.Message)">
+        <member name="M:Ucu.Poo.TelegramBot.Program.HandleMessageReceived(Proyect.IMessage)">
             <summary>
             Maneja los mensajes que se envían al bot.
             Lo único que hacemos por ahora es escuchar 3 tipos de mensajes:
