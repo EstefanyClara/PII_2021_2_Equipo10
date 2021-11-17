@@ -30,8 +30,19 @@ namespace Proyect
             if (message.Text.ToLower().Equals("/registrar"))
             {
                 response = "Bienvenido a C4BOT\n¿Tenes Token?";
+                DataUserContainer.Instance.UserDataHistory[message.Id][0].Add("/registrar");
                 return true;
-            }if (DataUserContainer.Instance.UserDataHistory[])
+            }if (DataUserContainer.Instance.UserDataHistory[message.Id][0][0] == "/registrar")
+            {
+                if (message.Text.ToLower().Equals("/si"))
+                {
+                    DataUserContainer.Instance.UserDataHistory[message.Id][1].Add("/si");
+                    response = "Ingreselo: ";
+                }if (message.Text.ToLower().Equals("/no"))
+                {
+                    DataUserContainer.Instance.UserDataHistory[message.Id][1].Add("/no");
+                }
+            }
 
             response = string.Empty;
             return false;
