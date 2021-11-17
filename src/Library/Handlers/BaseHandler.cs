@@ -48,7 +48,7 @@ namespace Proyect
         /// <param name="message">El mensaje a procesar.</param>
         /// <param name="responder">La respuesta al mensaje procesado.</param>
         /// <returns>true si el mensaje fue procesado; false en caso contrario</returns>
-        protected abstract bool InternalHandle(Message message, out string responder);
+        protected abstract bool InternalHandle(IMessage message, out string responder);
         // {
         //     throw new InvalidOperationException("Este método debe ser sobrescrito");
         // }
@@ -88,7 +88,7 @@ namespace Proyect
         /// <param name="message">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado.</param>
         /// <returns>El "handler" que procesó el mensaje si el mensaje fue procesado; null en caso contrario.</returns>
-        public IHandler Handle(Message message, out string response)
+        public IHandler Handle(IMessage message, out string response)
         {
             if (this.InternalHandle(message, out response))
             {
