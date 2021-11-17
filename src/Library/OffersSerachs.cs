@@ -39,7 +39,7 @@ namespace Proyect
             keyWord = keyWord.Replace(",","");
             keyWord = keyWord.Replace(" ","");
             List<IOffer> offersList = new List<IOffer>();
-            foreach (Company company in AppLogic.Instance.Companies.Values)
+            foreach (Company company in AppLogic.Instance.Companies)
             {
                 foreach (IOffer offer in company.OffersPublished)
                 {
@@ -60,7 +60,7 @@ namespace Proyect
         public List<IOffer> SearchByUbication(string ubication)
         {
             List<IOffer> offersList = new List<IOffer>();
-            foreach (Company company in AppLogic.Instance.Companies.Values)
+            foreach (Company company in AppLogic.Instance.Companies)
             {
                 foreach (IOffer offer in company.OffersPublished)
                 {
@@ -81,7 +81,7 @@ namespace Proyect
         public List<IOffer> SearchByType(string type)
         {
             List<IOffer> offersList = new List<IOffer>();
-            foreach (Company company in AppLogic.Instance.Companies.Values)
+            foreach (Company company in AppLogic.Instance.Companies)
             {
                 foreach (IOffer offer in company.OffersPublished)
                 {
