@@ -23,7 +23,8 @@ namespace Proyect
         /// <param name="rubro">Rubro del emprendedor.</param>
         /// <param name="qualifications">Hablitaciones del emprendedor.</param>
         /// <param name="specializations">Especializaciones del emprendedor.</param>
-        public Emprendedor(string name, string ubication, Rubro rubro, List<Qualifications> qualifications, ArrayList specializations):base(name, ubication, rubro)
+        /// <param name="user_Id">Identificacion del emprendedor.</param>
+        public Emprendedor(string user_Id, string name, string ubication, Rubro rubro, List<Qualifications> qualifications, ArrayList specializations):base(user_Id, name, ubication, rubro)
         {
             this.Qualifications = qualifications;
             this.Specializations = specializations;

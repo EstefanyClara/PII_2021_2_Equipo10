@@ -10,7 +10,7 @@ namespace Proyect
     {
         private Message message;
         private int id;
-        private int msgId;
+        private long msgId;
 
         /// <summary>
         /// Crea una nueva instancia de la clase <see cref="TelegramAdapter"/>.
@@ -20,6 +20,7 @@ namespace Proyect
         {
             this.message = message;
             this.id = message.From.Id;
+            this.msgId = message.Chat.Id;
         }
 
         /// <summary>
@@ -48,11 +49,11 @@ namespace Proyect
         /// Identificador del chat.
         /// </summary>
         /// <value></value>
-        public string MsgId
+        public long MsgId
         {
             get
             {
-                return this.msgId.ToString();
+                return this.msgId;
             }
         }
     }

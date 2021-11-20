@@ -16,7 +16,7 @@ namespace Proyect
 
         private Administrator()
         {
-            tokens = new List<string>();
+            tokens = new List<string>(){"1234"};
             PrecargarDatos();
         }
 
@@ -50,14 +50,15 @@ namespace Proyect
         /// <param name="name"></param>
         /// <param name="ubication"></param>
         /// <param name="rubro"></param>
+        /// <param name="user_Id"></param>
         /// <returns></returns>
-        public Company Invite(string companyToken, string name, string ubication, Rubro rubro)
+        public Company Invite(string companyToken,string user_Id, string name, string ubication, Rubro rubro)
         {   
             if (tokens.Contains(companyToken))
             {
                 try
                 {
-                    return new Company(name, ubication, rubro);
+                    return new Company(user_Id, name, ubication, rubro);
                 }
                 catch (EmptyUserBuilderException e)
                 {

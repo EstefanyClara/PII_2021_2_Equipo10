@@ -21,6 +21,6 @@ namespace Proyect
         /// Id del chat.
         /// </summary>
         /// <value></value>
-        string MsgId{get;}
+        long MsgId{get;}
     }
 }

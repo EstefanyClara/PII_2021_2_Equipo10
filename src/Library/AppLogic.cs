@@ -94,12 +94,12 @@ namespace Proyect
         /// <param name="rubro">El rubro del emprendedor.</param>
         /// <param name="habilitaciones">Las habilitaciones que tiene el emprendedor.</param>
         /// <param name="especializaciones">Las especializaciones que tiene el emprendedor.</param>
-        /// <param name="userChat_Id">Id que tiene el emprendedor.</param> 
-        public void RegisterEntrepreneurs(string userChat_Id, string name, string ubication, Rubro rubro, List<Qualifications> habilitaciones, ArrayList especializaciones)
+        /// <param name="user_Id">Id que tiene el emprendedor.</param> 
+        public void RegisterEntrepreneurs(string user_Id, string name, string ubication, Rubro rubro, List<Qualifications> habilitaciones, ArrayList especializaciones)
         {
             try
             {
-                entrepreneurs.Add(new Emprendedor(name, ubication, rubro, habilitaciones, especializaciones));
+                entrepreneurs.Add(new Emprendedor(user_Id, name, ubication, rubro, habilitaciones, especializaciones));
             }
             catch (EmptyUserBuilderException e)
             {
@@ -112,14 +112,14 @@ namespace Proyect
         /// Registra a una compania
         /// </summary>
         /// <param name="companyToken"></param>
-        /// <param name="userChat_Id"></param>
+        /// <param name="user_Id"></param>
         /// <param name="name"></param>
         /// <param name="ubication"></param>
         /// <param name="rubro"></param>
         /// <returns>mensaje de confirmacion</returns>
-        public bool RegistrarCompany(string companyToken, string userChat_Id, string name, string ubication, Rubro rubro)
+        public bool RegistrarCompany(string companyToken, string user_Id, string name, string ubication, Rubro rubro)
         {
-            Company company = Administrator.Instance.Invite(companyToken, name, ubication, rubro);
+            Company company = Administrator.Instance.Invite(companyToken, user_Id, name, ubication, rubro);
             if (company == null)
             {
                 return false;

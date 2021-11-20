@@ -27,7 +27,7 @@ namespace Ucu.Poo.TelegramBot
         //
         // *Importante*:
         // Para probar este ejemplo, crea un bot nuevo y eeemplaza este token por el de tu bot.
-        private static string Token = "2101777088:AAFz3DmdRIvOU2omgOF17kozROw2kIY5WJY";
+        private static string Token = "2139538287:AAH8UsYILUvYhd17WfkjsvYRsBTRtQOlVTI";
 
         private static IHandler firstHandler;
 
@@ -98,7 +98,7 @@ namespace Ucu.Poo.TelegramBot
 
             if (!string.IsNullOrEmpty(response))
             {
-                await Bot.SendTextMessageAsync(message.msg.Id, response);
+                await Bot.SendTextMessageAsync(message.MsgId, response);
             }
         }
 

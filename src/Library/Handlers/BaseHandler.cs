@@ -70,7 +70,7 @@ namespace Proyect
         /// </summary>
         /// <param name="message">El mensaje a procesar.</param>
         /// <returns>true si el mensaje puede ser pocesado; false en caso contrario.</returns>
-        protected virtual bool CanHandle(Message message)
+        protected virtual bool CanHandle(IMessage message)
         {
             // Cuando no hay palabras clave este método debe ser sobreescrito por las clases sucesoras y por lo tanto
             // este método no debería haberse invocado.

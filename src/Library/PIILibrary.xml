@@ -22,7 +22,7 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:Proyect.Administrator.Invite(System.String,System.String,System.String,Proyect.Rubro)">
+        <member name="M:Proyect.Administrator.Invite(System.String,System.String,System.String,System.String,Proyect.Rubro)">
             <summary>
             Metodo que crea una compania si la misma ingreso un token correcto (Utiliza Creator).
             </summary>
@@ -30,6 +30,7 @@
             <param name="name"></param>
             <param name="ubication"></param>
             <param name="rubro"></param>
+            <param name="user_Id"></param>
             <returns></returns>
         </member>
         <member name="T:Proyect.APILocationContainer">
@@ -102,14 +103,14 @@
             <param name="rubro">El rubro del emprendedor.</param>
             <param name="habilitaciones">Las habilitaciones que tiene el emprendedor.</param>
             <param name="especializaciones">Las especializaciones que tiene el emprendedor.</param>
-            <param name="userChat_Id">Id que tiene el emprendedor.</param> 
+            <param name="user_Id">Id que tiene el emprendedor.</param> 
         </member>
         <member name="M:Proyect.AppLogic.RegistrarCompany(System.String,System.String,System.String,System.String,Proyect.Rubro)">
             <summary>
             Registra a una compania
             </summary>
             <param name="companyToken"></param>
-            <param name="userChat_Id"></param>
+            <param name="user_Id"></param>
             <param name="name"></param>
             <param name="ubication"></param>
             <param name="rubro"></param>
@@ -304,13 +305,14 @@
             Lista de ofertas de la compania.
             </summary>
         </member>
-        <member name="M:Proyect.Company.#ctor(System.String,System.String,Proyect.Rubro)">
+        <member name="M:Proyect.Company.#ctor(System.String,System.String,System.String,Proyect.Rubro)">
             <summary>
             Inicializa una nueva instancia de la clase <see cref="T:Proyect.Company"/>.
             </summary>
             <param name="name">Nombre compania.</param>
             <param name="ubication">Ubicacion de la compania.</param>
             <param name="rubro">Rubro de la compania.</param>
+            <param name="user_Id">Identificacion de la compania.</param>
         </member>
         <member name="P:Proyect.Company.OffersPublished">
             <summary>
@@ -464,7 +466,7 @@
             Esta clase representa un Emprendedor, hereda de user (Tienen relaciontaxonomica). 
             </summary>
         </member>
-        <member name="M:Proyect.Emprendedor.#ctor(System.String,System.String,Proyect.Rubro,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.ArrayList)">
+        <member name="M:Proyect.Emprendedor.#ctor(System.String,System.String,System.String,Proyect.Rubro,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.ArrayList)">
             <summary>
             Inicializa una nueva instancia de la clase <see cref="T:Proyect.Emprendedor"/>
             </summary>
@@ -473,6 +475,7 @@
             <param name="rubro">Rubro del emprendedor.</param>
             <param name="qualifications">Hablitaciones del emprendedor.</param>
             <param name="specializations">Especializaciones del emprendedor.</param>
+            <param name="user_Id">Identificacion del emprendedor.</param>
         </member>
         <member name="P:Proyect.Emprendedor.Qualifications">
             <summary>
@@ -584,7 +587,7 @@
             entre mensajes deben sobreescribir este método para volver al estado inicial. En la clase base no hace nada.
             </summary>
         </member>
-        <member name="M:Proyect.BaseHandler.CanHandle(Telegram.Bot.Types.Message)">
+        <member name="M:Proyect.BaseHandler.CanHandle(Proyect.IMessage)">
             <summary>
             Determina si este "handler" puede procesar el mensaje. En la clase base se utiliza el array
             <see cref="P:Proyect.BaseHandler.Keywords"/> para buscar el texto en el mensaje ignorando mayúsculas y minúsculas. Las
@@ -682,6 +685,12 @@
             El mensaje.
             </summary>
         </member>
+        <member name="P:Proyect.IMessage.MsgId">
+            <summary>
+            Id del chat.
+            </summary>
+            <value></value>
+        </member>
         <member name="T:Proyect.IOffer">
             <summary>
             Interfaz para las ofertas de una compania.
@@ -729,11 +738,6 @@
             Le asigna el emprendedor y la fecha de compra a la oferta, una vez es comprada.
             </summary>
             <param name="emprendedor"></param>
-        </member>
-        <member name="T:Proyect.MessageProcesor">
-            <summary>
-            Clase que procesa los mensajes de telegram (en este caso va a procesar los mensajes de consola para probra la logica).
-            </summary>
         </member>
         <member name="T:Proyect.NonConstantOffer">
             <summary>
@@ -944,6 +948,12 @@
             Identificador del usuario que envió el mensaje.
             </summary>
         </member>
+        <member name="P:Proyect.TelegramAdapter.MsgId">
+            <summary>
+            Identificador del chat.
+            </summary>
+            <value></value>
+        </member>
         <member name="T:Proyect.User">
             <summary>
             Superclase user de Emprendedor y Company (quienes estan en una relaciontaxonomica con esta clase).
@@ -964,13 +974,19 @@
             El rubro al que pertnece el usuario.
             </summary>
         </member>
-        <member name="M:Proyect.User.#ctor(System.String,System.String,Proyect.Rubro)">
+        <member name="F:Proyect.User.user_Id">
+            <summary>
+            Id del usuario, unico por cada uno.
+            </summary>
+        </member>
+        <member name="M:Proyect.User.#ctor(System.String,System.String,System.String,Proyect.Rubro)">
             <summary>
             Inicializa una nueva instancia de la clase <see cref="T:Proyect.User"/>
             </summary>
             <param name="name">Nombre del usuario.</param>
             <param name="ubication">Ubicacion del usuario.</param>
             <param name="rubro">Rubro del usuario.</param>
+            <param name="user_Id">Rubro del usuario.</param>
         </member>
         <member name="P:Proyect.User.Name">
             <summary>
@@ -987,6 +1003,12 @@
         <member name="P:Proyect.User.Rubro">
             <summary>
             Propiedad get y set del atributo del rubro.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.User.User_Id">
+            <summary>
+            Obtiene el id del usuario.
             </summary>
             <value></value>
         </member>
