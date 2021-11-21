@@ -185,7 +185,7 @@ namespace Proyect
                             }
                         }if(userData[5].Contains("-"))
                         {
-                            response = "Ahora ingrese las palabras claves del producto\n\nEstas palabras las usaran los emprendedores a la hora de buscar ofertas\n\nPuede ingresar una o varias separdas por ','.";
+                            response = "Ahora ingrese las palabras claves del producto\n\nEstas palabras las usaran los emprendedores a la hora de buscar ofertas.";
                             userData.Add("P");
                             return true;
                         }
@@ -204,31 +204,22 @@ namespace Proyect
                                     return true;
                                 }else
                                 {
-                                    string repetidas = "Las siguientes palabras estan repetidas: |";
-                                    string noRepetidas = string.Empty;
-                                    string[] palabraIngresada = message.Text.Replace(".",",").Split(",");
-                                    foreach(string item in palabraIngresada)
-                                    {
-                                        item.Trim(' ');
-                                        if (userData[6].Contains(item))
+                                    string palabraIngresada = message.Text.Replace(".","").Trim(' ');
+                                    string[] palabras = userData[6].Split(",");
+                                        foreach(string word in palabras)
                                         {
-                                            Console.WriteLine(item + "2");
-                                            repetidas = repetidas + item + "|";
-                                        }else
-                                        {
-                                            noRepetidas = noRepetidas + "," + item;
+                                            word.Trim(' ');
+                                            if (word.Equals(palabraIngresada))
+                                            {
+                                                response = $"{palabraIngresada} ya se encuentra en la lista de palabras calve\n\nLas palabras repitadas no se agregaran";
+                                                return true;
+                                            }
                                         }
-                                    }
                                         string words = userData[6];
-                                        words = words + noRepetidas;
+                                        words = words + "," + palabraIngresada;
                                         userData.RemoveAt(6);
                                         userData.Add(words);
-                                        if(repetidas != "Las siguientes palabras estan repetidas: |")
-                                        {
-                                            response = repetidas + "\n\nLas palabras repitadas no se agregaran";
-                                            return true;
-                                        }
-                                        response = "Se ha/n agregado la/s palabra clave";
+                                        response = "Se ha agregado la palabra clave";
                                         return true;
                                 }
                             }else
@@ -253,10 +244,13 @@ namespace Proyect
                                 }
                             }
                             StringBuilder mensajePalabras = new StringBuilder();
-                            string[] words = userData[6].Replace(","," ").Split(" ");
+                            string[] words = userData[6].Split(",");
                             foreach(string item in words)
                             {
-                                mensajePalabras.Append($"|{item}|");
+                                if(!item.Equals(""))
+                                {
+                                    mensajePalabras.Append($"|{item}|");
+                                }
                             }
                             response = $"Por favor, veo si los datos ingresados son correctos.\nClasificacion del producto: {userData[1]}\nCantidad: {userData[2]} Kilogramos\nPrecio: {userData[3]}$\nUbicacion: {userData[4]}\nHabilitaciones necesarias: {mensaje}\nPalabras clave: {mensajePalabras}\n\nSi son correctos ingrese '/si', en caso contrario '/no'";
                             return true;
