@@ -39,8 +39,10 @@ namespace Ucu.Poo.TelegramBot
             Bot = new TelegramBotClient(Token);
 
             firstHandler = new AutorizationHandler(
+                            new CancelHandler(
                             new RegisterHandler(
-                            new PublicOfferHandler(null)));
+                            new PublicOfferHandler(
+                            new CompanyMyOfferHandler(null)))));
 
             var cts = new CancellationTokenSource();
 

@@ -252,7 +252,7 @@ namespace Proyect
                                     mensajePalabras.Append($"|{item}|");
                                 }
                             }
-                            response = $"Por favor, veo si los datos ingresados son correctos.\nClasificacion del producto: {userData[1]}\nCantidad: {userData[2]} Kilogramos\nPrecio: {userData[3]}$\nUbicacion: {userData[4]}\nHabilitaciones necesarias: {mensaje}\nPalabras clave: {mensajePalabras}\n\nSi son correctos ingrese '/si', en caso contrario '/no'";
+                            response = $"Por favor, veo si los datos ingresados son correctos.\nClasificacion del producto: {AppLogic.Instance.Classifications[Convert.ToInt32(userData[1])].Category}\nCantidad: {userData[2]} Kilogramos\nPrecio: {userData[3]}$\nUbicacion: {userData[4]}\nHabilitaciones necesarias: {mensaje}\nPalabras clave: {mensajePalabras}\n\nSi son correctos ingrese '/si', en caso contrario '/no'";
                             return true;
                         }
                     case 8:
@@ -267,7 +267,14 @@ namespace Proyect
                                     lista.Add(AppLogic.Instance.Qualifications[number-1]);
                                 }
                             }
-                            ArrayList words = new ArrayList(){userData[6].Replace(","," ").Split(" ")};
+                            ArrayList words = new ArrayList();
+                            foreach(string item in userData[6].Split(","))
+                            {
+                                if (!item.Equals(""))
+                                {
+                                    words.Add(item);
+                                }
+                            }
                             Company compania = null;
                             foreach (Company item in AppLogic.Instance.Companies)
                             {

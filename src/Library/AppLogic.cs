@@ -294,10 +294,10 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Metodo que obtiene el mapa de la ubicacion de un emprendedor.
+        /// Metodo que obtiene el mapa de la ubicacion de una oferta.
         /// </summary>
         /// <param name="offer">Oferta que se quiere buscar.</param>
-        /// <returns>Un mapa de la ubicacion del emprendedor.</returns>
+        /// <returns>Un mapa de la ubicacion de la oferta.</returns>
         public async Task ObteinOfferMap(IOffer offer)
         {
             string offerUbication = offer.Product.Ubication;
@@ -335,7 +335,6 @@ namespace Proyect
         /// <summary>
         /// Obtiene un string con la indicando si sus ofertas fueron o no fueron aceptadas, en caso de que si, indica ademas la fecha de cuando fueron aceptadas.
         /// Le delega la responsabilidad a Company (La experta).
-        /// Le delega la responsabilidad a emprendedor, la experta.
         /// </summary>
         /// <param name="company">La compania.</param>
         /// <returns>Un string con las ofertas que fueron aceptadas.</returns>
