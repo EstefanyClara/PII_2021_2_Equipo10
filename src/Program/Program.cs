@@ -94,7 +94,7 @@ namespace Ucu.Poo.TelegramBot
         /// <returns></returns>
         private static async Task HandleMessageReceived(IMessage message)
         {
-            Console.WriteLine($"Received a message saying: {message.Text}");
+            Console.WriteLine($"Received a message from {message.Id} saying: {message.Text}");
 
             string response = string.Empty;
 
