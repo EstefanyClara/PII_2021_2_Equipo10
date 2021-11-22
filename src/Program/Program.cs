@@ -42,7 +42,8 @@ namespace Ucu.Poo.TelegramBot
                             new CancelHandler(
                             new RegisterHandler(
                             new PublicOfferHandler(
-                            new CompanyMyOfferHandler(null)))));
+                            new GetConstantMaterialsHandler(
+                            new CompanyMyOfferHandler(null))))));
 
             var cts = new CancellationTokenSource();
 
