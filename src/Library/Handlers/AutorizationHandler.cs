@@ -27,24 +27,16 @@ namespace Proyect
         {
             if (!this.Keywords.Contains(message.Text.ToLower().Replace(" ","")) & !DataUserContainer.Instance.UserDataHistory.Keys.Contains(message.Id))
             {
-                foreach (Company item in AppLogic.Instance.Companies)
+                if (AppLogic.Instance.GetCompany(message.Id) != null | AppLogic.Instance.GetEmprendedor(message.Id) != null)
                 {
-                    if (item.User_Id == message.Id)
-                    {
-                        response = string.Empty;
-                        return false;
-                    }
+                    response = string.Empty;
+                    return false;
                 }
-                foreach (Emprendedor item in AppLogic.Instance.Entrepreneurs)
+                else
                 {
-                    if(item.User_Id == message.Id)
-                    {
-                        response = string.Empty;
-                        return false;
-                    }
+                                        response = "Antes de interactuar con la aplicacion debe registrarse";
+                    return true;
                 }
-                response = "Antes de interactuar con la aplicacion debe registrarse";
-                return true;
             }
             response = string.Empty;
             return false;

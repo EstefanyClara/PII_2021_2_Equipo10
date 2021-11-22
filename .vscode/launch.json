@@ -13,8 +13,7 @@
             "args": [],
             "cwd": "${workspaceFolder}/src/Program",
             "console": "internalConsole",
-            "stopAtEntry": false,
-            "requireExactSource": false
+            "stopAtEntry": false
         },
         {
             "name": ".NET Core Attach",

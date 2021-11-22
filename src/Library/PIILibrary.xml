@@ -116,14 +116,14 @@
             <param name="rubro"></param>
             <returns>mensaje de confirmacion</returns>
         </member>
-        <member name="M:Proyect.AppLogic.RemoveKeyWords(Proyect.Company,Proyect.IOffer,System.String)">
+        <member name="M:Proyect.AppLogic.RemoveKeyWords(Proyect.Company,Proyect.IOffer,System.Int32)">
             <summary>
             Remueve palabras clave de la oferta de una compania.
             Le delega la responsabilidad a company (La experta).
             </summary>
             <param name="company">La compania.</param>
             <param name="offer">La oferta.</param>
-            <param name="keyWord">La palabra clave.</param>
+            <param name="keyWordIndex">La palabra clave.</param>
         </member>
         <member name="M:Proyect.AppLogic.AddKeyWords(Proyect.Company,Proyect.IOffer,System.String)">
             <summary>
@@ -134,13 +134,13 @@
             <param name="offer">La oferta.</param>
             <param name="keyWord">La palabra clave.</param>
         </member>
-        <member name="M:Proyect.AppLogic.RemoveOffer(Proyect.Company,Proyect.IOffer)">
+        <member name="M:Proyect.AppLogic.RemoveOffer(Proyect.Company,System.Int32)">
             <summary>
             Remueve la oferta de una compania.
             Le delega la responsabilidad a company (La experta).
             </summary>
             <param name="company">La compania.</param>
-            <param name="offer">La oferta.</param>
+            <param name="offerIndex">La oferta.</param>
         </member>
         <member name="M:Proyect.AppLogic.RemoveQualification(Proyect.Company,Proyect.IOffer,Proyect.Qualifications)">
             <summary>
@@ -277,6 +277,20 @@
             <param name="periodTime">Periodo de tiempo establecido por el usuario.</param>
             <returns></returns>
         </member>
+        <member name="M:Proyect.AppLogic.GetCompany(System.String)">
+            <summary>
+            Obtiene la compania mediente el id de usuraui ingreado.
+            </summary>
+            <param name="user_Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.AppLogic.GetEmprendedor(System.String)">
+            <summary>
+            Obtiene el emprendedor mendiante el ingreso de un id de usuario.
+            </summary>
+            <param name="user_Id"></param>
+            <returns></returns>
+        </member>
         <member name="T:Proyect.Classification">
             <summary>
             Esta clase representa una clasificacion para un producto.
@@ -345,12 +359,6 @@
             <param name="qualifications"></param>
             <param name="keyWords"></param>
         </member>
-        <member name="M:Proyect.Company.RemoveOffer(Proyect.IOffer)">
-            <summary>
-            Remueve ofertas (Por Expert).
-            </summary>
-            <param name="offer">Oferta.</param>
-        </member>
         <member name="M:Proyect.Company.GetOffersAccepted">
             <summary>
             Obtiene un string con todas las ofertas que fueron o no fueron aceptadas por emprendedores(por expert le asignamos esta responsabilidad).
@@ -366,12 +374,12 @@
             <param name="periodTime">Periodo de tiempo.</param>
             <returns>Las ofertas aceptadas en un periodo de tiempo.</returns>
         </member>
-        <member name="M:Proyect.Company.RemoveKeyWords(Proyect.IOffer,System.String)">
+        <member name="M:Proyect.Company.RemoveKeyWords(Proyect.IOffer,System.Int32)">
             <summary>
             Remueve palabras clave de una oferta (Por expert).
             </summary>
             <param name="offer">La oferta.</param>
-            <param name="keyWord">La palabra clave de la oferta.</param>
+            <param name="keyWordIndex">La palabra clave de la oferta.</param>
         </member>
         <member name="M:Proyect.Company.AddKeyWords(Proyect.IOffer,System.String)">
             <summary>

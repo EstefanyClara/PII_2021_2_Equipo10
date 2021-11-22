@@ -31,21 +31,10 @@ namespace Proyect
 
             if (message.Text.ToLower().Replace(" ","").Equals("/registrar"))
             {
-                foreach(Company item in AppLogic.Instance.Companies)
+                if (AppLogic.Instance.GetEmprendedor(message.Id) != null | AppLogic.Instance.GetCompany(message.Id) != null)
                 {
-                    if (message.Id == item.User_Id)
-                    {
-                        response = "Usted ya se encuentra registrado";
-                        return true;
-                    }
-                }
-                foreach(Emprendedor item in AppLogic.Instance.Entrepreneurs)
-                {
-                    if (message.Id == item.User_Id)
-                    {
-                        response = "Usted ya se encuentra registrado";
-                        return true;
-                    }
+                    response = "Usted ya se encuentra registrado";
+                    return true;
                 }
                 if(!DataUserContainer.Instance.UserDataHistory.Keys.Contains(message.Id))
                 {
@@ -240,7 +229,7 @@ namespace Proyect
                         response = "Tiene que ingresar al menos una habilitacion";
                         return true;
                     case 6:
-                        if (message.Text.Contains("?"))
+                        if (!message.Text.Contains("?"))
                         {
                             userData.RemoveAt(5);
                             userData.Add(message.Text);

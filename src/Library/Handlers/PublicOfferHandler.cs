@@ -30,15 +30,7 @@ namespace Proyect
         {
             if (this.Keywords.Contains(message.Text.ToLower().Replace(" ","")))
             {
-                bool esCompania = false;
-                foreach(Company item in AppLogic.Instance.Companies)
-                {
-                    if (item.User_Id.Equals(message.Id))
-                    {
-                        esCompania = true;
-                    }
-                }
-                if(!esCompania)
+                if(AppLogic.Instance.GetCompany(message.Id) == null)
                 {
                     response = "Solo aquellos registrados como compania pueden publicar una oferta";
                     return true;
@@ -52,8 +44,15 @@ namespace Proyect
                     return true;
                 }else
                 {
-                    response = "Usted ya esta en proceso de publicacion";
-                    return true;
+                    if (DataUserContainer.Instance.UserDataHistory[message.Id][0][0].Equals("/public"))
+                    {
+                        response = "Usted ya esta en proceso de publicacion";
+                        return true;
+                    }else
+                    {
+                        response = string.Empty;
+                        return false;
+                    }
                 }
             }if(DataUserContainer.Instance.UserDataHistory.Keys.Contains(message.Id) && DataUserContainer.Instance.UserDataHistory[message.Id][0][0].Equals("/public"))
             {
@@ -275,15 +274,7 @@ namespace Proyect
                                     words.Add(item);
                                 }
                             }
-                            Company compania = null;
-                            foreach (Company item in AppLogic.Instance.Companies)
-                            {
-                                if (item.User_Id == message.Id)
-                                {
-                                    compania = item;
-                                    break;
-                                }
-                            }
+                            Company compania = AppLogic.Instance.GetCompany(message.Id);
                             if (userData[0].Equals("/si"))
                             {
                                 AppLogic.Instance.PublicConstantOffer(compania,AppLogic.Instance.Classifications[Convert.ToInt32(userData[1])],Convert.ToDouble(userData[2]),Convert.ToDouble(userData[3]),userData[4],lista,words);

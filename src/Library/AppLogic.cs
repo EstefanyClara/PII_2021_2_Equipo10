@@ -136,10 +136,10 @@ namespace Proyect
         /// </summary>
         /// <param name="company">La compania.</param>
         /// <param name="offer">La oferta.</param>
-        /// <param name="keyWord">La palabra clave.</param>
-        public bool RemoveKeyWords(Company company, IOffer offer, string keyWord)
+        /// <param name="keyWordIndex">La palabra clave.</param>
+        public void RemoveKeyWords(Company company, IOffer offer, int keyWordIndex)
         {
-            return company.RemoveKeyWords(offer, keyWord);
+            company.RemoveKeyWords(offer, keyWordIndex);
         }
 
         /// <summary>
@@ -159,10 +159,10 @@ namespace Proyect
         /// Le delega la responsabilidad a company (La experta).
         /// </summary>
         /// <param name="company">La compania.</param>
-        /// <param name="offer">La oferta.</param>
-        public bool RemoveOffer(Company company, IOffer offer)
+        /// <param name="offerIndex">La oferta.</param>
+        public void RemoveOffer(Company company, int offerIndex)
         {
-            return company.RemoveOffer(offer);
+            company.OffersPublished.RemoveAt(offerIndex);
         }
 
         /// <summary>
@@ -379,6 +379,40 @@ namespace Proyect
         public List<IOffer> GetPeriodTimeOffersAccepted(Emprendedor emprendedor, int periodTime)
         {
             return emprendedor.GetOffersAccepted(periodTime);
+        }
+
+        /// <summary>
+        /// Obtiene la compania mediente el id de usuraui ingreado.
+        /// </summary>
+        /// <param name="user_Id"></param>
+        /// <returns></returns>
+        public Company GetCompany(string user_Id)
+        {
+            foreach(Company item in this.Companies)
+            {
+                if (item.User_Id == user_Id)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Obtiene el emprendedor mendiante el ingreso de un id de usuario.
+        /// </summary>
+        /// <param name="user_Id"></param>
+        /// <returns></returns>
+        public Emprendedor GetEmprendedor(string user_Id)
+        {
+            foreach (Emprendedor item in this.Entrepreneurs)
+            {
+                if (item.User_Id == user_Id)
+                {
+                    return item;
+                }
+            }
+            return null;
         }
     }
 }

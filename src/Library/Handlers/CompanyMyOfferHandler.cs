@@ -29,15 +29,7 @@ namespace Proyect
         {
             if (message.Text.ToLower().Replace(" ","").Equals("/misofertas"))
             {
-                Company compania = null;
-                foreach(Company item in AppLogic.Instance.Companies)
-                {
-                    if (item.User_Id.Equals(message.Id))
-                    {
-                        compania = item;
-                    }
-                }
-                if(compania == null)
+                if(AppLogic.Instance.GetCompany(message.Id) == null)
                 {
                     response = "Este comando esta exclusivo de aquellos resgistrados como compania.";
                     return true;
@@ -47,7 +39,7 @@ namespace Proyect
                     StringBuilder mensaje = new StringBuilder();
                     mensaje.Append("Esta es la lista de sus ofertas publicadas.\n");
                     int index = 0;
-                    foreach(IOffer item in compania.OffersPublished)
+                    foreach(IOffer item in AppLogic.Instance.GetCompany(message.Id).OffersPublished)
                     {
                         index++;
                         mensaje.Append($"{index}--{item.Product.Quantity} Kilos de {item.Product.Classification.Category} a un precio de {item.Product.Price}$ en {item.Product.Ubication} (Publicada el {item.DatePublished})\n");
@@ -66,14 +58,7 @@ namespace Proyect
             }if(DataUserContainer.Instance.UserDataHistory.Keys.Contains(message.Id.ToLower().Replace(" ","")) && DataUserContainer.Instance.UserDataHistory[message.Id][0][0].Equals("/misofertas"))
             {
                 List<string> userData = DataUserContainer.Instance.UserDataHistory[message.Id][1];
-                Company compania = null;
-                foreach(Company item in AppLogic.Instance.Companies)
-                {
-                    if (item.User_Id.Equals(message.Id))
-                    {
-                        compania = item;
-                    }
-                }
+                Company compania = AppLogic.Instance.GetCompany(message.Id);
                 string mensaje = message.Text.Trim(' ');
                 string[] comando = mensaje.ToLower().Split(" ");
                 if (comando.Count() == 2 | userData.Count != 0)
@@ -124,11 +109,11 @@ namespace Proyect
                                             {
                                                 mensajePalabras.Append($"|{item}|");
                                             }
-                                            response = $"Oferta {number+1}.\nClasificacion del producto: {oferta.Product.Classification}\nCantidad: {oferta.Product.Quantity} Kilogramos\nPrecio: {oferta.Product.Price}$\nUbicacion: {oferta.Product.Ubication}\nHabilitaciones: {mensajes}\nPalabras clave: {mensajePalabras}";
+                                            response = $"Oferta {number+1}.\nClasificacion del producto: {oferta.Product.Classification.Category}\nCantidad: {oferta.Product.Quantity} Kilogramos\nPrecio: {oferta.Product.Price}$\nUbicacion: {oferta.Product.Ubication}\nHabilitaciones: {mensajes}\nPalabras clave: {mensajePalabras}";
                                             return true;
                                         }if (comando[0].Equals("/removeroferta"))
                                         {
-                                            response = $"Esta Seguro que quiere eliminar la oferta de --{oferta.Product.Quantity} Kilos de {oferta.Product.Classification} a un precio de {oferta.Product.Price} en {oferta.Product.Ubication} (Publicada el {oferta.DatePublished})";
+                                            response = $"Esta Seguro que quiere eliminar la oferta de --{oferta.Product.Quantity} Kilos de {oferta.Product.Classification.Category} a un precio de {oferta.Product.Price} en {oferta.Product.Ubication} (Publicada el {oferta.DatePublished})";
                                             return true;
                                         }if (comando[0].Equals("/removerkeyword"))
                                         {
@@ -150,7 +135,7 @@ namespace Proyect
                                                     index++;
                                                     mensajes.Append($"\n{index}-{item.QualificationName}");
                                                 }
-                                                response = $"Las habiliatciones de la oferta de --{oferta.Product.Quantity} Kilos de {oferta.Product.Classification} a un precio de {oferta.Product.Price} en {oferta.Product.Ubication} (Publicada el {oferta.DatePublished})\nSon {mensaje}\nPor favor seleccione el indice de la que quiere eliminar.";
+                                                response = $"Las habiliatciones de la oferta de --{oferta.Product.Quantity} Kilos de {oferta.Product.Classification} a un precio de {oferta.Product.Price} en {oferta.Product.Ubication} (Publicada el {oferta.DatePublished})\nSon {mensajes}\nPor favor seleccione el indice de la que quiere eliminar.";
                                                 return true;
                                             }else
                                             {
@@ -169,7 +154,8 @@ namespace Proyect
                                             }
                                             response = mensajes.ToString();
                                             return true;
-                                        }else
+                                        }
+                                        if (comando[0].Equals("/agregarkeyword"))
                                         {
                                             int index = 0;
                                             mensajes.Append($"Estan son las actuales palabras claves de la oferta seleccionada (oferta {Convert.ToInt32(userData[0])+1})\n");
@@ -182,6 +168,9 @@ namespace Proyect
                                             response = mensajes.ToString();
                                             return true;
                                         }
+                                        response = "Comando no valido";
+                                        return true;
+
 
                                     }else
                                     {
@@ -198,9 +187,9 @@ namespace Proyect
                                 {
                                     if ((message.Text.ToLower().Replace(" ","").Equals("/si")))
                                     {
-                                        compania.OffersPublished.RemoveAt(Convert.ToInt32(userData[0]));
+                                        AppLogic.Instance.RemoveOffer(compania,Convert.ToInt32(userData[0]));
                                         DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
-                                        response = "Se a removido la oferta";
+                                        response = "Se ha removido la oferta";
                                         return true;
                                     }if ((message.Text.ToLower().Replace(" ","").Equals("/no")))
                                     {
@@ -218,19 +207,19 @@ namespace Proyect
                                             if (compania.OffersPublished[Convert.ToInt32(userData[0])].KeyWords.Count - number >= 0)
                                             {
                                                 response = $"Las palabra clave {compania.OffersPublished[Convert.ToInt32(userData[0])].KeyWords[number-1]} se removio de la oferta seleccionada";
-                                                compania.OffersPublished[Convert.ToInt32(userData[0])].KeyWords.RemoveAt(number -1);
+                                                AppLogic.Instance.RemoveKeyWords(compania, compania.OffersPublished[Convert.ToInt32(userData[0])], number-1);
                                                 DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
                                                 return true;
                                             }else
                                             {
                                                 response = "Numero invalido";
                                             }
-                                        }if (DataUserContainer.Instance.UserDataHistory[message.Id][0].Contains("/removerhabilitaciones"))
+                                        }if (DataUserContainer.Instance.UserDataHistory[message.Id][0].Contains("/removerhabilitacion"))
                                         {
                                             if (compania.OffersPublished[Convert.ToInt32(userData[0])].Qualifications.Count - number >= 0)
                                             {
                                                 DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
-                                                response = $"La habiliatcion {compania.OffersPublished[Convert.ToInt32(userData[0])].Qualifications[number-1]} se removio de la oferta seleccionada";
+                                                response = $"La habiliatcion {compania.OffersPublished[Convert.ToInt32(userData[0])].Qualifications[number-1].QualificationName} se removio de la oferta seleccionada";
                                                 compania.OffersPublished[Convert.ToInt32(userData[0])].Qualifications.RemoveAt(number-1);
                                                 return true;
                                             }else
@@ -246,6 +235,7 @@ namespace Proyect
                                                     DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
                                                     compania.OffersPublished[Convert.ToInt32(userData[0])].Qualifications.Add(AppLogic.Instance.Qualifications[number-1]);
                                                     response = $"se agrego {AppLogic.Instance.Qualifications[number-1].QualificationName} a la oferta seleccionada";
+                                                    return true;
                                                     
                                                 }else
                                                 {

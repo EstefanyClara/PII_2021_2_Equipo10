@@ -69,20 +69,6 @@ namespace Proyect
                 }
 
                 /// <summary>
-                /// Remueve ofertas (Por Expert).
-                /// </summary>
-                /// <param name="offer">Oferta.</param>
-                public bool RemoveOffer(IOffer offer)
-                {
-                        if (this.OffersPublished.Contains(offer))
-                        {
-                                this.OffersPublished.Remove(offer);
-                                return true;
-                        }
-                        return false;
-                }
-
-                /// <summary>
                 /// Obtiene un string con todas las ofertas que fueron o no fueron aceptadas por emprendedores(por expert le asignamos esta responsabilidad).
                 /// Es una operacion polimorfica.
                 /// </summary>
@@ -125,15 +111,10 @@ namespace Proyect
                 /// Remueve palabras clave de una oferta (Por expert).
                 /// </summary>
                 /// <param name="offer">La oferta.</param>
-                /// <param name="keyWord">La palabra clave de la oferta.</param>
-                public bool RemoveKeyWords(IOffer offer, string keyWord)
+                /// <param name="keyWordIndex">La palabra clave de la oferta.</param>
+                public void RemoveKeyWords(IOffer offer, int keyWordIndex)
                 {
-                        if (offer.KeyWords.Contains(keyWord))
-                        {
-                                offer.KeyWords.Remove(keyWord);
-                                return true;
-                        }
-                        return false;
+                        offer.KeyWords.RemoveAt(keyWordIndex);
                 }
 
                 /// <summary>
