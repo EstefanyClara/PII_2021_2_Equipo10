@@ -226,7 +226,7 @@ namespace Proyect
                                             {
                                                 response = "Numero invalido";
                                             }
-                                        }else
+                                        }else //Falta poner los metdod de appa logic para las habilitaciones, tanto sacar como poner.
                                         {
                                             if (AppLogic.Instance.Qualifications.Count - number >= 0)
                                             {
@@ -260,7 +260,7 @@ namespace Proyect
                                         {
                                             if (!compania.OffersPublished[Convert.ToInt32(userData[0])].KeyWords.Contains(message.Text))
                                             {
-                                                compania.OffersPublished[Convert.ToInt32(userData[0])].KeyWords.Add(message.Text);
+                                                AppLogic.Instance.AddKeyWords(compania,compania.OffersPublished[Convert.ToInt32(userData[0])],message.Text);
                                                 response = $"Se agrego {message.Text} como palabra clave a la oferta.\n\nPuede agregar otra o hacer /stop para terminar el proceso";
                                             }else
                                             {
