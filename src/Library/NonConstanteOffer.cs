@@ -108,28 +108,16 @@ namespace Proyect
         /// </summary>
         /// <param name="periodTime"></param>
         /// <returns>si la oferta se compro antes de la fecha estipulada, devuelve la iformacion de compra, en caso contrario, devuelve un striing indicando dicha situacion</returns>
-        public bool GetPeriodTimeOffersAcceptedData(int periodTime)
+        public bool GetPeriodTimeOffersAcceptedData(int periodTime, out PurchaseData tiempo)
         {
             TimeSpan diference = this.PurchesedData.PurchaseDate - DateTime.Now;
             if(Convert.ToDouble(diference.TotalHours) <= periodTime*24)
             {
+                tiempo = this.PurchesedData;
                 return true;
             }
+            tiempo = null;
             return false;
-        }
-
-        /// <summary>
-        /// Obtiene la fecha de compra del emprendedor ingresado.
-        /// </summary>
-        /// <param name="emprendedor"></param>
-        /// <returns>retorna la fecha de cmpra de la oferta</returns>
-        public DateTime GetOfferBuyerTimeData(Emprendedor emprendedor)
-        {
-            if (this.PurchesedData.Buyer != emprendedor)
-            {
-                return DateTime.Now;
-            }
-            return this.PurchesedData.PurchaseDate;
         }
 
         /// <summary>

@@ -142,14 +142,14 @@
             <param name="company">La compania.</param>
             <param name="offerIndex">La oferta.</param>
         </member>
-        <member name="M:Proyect.AppLogic.RemoveQualification(Proyect.Company,Proyect.IOffer,Proyect.Qualifications)">
+        <member name="M:Proyect.AppLogic.RemoveQualification(Proyect.Company,Proyect.IOffer,System.Int32)">
             <summary>
             Remueve las habilitaciones de una compania. 
             Le delega la responsabilidad a compani (La experta).
             </summary>
             <param name="company">La compania.</param>
             <param name="offer">La oferta.</param>
-            <param name="qualification">La habilitacion.</param>
+            <param name="qualificationIndex">La habilitacion.</param>
         </member>
         <member name="M:Proyect.AppLogic.AddQualification(Proyect.Company,Proyect.IOffer,Proyect.Qualifications)">
             <summary>
@@ -257,7 +257,7 @@
             <param name="emprendedor">Emprendedor.</param>
             <returns>Un string con las ofertas que fueron aceptadas.</returns>
         </member>
-        <member name="M:Proyect.AppLogic.GetPeriodTimeOffersAccepted(Proyect.Company,System.Int32)">
+        <member name="M:Proyect.AppLogic.GetOffersAccepted(Proyect.Company,System.Int32)">
             <summary>
             Obtiene la cantidad de ofertas que fueron aceptadas en un periodo de tiempo establecido por el usuario.
             Le delega la responsabilidad a company (La experta).
@@ -267,7 +267,7 @@
             <param name="periodTime">Periodo de tiempo establecido por el usuario.</param>
             <returns></returns>
         </member>
-        <member name="M:Proyect.AppLogic.GetPeriodTimeOffersAccepted(Proyect.Emprendedor,System.Int32)">
+        <member name="M:Proyect.AppLogic.GetOffersAccepted(Proyect.Emprendedor,System.Int32)">
             <summary>
             Obtiene la cantidad de ofertas que fueron aceptadas en un periodo de tiempo establecido por el usuario.
             Le delega la responasabilidad a emprendedor (La experta).
@@ -395,12 +395,12 @@
             <param name="offer">La oferta.</param>
             <param name="qualification">La habilitaciones de la oferta.</param>
         </member>
-        <member name="M:Proyect.Company.RemoveQualification(Proyect.IOffer,Proyect.Qualifications)">
+        <member name="M:Proyect.Company.RemoveQualification(Proyect.IOffer,System.Int32)">
             <summary>
             Remueve la habilitacion de una oferta (Por expert).
             </summary>
             <param name="offer">La oferta.</param>
-            <param name="qualification">La habilitacion de la oferta.</param>
+            <param name="qualificationIndex">La habilitacion de la oferta.</param>
         </member>
         <member name="T:Proyect.ConstantOffer">
             <summary>
@@ -448,19 +448,12 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:Proyect.ConstantOffer.GetPeriodTimeOffersAcceptedData(System.Int32)">
+        <member name="M:Proyect.ConstantOffer.GetPeriodTimeOffersAcceptedData(System.Int32,Proyect.PurchaseData@)">
             <summary>
             Obtiene la informacion de compra del ultimo emprendedor que acepta la oferta (Patron expert).
             </summary>
             <param name="periodTime"></param>
             <returns>Mensaje con la infromacion de compra de la oferta, si la misma entra dentro del rango estipulado, en caso contrario, mensaje que indica dicha situacion.</returns>
-        </member>
-        <member name="M:Proyect.ConstantOffer.GetOfferBuyerTimeData(Proyect.Emprendedor)">
-            <summary>
-            Obtiene la fecha de compra del emprendedor ingresado (Patron expert).
-            </summary>
-            <param name="emprendedor"></param>
-            <returns> La fecha de compra del emprendedor ingresado</returns>
         </member>
         <member name="M:Proyect.ConstantOffer.PutBuyer(Proyect.Emprendedor)">
             <summary>
@@ -753,6 +746,25 @@
             <param name="response">La respuesta al mensaje procesado.</param>
             <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
+        <member name="T:Proyect.PurchasedOfferHandler">
+            <summary>
+            Clase base para implementar el patrón Chain of Responsibility.
+            </summary>
+        </member>
+        <member name="M:Proyect.PurchasedOfferHandler.#ctor(Proyect.BaseHandler)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Proyect.PurchasedOfferHandler"/>. Esta clase procesa si la perosna que envio el mensaje esta registrada.
+            </summary>
+            <param name="next">El próximo "handler".</param>
+        </member>
+        <member name="M:Proyect.PurchasedOfferHandler.InternalHandle(Proyect.IMessage,System.String@)">
+            <summary>
+            Procesa el mensaje "/registrar" y retorna true; retorna false en caso contrario.
+            </summary>
+            <param name="message">El mensaje a procesar.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
+        </member>
         <member name="T:Proyect.RegisterHandler">
             <summary>
             Clase base para implementar el patrón Chain of Responsibility.
@@ -822,18 +834,12 @@
             </summary>
             <value>DateTime</value>
         </member>
-        <member name="M:Proyect.IOffer.GetPeriodTimeOffersAcceptedData(System.Int32)">
+        <member name="M:Proyect.IOffer.GetPeriodTimeOffersAcceptedData(System.Int32,Proyect.PurchaseData@)">
             <summary>
             Obtien todas las ofertas que le fueron aceptadas en un periodo de tiempo.
             </summary>
             <param name="periodTime"></param>
             <returns>mensaje con la informacion de compra de sus ofertas</returns>
-        </member>
-        <member name="M:Proyect.IOffer.GetOfferBuyerTimeData(Proyect.Emprendedor)">
-            <summary>
-            Obtiene la fecha en la que el imprendedor ingresado acepto la oferta.
-            </summary>
-            <param name="emprendedor"></param>
         </member>
         <member name="M:Proyect.IOffer.PutBuyer(Proyect.Emprendedor)">
             <summary>
@@ -887,19 +893,12 @@
             </summary>
             <value>dateTime</value>
         </member>
-        <member name="M:Proyect.NonConstantOffer.GetPeriodTimeOffersAcceptedData(System.Int32)">
+        <member name="M:Proyect.NonConstantOffer.GetPeriodTimeOffersAcceptedData(System.Int32,Proyect.PurchaseData@)">
             <summary>
             Obtiene la informacion de compra de la oferta (expert).
             </summary>
             <param name="periodTime"></param>
             <returns>si la oferta se compro antes de la fecha estipulada, devuelve la iformacion de compra, en caso contrario, devuelve un striing indicando dicha situacion</returns>
-        </member>
-        <member name="M:Proyect.NonConstantOffer.GetOfferBuyerTimeData(Proyect.Emprendedor)">
-            <summary>
-            Obtiene la fecha de compra del emprendedor ingresado.
-            </summary>
-            <param name="emprendedor"></param>
-            <returns>retorna la fecha de cmpra de la oferta</returns>
         </member>
         <member name="M:Proyect.NonConstantOffer.PutBuyer(Proyect.Emprendedor)">
             <summary>

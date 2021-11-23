@@ -38,13 +38,7 @@ namespace Proyect
         /// </summary>
         /// <param name="periodTime"></param>
         /// <returns>mensaje con la informacion de compra de sus ofertas</returns>
-        bool GetPeriodTimeOffersAcceptedData(int periodTime);
-
-        /// <summary>
-        /// Obtiene la fecha en la que el imprendedor ingresado acepto la oferta.
-        /// </summary>
-        /// <param name="emprendedor"></param>
-        DateTime GetOfferBuyerTimeData(Emprendedor emprendedor);
+        bool GetPeriodTimeOffersAcceptedData(int periodTime, out PurchaseData tiempo);
 
         /// <summary>
         /// Le asigna el emprendedor y la fecha de compra a la oferta, una vez es comprada.

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Text;
 using System;
+using System.Linq;
 
 namespace Proyect
 {
@@ -112,33 +113,24 @@ namespace Proyect
         /// </summary>
         /// <param name="periodTime"></param>
         /// <returns>Mensaje con la infromacion de compra de la oferta, si la misma entra dentro del rango estipulado, en caso contrario, mensaje que indica dicha situacion.</returns>
-        public bool GetPeriodTimeOffersAcceptedData(int periodTime)
+        public bool GetPeriodTimeOffersAcceptedData(int periodTime, out PurchaseData tiempo)
         {
             PurchaseData lastPurches = this.PurchesedData[this.PurchesedData.Count - 1];
-            TimeSpan diference = lastPurches.PurchaseDate - DateTime.Now;
-            if(Convert.ToDouble(diference.TotalHours) <= periodTime*24)
+            if (periodTime != -1)
             {
+                TimeSpan diference = lastPurches.PurchaseDate - DateTime.Now;
+                if(Convert.ToDouble(diference.TotalHours) <= periodTime*24)
+                {
+                    tiempo = lastPurches;
+                    return true;
+                }
+                tiempo = null;
+                return false;
+            }else
+            {
+                tiempo = lastPurches;
                 return true;
             }
-            return false;
-        }
-
-        /// <summary>
-        /// Obtiene la fecha de compra del emprendedor ingresado (Patron expert).
-        /// </summary>
-        /// <param name="emprendedor"></param>
-        /// <returns> La fecha de compra del emprendedor ingresado</returns>
-        public DateTime GetOfferBuyerTimeData(Emprendedor emprendedor)
-        {
-            PurchaseData dateBuyerData = this.PurchesedData[0];
-            foreach (PurchaseData item in this.PurchesedData)
-            {
-                if (item.Buyer == emprendedor)
-                {
-                    dateBuyerData = item;
-                }
-            }
-            return dateBuyerData.PurchaseDate;
         }
 
         /// <summary>

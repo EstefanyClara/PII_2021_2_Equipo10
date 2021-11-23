@@ -90,12 +90,11 @@ namespace Proyect
         /// <returns>message</returns>
         public List<IOffer> GetOffersAccepted(int periodTime)
         {
+            PurchaseData compradorData = null;
             List<IOffer> ofertas = new List<IOffer>();
             foreach(IOffer offer in this.PurchasedOffers)
             {
-                DateTime fecha = offer.GetOfferBuyerTimeData(this);
-                TimeSpan diference = fecha - DateTime.Now;
-                if(Convert.ToDouble(diference.TotalHours) <= periodTime*24)
+                if(offer.GetPeriodTimeOffersAcceptedData(periodTime, out compradorData))
                 {
                     ofertas.Add(offer);
                 }

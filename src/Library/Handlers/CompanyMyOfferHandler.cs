@@ -170,8 +170,6 @@ namespace Proyect
                                         }
                                         response = "Comando no valido";
                                         return true;
-
-
                                     }else
                                     {
                                         response = "Numero invalido";
@@ -220,20 +218,20 @@ namespace Proyect
                                             {
                                                 DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
                                                 response = $"La habiliatcion {compania.OffersPublished[Convert.ToInt32(userData[0])].Qualifications[number-1].QualificationName} se removio de la oferta seleccionada";
-                                                compania.OffersPublished[Convert.ToInt32(userData[0])].Qualifications.RemoveAt(number-1);
+                                                AppLogic.Instance.RemoveQualification(compania,compania.OffersPublished[Convert.ToInt32(userData[0])], number-1);
                                                 return true;
                                             }else
                                             {
                                                 response = "Numero invalido";
                                             }
-                                        }else //Falta poner los metdod de appa logic para las habilitaciones, tanto sacar como poner.
+                                        }else
                                         {
                                             if (AppLogic.Instance.Qualifications.Count - number >= 0)
                                             {
                                                 if (!compania.OffersPublished[Convert.ToInt32(userData[0])].Qualifications.Contains(AppLogic.Instance.Qualifications[number-1]))
                                                 {
                                                     DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
-                                                    compania.OffersPublished[Convert.ToInt32(userData[0])].Qualifications.Add(AppLogic.Instance.Qualifications[number-1]);
+                                                    AppLogic.Instance.AddQualification(compania,compania.OffersPublished[Convert.ToInt32(userData[0])],AppLogic.Instance.Qualifications[number-1]);
                                                     response = $"se agrego {AppLogic.Instance.Qualifications[number-1].QualificationName} a la oferta seleccionada";
                                                     return true;
                                                     

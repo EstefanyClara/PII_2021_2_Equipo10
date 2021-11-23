@@ -171,10 +171,10 @@ namespace Proyect
         /// </summary>
         /// <param name="company">La compania.</param>
         /// <param name="offer">La oferta.</param>
-        /// <param name="qualification">La habilitacion.</param>
-        public bool RemoveQualification(Company company, IOffer offer, Qualifications qualification)
+        /// <param name="qualificationIndex">La habilitacion.</param>
+        public void RemoveQualification(Company company, IOffer offer,int qualificationIndex)
         {
-            return company.RemoveQualification(offer, qualification);
+            company.RemoveQualification(offer, qualificationIndex);
         }
 
         /// <summary>
@@ -184,9 +184,9 @@ namespace Proyect
         /// <param name="company">La compania.</param>
         /// <param name="offer">La oferta.</param>
         /// <param name="qualification">La habilitacion.</param>
-        public bool AddQualification(Company company, IOffer offer, Qualifications qualification)
+        public void AddQualification(Company company, IOffer offer, Qualifications qualification)
         {
-            return company.AddQualification(offer, qualification);
+            company.AddQualification(offer, qualification);
         }
 
         /// <summary>
@@ -363,7 +363,7 @@ namespace Proyect
         /// <param name="company">Compania.</param>
         /// <param name="periodTime">Periodo de tiempo establecido por el usuario.</param>
         /// <returns></returns>
-        public List<IOffer> GetPeriodTimeOffersAccepted(Company company, int periodTime)
+        public List<IOffer> GetOffersAccepted(Company company, int periodTime)
         {
             return company.GetOffersAccepted(periodTime);
         }
@@ -376,7 +376,7 @@ namespace Proyect
         /// <param name="emprendedor">Emprendedor.</param>
         /// <param name="periodTime">Periodo de tiempo establecido por el usuario.</param>
         /// <returns></returns>
-        public List<IOffer> GetPeriodTimeOffersAccepted(Emprendedor emprendedor, int periodTime)
+        public List<IOffer> GetOffersAccepted(Emprendedor emprendedor, int periodTime)
         {
             return emprendedor.GetOffersAccepted(periodTime);
         }

@@ -96,10 +96,11 @@ namespace Proyect
                 /// <returns>Las ofertas aceptadas en un periodo de tiempo.</returns>
                 public List<IOffer> GetOffersAccepted(int periodTime)
                 {
+                        PurchaseData compradorData = null;
                         List<IOffer> ofertas = new List<IOffer>();
                         foreach(IOffer offer in this.OffersPublished)
                         {
-                                if (offer.GetPeriodTimeOffersAcceptedData(periodTime))
+                                if (offer.GetPeriodTimeOffersAcceptedData(periodTime, out compradorData))
                                 {
                                         ofertas.Add(offer);
                                 }
@@ -137,29 +138,19 @@ namespace Proyect
                 /// </summary>
                 /// <param name="offer">La oferta.</param>
                 /// <param name="qualification">La habilitaciones de la oferta.</param>
-                public bool AddQualification(IOffer offer, Qualifications qualification)
+                public void AddQualification(IOffer offer, Qualifications qualification)
                 {
-                        if (offer.Qualifications.Contains(qualification))
-                        {
-                                return false;
-                        }
                         offer.Qualifications.Add(qualification);
-                        return true;
                 }
 
                 /// <summary>
                 /// Remueve la habilitacion de una oferta (Por expert).
                 /// </summary>
                 /// <param name="offer">La oferta.</param>
-                /// <param name="qualification">La habilitacion de la oferta.</param>
-                public bool RemoveQualification(IOffer offer, Qualifications qualification)
+                /// <param name="qualificationIndex">La habilitacion de la oferta.</param>
+                public void RemoveQualification(IOffer offer, int qualificationIndex)
                 {
-                        if (!offer.Qualifications.Contains(qualification))
-                        {
-                                return false;
-                        }
-                        offer.Qualifications.Remove(qualification);
-                        return true;
+                        offer.Qualifications.RemoveAt(qualificationIndex);
                 }
         }
 }
