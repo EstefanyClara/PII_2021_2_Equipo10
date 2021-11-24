@@ -129,30 +129,13 @@ namespace Proyect
                                 index++;
                                 mensaje.Append($"{index}-{item.QualificationName}\n");
                             }
+                            userData.Add("");
                             response = mensaje.ToString();
                         }else
                         {
                             response = "Por favor ingrese un dato valido";
                         }
                     return true;
-                    case 5:
-                        if (int.TryParse(message.Text, out number))
-                        {
-                            if (AppLogic.Instance.Qualifications.Count - number >= 0 )
-                            {
-                                userData.Add("-" + number.ToString());
-                                response = "Se ha agregado la habilitacion";
-                                return true;
-                            }else
-                            {  
-                                response = "El indice ingresado no es valido";
-                                return true;
-                            }
-                        }else
-                        {
-                            response = "El dato ingresado no es valido\nPor favor, revise que haya ingresado un numero (Ej:'1' Para elegir la primera habilitacion)";
-                            return true;
-                        }
                     case 6:
                         if(!message.Text.ToLower().Replace(" ","").Equals("/stop"))
                         {
@@ -182,14 +165,10 @@ namespace Proyect
                                 response = "El dato ingresado no es valido\nPor favor, revise que haya ingresado un numero (Ej:'1' Para elegir la primera habilitacion)";
                                 return true;
                             }
-                        }if(userData[5].Contains("-"))
-                        {
-                            response = "Ahora ingrese las palabras claves del producto\n\nEstas palabras las usaran los emprendedores a la hora de buscar ofertas.";
-                            userData.Add("P");
-                            return true;
                         }
-                        response = "Tiene que ingresar al menos una habilitacion";
-                    return true;
+                        response = "Ahora ingrese las palabras claves del producto\n\nEstas palabras las usaran los emprendedores a la hora de buscar ofertas.";
+                        userData.Add("");
+                        return true;
                     case 7:
                         if(!message.Text.ToLower().Replace(" ","").Equals("/stop") )
                         {
@@ -277,10 +256,10 @@ namespace Proyect
                             Company compania = AppLogic.Instance.GetCompany(message.Id);
                             if (userData[0].Equals("/si"))
                             {
-                                AppLogic.Instance.PublicConstantOffer(compania,AppLogic.Instance.Classifications[Convert.ToInt32(userData[1])],Convert.ToDouble(userData[2]),Convert.ToDouble(userData[3]),userData[4],lista,words);
+                                AppLogic.Instance.PublicConstantOffer(compania, AppLogic.Instance.Classifications[Convert.ToInt32(userData[1])], Convert.ToDouble(userData[2]), Convert.ToDouble(userData[3]), userData[4], lista, words);
                             }if (userData[0].Equals("/no"))
                             {
-                                AppLogic.Instance.PublicNonConstantOffer(compania,AppLogic.Instance.Classifications[Convert.ToInt32(userData[1])],Convert.ToDouble(userData[2]),Convert.ToDouble(userData[3]),userData[4],lista,words);
+                                AppLogic.Instance.PublicNonConstantOffer(compania, AppLogic.Instance.Classifications[Convert.ToInt32(userData[1])], Convert.ToDouble(userData[2]), Convert.ToDouble(userData[3]), userData[4], lista, words);
                             }
                             DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
                             response = "Usted a publicado la oferta con exito";

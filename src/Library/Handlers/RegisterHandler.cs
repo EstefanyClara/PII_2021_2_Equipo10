@@ -219,14 +219,9 @@ namespace Proyect
                                     return true;
                                 }
                             }
-                            if(message.Text.ToLower().Replace(" ","").Equals("/stop") & userData[4].Contains("-"))
-                            {
-                                response = "Ahora ingrese su especializacion:";
-                                userData.Add("");
-                                return true;
-                            }
                         }
-                        response = "Tiene que ingresar al menos una habilitacion";
+                        response = "Ahora ingrese su especializacion:";
+                        userData.Add("");
                         return true;
                     case 6:
                         if (!message.Text.Contains("?"))
