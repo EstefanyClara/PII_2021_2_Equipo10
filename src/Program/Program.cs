@@ -27,7 +27,7 @@ namespace Ucu.Poo.TelegramBot
         //
         // *Importante*:
         // Para probar este ejemplo, crea un bot nuevo y eeemplaza este token por el de tu bot.
-        private static string Token = "2139538287:AAH8UsYILUvYhd17WfkjsvYRsBTRtQOlVTI";
+        private static string Token = "2101777088:AAFz3DmdRIvOU2omgOF17kozROw2kIY5WJY";
 
         private static IHandler firstHandler;
 
@@ -44,7 +44,8 @@ namespace Ucu.Poo.TelegramBot
                             new PublicOfferHandler(
                             new GetConstantMaterialsHandler(
                             new CompanyMyOfferHandler(
-                            new PurchasedOfferHandler(null)))))));
+                            new SearchOfferHandler(
+                            new PurchasedOfferHandler(null))))))));
 
             var cts = new CancellationTokenSource();
 
