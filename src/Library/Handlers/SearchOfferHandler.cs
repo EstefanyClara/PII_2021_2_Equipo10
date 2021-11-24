@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
+using System.Collections.Generic;
 using System.Collections;
 using System.Text;
-using System.Collections.Generic;
 
 namespace Proyect
 {
@@ -12,7 +12,7 @@ namespace Proyect
     public class SearchOfferHandler : BaseHandler
     {
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="RegisterHandler"/>. Esta clase procesa el mensaje "/Registrar" de un usuario.
+        /// Inicializa una nueva instancia de la clase <see cref="SearchOfferHandler"/>. Esta clase procesa el mensaje public, para publicar una oferta.
         /// </summary>
         /// <param name="next">El próximo "handler".</param>
         public SearchOfferHandler(BaseHandler next) : base(next)
@@ -28,37 +28,46 @@ namespace Proyect
         /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         protected override bool InternalHandle(IMessage message, out string response)
         {
-
-            if (message.Text.ToLower().Replace(" ","").Equals("/buscar"))
+            if (this.Keywords.Contains(message.Text.ToLower().Replace(" ","")))
             {
-                if (AppLogic.Instance.GetEmprendedor(message.Id) != null)
+                if(AppLogic.Instance.GetEmprendedor(message.Id) == null)
                 {
-                    response = "Usted ya se encuentra registrado";
+                    response = "Solo aquellos registrados como compania pueden buscar una oferta";
                     return true;
                 }
                 if(!DataUserContainer.Instance.UserDataHistory.Keys.Contains(message.Id))
                 {
-                    response = "Bienvenido a C4BOT\n\n¿Posee un Token?\nIngrese /si si tiene uno y asi registrarse como empresa o /no si no lo tiene y registrarse como emprendedor";
+                    response = "Indique cual es su criterio de busqueda";
                     List<List<string>> lista = new List<List<string>>() {new List<string>(),new List<string>()};
                     DataUserContainer.Instance.UserDataHistory.Add(message.Id,lista);
-                    DataUserContainer.Instance.UserDataHistory[message.Id][0].Add("/registrar");
+                    DataUserContainer.Instance.UserDataHistory[message.Id][0].Add("/buscar");
                     return true;
                 }else
                 {
-                    response = "Usted ya esta en proceso de registro";
-                    return true;
+                    if (DataUserContainer.Instance.UserDataHistory[message.Id][0][0].Equals("/buscar"))
+                    {
+                        response = "Usted ya esta en proceso de publicacion";
+                        return true;
+                    }else
+                    {
+                        response = string.Empty;
+                        return false;
+                    }
                 }
-            }if (DataUserContainer.Instance.UserDataHistory.Keys.Contains(message.Id) && DataUserContainer.Instance.UserDataHistory[message.Id][0][0] == "/registrar")
+            }if(DataUserContainer.Instance.UserDataHistory.Keys.Contains(message.Id) && DataUserContainer.Instance.UserDataHistory[message.Id][0][0].Equals("/buscar"))
             {
-                if (message.Text.ToLower().Replace(" ","").Equals("/si") & DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0)
+                if ((message.Text.ToLower().Replace(" ","").Equals("/si") && DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0) | (message.Text.ToLower().Replace(" ","").Equals("/no") && DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0))
                 {
-                    DataUserContainer.Instance.UserDataHistory[message.Id][1].Add("/si");
-                    response = "Usted se registrara como empresa en esta aplicacion\nIngrese el codigo: ";
-                    return true;
-                }if (message.Text.ToLower().Replace(" ","").Equals("/no") & DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0)
-                {
-                    DataUserContainer.Instance.UserDataHistory[message.Id][1].Add("/no");
-                    response = "Usted se registrara como usuario en esta aplicacion\n¿Esta de acuerdo? (/si o /no)";
+                    DataUserContainer.Instance.UserDataHistory[message.Id][1].Add(message.Text.ToLower().Replace(" ",""));
+                    StringBuilder mensaje = new StringBuilder();
+                    mensaje.Append("A continuacion ingrese la clasificacion del producto.\n\nEliga entre las habilitadas por la aplicacion indicando su indice.\n");
+                    int indice = 0;
+                    foreach (Classification item in AppLogic.Instance.Classifications)
+                    {
+                        indice++;
+                        mensaje.Append($"{indice}-{item.Category}\n");
+                    }
+                    response = mensaje.ToString();
                     return true;
                 }if (DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0)
                 {
@@ -70,190 +79,185 @@ namespace Proyect
                 switch(userData.Count)
                 {
                     case 1:
-                    if(position.Equals("/si"))
-                    {
-                        if (!message.Text.Contains("?"))
-                        {
-                        userData.Add(message.Text); //El token de la compania
-                        response = "Ingrese el nombre de su compania";
-                        }else
-                        {
-                            response = "Por favor ingrese un dato valido";
-                        }
-                    }else
-                    {
-                        if(message.Text.ToLower().Replace(" ","").Equals("/si"))
-                        {
-                            userData.Add("Emprendedor no necesita Token (este es u espacio momentaneo presente hasta que el emprendedor ingrese sus habilitaciones)");
-                            response = "Ingrese el nombre de su emprendimiento";
-                            return true;
-                        }if(message.Text.ToLower().Replace(" ","").Equals("/no"))
-                        {
-                            DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
-                            response = "Recuerde que puede registraser como usuario en cualquier momento.\n\nPara registrarse como compania contacto con el administrador";
-                            return true;
-                        }
-                        response = "Dato erroneo ingrese /si o /no";
-                        return true;
-                    }
-                    return true;
-                    case 2:
-                        if (!message.Text.Contains("?"))
-                        {
-                            userData.Add(message.Text); //El nombre
-                            response = "Ingrese su ubicacion actual";
-                        }else
-                        {
-                            response = "Por favor ingrese un dato valido";
-                        }
-                        return true;
-                    case 3:
-                        if (!message.Text.Contains("?"))
-                        {
-                            userData.Add(message.Text); //La ubicacion de la compania
-                        }else
-                        {
-                            response = "Por favor ingrese un dato valido";
-                        }
-                        StringBuilder mensaje = new StringBuilder();
-                        mensaje.Append("A continuacion ingrese el rubro al cual pertenece.\n\nEliga entre los habilitados de la aplicacion indicando su indice.\n");
-                        List<Rubro> validRubros = AppLogic.Instance.Rubros;
-                        int indice = 0;
-                        foreach(Rubro item in validRubros)
-                        {
-                            indice++;
-                            mensaje.Append($"{indice}-{item.RubroName}\n");
-                        }
-                        response = mensaje.ToString();
-                        return true;
-                    case 4:
                         int number;
                         if (int.TryParse(message.Text, out number))
                         {
-                            if (AppLogic.Instance.Rubros.Count - number >= 0)
+                            if (AppLogic.Instance.Classifications.Count - number >= 0)
                             {
                                 number--;
                                 userData.Add(number.ToString());
-                                if (userData[0].Equals("/si"))
-                                {
-                                    response = $"Por favor, veo si los datos ingresados son correctos.\nCodigo de registro: {userData[1]}\nNombre de la compania: {userData[2]}\nUbicacion de la compnai: {userData[3]}\nRubro de la compania: {AppLogic.Instance.Rubros[Convert.ToInt32(userData[4])].RubroName}\n\nSi son correctos ingrese '/si', en caso contrario '/no'";
-                                }else
-                                {
-                                    mensaje = new StringBuilder();
-                                    mensaje.Append("A continuacion ingrese las habilitaciones que posee.\n\nEliga entre los habilitadoas por la aplicacion indicando su indice (puede elegir mas de una).\n");
-                                    int index = 0;
-                                    foreach (Qualifications item in AppLogic.Instance.Qualifications)
-                                    {
-                                        index++;
-                                        mensaje.Append($"{index}-{item.QualificationName}\n");
-                                    }
-                                    response = mensaje.ToString();
-                                }
+                                response = "Ahora ingrese la cantida en del producto (en kilogramos)";
                             }else
                             {
                                 response = "Numero invalido";
                             }
                         }else
                         {
-                            response = "El dato ingresado no es valido\nPor favor, revise que haya ingresado un numero (Ej:'1' Para elegir el primer rubro)";
+                            response = "El dato ingresado no es valido\nPor favor, revise que haya ingresado un numero (Ej:'1' Para elegir la primera clasificacion)";
                         }
-                        return true;
-                    case 5:
-                        if ( userData[0].Equals("/si"))
+                    return true;
+                    case 2:
+                        float cantidad;
+                        if (float.TryParse(message.Text, out cantidad))
                         {
-                            if (message.Text.ToLower().Replace(" ","").Equals("/si"))
-                            {
-                                if(AppLogic.Instance.RegistrarCompany(userData[1],message.Id,userData[2],userData[3],AppLogic.Instance.Rubros[Convert.ToInt32(userData[4])]))
-                                {
-                                    DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
-                                    response = "Usted se a registrado con exito";
-                                    return true;
-                                }else
-                                {
-                                    DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
-                                    response = "ERROR AL REGISTRAR\n\nRevise si el codigo ingresado es correcto o si ingreso algun dato erroneo";
-                                    return true;
-                                }
-                            }if(message.Text.ToLower().Replace(" ","").Equals("/no"))
-                            {
-                                DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
-                                response = "Se procedera a eliminar todos los datos ingresados.\n\nEn el caso de querer volver a registrarse, por favor use el comando '/Registrar'.";
-                                return true;
-                            }
-                            response = "Dato incorrecto\n Por favor ingrese '/si' o '/no'.";
-                            return true;
+                            userData.Add(cantidad.ToString());
+                            response = "Ahora ingrese el costo del producto (en pesos uruguayos)";
                         }else
                         {
-                            if(!message.Text.ToLower().Replace(" ","").Equals("/stop"))
-                            {
-                                if (userData[1] == "Emprendedor no necesita Token (este es u espacio momentaneo presente hasta que el emprendedor ingrese sus habilitaciones)")
-                                {
-                                    userData.RemoveAt(1);
-                                    userData.Add("");
-                                }
-                                if (int.TryParse(message.Text, out number))
-                                {
-                                    if (AppLogic.Instance.Qualifications.Count - number >= 0 )
-                                    {
-                                        if (!userData[4].Contains(message.Text.Replace(" ","")))
-                                        {
-                                            string habilitacion = userData[4];
-                                            habilitacion = habilitacion + "-" + message.Text.Replace(" ","");
-                                            userData.RemoveAt(4);
-                                            userData.Add(habilitacion);
-                                            response = "Se ha agregado la habilitacion";
-                                            return true;
-                                        }else
-                                        {
-                                            response = "La habilitacion indicada ya se encuentra sellecionada";
-                                            return true;
-                                        }
-                                    }else
-                                    {  
-                                        response = "El indice ingresado no es valido";
-                                        return true;
-                                    }
-                                }else
-                                {
-                                    response = "El dato ingresado no es valido\nPor favor, revise que haya ingresado un numero (Ej:'1' Para elegir la primera habilitacion)";
-                                    return true;
-                                }
-                            }
-                            if(message.Text.ToLower().Replace(" ","").Equals("/stop") & userData[4].Contains("-"))
-                            {
-                                response = "Ahora ingrese su especializacion:";
-                                userData.Add("");
-                                return true;
-                            }
+                            response = "El dato ingresado no es valido\nPor favor, revise que haya ingresado un numero (Ej:'1' Para elegir el primer rubro)";
                         }
-                        response = "Tiene que ingresar al menos una habilitacion";
-                        return true;
-                    case 6:
+                    return true;
+                    case 3:
+                        if (float.TryParse(message.Text, out cantidad))
+                        {
+                            userData.Add(cantidad.ToString());
+                            response = "Ahora ingrese la ubicacion del producto";
+                        }else
+                        {
+                            response = "El dato ingresado no es valido\nPor favor, revise que haya ingresado un numero (Ej:'1' Para elegir el primer rubro)";
+                        }
+                    return true;
+                    case 4:
                         if (!message.Text.Contains("?"))
                         {
-                            userData.RemoveAt(5);
-                            userData.Add(message.Text);
+                            userData.Add(message.Text); //La ubicacion del producto
+                            StringBuilder mensaje = new StringBuilder();
+                            mensaje.Append("A continuacion ingrese las habilitaciones que posee el producto.\n\nEliga entre los habilitadoas por la aplicacion indicando su indice (puede elegir mas de una).\n");
+                            int index = 0;
+                            foreach (Qualifications item in AppLogic.Instance.Qualifications)
+                            {
+                                index++;
+                                mensaje.Append($"{index}-{item.QualificationName}\n");
+                            }
+                            response = mensaje.ToString();
                         }else
                         {
                             response = "Por favor ingrese un dato valido";
+                        }
+                    return true;
+                    case 5:
+                        if (int.TryParse(message.Text, out number))
+                        {
+                            if (AppLogic.Instance.Qualifications.Count - number >= 0 )
+                            {
+                                userData.Add("-" + number.ToString());
+                                response = "Se ha agregado la habilitacion";
+                                return true;
+                            }else
+                            {  
+                                response = "El indice ingresado no es valido";
+                                return true;
+                            }
+                        }else
+                        {
+                            response = "El dato ingresado no es valido\nPor favor, revise que haya ingresado un numero (Ej:'1' Para elegir la primera habilitacion)";
                             return true;
                         }
-                        mensaje = new StringBuilder();
-                        string[] habilitaciones = userData[4].Split("-");
-                        foreach(string item in habilitaciones)
+                    case 6:
+                        if(!message.Text.ToLower().Replace(" ","").Equals("/stop"))
                         {
-                            if (int.TryParse(item, out number))
+                            if (int.TryParse(message.Text, out number))
                             {
-                                mensaje.Append($"\n-{AppLogic.Instance.Qualifications[number-1].QualificationName}");
+                                if (AppLogic.Instance.Qualifications.Count - number >= 0 )
+                                {
+                                    if (!userData[5].Contains(message.Text.Replace(" ","")))
+                                    {
+                                        string habilitacion = userData[5];
+                                        habilitacion = habilitacion + "-" + message.Text.Replace(" ","");
+                                        userData.RemoveAt(5);
+                                        userData.Add(habilitacion);
+                                        response = "Se ha agregado la habilitacion";
+                                        return true;
+                                    }else
+                                    {
+                                        response = "La habilitacion indicada ya se encuentra sellecionada";
+                                        return true;
+                                    }                           
+                                }else{  
+                                    response = "El indice ingresado no es valido";
+                                    return true;
+                                }
+                            }else
+                            {
+                                response = "El dato ingresado no es valido\nPor favor, revise que haya ingresado un numero (Ej:'1' Para elegir la primera habilitacion)";
+                                return true;
                             }
+                        }if(userData[5].Contains("-"))
+                        {
+                            response = "Ahora ingrese las palabras claves del producto\n\nEstas palabras las usaran los emprendedores a la hora de buscar ofertas.";
+                            userData.Add("P");
+                            return true;
                         }
-                        userData.Add(" ");
-                        response = $"Por favor, veo si los datos ingresados son correctos.\nNombre: {userData[1]}\nUbicacion: {userData[2]}\nRubro: {AppLogic.Instance.Rubros[Convert.ToInt32(userData[3])].RubroName}\nHabilitaciones: {mensaje}\nEspecializacion: {userData[5]}\n\nSi son correctos ingrese '/si', en caso contrario '/no'";
-                        return true;
+                        response = "Tiene que ingresar al menos una habilitacion";
+                    return true;
                     case 7:
+                        if(!message.Text.ToLower().Replace(" ","").Equals("/stop") )
+                        {
+                            if (!message.Text.Contains("?"))
+                            {
+                                if (!userData[6].Contains(","))
+                                {
+                                    userData.RemoveAt(6);
+                                    userData.Add(message.Text+",");
+                                    response = "Se ha/n agregado la/s palabra clave";
+                                    return true;
+                                }else
+                                {
+                                    string palabraIngresada = message.Text.Replace(".","").Trim(' ');
+                                    string[] palabras = userData[6].Split(",");
+                                        foreach(string word in palabras)
+                                        {
+                                            word.Trim(' ');
+                                            if (word.Equals(palabraIngresada))
+                                            {
+                                                response = $"{palabraIngresada} ya se encuentra en la lista de palabras calve\n\nLas palabras repitadas no se agregaran";
+                                                return true;
+                                            }
+                                        }
+                                        string words = userData[6];
+                                        words = words + "," + palabraIngresada;
+                                        userData.RemoveAt(6);
+                                        userData.Add(words);
+                                        response = "Se ha agregado la palabra clave";
+                                        return true;
+                                }
+                            }else
+                            {
+                                response = "Por favor ingrese un dato valido";
+                                return true;
+                            }
+                        }if (!userData[6].Contains(","))
+                        {
+                            response = "Debe ingresar al menos una palabra clave";
+                            return true;
+                        }else
+                        {
+                            userData.Add(" ");
+                            StringBuilder mensaje = new StringBuilder();
+                            string[] habilitaciones = userData[5].Split("-");
+                            foreach(string item in habilitaciones)
+                            {
+                                if (int.TryParse(item, out number))
+                                {
+                                    mensaje.Append($"\n-{AppLogic.Instance.Qualifications[number-1].QualificationName}");
+                                }
+                            }
+                            StringBuilder mensajePalabras = new StringBuilder();
+                            string[] words = userData[6].Split(",");
+                            foreach(string item in words)
+                            {
+                                if(!item.Equals(""))
+                                {
+                                    mensajePalabras.Append($"|{item}|");
+                                }
+                            }
+                            response = $"Por favor, veo si los datos ingresados son correctos.\nClasificacion del producto: {AppLogic.Instance.Classifications[Convert.ToInt32(userData[1])].Category}\nCantidad: {userData[2]} Kilogramos\nPrecio: {userData[3]}$\nUbicacion: {userData[4]}\nHabilitaciones necesarias: {mensaje}\nPalabras clave: {mensajePalabras}\n\nSi son correctos ingrese '/si', en caso contrario '/no'";
+                            return true;
+                        }
+                    case 8:
                         if (message.Text.ToLower().Replace(" ","").Equals("/si"))
                         {
-                            string[] habilitacionesLista = userData[4].Split("-");
+                            string[] habilitacionesLista = userData[5].Split("-");
                             List<Qualifications> lista = new List<Qualifications>();
                             foreach(string item in habilitacionesLista)
                             {
@@ -262,23 +266,35 @@ namespace Proyect
                                     lista.Add(AppLogic.Instance.Qualifications[number-1]);
                                 }
                             }
-                            
-                            AppLogic.Instance.RegisterEntrepreneurs(message.Id,userData[1],userData[2],AppLogic.Instance.Rubros[Convert.ToInt32(userData[3])],lista,new ArrayList(){userData[5]});
+                            ArrayList words = new ArrayList();
+                            foreach(string item in userData[6].Split(","))
+                            {
+                                if (!item.Equals(""))
+                                {
+                                    words.Add(item);
+                                }
+                            }
+                            Company compania = AppLogic.Instance.GetCompany(message.Id);
+                            if (userData[0].Equals("/si"))
+                            {
+                                AppLogic.Instance.PublicConstantOffer(compania,AppLogic.Instance.Classifications[Convert.ToInt32(userData[1])],Convert.ToDouble(userData[2]),Convert.ToDouble(userData[3]),userData[4],lista,words);
+                            }if (userData[0].Equals("/no"))
+                            {
+                                AppLogic.Instance.PublicNonConstantOffer(compania,AppLogic.Instance.Classifications[Convert.ToInt32(userData[1])],Convert.ToDouble(userData[2]),Convert.ToDouble(userData[3]),userData[4],lista,words);
+                            }
                             DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
-                            response = "Usted se a registrado con exito";
+                            response = "Usted a publicado la oferta con exito";
                             return true;
                         }if(message.Text.ToLower().Replace(" ","").Equals("/no"))
                         {
                             DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
-                            response = "Se procedera a eliminar todos los datos ingresados.\n\nEn el caso de querer volver a registrarse, por favor use el comando '/Registrar'.";
+                            response = "Se procedera a eliminar todos los datos ingresados.\n\nEn el caso de querer volver a querer publicar una oferta, por favor use el comando '/Public'.";
                             return true;
                         }
                         response = "Dato incorrecto\n Por favor ingrese '/si' o '/no'.";
                     return true;
                 }
-                
             }
-
             response = string.Empty;
             return false;
         }
