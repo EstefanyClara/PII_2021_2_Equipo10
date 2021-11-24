@@ -667,6 +667,7 @@
             </summary>
             <value></value>
         </member>
+<<<<<<< HEAD
         <member name="P:Proyect.NonConstantOffer.DatePublished">
             <summary>
             Obtiene la fecha de publicacion de la oferta.
@@ -676,6 +677,11 @@
         <member name="M:Proyect.NonConstantOffer.GetPeriodTimeOffersAcceptedData(System.Int32)">
             <summary>
             Obtiene la informacion de compra de la oferta (expert).
+=======
+        <member name="P:Proyect.Offer.PurchaseData">
+            <summary>
+            Obtiene los datos relacionados con la compra de una oferta
+>>>>>>> 26e1e8f5788b804faf5ce2591f8b4a94db40a313
             </summary>
             <param name="periodTime"></param>
             <returns>si la oferta se compro antes de la fecha estipulada, devuelve la iformacion de compra, en caso contrario, devuelve un striing indicando dicha situacion</returns>
@@ -762,11 +768,16 @@
         </member>
         <member name="T:Proyect.PurchaseData">
             <summary>
+<<<<<<< HEAD
             Clase para guardar la fecha y quien compró las ofertas (Por SRP).
+=======
+            Clase para guardar la fecha y quien compró las ofertas
+>>>>>>> 26e1e8f5788b804faf5ce2591f8b4a94db40a313
             </summary>
         </member>
         <member name="P:Proyect.PurchaseData.Buyer">
             <summary>
+<<<<<<< HEAD
             Metodo get del comprador.
             </summary>
         </member>
@@ -778,6 +789,21 @@
         <member name="M:Proyect.PurchaseData.#ctor(Proyect.Emprendedor)">
             <summary>
             Inicializa una nueva instancia de la clase <see cref="T:Proyect.PurchaseData"/>
+=======
+            Metodo get del comprador
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Proyect.PurchaseData.PurchaseDate">
+            <summary>
+            Metodo get de la fecha de compra
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Proyect.PurchaseData.#ctor(Proyect.Emprendedor)">
+            <summary>
+            Constructor del registro de compra
+>>>>>>> 26e1e8f5788b804faf5ce2591f8b4a94db40a313
             </summary>
             <param name="buyer"></param>
         </member>
