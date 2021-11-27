@@ -137,9 +137,17 @@ namespace Proyect
         /// Agrega un nuevo comprador a la lista de compradores de esta oferta constante (Se utiliza creator, y expert).
         /// </summary>
         /// <param name="emprendedor"></param>
-        public void PutBuyer(Emprendedor emprendedor)
+        public bool PutBuyer(Emprendedor emprendedor)
         {
-            this.PurchesedData.Add(new PurchaseData(emprendedor));
+            foreach(Qualifications item in this.Qualifications)
+            {
+                if(!emprendedor.Qualifications.Contains(item))
+                {
+                    return false;
+                }
+            }
+            this.purchesedData.Add(new PurchaseData(emprendedor));
+            return true;
         }
     }
 }

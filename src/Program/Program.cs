@@ -9,10 +9,15 @@ using System.Threading;
 using System.Threading.Tasks;
 using Telegram.Bot.Extensions.Polling;
 using Telegram.Bot;
-using Telegram.Bot.Types;
+using Telegram.Bot.Types;                                                                                                       
 using Telegram.Bot.Types.Enums;
 using Proyect;
-
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.IO;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 namespace Ucu.Poo.TelegramBot
 {
     /// <summary>
@@ -27,7 +32,7 @@ namespace Ucu.Poo.TelegramBot
         //
         // *Importante*:
         // Para probar este ejemplo, crea un bot nuevo y eeemplaza este token por el de tu bot.
-        private static string Token = "2139538287:AAH8UsYILUvYhd17WfkjsvYRsBTRtQOlVTI";
+        private static string Token = "2143817414:AAFIP8z5dIEL2guavfT6SdZMob7BtXqHcMI";
 
         private static IHandler firstHandler;
 
@@ -36,6 +41,38 @@ namespace Ucu.Poo.TelegramBot
         /// </summary>
         public static void Main()
         {
+            if (!System.IO.File.Exists(@"../Library/Persistencia/Rubros.json"))
+            {
+                string json = AppLogic.Instance.ConvertToJson(AppLogic.Instance.Rubros);
+                System.IO.File.WriteAllText(@"../Library/Persistencia/Rubros.json", json);
+            }
+            if (!System.IO.File.Exists(@"../Library/Persistencia/Habilitaciones.json"))
+            {
+                string json = AppLogic.Instance.ConvertToJson(AppLogic.Instance.Qualifications);
+                System.IO.File.WriteAllText(@"../Library/Persistencia/Habilitaciones.json", json);
+            }
+            if (!System.IO.File.Exists(@"../Library/Persistencia/ClasificacionesProductos.json"))
+            {
+                string json = AppLogic.Instance.ConvertToJson(AppLogic.Instance.Classifications);
+                System.IO.File.WriteAllText(@"../Library/Persistencia/ClasificacionesProductos.json", json);
+            }
+            if (!System.IO.File.Exists(@"../Library/Persistencia/Emprendedores.json"))
+            {
+                string json = AppLogic.Instance.ConvertToJson(AppLogic.Instance.Entrepreneurs);
+                System.IO.File.WriteAllText(@"../Library/Persistencia/Emprendedores.json", json);
+            }else
+            {
+                AppLogic.Instance.Entrepreneurs = AppLogic.Instance.DeserializeEntrenprenuers();
+            }
+            if (!System.IO.File.Exists(@"../Library/Persistencia/Companias.json"))
+            {
+                string json = AppLogic.Instance.ConvertToJson(AppLogic.Instance.Companies);
+                System.IO.File.WriteAllText(@"../Library/Persistencia/Companias.json", json);
+            }else
+            {
+                AppLogic.Instance.Companies = AppLogic.Instance.DeserializeCompanies();
+            }
+
             Bot = new TelegramBotClient(Token);
 
             firstHandler = new AutorizationHandler(
@@ -63,6 +100,12 @@ namespace Ucu.Poo.TelegramBot
 
             // Terminamos el bot.
             cts.Cancel();
+
+            System.IO.File.WriteAllText(@"../Library/Persistencia/Habilitaciones.json", AppLogic.Instance.ConvertToJson(AppLogic.Instance.Qualifications));
+            System.IO.File.WriteAllText(@"../Library/Persistencia/ClasificacionesProductos.json", AppLogic.Instance.ConvertToJson(AppLogic.Instance.Classifications));
+            System.IO.File.WriteAllText(@"../Library/Persistencia/Rubros.json", AppLogic.Instance.ConvertToJson(AppLogic.Instance.Rubros));
+            System.IO.File.WriteAllText(@"../Library/Persistencia/Emprendedores.json", AppLogic.Instance.ConvertToJson(AppLogic.Instance.Entrepreneurs));
+            System.IO.File.WriteAllText(@"../Library/Persistencia/Companias.json", AppLogic.Instance.ConvertToJson(AppLogic.Instance.Companies));
         }
 
         /// <summary>

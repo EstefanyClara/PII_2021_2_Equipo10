@@ -124,9 +124,21 @@ namespace Proyect
         /// Coloca el emprendedor y la fecha de compra, en la informacion de compra.
         /// </summary>
         /// <param name="emprendedor"></param>
-        public void PutBuyer(Emprendedor emprendedor)
+        public bool PutBuyer(Emprendedor emprendedor)
         {
-            this.PurchesedData = new PurchaseData(emprendedor);
+            foreach(Qualifications item in this.Qualifications)
+            {
+                if(!emprendedor.Qualifications.Contains(item))
+                {
+                    return false;
+                }
+            }
+            if (this.PurchesedData == null)
+            {
+                this.PurchesedData = new PurchaseData(emprendedor);
+                return true;
+            }
+            return false;
         }
     }
 }

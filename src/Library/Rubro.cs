@@ -1,9 +1,13 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace   Proyect
 {
     /// <summary>
     /// Clase que representa el rubro de una compania o emprendedor.
     /// </summary>
-    public class Rubro
+    
+    public class Rubro 
     {
         private string rubroName;
 

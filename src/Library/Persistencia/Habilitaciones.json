@@ -1,0 +1,17 @@
+{
+  "$id": "1",
+  "$values": [
+    {
+      "$id": "2",
+      "QualificationName": "Vehiculo propio"
+    },
+    {
+      "$id": "3",
+      "QualificationName": "Espacio para grandes volumenes de producto"
+    },
+    {
+      "$id": "4",
+      "QualificationName": "Lugar habilitado para conservar desechos toxicos"
+    }
+  ]
+}
