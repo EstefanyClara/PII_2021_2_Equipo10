@@ -28,12 +28,12 @@ namespace Proyect
             string[] comando = message.Text.Trim(' ').ToLower().Split(" ");
             if(comando.Count() <= 2)
             {
-                if (comando.Count() == 2 && this.Keywords.Contains(comando[0]))
-                {
-
-                }if(comando.Count() == 1 && this.Keywords[1].Equals("/invitar"))
+                if (comando.Count() == 2 && comando[0].Equals("/nuevoadministrador"))
                 {
                     
+                }if(comando.Count() == 1 && comando[0].Equals("/invitar"))
+                {
+
                 }
             }
             if (this.Keywords.Contains(message.Text.ToLower().Replace(" ","")))
