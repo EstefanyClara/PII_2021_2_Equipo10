@@ -1,10 +1,7 @@
 using System;
 using System.Linq;
-using System.Collections;
 using System.Text;
 using System.Collections.Generic;
-using Ucu.Poo.Locations.Client;
-using System.Globalization;
 
 namespace Proyect
 {
@@ -14,7 +11,7 @@ namespace Proyect
     public class RegisterHandler : BaseHandler
     {
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="RegisterHandler"/>. Esta clase procesa el mensaje "/Registrar" de un usuario.
+        /// Inicializa una nueva instancia de la clase <see cref="RegisterHandler"/>. Esta clase procesa el mensaje "/Registrar" de un usuario y todos los datos necerarios para registralo.
         /// </summary>
         /// <param name="next">El próximo "handler".</param>
         public RegisterHandler(BaseHandler next) : base(next)
@@ -31,48 +28,53 @@ namespace Proyect
         protected override bool InternalHandle(IMessage message, out string response)
         {
 
-            if (message.Text.ToLower().Replace(" ","").Equals("/registrar"))
+            if (this.Keywords.Contains(message.Text.ToLower().Replace(" ",""))) //Pregunto si el mensaje del usurio corresponde a los que el handler maneja.
             {
-                if (AppLogic.Instance.GetEmprendedor(message.Id) != null | AppLogic.Instance.GetCompany(message.Id) != null)
+                if (AppLogic.Instance.GetEmprendedor(message.Id) != null | AppLogic.Instance.GetCompany(message.Id) != null) //Pregunto si el usuraio ya esta registrado, verificando de que se no encuentre como compania o emprendedor.
                 {
-                    response = "Usted ya se encuentra registrado";
+                    response = "Usted ya se encuentra registrado"; //Mensaje que indica que ya esta registrado.
                     return true;
                 }
-                if(!DataUserContainer.Instance.UserDataHistory.Keys.Contains(message.Id))
+                if(!DataUserContainer.Instance.UserDataHistory.Keys.Contains(message.Id)) //Pregunto si el usuraio se encuentra en el diccionario que maneja la informacion y las posciones de cada usurario.
                 {
+                    //Si el usuario no se encuentra, significa que no estaba en nigun estado en especifico, por lo que su mensje es valido.
                     response = "Bienvenido a C4BOT\n\n¿Posee un Token?\nIngrese /si si tiene uno y asi registrarse como empresa o /no si no lo tiene y registrarse como emprendedor";
                     List<List<string>> lista = new List<List<string>>() {new List<string>(),new List<string>()};
-                    DataUserContainer.Instance.UserDataHistory.Add(message.Id,lista);
-                    DataUserContainer.Instance.UserDataHistory[message.Id][0].Add("/registrar");
+                    DataUserContainer.Instance.UserDataHistory.Add(message.Id,lista); 
+                    DataUserContainer.Instance.UserDataHistory[message.Id][0].Add("/registrar"); //Agrego el usurio al diccionario que maneja la informacion de los chats de cada usuario, y agrego el mensaje que identifica en que handler esta.
                     return true;
                 }else
                 {
+                    //Si el usuario se encuentra en el diccionario, significa que ya esta en algun proceso del hanlder.
                     response = "Usted ya esta en proceso de registro";
                     return true;
                 }
-            }if (DataUserContainer.Instance.UserDataHistory.Keys.Contains(message.Id) && DataUserContainer.Instance.UserDataHistory[message.Id][0][0] == "/registrar")
+            }if (DataUserContainer.Instance.UserDataHistory.Keys.Contains(message.Id) && DataUserContainer.Instance.UserDataHistory[message.Id][0][0] == "/registrar") //Si el mensaje no es uno admitido por el hanlder, pregunto si el usurio esta en el diccionario que maneja la informacion dle chat, y si esta, pregunto si la palabra de identificacion del hanlder, es una admitida por este handler.
             {
-                if (message.Text.ToLower().Replace(" ","").Equals("/si") & DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0)
+                if (message.Text.ToLower().Replace(" ","").Equals("/si") & DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0) //Proceso si el mensaje esra para verificar que tipo de usuario es.
                 {
                     DataUserContainer.Instance.UserDataHistory[message.Id][1].Add("/si");
                     response = "Usted se registrara como empresa en esta aplicacion\nIngrese el codigo: ";
                     return true;
-                }if (message.Text.ToLower().Replace(" ","").Equals("/no") & DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0)
+                }if (message.Text.ToLower().Replace(" ","").Equals("/no") & DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0) //Proceso si el mensaje esra para verificar que tipo de usuario es.
                 {
                     DataUserContainer.Instance.UserDataHistory[message.Id][1].Add("/no");
                     response = "Usted se registrara como usuario en esta aplicacion\n¿Esta de acuerdo? (/si o /no)";
                     return true;
-                }if (DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0)
+                }if (DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0) //Me fijo en que instancia del hanlder esta, para saber si el mensaje que ingreso es valido.
                 {
                     response = "Debe ingresar /si o /no";
                     return true;
                 }
-                string position = DataUserContainer.Instance.UserDataHistory[message.Id][1][0];
-                List<string> userData = DataUserContainer.Instance.UserDataHistory[message.Id][1];
+                string position = DataUserContainer.Instance.UserDataHistory[message.Id][1][0]; // Posicion de la lista que tiene el stirng que identifica si el usuario se esta registrando como emprendedor o empresa.
+                List<string> userData = DataUserContainer.Instance.UserDataHistory[message.Id][1]; //La lista que almacena toda la informacion que ingresa el usuario.
+
+                // Para saber en que posicion del handler esta el usuario, se pregunta la cantidad de items que tiene la lista de informacion que ingresa el usuario.
+                
                 switch(userData.Count)
                 {
-                    case 1:
-                    if(position.Equals("/si"))
+                    case 1: //Si el lista de informacion tiene un elemento, significa que el usuario ingreso el primer dato necesario para registrase.
+                    if(position.Equals("/si")) //Verifico si el usuario se va a registrar como compania.
                     {
                         if (!message.Text.Contains("?"))
                         {
