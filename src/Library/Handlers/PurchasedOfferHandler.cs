@@ -126,81 +126,116 @@ namespace Proyect
                 List<string> userData = DataUserContainer.Instance.UserDataHistory[message.Id][1];
                 string mensaje = message.Text.Trim(' ');
                 string[] comando = mensaje.ToLower().Split(" ");
-                if (comando.Count() == 2)
+                if(DataUserContainer.Instance.UserDataHistory[message.Id][0].Count == 1)
                 {
-                    if (this.Keywords.Contains(comando[0]))
+                    if (comando.Count() == 2)
                     {
-                        int number;
-                        if (int.TryParse(comando[1], out number))
+                        if (this.Keywords.Contains(comando[0]))
                         {
-                            if(DataUserContainer.Instance.UserOfferDataSelection[message.Id].Count - number >= 0)
+                            int number;
+                            if (int.TryParse(comando[1], out number))
                             {
-                                IOffer oferta = DataUserContainer.Instance.UserOfferDataSelection[message.Id][number-1];
-                                StringBuilder mensajeHabilitaciones = new StringBuilder();
-                                StringBuilder mensajeKeyWords = new StringBuilder();
-                                foreach(Qualifications item in oferta.Qualifications)
+                                if(DataUserContainer.Instance.UserOfferDataSelection[message.Id].Count - number >= 0)
                                 {
-                                    mensajeHabilitaciones.Append($"\n{item.QualificationName}");
-                                }
-                                foreach(string item in oferta.KeyWords)
-                                {
-                                    mensajeHabilitaciones.Append($"|{item}| ");
-                                }
-                                StringBuilder mensajeCompraData = new StringBuilder();
-                                List<PurchaseData> datosDeCompra = new List<PurchaseData>();
-                                if (userData[0].Equals("company"))
-                                {
-                                    int index = 0;
-                                    if(userData.Count == 2)
+                                    IOffer oferta = DataUserContainer.Instance.UserOfferDataSelection[message.Id][number-1];
+                                    userData.Add(comando[1]);
+                                    StringBuilder mensajeHabilitaciones = new StringBuilder();
+                                    StringBuilder mensajeKeyWords = new StringBuilder();
+                                    foreach(Qualifications item in oferta.Qualifications)
                                     {
-                                        datosDeCompra = oferta.GetPeriodTimeOffersAcceptedData(Convert.ToInt32(userData[1]));
+                                        mensajeHabilitaciones.Append($"\n{item.QualificationName}");
+                                    }
+                                    foreach(string item in oferta.KeyWords)
+                                    {
+                                        mensajeHabilitaciones.Append($"|{item}| ");
+                                    }
+                                    StringBuilder mensajeCompraData = new StringBuilder();
+                                    List<PurchaseData> datosDeCompra = new List<PurchaseData>();
+                                    if (userData[0].Equals("company"))
+                                    {
+                                        int index = 0;
+                                        if(userData.Count == 2)
+                                        {
+                                            datosDeCompra = oferta.GetPeriodTimeOffersAcceptedData(Convert.ToInt32(userData[1]));
+                                        }else
+                                        {
+                                            datosDeCompra = oferta.PurchesedData;
+                                        }
+                                        foreach(PurchaseData item in datosDeCompra)
+                                        {
+                                            mensajeCompraData.Append($"\n{index}--{item.Buyer} la acepto el {item.PurchaseDate}");
+                                        }
+                                        DataUserContainer.Instance.UserDataHistory[message.Id][0].Add("/oferta");
+                                        response = $"Oferta {number}.\nPublicada el: {oferta.DatePublished}\n\nClasificacion del producto: {oferta.Product.Classification}\nCantidad del producto: {oferta.Product.Quantity}\nPrecio de compra: {oferta.Product.Price}\nUbicacíon del producto: {oferta.Product.Ubication}\nRequerimientos necesarios:{mensajeHabilitaciones}\nPalabras claves asociadas: {mensajeKeyWords}\n\nEmprendedor/es que la aceptaron: {mensajeCompraData}\n\n Usted puede seleccionar al comprador indicando su indice para obtener mas detalles, o utilizar /Cancel para salir."; 
+                                        return true;
                                     }else
                                     {
-                                        datosDeCompra = oferta.PurchesedData;
+                                        if(userData.Count == 2)
+                                        {
+                                            datosDeCompra = oferta.GetPeriodTimeOffersAcceptedData(Convert.ToInt32(userData[1]), AppLogic.Instance.GetEmprendedor(message.Id));
+                                        }else
+                                        {
+                                            datosDeCompra = oferta.GetEntrepreneursPurchaseData(AppLogic.Instance.GetEmprendedor(message.Id));
+                                        }
+                                        foreach(PurchaseData item in datosDeCompra)
+                                        {
+                                            mensajeCompraData.Append($"\n{item.PurchaseDate}");
+                                        }
+                                        DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
+                                        DataUserContainer.Instance.UserOfferDataSelection.Remove(message.Id);
+                                        response = $"Oferta {number}.\nPublicada el: {oferta.DatePublished}\n\nClasificacion del producto: {oferta.Product.Classification}\nCantidad del producto: {oferta.Product.Quantity}\nPrecio de compra: {oferta.Product.Price}\nUbicacíon del producto: {oferta.Product.Ubication}\nRequerimientos necesarios:{mensajeHabilitaciones}\nPalabras claves asociadas: {mensajeKeyWords}\nFecha de compra: {mensajeCompraData}"; 
+                                        return true;
                                     }
-                                    foreach(PurchaseData item in datosDeCompra)
-                                    {
-                                        mensajeCompraData.Append($"\n{index}--{item.Buyer} la acepto el {item.PurchaseDate}");
-                                    }
-                                    response = $"Oferta {number}.\nPublicada el: {oferta.DatePublished}\n\nClasificacion del producto: {oferta.Product.Classification}\nCantidad del producto: {oferta.Product.Quantity}\nPrecio de compra: {oferta.Product.Price}\nUbicacíon del producto: {oferta.Product.Ubication}\nRequerimientos necesarios:{mensajeHabilitaciones}\nPalabras claves asociadas: {mensajeKeyWords}\n\nEmprendedor/es que la aceptaron: {mensajeCompraData}\n\n Usted puede seleccionar al comprador indicando su indice para obtener mas detalles, o utilizar /Cancel para salir."; 
-                                    return true;
                                 }else
                                 {
-                                    if(userData.Count == 2)
-                                    {
-                                        datosDeCompra = oferta.GetPeriodTimeOffersAcceptedData(Convert.ToInt32(userData[1]), AppLogic.Instance.GetEmprendedor(message.Id));
-                                    }else
-                                    {
-                                        datosDeCompra = oferta.GetEntrepreneursPurchaseData(AppLogic.Instance.GetEmprendedor(message.Id));
-                                    }
-                                    foreach(PurchaseData item in datosDeCompra)
-                                    {
-                                        mensajeCompraData.Append($"\n{item.PurchaseDate}");
-                                    }
-                                    DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
-                                    DataUserContainer.Instance.UserOfferDataSelection.Remove(message.Id);
-                                    response = $"Oferta {number}.\nPublicada el: {oferta.DatePublished}\n\nClasificacion del producto: {oferta.Product.Classification}\nCantidad del producto: {oferta.Product.Quantity}\nPrecio de compra: {oferta.Product.Price}\nUbicacíon del producto: {oferta.Product.Ubication}\nRequerimientos necesarios:{mensajeHabilitaciones}\nPalabras claves asociadas: {mensajeKeyWords}\nFecha de compra: {mensajeCompraData}"; 
+                                    response = "Debe ingresar un numero valido";
                                     return true;
                                 }
                             }else
                             {
-                                response = "Debe ingresar un numero valido";
+                                response = "Debe ingresar el comando y un numero";
                                 return true;
                             }
                         }else
                         {
-                            response = "Debe ingresar el comando y un numero";
+                            response = "El comando ingresado no es valido, recuerde ingresar /oferta (indice de la oferta) para ver los detalles de compra de una oferta";
                             return true;
                         }
                     }else
                     {
-                        response = "El comando ingresado no es valido, recuerde ingresar /oferta (indice de la oferta) para ver los detalles de compra de una oferta";
+                        response = "Para ver una oferta en especifico debe ingresar el comando /oferta (indice de la oferta)";
                         return true;
                     }
                 }else
                 {
-                    response = "Para ver una oferta en especifico debe ingresar el comando /oferta (indice de la oferta)";
-                    return true;
+                    if(comando.Count() == 1)
+                    {
+                        int number = 0;
+                        if (int.TryParse(comando[0], out number))
+                        {
+                            List<PurchaseData> datosDeCompra = new List<PurchaseData>();
+                            if(userData.Count == 2)
+                            {
+                                datosDeCompra = DataUserContainer.Instance.UserOfferDataSelection[message.Id][Convert.ToInt32(userData[userData.Count-1])].GetPeriodTimeOffersAcceptedData(Convert.ToInt32(userData[1]));
+                            }else
+                            {
+                                datosDeCompra = DataUserContainer.Instance.UserOfferDataSelection[message.Id][Convert.ToInt32(userData[userData.Count-1])].PurchesedData;
+                            }
+                            if (datosDeCompra.Count - number >= 0)
+                            {
+                                response = $"Comprador {number}\n\nNombre";
+                            }else
+                            {
+                                response ="Debe ingresar un numero valido";
+                            }
+                        }else
+                        {
+                            response = "Debe ingresar un numero que concuerde con algun indice";
+                        }
+                    }else
+                    {
+                        response = "Debe ingresar solo el indice del comprador que quiere ver";
+                    }
                 }
             }
             response = string.Empty;
