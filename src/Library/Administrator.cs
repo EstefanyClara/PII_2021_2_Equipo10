@@ -52,13 +52,13 @@ namespace Proyect
         /// <param name="rubro"></param>
         /// <param name="user_Id"></param>
         /// <returns></returns>
-        public Company Invite(string companyToken,string user_Id, string name, string ubication, Rubro rubro)
+        public Company Invite(string companyToken,string user_Id, string name, string ubication, Rubro rubro, string user_Contact)
         {   
             if (tokens.Contains(companyToken))
             {
                 try
                 {
-                    return new Company(user_Id, name, ubication, rubro);
+                    return new Company(user_Id, name, ubication, rubro, user_Contact);
                 }
                 catch (EmptyUserBuilderException e)
                 {

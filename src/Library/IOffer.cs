@@ -35,12 +35,32 @@ namespace Proyect
         string DatePublished{get;}
 
         /// <summary>
+        /// La informacion de compra de la oferta.
+        /// </summary>
+        /// <value></value>
+        List<PurchaseData> PurchesedData{get;}
+
+        /// <summary>
         /// Obtien todas las ofertas que le fueron aceptadas en un periodo de tiempo.
         /// </summary>
         /// <param name="periodTime"></param>
         /// <returns>mensaje con la informacion de compra de sus ofertas</returns>
-        bool GetPeriodTimeOffersAcceptedData(int periodTime, out PurchaseData tiempo);
+        List<PurchaseData> GetPeriodTimeOffersAcceptedData(int periodTime);
 
+        /// <summary>
+        /// Obtiene la infromacion de compra del emprendedor indicado, en el tiempo establecido.
+        /// </summary>
+        /// <param name="periodTime"></param>
+        /// <param name="emprendedor"></param>
+        /// <returns></returns>
+        List<PurchaseData> GetPeriodTimeOffersAcceptedData(int periodTime, Emprendedor emprendedor);
+
+        /// <summary>
+        /// Obtiene todos los datos de compra de la oferta, del emprendedor indicado.
+        /// </summary>
+        /// <param name="emprendedor"></param>
+        /// <returns></returns>
+        List<PurchaseData> GetEntrepreneursPurchaseData(Emprendedor emprendedor);
         /// <summary>
         /// Le asigna el emprendedor y la fecha de compra a la oferta, una vez es comprada.
         /// </summary>

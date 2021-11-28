@@ -18,7 +18,7 @@ namespace Proyect
 
         private ArrayList keyWords;
 
-        private PurchaseData purchesedData;
+        private List<PurchaseData> purchesedData;
 
         private string datePublished;
 
@@ -34,6 +34,7 @@ namespace Proyect
         public NonConstantOffer(Classification tipo, double quantity, double cost, string ubicacion, List<Qualifications> qualifications, ArrayList keyWords)
         {
             this.product = new ProductOffer(tipo,quantity,cost,ubicacion);
+            this.purchesedData = new List<PurchaseData>();
             this.Qualifications = qualifications;
             this.KeyWords = keyWords;
             this.datePublished = Convert.ToString(DateTime.Now);
@@ -93,15 +94,11 @@ namespace Proyect
         /// Obtiene la informacion de el o los compardores de esta oferta constante.
         /// </summary>
         /// <value></value>
-        public PurchaseData PurchesedData
+        public List<PurchaseData> PurchesedData
         {
             get
             {
                 return this.purchesedData;
-            }
-            set
-            {
-                this.purchesedData = value;
             }
         }
 
@@ -116,16 +113,30 @@ namespace Proyect
         /// </summary>
         /// <param name="periodTime"></param>
         /// <returns>si la oferta se compro antes de la fecha estipulada, devuelve la iformacion de compra, en caso contrario, devuelve un striing indicando dicha situacion</returns>
-        public bool GetPeriodTimeOffersAcceptedData(int periodTime, out PurchaseData tiempo)
+        public List<PurchaseData> GetPeriodTimeOffersAcceptedData(int periodTime)
         {
-            TimeSpan diference = this.PurchesedData.PurchaseDate - DateTime.Now;
+            TimeSpan diference = this.PurchesedData[0].PurchaseDate - DateTime.Now;
             if(Convert.ToDouble(diference.TotalHours) <= periodTime*24)
             {
-                tiempo = this.PurchesedData;
-                return true;
+                return this.PurchesedData;
             }
-            tiempo = null;
-            return false;
+            return new List<PurchaseData>();
+        }
+
+        /// <summary>
+        /// Obtiene la informacion de compra del emprendedor especificado, en el tiempo especificado.
+        /// </summary>
+        /// <param name="periodTime"></param>
+        /// <param name="emprendedor"></param>
+        /// <returns></returns>
+        public List<PurchaseData> GetPeriodTimeOffersAcceptedData(int periodTime, Emprendedor emprendedor)
+        {
+            TimeSpan diference = this.PurchesedData[0].PurchaseDate - DateTime.Now;
+            if(Convert.ToDouble(diference.TotalHours) <= periodTime*24)
+            {
+                return this.PurchesedData;
+            }
+            return new List<PurchaseData>();
         }
 
         /// <summary>
@@ -141,12 +152,30 @@ namespace Proyect
                     return false;
                 }
             }
-            if (this.PurchesedData == null)
+            if (this.PurchesedData.Count == 0)
             {
-                this.PurchesedData = new PurchaseData(emprendedor);
+                this.PurchesedData.Add(new PurchaseData(emprendedor));
                 return true;
             }
             return false;
+        }
+
+        /// <summary>
+        /// Obtiene la infromacion de compra de un emprendedor.
+        /// </summary>
+        /// <param name="emprendedor"></param>
+        /// <returns></returns>
+        public List<PurchaseData> GetEntrepreneursPurchaseData(Emprendedor emprendedor)
+        {
+            List<PurchaseData> compra = new List<PurchaseData>();
+            foreach(PurchaseData item in this.PurchesedData)
+            {
+                if (item.Buyer.Equals(emprendedor))
+                {
+                    compra.Add(item);
+                }
+            }
+            return compra;
         }
     }
 }

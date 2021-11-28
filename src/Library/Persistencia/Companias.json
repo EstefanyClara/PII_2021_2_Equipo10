@@ -1,19 +1,4 @@
 {
   "$id": "1",
-  "$values": [
-    {
-      "$id": "2",
-      "OffersPublished": {
-        "$id": "3",
-        "$values": []
-      },
-      "Name": "Matias",
-      "Ubication": "Centeo",
-      "Rubro": {
-        "$id": "4",
-        "RubroName": "Medicina"
-      },
-      "User_Id": "1688753395"
-    }
-  ]
+  "$values": []
 }

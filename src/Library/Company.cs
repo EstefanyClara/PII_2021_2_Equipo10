@@ -22,7 +22,7 @@ namespace Proyect
                 /// <param name="ubication">Ubicacion de la compania.</param>
                 /// <param name="rubro">Rubro de la compania.</param>
                 /// <param name="user_Id">Identificacion de la compania.</param>
-                public Company(string user_Id, string name, string ubication, Rubro rubro):base(user_Id, name, ubication, rubro)
+                public Company(string user_Id, string name, string ubication, Rubro rubro, string user_Contact):base(user_Id, name, ubication, rubro, user_Contact)
                 {
 
                 }
@@ -95,7 +95,7 @@ namespace Proyect
                         List<IOffer> ofertas = new List<IOffer>();
                         foreach (IOffer item in this.OffersPublished)
                         {
-                                if (item != null)
+                                if (item.PurchesedData.Count != 0)
                                 {
                                         ofertas.Add(item);
                                 }
@@ -113,11 +113,11 @@ namespace Proyect
                 /// <returns>Las ofertas aceptadas en un periodo de tiempo.</returns>
                 public List<IOffer> GetOffersAccepted(int periodTime)
                 {
-                        PurchaseData compradorData = null;
                         List<IOffer> ofertas = new List<IOffer>();
                         foreach(IOffer offer in this.OffersPublished)
                         {
-                                if (offer.GetPeriodTimeOffersAcceptedData(periodTime, out compradorData))
+                                List<PurchaseData> purchaseData = offer.GetPeriodTimeOffersAcceptedData(periodTime);
+                                if (purchaseData.Count >= 1)
                                 {
                                         ofertas.Add(offer);
                                 }

@@ -1,4 +1,38 @@
 {
   "$id": "1",
-  "$values": []
+  "$values": [
+    {
+      "$id": "2",
+      "Qualifications": {
+        "$id": "3",
+        "$values": [
+          {
+            "$id": "4",
+            "QualificationName": "Lugar habilitado para conservar desechos toxicos"
+          },
+          {
+            "$id": "5",
+            "QualificationName": "Espacio para grandes volumenes de producto"
+          },
+          {
+            "$id": "6",
+            "QualificationName": "Vehiculo propio"
+          }
+        ]
+      },
+      "Specializations": "Matias grande smaderas coro piterias",
+      "PurchasedOffers": {
+        "$id": "7",
+        "$values": []
+      },
+      "Name": "Matias",
+      "Ubication": "Centro",
+      "Rubro": {
+        "$id": "8",
+        "RubroName": "Alimentos"
+      },
+      "User_Id": "1688753395",
+      "User_Contact": "Matiascabreraclavijo@gmail.com"
+    }
+  ]
 }
