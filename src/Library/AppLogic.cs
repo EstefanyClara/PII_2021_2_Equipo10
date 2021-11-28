@@ -171,6 +171,27 @@ namespace Proyect
                 return _instance;
             }
         }
+
+        /// <summary>
+        /// Registra a un id de usuario, como administrador.
+        /// </summary>
+        /// <param name="user_id"></param>
+        /// <param name="confirmCode"></param>
+        /// <returns></returns>
+        public bool AddAdministrator(string user_id, string confirmCode)
+        {
+            return Administrator.Instance.AddAdministrator(confirmCode, user_id);
+        }
+
+        /// <summary>
+        /// Obtiene le codigo que un usuario usara si se quiere registrar como compania.
+        /// </summary>
+        /// <returns></returns>
+        public string Invite()
+        {
+            return Administrator.Instance.Invite();
+        }
+        
         
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="Emprendedor"/>.
@@ -206,7 +227,7 @@ namespace Proyect
         /// <returns>mensaje de confirmacion</returns>
         public bool RegistrarCompany(string companyToken, string user_Id, string name, string ubication, Rubro rubro, string user_Contact)
         {
-            Company company = Administrator.Instance.Invite(companyToken, user_Id, name, ubication, rubro, user_Contact);
+            Company company = Administrator.Instance.ConfirmCompanyRegistration(companyToken, user_Id, name, ubication, rubro, user_Contact);
             if (company == null)
             {
                 return false;
