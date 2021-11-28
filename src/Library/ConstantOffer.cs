@@ -36,7 +36,7 @@ namespace Proyect
             this.Qualifications = qualifications;
             this.KeyWords = keyWords;
             this.purchesedData = new List<PurchaseData>();
-            this.datePublished = "Siempre";
+            this.datePublished = Convert.ToString(DateTime.Now);
         }
 
         /// <summary>
@@ -91,14 +91,7 @@ namespace Proyect
         {
             get
             {
-                if (this.purchesedData.Count == 0)
-                {
-                    return null;
-                }
-                else
-                {
-                    return this.purchesedData;
-                }
+                return this.purchesedData;
             }
         }
 
@@ -109,28 +102,60 @@ namespace Proyect
         public string DatePublished{get {return this.datePublished;}}
 
         /// <summary>
-        /// Obtiene la informacion de compra del ultimo emprendedor que acepta la oferta (Patron expert).
+        /// Obtiene la informacion de compra de todos los emprendedores que aceptaron la oferta en el tiempo estipulado(Patron expert).
         /// </summary>
         /// <param name="periodTime"></param>
         /// <returns>Mensaje con la infromacion de compra de la oferta, si la misma entra dentro del rango estipulado, en caso contrario, mensaje que indica dicha situacion.</returns>
-        public bool GetPeriodTimeOffersAcceptedData(int periodTime, out PurchaseData tiempo)
+        public List<PurchaseData> GetPeriodTimeOffersAcceptedData(int periodTime)
         {
-            PurchaseData lastPurches = this.PurchesedData[this.PurchesedData.Count - 1];
-            if (periodTime != -1)
+            List<PurchaseData> infoCompras = new List<PurchaseData>();
+            foreach(PurchaseData item in this.PurchesedData)
             {
-                TimeSpan diference = lastPurches.PurchaseDate - DateTime.Now;
+                TimeSpan diference = item.PurchaseDate - DateTime.Now;
                 if(Convert.ToDouble(diference.TotalHours) <= periodTime*24)
                 {
-                    tiempo = lastPurches;
-                    return true;
+                    infoCompras.Add(item);
                 }
-                tiempo = null;
-                return false;
-            }else
-            {
-                tiempo = lastPurches;
-                return true;
             }
+            return infoCompras;
+        }
+
+        /// <summary>
+        /// Obtiene la informacion de compra del emprendedor especificado en el tiempo ingresado.
+        /// </summary>
+        /// <param name="periodTime"></param>
+        /// <param name="emprendedor"></param>
+        /// <returns></returns>
+        public List<PurchaseData> GetPeriodTimeOffersAcceptedData(int periodTime, Emprendedor emprendedor)
+        {
+            List<PurchaseData> infoCompras = new List<PurchaseData>();
+            foreach(PurchaseData item in this.PurchesedData)
+            {
+                TimeSpan diference = item.PurchaseDate - DateTime.Now;
+                if(Convert.ToDouble(diference.TotalHours) <= periodTime*24 & item.Buyer.Equals(emprendedor))
+                {
+                    infoCompras.Add(item);
+                }
+            }
+            return infoCompras;
+        }
+
+        /// <summary>
+        /// Obtiene la informacion de compra del emprendedor especificado
+        /// </summary>
+        /// <param name="emprendedor"></param>
+        /// <returns></returns>
+        public List<PurchaseData> GetEntrepreneursPurchaseData(Emprendedor emprendedor)
+        {
+            List<PurchaseData> infoCompras = new List<PurchaseData>();
+            foreach(PurchaseData item in this.PurchesedData)
+            {
+                if(item.Buyer.Equals(emprendedor))
+                {
+                    infoCompras.Add(item);
+                }
+            }
+            return infoCompras;
         }
 
         /// <summary>

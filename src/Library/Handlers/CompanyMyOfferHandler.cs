@@ -55,7 +55,7 @@ namespace Proyect
                     response = "Usted ya esta en proceso de modificacion de ofertas";
                     return true;
                 }
-            }if(DataUserContainer.Instance.UserDataHistory.Keys.Contains(message.Id.ToLower().Replace(" ","")) && DataUserContainer.Instance.UserDataHistory[message.Id][0][0].Equals("/misofertas"))
+            }if(DataUserContainer.Instance.UserDataHistory.Keys.Contains(message.Id) && DataUserContainer.Instance.UserDataHistory[message.Id][0][0].Equals("/misofertas"))
             {
                 List<string> userData = DataUserContainer.Instance.UserDataHistory[message.Id][1];
                 Company compania = AppLogic.Instance.GetCompany(message.Id);

@@ -78,7 +78,7 @@ namespace Proyect
                         List<IOffer> ofertas = new List<IOffer>();
                         foreach (IOffer item in this.OffersPublished)
                         {
-                                if (item != null)
+                                if (item.PurchesedData.Count != 0)
                                 {
                                         ofertas.Add(item);
                                 }
@@ -96,11 +96,11 @@ namespace Proyect
                 /// <returns>Las ofertas aceptadas en un periodo de tiempo.</returns>
                 public List<IOffer> GetOffersAccepted(int periodTime)
                 {
-                        PurchaseData compradorData = null;
                         List<IOffer> ofertas = new List<IOffer>();
                         foreach(IOffer offer in this.OffersPublished)
                         {
-                                if (offer.GetPeriodTimeOffersAcceptedData(periodTime, out compradorData))
+                                List<PurchaseData> purchaseData = offer.GetPeriodTimeOffersAcceptedData(periodTime);
+                                if (purchaseData.Count >= 1)
                                 {
                                         ofertas.Add(offer);
                                 }

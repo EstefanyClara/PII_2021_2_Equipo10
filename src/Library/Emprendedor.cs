@@ -90,11 +90,11 @@ namespace Proyect
         /// <returns>message</returns>
         public List<IOffer> GetOffersAccepted(int periodTime)
         {
-            PurchaseData compradorData = null;
             List<IOffer> ofertas = new List<IOffer>();
             foreach(IOffer offer in this.PurchasedOffers)
             {
-                if(offer.GetPeriodTimeOffersAcceptedData(periodTime, out compradorData))
+                List<PurchaseData> infoDeCompraOferta = offer.GetPeriodTimeOffersAcceptedData(periodTime, this);
+                if(infoDeCompraOferta.Count >= 1)
                 {
                     ofertas.Add(offer);
                 }

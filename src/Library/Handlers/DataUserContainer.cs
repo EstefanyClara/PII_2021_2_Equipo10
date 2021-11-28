@@ -12,6 +12,8 @@ namespace Proyect
 
         private Dictionary<string,List<List<string>>> userDataHistory;
 
+        private Dictionary<string,List<IOffer>> userOfferDataSelection;
+
         private DataUserContainer()
         {
             this.userDataHistory = new Dictionary<string, List<List<string>>> ();
@@ -33,6 +35,15 @@ namespace Proyect
         public Dictionary<string,List<List<string>>> UserDataHistory
         {
             get{return this.userDataHistory;}
+        }
+
+        /// <summary>
+        /// Obtiene el diccionario donde se guardan las ofertas que selecciono el usuario mientras usaba la aplicacion.
+        /// </summary>
+        /// <value></value>
+        public Dictionary<string, List<IOffer>> UserOfferDataSelection
+        {
+            get{return this.userOfferDataSelection;}
         }
 
     }
