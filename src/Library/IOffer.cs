@@ -9,6 +9,7 @@ namespace Proyect
     /// </summary>
     public interface IOffer
     {
+        int Id{get;}
         /// <summary>
         /// Obtiene el producto de la oferta.
         /// </summary>

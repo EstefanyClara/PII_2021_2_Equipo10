@@ -37,6 +37,23 @@ namespace Proyect
                 }
 
                 /// <summary>
+                /// Devuelve una oferta especifica si la encuentra en su coleccion.
+                /// </summary>
+                /// <param name="id"></param>
+                /// <returns></returns>
+                public IOffer GetOffer(int id)
+                {
+                        foreach (IOffer item in this.OffersPublished)
+                        {
+                            if(item.Id == id)
+                            {
+                                return item;
+                            }
+                        }
+                        return null;
+                }
+
+                /// <summary>
                 /// Crea una instancia de una oferta constante y se la agrega a la lisat de ofertas de la compania.
                 /// Se Asigno esta responsabilidad por expert (La clase company es la que conoce la lista de ls ofertas que publica).
                 /// Tambien, se asigno esta reponsabilidad siguinedo el patron creator, company contiene objetos IOffer

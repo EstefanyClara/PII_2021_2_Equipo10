@@ -10,6 +10,8 @@ namespace Proyect
     /// </summary>
     public class NonConstantOffer : IOffer
     {
+        private static int id = 0;
+        private int ID;
         private ProductOffer product;
 
         private List<Qualifications> qualifications;
@@ -35,6 +37,12 @@ namespace Proyect
             this.Qualifications = qualifications;
             this.KeyWords = keyWords;
             this.datePublished = Convert.ToString(DateTime.Now);
+            this.ID = ++id;
+        }
+
+        public int Id
+        {
+            get{return this.ID;}
         }
 
         /// <summary>

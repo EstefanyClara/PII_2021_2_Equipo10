@@ -91,7 +91,7 @@ namespace Proyect
                             {
                                 item.GetPeriodTimeOffersAcceptedData(number, out datosDeCompra);
                             }
-                            mensaje.Append($"\n-->{item.Product.Quantity} Kilos de {item.Product.Classification.Category} a un precio de {item.Product.Price} aceptada el {datosDeCompra.PurchaseDate}{(AppLogic.Instance.GetCompany(message.Id) != null ? $" por {datosDeCompra.Buyer.Name}" : "")}");
+                            mensaje.Append($"\n-->{item.Id} - {item.Product.Quantity} Kilos de {item.Product.Classification.Category} a un precio de {item.Product.Price} aceptada el {datosDeCompra.PurchaseDate}{(AppLogic.Instance.GetCompany(message.Id) != null ? $" por {datosDeCompra.Buyer.Name}" : "")}");
                         }
                     response = mensaje.ToString();
                 }else

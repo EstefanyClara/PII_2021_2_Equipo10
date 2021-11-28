@@ -171,6 +171,18 @@ namespace Proyect
                 return _instance;
             }
         }
+
+        public IOffer GetOffer(int i)
+        {
+            foreach (Company item in Companies)
+            {
+                if(item.GetOffer(i) != null)
+                {
+                    return item.GetOffer(i);
+                }
+            }
+            return null;
+        }
         
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="Emprendedor"/>.

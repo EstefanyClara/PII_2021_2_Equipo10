@@ -339,6 +339,13 @@
             </summary>
             <value>this.offers</value>
         </member>
+        <member name="M:Proyect.Company.GetOffer(System.Int32)">
+            <summary>
+            Devuelve una oferta especifica si la encuentra en su coleccion.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:Proyect.Company.PublicConstantOffer(Proyect.Classification,System.Double,System.Double,System.String,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.ArrayList)">
             <summary>
             Crea una instancia de una oferta constante y se la agrega a la lisat de ofertas de la compania.
@@ -423,6 +430,12 @@
             <param name="ubicacion"></param>
             <param name="qualifications"></param>
             <param name="keyWords"></param>
+        </member>
+        <member name="P:Proyect.ConstantOffer.Id">
+            <summary>
+            Id por el cual se va a identificar la oferta dentro de nuestro programa.
+            </summary>
+            <value></value>
         </member>
         <member name="P:Proyect.ConstantOffer.Product">
             <summary>

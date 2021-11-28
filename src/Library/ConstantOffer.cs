@@ -11,6 +11,8 @@ namespace Proyect
     /// </summary>
     public class ConstantOffer : IOffer
     {
+        private static int id = 0;
+        private int ID;
         private ProductOffer product;
 
         private List<Qualifications> qualifications;
@@ -37,6 +39,16 @@ namespace Proyect
             this.KeyWords = keyWords;
             this.purchesedData = new List<PurchaseData>();
             this.datePublished = "Siempre";
+            this.ID = ++id;
+        }
+
+        /// <summary>
+        /// Id por el cual se va a identificar la oferta dentro de nuestro programa.
+        /// </summary>
+        /// <value></value>
+        public int Id
+        {
+            get{return this.ID;}
         }
 
         /// <summary>
