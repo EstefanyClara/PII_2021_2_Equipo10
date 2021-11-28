@@ -223,7 +223,14 @@ namespace Proyect
                             }
                             if (datosDeCompra.Count - number >= 0)
                             {
-                                response = $"Comprador {number}\n\nNombre";
+                                StringBuilder mensajeHabilitaciones = new StringBuilder();
+                                foreach(Qualifications item in datosDeCompra[number-1].Buyer.Qualifications)
+                                {
+                                    mensajeHabilitaciones.Append($"\n-{item.QualificationName}");
+                                }
+                                DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
+                                DataUserContainer.Instance.UserOfferDataSelection.Remove(message.Id);
+                                response = $"Comprador {number}\n\nNombre: {datosDeCompra[number-1].Buyer.Name}\nRubo al que pertenece: {datosDeCompra[number-1].Buyer.Rubro}\nUbicacíon: {datosDeCompra[number-1].Buyer.Ubication}\nHabilitaciones que posee: {mensajeHabilitaciones}\nFecha de compra: {datosDeCompra[number-1].PurchaseDate}.";
                             }else
                             {
                                 response ="Debe ingresar un numero valido";
@@ -236,6 +243,7 @@ namespace Proyect
                     {
                         response = "Debe ingresar solo el indice del comprador que quiere ver";
                     }
+                    return true;
                 }
             }
             response = string.Empty;
