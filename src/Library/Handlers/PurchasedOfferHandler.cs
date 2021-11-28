@@ -230,7 +230,7 @@ namespace Proyect
                                 }
                                 DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
                                 DataUserContainer.Instance.UserOfferDataSelection.Remove(message.Id);
-                                response = $"Comprador {number}\n\nNombre: {datosDeCompra[number-1].Buyer.Name}\nRubo al que pertenece: {datosDeCompra[number-1].Buyer.Rubro}\nUbicacíon: {datosDeCompra[number-1].Buyer.Ubication}\nHabilitaciones que posee: {mensajeHabilitaciones}\nFecha de compra: {datosDeCompra[number-1].PurchaseDate}.";
+                                response = $"Comprador {number}\n\nNombre: {datosDeCompra[number-1].Buyer.Name}\nRubo al que pertenece: {datosDeCompra[number-1].Buyer.Rubro}\nUbicacíon: {datosDeCompra[number-1].Buyer.Ubication}\nContacto: {datosDeCompra[number-1].Buyer.User_Contact}\nHabilitaciones que posee: {mensajeHabilitaciones}\nFecha de compra: {datosDeCompra[number-1].PurchaseDate}.";
                             }else
                             {
                                 response ="Debe ingresar un numero valido";

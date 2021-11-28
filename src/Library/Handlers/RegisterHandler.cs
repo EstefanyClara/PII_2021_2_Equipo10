@@ -110,12 +110,13 @@ namespace Proyect
                         }
                         return true;
                     case 3:
-                        if (!message.Text.Contains(""))
+                        if (!message.Text.Contains(",") & !message.Text.Contains("."))
                         {
                             userData.Add(message.Text); //La ubicacion de la compania
                         }else
                         {
                             response = "Por favor ingrese un dato valido";
+                            return true;
                         }
                         StringBuilder mensaje = new StringBuilder();
                         mensaje.Append("A continuacion ingrese el rubro al cual pertenece.\n\nEliga entre los habilitados de la aplicacion indicando su indice.\n");
@@ -209,17 +210,17 @@ namespace Proyect
                                 {
                                     if (AppLogic.Instance.Qualifications.Count - number >= 0 )
                                     {
-                                        if (!userData[4].Contains(message.Text.Replace(" ","")))
+                                        if (!userData[5].Contains(message.Text.Replace(" ","")))
                                         {
-                                            string habilitacion = userData[4];
+                                            string habilitacion = userData[5];
                                             habilitacion = habilitacion + "-" + message.Text.Replace(" ","");
-                                            userData.RemoveAt(4);
+                                            userData.RemoveAt(5);
                                             userData.Add(habilitacion);
                                             response = "Se ha agregado la habilitacion";
                                             return true;
                                         }else
                                         {
-                                            response = "La habilitacion indicada ya se encuentra sellecionada";
+                                            response = "La habilitacion indicada ya se encuentra selecionada";
                                             return true;
                                         }
                                     }else
@@ -240,7 +241,7 @@ namespace Proyect
                     case 7:
                         if (!message.Text.Contains("?"))
                         {
-                            userData.RemoveAt(5);
+                            userData.RemoveAt(6);
                             userData.Add(message.Text);
                         }else
                         {
@@ -248,7 +249,7 @@ namespace Proyect
                             return true;
                         }
                         mensaje = new StringBuilder();
-                        string[] habilitaciones = userData[4].Split("-");
+                        string[] habilitaciones = userData[5].Split("-");
                         foreach(string item in habilitaciones)
                         {
                             if (int.TryParse(item, out number))
@@ -257,12 +258,12 @@ namespace Proyect
                             }
                         }
                         userData.Add(" ");
-                        response = $"Por favor, veo si los datos ingresados son correctos.\nNombre: {userData[1]}\nUbicacion: {userData[2]}\nRubro: {AppLogic.Instance.Rubros[Convert.ToInt32(userData[3])].RubroName}\nMail de contacto: {userData[5]}\nHabilitaciones: {mensaje}\nEspecializacion: {userData[6]}\n\nSi son correctos ingrese '/si', en caso contrario '/no'";
+                        response = $"Por favor, veo si los datos ingresados son correctos.\nNombre: {userData[1]}\nUbicacion: {userData[2]}\nRubro: {AppLogic.Instance.Rubros[Convert.ToInt32(userData[3])].RubroName}\nMail de contacto: {userData[4]}\nHabilitaciones: {mensaje}\nEspecializacion: {userData[6]}\n\nSi son correctos ingrese '/si', en caso contrario '/no'";
                         return true;
                     case 8:
                         if (message.Text.ToLower().Replace(" ","").Equals("/si"))
                         {
-                            string[] habilitacionesLista = userData[4].Split("-");
+                            string[] habilitacionesLista = userData[5].Split("-");
                             List<Qualifications> lista = new List<Qualifications>();
                             foreach(string item in habilitacionesLista)
                             {
@@ -272,7 +273,7 @@ namespace Proyect
                                 }
                             }
                             
-                            AppLogic.Instance.RegisterEntrepreneurs(message.Id, userData[1], userData[2], AppLogic.Instance.Rubros[Convert.ToInt32(userData[3])], lista, userData[6], userData[5]);
+                            AppLogic.Instance.RegisterEntrepreneurs(message.Id, userData[1], userData[2], AppLogic.Instance.Rubros[Convert.ToInt32(userData[3])], lista, userData[6], userData[4]);
                             DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
                             response = "Usted se a registrado con exito";
                             return true;
