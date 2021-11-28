@@ -1,0 +1,17 @@
+{
+  "$id": "1",
+  "$values": [
+    {
+      "$id": "2",
+      "RubroName": "Alimentos"
+    },
+    {
+      "$id": "3",
+      "RubroName": "Tecnologia"
+    },
+    {
+      "$id": "4",
+      "RubroName": "Medicina"
+    }
+  ]
+}

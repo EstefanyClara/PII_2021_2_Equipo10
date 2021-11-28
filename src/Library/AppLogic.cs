@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Ucu.Poo.Locations.Client;
 using System.Threading.Tasks;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Proyect
 {
@@ -17,11 +20,11 @@ namespace Proyect
         private readonly static AppLogic _instance = new AppLogic();
         private List<Company> companies;
         private List<Emprendedor> entrepreneurs;
-        private List<Rubro> validRubros = new List<Rubro>(){new Rubro("Alimentos"),new Rubro("Tecnologia"),new Rubro("Medicina")};
+        private List<Rubro> validRubros = new List<Rubro>(){};//new Rubro("Alimentos"),new Rubro("Tecnologia"),new Rubro("Medicina")};
 
-        private List<Qualifications> validQualifications = new List<Qualifications>(){new Qualifications("Vehiculo propio"),new Qualifications("Espacio para grandes volumenes de producto"),new Qualifications("Lugar habilitado para conservar desechos toxicos")};
+        private List<Qualifications> validQualifications = new List<Qualifications>(){};//new Qualifications("Vehiculo propio"),new Qualifications("Espacio para grandes volumenes de producto"),new Qualifications("Lugar habilitado para conservar desechos toxicos")};
 
-        private List<Classification> validClasification = new List<Classification>(){new Classification("Organicos"),new Classification("Plasticos"),new Classification("Alimentos"),new Classification("Toxicos")};
+        private List<Classification> validClasification = new List<Classification>(){};//new Classification("Organicos"),new Classification("Plasticos"),new Classification("Alimentos"),new Classification("Toxicos")};
 
         /// <summary>
         /// Obtiene las companias que estan registradas.
@@ -29,7 +32,8 @@ namespace Proyect
         /// <value>companies.</value>
         public List<Company> Companies
         {
-            get{return companies;}
+            get{return this.companies;}
+            set{this.companies = value;}
         }
 
         /// <summary>
@@ -38,7 +42,8 @@ namespace Proyect
         /// <value>entrepreneurs.</value>
         public List<Emprendedor> Entrepreneurs
         {
-            get{return entrepreneurs;}
+            get{return this.entrepreneurs;}
+            set{this.entrepreneurs = value;}
         }
 
         /// <summary>
@@ -47,7 +52,7 @@ namespace Proyect
         /// <value>validRubros.</value>
         public List<Rubro> Rubros
         {
-            get{return validRubros;}
+            get{return DeserializeRubros();}
         }
 
         /// <summary>
@@ -56,7 +61,7 @@ namespace Proyect
         /// <value>validQualifications.</value>
         public List<Qualifications> Qualifications
         {
-            get{return validQualifications;}
+            get{return DeserializeQualifications();}
         }
 
         /// <summary>
@@ -65,12 +70,94 @@ namespace Proyect
         /// <value>validClasification.</value>
         public List<Classification> Classifications
         {
-            get{return validClasification;}
+            get{return DeserializeClasification();}
         }
+
+        /// <summary>
+        /// Convertidos a json.
+        /// </summary>
+        /// <returns></returns>
+        public string ConvertToJson(List<Rubro> rubro)
+        {
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = MyReferenceHandler.Preserve,
+                WriteIndented = true
+            };
+
+            return System.Text.Json.JsonSerializer.Serialize(rubro, options);
+        }
+        public string ConvertToJson(List<Qualifications> habilitaciones)
+        {
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = MyReferenceHandler.Preserve,
+                WriteIndented = true
+            };
+            return System.Text.Json.JsonSerializer.Serialize(habilitaciones, options);
+        }
+
+        public string ConvertToJson(List<Classification> rubro)
+        {
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = MyReferenceHandler.Preserve,
+                WriteIndented = true
+            };
+
+            return System.Text.Json.JsonSerializer.Serialize(rubro, options);
+        }
+        public string ConvertToJson(List<Emprendedor> rubro)
+        {
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = MyReferenceHandler.Preserve,
+                WriteIndented = true
+            };
+            return System.Text.Json.JsonSerializer.Serialize(rubro, options);
+        }
+
+        public string ConvertToJson(List<Company> rubro)
+        {
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = MyReferenceHandler.Preserve,
+                WriteIndented = true
+            };
+            return System.Text.Json.JsonSerializer.Serialize(rubro, options);
+        }
+
+        public List<Rubro> DeserializeRubros()
+        {
+                string json = System.IO.File.ReadAllText(@"../Library/Persistencia/Rubros.json");
+                return JsonConvert.DeserializeObject<List<Rubro>>(json);
+        }
+        public List<Qualifications> DeserializeQualifications()
+        {
+                string json = System.IO.File.ReadAllText(@"../Library/Persistencia/Habilitaciones.json");
+                return JsonConvert.DeserializeObject<List<Qualifications>>(json);
+        }
+        public List<Classification> DeserializeClasification()
+        {
+                string json = System.IO.File.ReadAllText(@"../Library/Persistencia/ClasificacionesProductos.json");
+                return JsonConvert.DeserializeObject<List<Classification>>(json);
+        }
+        public List<Emprendedor> DeserializeEntrenprenuers()
+        {
+                string json = System.IO.File.ReadAllText(@"../Library/Persistencia/Emprendedores.json");
+                return JsonConvert.DeserializeObject<List<Emprendedor>>(json);
+        }
+
+        public List<Company> DeserializeCompanies()
+        {
+                string json = System.IO.File.ReadAllText(@"../Library/Persistencia/Companias.json");
+                return JsonConvert.DeserializeObject<List<Company>>(json);
+        }
+
         private AppLogic()
         {
-            companies = new List<Company>();
-            entrepreneurs = new List<Emprendedor>();
+            this.companies = new List<Company>();
+            this.entrepreneurs = new List<Emprendedor>();
         }
 
         /// <summary>
@@ -263,16 +350,12 @@ namespace Proyect
         /// <param name="offer">Oferta a aceptar.</param>
         public bool AccepOffer(Emprendedor emprendedor, IOffer offer)
         {
-            foreach(Qualifications item in offer.Qualifications)
+            if (offer.PutBuyer(emprendedor))
             {
-                if(!emprendedor.Qualifications.Contains(item))
-                {
-                    return false;
-                }
+                emprendedor.AddPurchasedOffer(offer);
+                return true;
             }
-            offer.PutBuyer(emprendedor);
-            emprendedor.AddPurchasedOffer(offer);
-            return true;
+            return false;
         }
 
         /// <summary>
@@ -312,8 +395,10 @@ namespace Proyect
         /// <returns>Un string con aquellos materiales que son recuerrentes.</returns>
         public Dictionary<Classification, int> GetConstantMaterials()
         {
+
             Dictionary<Classification, int> clasificationDictionary = new Dictionary<Classification, int>();
             ArrayList constantMaterials = new ArrayList();
+
             foreach(Classification item in Classifications)
             {
                 clasificationDictionary.Add(item,0);
