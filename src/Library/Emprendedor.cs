@@ -12,7 +12,7 @@ namespace Proyect
     {
         private List<Qualifications> qualifications;
 
-        private ArrayList specializations;
+        private string specializations;
 
         private List<IOffer> purchasedOffer;
         /// <summary>
@@ -24,7 +24,7 @@ namespace Proyect
         /// <param name="qualifications">Hablitaciones del emprendedor.</param>
         /// <param name="specializations">Especializaciones del emprendedor.</param>
         /// <param name="user_Id">Identificacion del emprendedor.</param>
-        public Emprendedor(string user_Id, string name, string ubication, Rubro rubro, List<Qualifications> qualifications, ArrayList specializations):base(user_Id, name, ubication, rubro)
+        public Emprendedor(string user_Id, string name, string ubication, Rubro rubro,string user_Contact, List<Qualifications> qualifications, string specializations):base(user_Id, name, ubication, rubro, user_Contact)
         {
             this.Qualifications = qualifications;
             this.Specializations = specializations;
@@ -49,7 +49,7 @@ namespace Proyect
         /// Propiedad Specializations.
         /// </summary>
         /// <value>this.specializations</value>
-        public ArrayList Specializations
+        public string Specializations
         {
             get
             {

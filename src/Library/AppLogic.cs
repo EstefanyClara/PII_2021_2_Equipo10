@@ -182,11 +182,11 @@ namespace Proyect
         /// <param name="habilitaciones">Las habilitaciones que tiene el emprendedor.</param>
         /// <param name="especializaciones">Las especializaciones que tiene el emprendedor.</param>
         /// <param name="user_Id">Id que tiene el emprendedor.</param> 
-        public void RegisterEntrepreneurs(string user_Id, string name, string ubication, Rubro rubro, List<Qualifications> habilitaciones, ArrayList especializaciones)
+        public void RegisterEntrepreneurs(string user_Id, string name, string ubication, Rubro rubro, List<Qualifications> habilitaciones, string especializaciones, string user_Contact)
         {
             try
             {
-                entrepreneurs.Add(new Emprendedor(user_Id, name, ubication, rubro, habilitaciones, especializaciones));
+                entrepreneurs.Add(new Emprendedor(user_Id, name, ubication, rubro, user_Contact, habilitaciones, especializaciones));
             }
             catch (EmptyUserBuilderException e)
             {
@@ -204,9 +204,9 @@ namespace Proyect
         /// <param name="ubication"></param>
         /// <param name="rubro"></param>
         /// <returns>mensaje de confirmacion</returns>
-        public bool RegistrarCompany(string companyToken, string user_Id, string name, string ubication, Rubro rubro)
+        public bool RegistrarCompany(string companyToken, string user_Id, string name, string ubication, Rubro rubro, string user_Contact)
         {
-            Company company = Administrator.Instance.Invite(companyToken, user_Id, name, ubication, rubro);
+            Company company = Administrator.Instance.Invite(companyToken, user_Id, name, ubication, rubro, user_Contact);
             if (company == null)
             {
                 return false;

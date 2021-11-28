@@ -3,6 +3,8 @@ using System.Linq;
 using System.Collections;
 using System.Text;
 using System.Collections.Generic;
+using Ucu.Poo.Locations.Client;
+using System.Globalization;
 
 namespace Proyect
 {
@@ -108,7 +110,7 @@ namespace Proyect
                         }
                         return true;
                     case 3:
-                        if (!message.Text.Contains("?"))
+                        if (!message.Text.Contains(""))
                         {
                             userData.Add(message.Text); //La ubicacion de la compania
                         }else
@@ -134,36 +136,48 @@ namespace Proyect
                             {
                                 number--;
                                 userData.Add(number.ToString());
-                                if (userData[0].Equals("/si"))
-                                {
-                                    response = $"Por favor, veo si los datos ingresados son correctos.\nCodigo de registro: {userData[1]}\nNombre de la compania: {userData[2]}\nUbicacion de la compnai: {userData[3]}\nRubro de la compania: {AppLogic.Instance.Rubros[Convert.ToInt32(userData[4])].RubroName}\n\nSi son correctos ingrese '/si', en caso contrario '/no'";
-                                }else
-                                {
-                                    mensaje = new StringBuilder();
-                                    mensaje.Append("A continuacion ingrese las habilitaciones que posee.\n\nEliga entre los habilitadoas por la aplicacion indicando su indice (puede elegir mas de una).\n");
-                                    int index = 0;
-                                    foreach (Qualifications item in AppLogic.Instance.Qualifications)
-                                    {
-                                        index++;
-                                        mensaje.Append($"{index}-{item.QualificationName}\n");
-                                    }
-                                    response = mensaje.ToString();
-                                }
+                                response = "Ahora ingrese su mail de contacto.";
+                                return true;
                             }else
                             {
                                 response = "Numero invalido";
+                                return true;
                             }
                         }else
                         {
                             response = "El dato ingresado no es valido\nPor favor, revise que haya ingresado un numero (Ej:'1' Para elegir el primer rubro)";
+                            return true;
+                        }
+                    case 5:
+                        if (message.Text.Contains("@") && message.Text.Contains("."))
+                        {
+                            userData.Add(message.Text.Trim(' '));
+                            if (userData[0].Equals("/si"))
+                            {
+                                response = $"Por favor, veo si los datos ingresados son correctos.\nCodigo de registro: {userData[1]}\nNombre de la compania: {userData[2]}\nUbicacíon de la companiai: {userData[3]}\nRubro de la compania: {AppLogic.Instance.Rubros[Convert.ToInt32(userData[4])].RubroName}\nMail de contacto: {userData[5]}\n\nSi son correctos ingrese '/si', en caso contrario '/no'";
+                            }else
+                            {
+                                mensaje = new StringBuilder();
+                                mensaje.Append("A continuacion ingrese las habilitaciones que posee.\n\nEliga entre los habilitadoas por la aplicacion indicando su indice (puede elegir mas de una).\n");
+                                int index = 0;
+                                foreach (Qualifications item in AppLogic.Instance.Qualifications)
+                                {
+                                    index++;
+                                    mensaje.Append($"{index}-{item.QualificationName}\n");
+                                }
+                                response = mensaje.ToString();
+                            }
+                        }else
+                        {
+                            response = "Debe ingresar un formato valido para el mail.";
                         }
                         return true;
-                    case 5:
+                    case 6:
                         if ( userData[0].Equals("/si"))
                         {
                             if (message.Text.ToLower().Replace(" ","").Equals("/si"))
                             {
-                                if(AppLogic.Instance.RegistrarCompany(userData[1],message.Id,userData[2],userData[3],AppLogic.Instance.Rubros[Convert.ToInt32(userData[4])]))
+                                if(AppLogic.Instance.RegistrarCompany(userData[1], message.Id, userData[2], userData[3], AppLogic.Instance.Rubros[Convert.ToInt32(userData[4])], userData[5]))
                                 {
                                     DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
                                     response = "Usted se a registrado con exito";
@@ -223,7 +237,7 @@ namespace Proyect
                         response = "Ahora ingrese su especializacion:";
                         userData.Add("");
                         return true;
-                    case 6:
+                    case 7:
                         if (!message.Text.Contains("?"))
                         {
                             userData.RemoveAt(5);
@@ -243,9 +257,9 @@ namespace Proyect
                             }
                         }
                         userData.Add(" ");
-                        response = $"Por favor, veo si los datos ingresados son correctos.\nNombre: {userData[1]}\nUbicacion: {userData[2]}\nRubro: {AppLogic.Instance.Rubros[Convert.ToInt32(userData[3])].RubroName}\nHabilitaciones: {mensaje}\nEspecializacion: {userData[5]}\n\nSi son correctos ingrese '/si', en caso contrario '/no'";
+                        response = $"Por favor, veo si los datos ingresados son correctos.\nNombre: {userData[1]}\nUbicacion: {userData[2]}\nRubro: {AppLogic.Instance.Rubros[Convert.ToInt32(userData[3])].RubroName}\nMail de contacto: {userData[5]}\nHabilitaciones: {mensaje}\nEspecializacion: {userData[6]}\n\nSi son correctos ingrese '/si', en caso contrario '/no'";
                         return true;
-                    case 7:
+                    case 8:
                         if (message.Text.ToLower().Replace(" ","").Equals("/si"))
                         {
                             string[] habilitacionesLista = userData[4].Split("-");
@@ -258,7 +272,7 @@ namespace Proyect
                                 }
                             }
                             
-                            AppLogic.Instance.RegisterEntrepreneurs(message.Id,userData[1],userData[2],AppLogic.Instance.Rubros[Convert.ToInt32(userData[3])],lista,new ArrayList(){userData[5]});
+                            AppLogic.Instance.RegisterEntrepreneurs(message.Id, userData[1], userData[2], AppLogic.Instance.Rubros[Convert.ToInt32(userData[3])], lista, userData[6], userData[5]);
                             DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
                             response = "Usted se a registrado con exito";
                             return true;
@@ -273,7 +287,6 @@ namespace Proyect
                 }
                 
             }
-
             response = string.Empty;
             return false;
         }

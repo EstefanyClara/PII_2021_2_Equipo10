@@ -24,13 +24,19 @@ namespace Proyect
         protected string user_Id;
 
         /// <summary>
+        /// Contacto del usurario.
+        /// </summary>
+        protected string user_Contact;
+
+        /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="User"/>
         /// </summary>
         /// <param name="name">Nombre del usuario.</param>
         /// <param name="ubication">Ubicacion del usuario.</param>
         /// <param name="rubro">Rubro del usuario.</param>
         /// <param name="user_Id">Rubro del usuario.</param>
-        public User(string user_Id, string name, string ubication, Rubro rubro)
+        /// <param name="user_Contact">Rubro del usuario.</param>
+        public User(string user_Id, string name, string ubication, Rubro rubro, string user_Contact)
         {
             if (name == "" || ubication == "")
             {
@@ -40,6 +46,7 @@ namespace Proyect
             this.Ubication = ubication;
             this.Rubro = rubro;
             this.user_Id = user_Id;
+            this.User_Contact = user_Contact;
         }
         /// <summary>
         /// Propiedad get y set del atributo del nombre.
@@ -96,6 +103,22 @@ namespace Proyect
             get
             {
                 return this.user_Id;
+            }
+        }
+
+        /// <summary>
+        /// Obtiene el contacto del usuraio.
+        /// </summary>
+        /// <value></value>
+        public string User_Contact
+        {
+            get
+            {
+                return this.user_Contact;
+            }
+            set 
+            {
+                this.user_Contact = value;
             }
         }
     }

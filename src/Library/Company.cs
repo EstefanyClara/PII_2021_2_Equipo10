@@ -22,7 +22,7 @@ namespace Proyect
                 /// <param name="ubication">Ubicacion de la compania.</param>
                 /// <param name="rubro">Rubro de la compania.</param>
                 /// <param name="user_Id">Identificacion de la compania.</param>
-                public Company(string user_Id, string name, string ubication, Rubro rubro):base(user_Id, name, ubication, rubro)
+                public Company(string user_Id, string name, string ubication, Rubro rubro, string user_Contact):base(user_Id, name, ubication, rubro, user_Contact)
                 {
 
                 }
