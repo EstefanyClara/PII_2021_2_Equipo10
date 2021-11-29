@@ -72,7 +72,7 @@ namespace Proyect
                 if ((message.Text.ToLower().Replace(" ","").Equals("/3") && DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0))
                 {
                     DataUserContainer.Instance.UserDataHistory[message.Id][1].Add("Clasificacion");
-                    response = "Indique la clasificacion de ofertas deseadas";
+                    response = "Indique la clasificación de ofertas deseadas";
                     return true;
                 }if (DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0)
                 {
@@ -139,7 +139,7 @@ namespace Proyect
                         }
                         Emprendedor emp = AppLogic.Instance.GetEmprendedor(message.Id);
                         AppLogic.Instance.AccepOffer(emp,offer);
-                        response = "Oferta comprada con exito!";
+                        response = "Oferta comprada con éxito!";
                         DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
                     }
                     else

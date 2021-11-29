@@ -55,12 +55,12 @@ namespace Proyect
                 if (message.Text.ToLower().Replace(" ","").Equals("/si") & DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0)
                 {
                     DataUserContainer.Instance.UserDataHistory[message.Id][1].Add("/si");
-                    response = "Usted se registrara como empresa en esta aplicacion\nIngrese el codigo: ";
+                    response = "Usted se registrará como empresa en esta aplicación\nIngrese el código: ";
                     return true;
                 }if (message.Text.ToLower().Replace(" ","").Equals("/no") & DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0)
                 {
                     DataUserContainer.Instance.UserDataHistory[message.Id][1].Add("/no");
-                    response = "Usted se registrara como usuario en esta aplicacion\n¿Esta de acuerdo? (/si o /no)";
+                    response = "Usted se registrará como usuario en esta aplicación\n¿Está de acuerdo? (/si o /no)";
                     return true;
                 }if (DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0)
                 {
@@ -77,7 +77,7 @@ namespace Proyect
                         if (!message.Text.Contains("?"))
                         {
                         userData.Add(message.Text); //El token de la compania
-                        response = "Ingrese el nombre de su compania";
+                        response = "Ingrese el nombre de su compañía";
                         }else
                         {
                             response = "Por favor ingrese un dato valido";
@@ -86,13 +86,13 @@ namespace Proyect
                     {
                         if(message.Text.ToLower().Replace(" ","").Equals("/si"))
                         {
-                            userData.Add("Emprendedor no necesita Token (este es u espacio momentaneo presente hasta que el emprendedor ingrese sus habilitaciones)");
+                            userData.Add("Emprendedor no necesita Token (este es un espacio momentaneo presente hasta que el emprendedor ingrese sus habilitaciones)");
                             response = "Ingrese el nombre de su emprendimiento";
                             return true;
                         }if(message.Text.ToLower().Replace(" ","").Equals("/no"))
                         {
                             DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
-                            response = "Recuerde que puede registraser como usuario en cualquier momento.\n\nPara registrarse como compania contacto con el administrador";
+                            response = "Recuerde que puede registraser como usuario en cualquier momento.\n\nPara registrarse como compañía contacte con el administrador";
                             return true;
                         }
                         response = "Dato erroneo ingrese /si o /no";
@@ -119,7 +119,7 @@ namespace Proyect
                             return true;
                         }
                         StringBuilder mensaje = new StringBuilder();
-                        mensaje.Append("A continuacion ingrese el rubro al cual pertenece.\n\nEliga entre los habilitados de la aplicacion indicando su indice.\n");
+                        mensaje.Append("A continuación ingrese el rubro al cual pertenece.\n\nElija entre los habilitados de la aplicación indicando su indice.\n");
                         List<Rubro> validRubros = AppLogic.Instance.Rubros;
                         int indice = 0;
                         foreach(Rubro item in validRubros)
@@ -141,12 +141,12 @@ namespace Proyect
                                 return true;
                             }else
                             {
-                                response = "Numero invalido";
+                                response = "Número invalido";
                                 return true;
                             }
                         }else
                         {
-                            response = "El dato ingresado no es valido\nPor favor, revise que haya ingresado un numero (Ej:'1' Para elegir el primer rubro)";
+                            response = "El dato ingresado no es valido\nPor favor, revise que haya ingresado un Número (Ej:'1' Para elegir el primer rubro)";
                             return true;
                         }
                     case 5:
@@ -155,11 +155,11 @@ namespace Proyect
                             userData.Add(message.Text.Trim(' '));
                             if (userData[0].Equals("/si"))
                             {
-                                response = $"Por favor, veo si los datos ingresados son correctos.\nCodigo de registro: {userData[1]}\nNombre de la compania: {userData[2]}\nUbicacíon de la companiai: {userData[3]}\nRubro de la compania: {AppLogic.Instance.Rubros[Convert.ToInt32(userData[4])].RubroName}\nMail de contacto: {userData[5]}\n\nSi son correctos ingrese '/si', en caso contrario '/no'";
+                                response = $"Por favor, veo si los datos ingresados son correctos.\nCodigo de registro: {userData[1]}\nNombre de la compañía: {userData[2]}\nUbicación de la compañía: {userData[3]}\nRubro de la compañía: {AppLogic.Instance.Rubros[Convert.ToInt32(userData[4])].RubroName}\nMail de contacto: {userData[5]}\n\nSi son correctos ingrese '/si', en caso contrario '/no'";
                             }else
                             {
                                 mensaje = new StringBuilder();
-                                mensaje.Append("A continuacion ingrese las habilitaciones que posee.\n\nEliga entre los habilitadoas por la aplicacion indicando su indice (puede elegir mas de una).\n");
+                                mensaje.Append("A continuación ingrese las habilitaciones que posee.\n\nElija entre los habilitados por la aplicación indicando su indice (puede elegir mas de una).\n");
                                 int index = 0;
                                 foreach (Qualifications item in AppLogic.Instance.Qualifications)
                                 {
@@ -181,7 +181,7 @@ namespace Proyect
                                 if(AppLogic.Instance.RegistrarCompany(userData[1], message.Id, userData[2], userData[3], AppLogic.Instance.Rubros[Convert.ToInt32(userData[4])], userData[5]))
                                 {
                                     DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
-                                    response = "Usted se a registrado con exito";
+                                    response = "Usted se a registrado con éxito";
                                     return true;
                                 }else
                                 {
@@ -192,7 +192,7 @@ namespace Proyect
                             }if(message.Text.ToLower().Replace(" ","").Equals("/no"))
                             {
                                 DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
-                                response = "Se procedera a eliminar todos los datos ingresados.\n\nEn el caso de querer volver a registrarse, por favor use el comando '/Registrar'.";
+                                response = "Se procederá a eliminar todos los datos ingresados.\n\nEn el caso de querer volver a registrarse, por favor use el comando '/Registrar'.";
                                 return true;
                             }
                             response = "Dato incorrecto\n Por favor ingrese '/si' o '/no'.";
@@ -201,7 +201,7 @@ namespace Proyect
                         {
                             if(!message.Text.ToLower().Replace(" ","").Equals("/stop"))
                             {
-                                if (userData[1] == "Emprendedor no necesita Token (este es u espacio momentaneo presente hasta que el emprendedor ingrese sus habilitaciones)")
+                                if (userData[1] == "Emprendedor no necesita Token (este es un espacio momentaneo presente hasta que el emprendedor ingrese sus habilitaciones)")
                                 {
                                     userData.RemoveAt(1);
                                     userData.Add("");
@@ -216,11 +216,11 @@ namespace Proyect
                                             habilitacion = habilitacion + "-" + message.Text.Replace(" ","");
                                             userData.RemoveAt(5);
                                             userData.Add(habilitacion);
-                                            response = "Se ha agregado la habilitacion";
+                                            response = "Se ha agregado la habilitación";
                                             return true;
                                         }else
                                         {
-                                            response = "La habilitacion indicada ya se encuentra selecionada";
+                                            response = "La habilitacion indicada ya se encuentra seleccionada";
                                             return true;
                                         }
                                     }else
@@ -230,7 +230,7 @@ namespace Proyect
                                     }
                                 }else
                                 {
-                                    response = "El dato ingresado no es valido\nPor favor, revise que haya ingresado un numero (Ej:'1' Para elegir la primera habilitacion)";
+                                    response = "El dato ingresado no es valido\nPor favor, revise que haya ingresado un número (Ej:'1' Para elegir la primera habilitacion)";
                                     return true;
                                 }
                             }
@@ -258,7 +258,7 @@ namespace Proyect
                             }
                         }
                         userData.Add(" ");
-                        response = $"Por favor, veo si los datos ingresados son correctos.\nNombre: {userData[1]}\nUbicacion: {userData[2]}\nRubro: {AppLogic.Instance.Rubros[Convert.ToInt32(userData[3])].RubroName}\nMail de contacto: {userData[4]}\nHabilitaciones: {mensaje}\nEspecializacion: {userData[6]}\n\nSi son correctos ingrese '/si', en caso contrario '/no'";
+                        response = $"Por favor, vea si los datos ingresados son correctos.\nNombre: {userData[1]}\nUbicación: {userData[2]}\nRubro: {AppLogic.Instance.Rubros[Convert.ToInt32(userData[3])].RubroName}\nMail de contacto: {userData[4]}\nHabilitaciones: {mensaje}\nEspecializacion: {userData[6]}\n\nSi son correctos ingrese '/si', en caso contrario '/no'";
                         return true;
                     case 8:
                         if (message.Text.ToLower().Replace(" ","").Equals("/si"))
@@ -280,7 +280,7 @@ namespace Proyect
                         }if(message.Text.ToLower().Replace(" ","").Equals("/no"))
                         {
                             DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
-                            response = "Se procedera a eliminar todos los datos ingresados.\n\nEn el caso de querer volver a registrarse, por favor use el comando '/Registrar'.";
+                            response = "Se procederá a eliminar todos los datos ingresados.\n\nEn el caso de querer volver a registrarse, por favor use el comando '/Registrar'.";
                             return true;
                         }
                         response = "Dato incorrecto\n Por favor ingrese '/si' o '/no'.";

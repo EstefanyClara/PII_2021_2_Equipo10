@@ -46,11 +46,11 @@ namespace Proyect
                         {
                             if(!int.TryParse(comando[1], out number))
                             {
-                                response = "Debe ingresar /misofertasaceptadas o /misofertasaceptadas (numero) para obtener sus ofertas aceptadas.";
+                                response = "Debe ingresar /misofertasaceptadas o /misofertasaceptadas (número) para obtener sus ofertas aceptadas.";
                                 return true;
                             }if (number >=1)
                             {
-                                response = "Debe ingresar un numero mayor o igual a 1 en el periodo de dias";
+                                response = "Debe ingresar un número mayor o igual a 1 en el periodo de dias";
                                 return true;
                             }
                             DataUserContainer.Instance.UserDataHistory[message.Id][1].Add(comando[1]);
@@ -60,7 +60,7 @@ namespace Proyect
                         }
                     }else
                     {
-                        response = "Comando no valido\n\nSi quiere ver las ofertas aceptadas puede ingresar /misofertasaceptadas y obtener todas sus ofertas aceptadas o /mis ofertas aceptadas (dia) para obtener las ofertas aceptadas desde la actualidad hasta el (dias) atras. (Ej: si ingresa '/misofertasaceptadas 2' obtendra todas las ofertas aceptadas en los ultimos dos dias.";
+                        response = "Comando no valido\n\nSi quiere ver las ofertas aceptadas puede ingresar /misofertasaceptadas y obtener todas sus ofertas aceptadas o /mis ofertas aceptadas (dia) para obtener las ofertas aceptadas desde la actualidad hasta el (dias) atras. (Ej: si ingresa '/misofertasaceptadas 2' obtendrá todas las ofertas aceptadas en los ultimos dos dias.";
                         return true;
                     }
                     List<IOffer> listaOfertas = null;
@@ -118,7 +118,7 @@ namespace Proyect
                     response = mensaje.ToString();
                 }else
                 {
-                    response = "No puede realizar esta accion en este momento";
+                    response = "No puede realizar esta acción en este momento";
                 }
                 return true;
             } if (DataUserContainer.Instance.UserDataHistory.Keys.Contains(message.Id) && DataUserContainer.Instance.UserDataHistory[message.Id][0][0].Equals("/misofertasaceptadas"))
@@ -166,7 +166,7 @@ namespace Proyect
                                             mensajeCompraData.Append($"\n{index}--{item.Buyer} la acepto el {item.PurchaseDate}");
                                         }
                                         DataUserContainer.Instance.UserDataHistory[message.Id][0].Add("/oferta");
-                                        response = $"Oferta {number}.\nPublicada el: {oferta.DatePublished}\n\nClasificacion del producto: {oferta.Product.Classification}\nCantidad del producto: {oferta.Product.Quantity}\nPrecio de compra: {oferta.Product.Price}\nUbicacíon del producto: {oferta.Product.Ubication}\nRequerimientos necesarios:{mensajeHabilitaciones}\nPalabras claves asociadas: {mensajeKeyWords}\n\nEmprendedor/es que la aceptaron: {mensajeCompraData}\n\n Usted puede seleccionar al comprador indicando su indice para obtener mas detalles, o utilizar /Cancel para salir."; 
+                                        response = $"Oferta {number}.\nPublicada el: {oferta.DatePublished}\n\nClasificación del producto: {oferta.Product.Classification}\nCantidad del producto: {oferta.Product.Quantity}\nPrecio de compra: {oferta.Product.Price}\nUbicación del producto: {oferta.Product.Ubication}\nRequerimientos necesarios:{mensajeHabilitaciones}\nPalabras claves asociadas: {mensajeKeyWords}\n\nEmprendedor/es que la aceptaron: {mensajeCompraData}\n\n Usted puede seleccionar al comprador indicando su indice para obtener más detalles, o utilizar /Cancel para salir."; 
                                         return true;
                                     }else
                                     {
@@ -183,17 +183,17 @@ namespace Proyect
                                         }
                                         DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
                                         DataUserContainer.Instance.UserOfferDataSelection.Remove(message.Id);
-                                        response = $"Oferta {number}.\nPublicada el: {oferta.DatePublished}\n\nClasificacion del producto: {oferta.Product.Classification}\nCantidad del producto: {oferta.Product.Quantity}\nPrecio de compra: {oferta.Product.Price}\nUbicacíon del producto: {oferta.Product.Ubication}\nRequerimientos necesarios:{mensajeHabilitaciones}\nPalabras claves asociadas: {mensajeKeyWords}\nFecha de compra: {mensajeCompraData}"; 
+                                        response = $"Oferta {number}.\nPublicada el: {oferta.DatePublished}\n\nClasificación del producto: {oferta.Product.Classification}\nCantidad del producto: {oferta.Product.Quantity}\nPrecio de compra: {oferta.Product.Price}\nUbicación del producto: {oferta.Product.Ubication}\nRequerimientos necesarios:{mensajeHabilitaciones}\nPalabras claves asociadas: {mensajeKeyWords}\nFecha de compra: {mensajeCompraData}"; 
                                         return true;
                                     }
                                 }else
                                 {
-                                    response = "Debe ingresar un numero valido";
+                                    response = "Debe ingresar un número valido";
                                     return true;
                                 }
                             }else
                             {
-                                response = "Debe ingresar el comando y un numero";
+                                response = "Debe ingresar el comando y un número";
                                 return true;
                             }
                         }else
@@ -230,18 +230,18 @@ namespace Proyect
                                 }
                                 DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
                                 DataUserContainer.Instance.UserOfferDataSelection.Remove(message.Id);
-                                response = $"Comprador {number}\n\nNombre: {datosDeCompra[number-1].Buyer.Name}\nRubo al que pertenece: {datosDeCompra[number-1].Buyer.Rubro}\nUbicacíon: {datosDeCompra[number-1].Buyer.Ubication}\nContacto: {datosDeCompra[number-1].Buyer.User_Contact}\nHabilitaciones que posee: {mensajeHabilitaciones}\nFecha de compra: {datosDeCompra[number-1].PurchaseDate}.";
+                                response = $"Comprador {number}\n\nNombre: {datosDeCompra[number-1].Buyer.Name}\nRubo al que pertenece: {datosDeCompra[number-1].Buyer.Rubro}\nUbicación: {datosDeCompra[number-1].Buyer.Ubication}\nContacto: {datosDeCompra[number-1].Buyer.User_Contact}\nHabilitaciones que posee: {mensajeHabilitaciones}\nFecha de compra: {datosDeCompra[number-1].PurchaseDate}.";
                             }else
                             {
-                                response ="Debe ingresar un numero valido";
+                                response ="Debe ingresar un número valido";
                             }
                         }else
                         {
-                            response = "Debe ingresar un numero que concuerde con algun indice";
+                            response = "Debe ingresar un número que concuerde con algun índice";
                         }
                     }else
                     {
-                        response = "Debe ingresar solo el indice del comprador que quiere ver";
+                        response = "Debe ingresar solo el índice del comprador que quiere ver";
                     }
                     return true;
                 }
