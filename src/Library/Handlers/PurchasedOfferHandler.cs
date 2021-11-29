@@ -64,7 +64,7 @@ namespace Proyect
                         return true;
                     }
                     List<IOffer> listaOfertas = null;
-                    int index = 0;
+                    int index = 1;
                     if (AppLogic.Instance.GetCompany(message.Id) != null)
                     {
                         DataUserContainer.Instance.UserDataHistory[message.Id][1].Insert(0,"company");
@@ -87,7 +87,7 @@ namespace Proyect
                             {
                                 purchaseData = item.GetPeriodTimeOffersAcceptedData(number);
                             }
-                            mensaje.Append($"\n{index++}-->{item.Product.Quantity} Kilos de {item.Product.Classification.Category} a un precio de {item.Product.Price} aceptada el {purchaseData[0].PurchaseDate} por {purchaseData[0].Buyer}");
+                            mensaje.Append($"\n{index++}-->{item.Product.Quantity} Kilos de {item.Product.Classification.Category} a un precio de {item.Product.Price}$ aceptada el {purchaseData[0].PurchaseDate} por {purchaseData[0].Buyer.Name}");
                         }
                     }else
                     {
@@ -111,10 +111,10 @@ namespace Proyect
                             {
                                 purchaseData = item.GetPeriodTimeOffersAcceptedData(number, AppLogic.Instance.GetEmprendedor(message.Id));
                             }
-                            mensaje.Append($"\n-->{item.Id} - {item.Product.Quantity} Kilos de {item.Product.Classification.Category} a un precio de {item.Product.Price} aceptada el {item.PurchesedData}{(AppLogic.Instance.GetCompany(message.Id) != null ? $" por {datosDeCompra.Buyer.Name}" : "")}");
+                            mensaje.Append($"\n{index++}-->{item.Product.Quantity} Kilos de {item.Product.Classification.Category} a un precio de {item.Product.Price} aceptada el {purchaseData[0].PurchaseDate}");
                         }
                     }
-                    DataUserContainer.Instance.UserOfferDataSelection.Add(message.Id,listaOfertas);
+                    DataUserContainer.Instance.UserOfferDataSelection.Add(message.Id, listaOfertas);
                     response = mensaje.ToString();
                 }else
                 {
@@ -135,7 +135,7 @@ namespace Proyect
                             int number;
                             if (int.TryParse(comando[1], out number))
                             {
-                                if(DataUserContainer.Instance.UserOfferDataSelection[message.Id].Count - number >= 0)
+                                if(DataUserContainer.Instance.UserOfferDataSelection[message.Id].Count - number >= 0 && number != 0 && number > 0)
                                 {
                                     IOffer oferta = DataUserContainer.Instance.UserOfferDataSelection[message.Id][number-1];
                                     userData.Add(comando[1]);

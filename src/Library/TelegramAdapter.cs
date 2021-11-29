@@ -1,5 +1,10 @@
 using Telegram.Bot.Types;
 using System.Linq;
+using System.IO;
+using System.Threading.Tasks;
+using Telegram.Bot;
+using Telegram.Bot.Types.Enums;
+using Telegram.Bot.Types.InputFiles;
 
 namespace Proyect
 {
@@ -12,15 +17,18 @@ namespace Proyect
         private int id;
         private long msgId;
 
+        private TelegramBotClient bot;
+
         /// <summary>
         /// Crea una nueva instancia de la clase <see cref="TelegramAdapter"/>.
         /// </summary>
         /// <param name="message"></param>
-        public TelegramAdapter(Message message)
+        public TelegramAdapter(Message message, TelegramBotClient bot)
         {
             this.message = message;
             this.id = message.From.Id;
             this.msgId = message.Chat.Id;
+            this.bot = bot;
         }
 
         /// <summary>
@@ -56,5 +64,23 @@ namespace Proyect
                 return this.msgId;
             }
         }
+
+        public async Task SendProfileImage(string mensaje, string direccion)
+        {
+            if (bot != null)
+            {
+                await bot.SendChatActionAsync(this.MsgId, ChatAction.UploadPhoto);
+
+                string filePath = direccion;
+                using var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+                var fileName = filePath.Split(Path.DirectorySeparatorChar).Last();
+
+                await bot.SendPhotoAsync(
+                    chatId: message.Chat.Id,
+                    photo: new InputOnlineFile(fileStream, fileName),
+                    caption: mensaje
+                );
+            }
+    }
     }
 }

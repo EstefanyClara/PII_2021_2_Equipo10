@@ -3,6 +3,7 @@ using System.Collections;
 using System.Text;
 using System;
 using System.Linq;
+using System.Runtime.Serialization;
 
 namespace Proyect
 {
@@ -40,6 +41,13 @@ namespace Proyect
             this.purchesedData = new List<PurchaseData>();
             this.datePublished = "Siempre";
             this.ID = ++id;
+        }
+
+        private ConstantOffer(SerializationInfo info, StreamingContext context)
+        {
+            this.datePublished = info.GetString("DatePublisehd");
+            this.product = (ProductOffer) info.GetValue("Product", typeof(ProductOffer));
+
         }
 
         /// <summary>
@@ -178,8 +186,12 @@ namespace Proyect
         {
             foreach(Qualifications item in this.Qualifications)
             {
-                if(!emprendedor.Qualifications.Contains(item))
+                foreach (Qualifications value in emprendedor.Qualifications)
                 {
+                    if(value.QualificationName == item.QualificationName)
+                    {
+                        break;
+                    }
                     return false;
                 }
             }

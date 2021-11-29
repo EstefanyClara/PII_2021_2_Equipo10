@@ -183,6 +183,26 @@ namespace Proyect
             }
             return null;
         }
+        /// <summary>
+        /// Registra a un id de usuario, como administrador.
+        /// </summary>
+        /// <param name="user_id"></param>
+        /// <param name="confirmCode"></param>
+        /// <returns></returns>
+        public bool AddAdministrator(string user_id, string confirmCode)
+        {
+            return Administrator.Instance.AddAdministrator(confirmCode, user_id);
+        }
+
+        /// <summary>
+        /// Obtiene le codigo que un usuario usara si se quiere registrar como compania.
+        /// </summary>
+        /// <returns></returns>
+        public string Invite()
+        {
+            return Administrator.Instance.Invite();
+        }
+        
         
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="Emprendedor"/>.
@@ -218,7 +238,7 @@ namespace Proyect
         /// <returns>mensaje de confirmacion</returns>
         public bool RegistrarCompany(string companyToken, string user_Id, string name, string ubication, Rubro rubro, string user_Contact)
         {
-            Company company = Administrator.Instance.Invite(companyToken, user_Id, name, ubication, rubro, user_Contact);
+            Company company = Administrator.Instance.ConfirmCompanyRegistration(companyToken, user_Id, name, ubication, rubro, user_Contact);
             if (company == null)
             {
                 return false;
@@ -375,17 +395,17 @@ namespace Proyect
         /// </summary>
         /// <param name="emprendedor">Emprendedor.</param>
         /// <param name="offer">La Oferta.</param>
-        public async Task<string> ObteinOfferDistance(Emprendedor emprendedor, IOffer offer)
+        public string ObteinOfferDistance(Emprendedor emprendedor, IOffer offer)
         {
             string emprendedorUbication = emprendedor.Ubication;
             string offerUbication = offer.Product.Ubication;
-            Location locationEmprendedor = await client.GetLocationAsync(emprendedorUbication);
-            Location locationOffer = await client.GetLocationAsync(offerUbication);
-            Distance distance = await client.GetDistanceAsync(locationEmprendedor, locationOffer);
+            Location locationEmprendedor = client.GetLocation(emprendedorUbication);
+            Location locationOffer = client.GetLocation(offerUbication);
+            Distance distance = client.GetDistance(locationEmprendedor, locationOffer);
             double kilometers = distance.TravelDistance;
-            await client.DownloadRouteAsync(locationEmprendedor.Latitude, locationEmprendedor.Longitude,
+            client.DownloadRoute(locationEmprendedor.Latitude, locationEmprendedor.Longitude,
             locationOffer.Latitude, locationOffer.Longitude, @"route.png");
-            return Convert.ToString(kilometers);
+            return Convert.ToString(kilometers) + "Kilometros.";
         }
 
         /// <summary>
@@ -393,11 +413,11 @@ namespace Proyect
         /// </summary>
         /// <param name="offer">Oferta que se quiere buscar.</param>
         /// <returns>Un mapa de la ubicacion de la oferta.</returns>
-        public async Task ObteinOfferMap(IOffer offer)
+        public void ObteinOfferMap(IOffer offer)
         {
             string offerUbication = offer.Product.Ubication;
-            Location locationOffer = await client.GetLocationAsync(offerUbication);
-            await client.DownloadMapAsync(locationOffer.Latitude, locationOffer.Longitude, @"map.png");
+            Location locationOffer = client.GetLocation(offerUbication);
+            client.DownloadMap(locationOffer.Latitude, locationOffer.Longitude, @"map.png");
         }
 
         /// <summary>

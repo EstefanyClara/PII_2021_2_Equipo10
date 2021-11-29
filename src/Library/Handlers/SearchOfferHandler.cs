@@ -3,6 +3,8 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Collections;
 using System.Text;
+using Nito.AsyncEx;
+using System.Threading.Tasks;
 
 namespace Proyect
 {
@@ -40,7 +42,7 @@ namespace Proyect
                 {
                     response = "Indique como quiere buscar ofertas\n/1 - Nombre\n/2 - Ubicacion\n/3 - Clasificación";
                     List<List<string>> lista = new List<List<string>>() {new List<string>(),new List<string>()};
-                    DataUserContainer.Instance.UserDataHistory.Add(message.Id,lista);
+                    DataUserContainer.Instance.UserDataHistory.Add(message.Id, lista);
                     DataUserContainer.Instance.UserDataHistory[message.Id][0].Add("/buscar");
                     return true;
                 }else
@@ -76,77 +78,141 @@ namespace Proyect
                     return true;
                 }if (DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0)
                 {
-                    response = "Debe ingresar /si o /no";
+                    response = "Debe ingresar /1, /2, o /3";
                     return true;
                 }
                 string position = DataUserContainer.Instance.UserDataHistory[message.Id][1][0];
                 List<string> userData = DataUserContainer.Instance.UserDataHistory[message.Id][1];
+                int index = 1;
                 if(userData[0].Equals("Nombre") && DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 1)
                 {
                     if(AppLogic.Instance.SearchOfferByKeywords(message.Text) != null)
                     {
-                        List<IOffer> list = AppLogic.Instance.SearchOfferByKeywords(message.Text);
-                        StringBuilder sb = new StringBuilder($"Ofertas de {message.Text} disponibles - Escriba el número de la oferta que desea comprar");
+                        List<IOffer> list = AppLogic.Instance.SearchOfferByKeywords(message.Text.Trim(' '));
+                        DataUserContainer.Instance.UserOfferDataSelection.Add(message.Id, list);
+                        DataUserContainer.Instance.UserOfferDataSelection[message.Id] = list;
+                        StringBuilder sb = new StringBuilder($"Ofertas de {message.Text} disponibles - Escriba el número de la oferta para verla mas a detalle");
                         foreach (IOffer item in list)
                         {
-                            sb.Append($"{item.Id} - {item.Product.Classification} - cantidad: {item.Product.Quantity} - precio unitario: {item.Product.Price} - ubicación: {item.Product.Ubication} - fecha de publicación: {item.DatePublished}\n");
+                            sb.Append($"\n{index++} - {item.Product.Classification.Category} - cantidad: {item.Product.Quantity} Kilos - precio unitario: {item.Product.Price} - ubicación: {item.Product.Ubication} - fecha de publicación: {item.DatePublished}");
                         }
                         DataUserContainer.Instance.UserDataHistory[message.Id][1].Add("/comprar");
                         response = sb.ToString();
                         return true;
+                    }else
+                    {
+                        DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
+                        DataUserContainer.Instance.UserOfferDataSelection.Remove(message.Id);
+                        response = "No se encontraron ofertas con la palabra clave indicada.";
                     }
                 }
                 if(userData[0].Equals("Ubicacion") && DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 1)
                 {
-                    if(AppLogic.Instance.SearchOfferByKeywords(message.Text) != null)
+                    if(AppLogic.Instance.SearchOfferByUbication(message.Text) != null)
                     {
-                        List<IOffer> list = AppLogic.Instance.SearchOfferByUbication(message.Text);
-                        StringBuilder sb = new StringBuilder($"Ofertas en {message.Text} disponibles - Escriba el número de la oferta que desea comprar");
+                        List<IOffer> list = AppLogic.Instance.SearchOfferByUbication(message.Text.Trim(' '));
+                        DataUserContainer.Instance.UserOfferDataSelection.Add(message.Id, list);
+                        DataUserContainer.Instance.UserOfferDataSelection[message.Id] = list;
+                        StringBuilder sb = new StringBuilder($"Ofertas en {message.Text} disponibles - Escriba el número de la oferta verla mas a detalle");
                         foreach (IOffer item in list)
                         {
-                            sb.Append($"{item.Id} - {item.Product.Classification} - cantidad: {item.Product.Quantity} - precio unitario: {item.Product.Price} - ubicación: {item.Product.Ubication} - fecha de publicación: {item.DatePublished}\n");
+                            sb.Append($"\n{index++} - {item.Product.Classification.Category} - cantidad: {item.Product.Quantity} - precio unitario: {item.Product.Price} - ubicación: {item.Product.Ubication} - fecha de publicación: {item.DatePublished}");
                         }
                         DataUserContainer.Instance.UserDataHistory[message.Id][1].Add("/comprar");
                         response = sb.ToString();
+                        return true;
+                    }else
+                    {
+                        DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
+                        DataUserContainer.Instance.UserOfferDataSelection.Remove(message.Id);
+                        response = "No se encontraron ofertas con la ubicacion indicada.";
                         return true;
                     }
                 }
                 if(userData[0].Equals("Clasificacion") && DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 1)
                 {
-                    if(AppLogic.Instance.SearchOfferByKeywords(message.Text) != null)
+                    if(AppLogic.Instance.SearchOfferByType(message.Text) != null)
                     {
                         List<IOffer> list = AppLogic.Instance.SearchOfferByType(message.Text);
-                        StringBuilder sb = new StringBuilder($"Ofertas de tipo {message.Text} disponibles - Escriba el número de la oferta que desea comprar");
+                        DataUserContainer.Instance.UserOfferDataSelection.Add(message.Id, list);
+                        DataUserContainer.Instance.UserOfferDataSelection[message.Id] = list;
+                        StringBuilder sb = new StringBuilder($"Ofertas de tipo {message.Text} disponibles - Escriba el número de la oferta verla mas a detalle");
                         foreach (IOffer item in list)
                         {
-                            sb.Append($"{item.Id} - {item.Product.Classification.Category} - cantidad: {item.Product.Quantity} - precio unitario: {item.Product.Price} - ubicación: {item.Product.Ubication} - fecha de publicación: {item.DatePublished}\n");
+                            sb.Append($"\n{index++} - {item.Product.Classification.Category} - cantidad: {item.Product.Quantity} - precio unitario: {item.Product.Price} - ubicación: {item.Product.Ubication} - fecha de publicación: {item.DatePublished}");
                         }
                         DataUserContainer.Instance.UserDataHistory[message.Id][1].Add("/comprar");
                         response = sb.ToString();
                         return true;
-                    }
-                }
-                if(userData[1].Equals("/comprar"))
-                {
-                    int indice;
-                    if(int.TryParse(comando[1],out indice))
+                    }else
                     {
-                        IOffer offer = AppLogic.Instance.GetOffer(indice);
-                        if(offer == null)
+                        DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
+                        DataUserContainer.Instance.UserOfferDataSelection.Remove(message.Id);
+                        response = "No se encontaron ofertan con dicha clasificacion.";
+                        return true;
+                    }  
+                }
+                switch(userData.Count)
+                {
+                    case 2:
+                        int indice;
+                        if(int.TryParse(message.Text.Trim(' '), out indice))
                         {
-                            response = "Esa oferta no existe";
+                            if(DataUserContainer.Instance.UserOfferDataSelection[message.Id].Count - indice < 0)
+                            {
+                                response = "Esa oferta no existe";
+                                return true;
+                            }else
+                            {
+                                IOffer oferta = DataUserContainer.Instance.UserOfferDataSelection[message.Id][indice-1];
+                                StringBuilder mensaje = new StringBuilder();
+                                foreach(Qualifications item in oferta.Qualifications)
+                                {
+                                    mensaje.Append($"-{item.QualificationName}");
+                                }
+                                userData.Add(indice.ToString());
+                                response = $"Oferta {indice}.\n\nClasificacion: {oferta.Product.Classification}\nPrecio: {oferta.Product.Price}\nCantidad: {oferta.Product.Quantity}\nUbicacion: {oferta.Product.Ubication}\nHabilitaciones necesarias: {mensaje}\n\n\nPuede utilizar /Distancia para obetenr un mapa de la oferta junto con su distancia actual\nPuede hacer uso de /map para obtener un mapa de la ubicacion de la oferta.";
+                                return true;
+                            }
+                        }else
+                        {
+                            response = "Numero no valido";
                             return true;
                         }
+                    case 3:
                         Emprendedor emp = AppLogic.Instance.GetEmprendedor(message.Id);
-                        AppLogic.Instance.AccepOffer(emp,offer);
-                        response = "Oferta comprada con exito!";
-                        DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
-                    }
-                    else
-                    {
-                        response = "Seleccione un indice valido";
-                    }
-                    return true;
+                        IOffer offer = DataUserContainer.Instance.UserOfferDataSelection[message.Id][Convert.ToInt32(userData[2])-1];
+                        if (message.Text.ToLower().Trim(' ').Equals("/distancia"))
+                        {
+                            AppLogic.Instance.ObteinOfferDistance(emp, offer);
+                            AsyncContext.Run(() => message.SendProfileImage(AppLogic.Instance.ObteinOfferDistance(emp, offer), @"route.png"));
+                            response = string.Empty;
+                            return true;
+                        }if(message.Text.ToLower().Trim(' ').Equals("/map"))
+                        {
+                            AppLogic.Instance.ObteinOfferMap(offer);
+                            AsyncContext.Run(() => message.SendProfileImage($"Este es el mapa de la oferta que esta en {offer.Product.Ubication}", @"map.png"));
+                            response = string.Empty;
+                            return true;
+                        }if (message.Text.ToLower().Trim(' ').Equals("/comprar"))
+                        {
+                            if(AppLogic.Instance.AccepOffer(emp, DataUserContainer.Instance.UserOfferDataSelection[message.Id][Convert.ToInt32(userData[2])-1]))
+                            {
+                                response = "Oferta comprada con exito!";
+                                DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
+                                DataUserContainer.Instance.UserOfferDataSelection.Remove(message.Id);
+                            }else
+                            {
+                                response = "Esta oferta ya no esta disponible, o usted no posee las habilitaciones necesarias.";
+                                DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
+                                DataUserContainer.Instance.UserOfferDataSelection.Remove(message.Id);
+                            }
+                        }
+                        else
+                        {
+                            response = "Comando no valido.";
+                        }
+                        return true;
                 }
             }
             response = string.Empty;

@@ -17,6 +17,7 @@ namespace Proyect
         private DataUserContainer()
         {
             this.userDataHistory = new Dictionary<string, List<List<string>>> ();
+            this.userOfferDataSelection = new Dictionary<string, List<IOffer>> ();
         }
 
         /// <summary>

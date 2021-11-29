@@ -32,7 +32,7 @@ namespace Ucu.Poo.TelegramBot
         //
         // *Importante*:
         // Para probar este ejemplo, crea un bot nuevo y eeemplaza este token por el de tu bot.
-        private static string Token = "2101777088:AAFz3DmdRIvOU2omgOF17kozROw2kIY5WJY";
+        private static string Token = "2143817414:AAFIP8z5dIEL2guavfT6SdZMob7BtXqHcMI";
 
         private static IHandler firstHandler;
 
@@ -83,7 +83,8 @@ namespace Ucu.Poo.TelegramBot
                             new GetConstantMaterialsHandler(
                             new CompanyMyOfferHandler(
                             new SearchOfferHandler(
-                            new PurchasedOfferHandler(null)))))))));
+                            new PurchasedOfferHandler(
+                            new AdministratorHandler(null))))))))));
 
             var cts = new CancellationTokenSource();
 
@@ -121,7 +122,7 @@ namespace Ucu.Poo.TelegramBot
                 // Sólo respondemos a mensajes de texto
                 if (update.Type == UpdateType.Message)
                 {
-                    await HandleMessageReceived(new TelegramAdapter(update.Message));
+                    await HandleMessageReceived(new TelegramAdapter(update.Message, Bot));
                 }
             }
             catch(Exception e)
