@@ -84,7 +84,8 @@ namespace Ucu.Poo.TelegramBot
                             new CompanyMyOfferHandler(
                             new SearchOfferHandler(
                             new PurchasedOfferHandler(
-                            new AdministratorHandler(null))))))))));
+                            new AdministratorHandler(
+                            new MeHandler(null)))))))))));
 
             var cts = new CancellationTokenSource();
 
