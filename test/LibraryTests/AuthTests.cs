@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using NUnit.Framework;
+// using NUnit.Framework;
 
 
 namespace Tests
@@ -9,7 +9,7 @@ namespace Tests
     /// <summary>
     /// Clase para testeo de creacion y autenticacion de las empresas y emprendedores
     /// </summary>
-    [TestFixture]
+    // [TestFixture]
     public class AuthTests
     {/*
         private User empresa1;
