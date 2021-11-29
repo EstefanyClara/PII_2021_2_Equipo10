@@ -635,7 +635,7 @@
         </member>
         <member name="M:Proyect.AutorizationHandler.#ctor(Proyect.BaseHandler)">
             <summary>
-            Inicializa una nueva instancia de la clase <see cref="T:Proyect.AutorizationHandler"/>. Esta clase procesa si la perosna que envio el mensaje esta registrada.
+            Inicializa una nueva instancia de la clase <see cref="T:Proyect.AutorizationHandler"/>. Esta clase procesa si la persona que envio el mensaje esta registrada.
             </summary>
             <param name="next">El próximo "handler".</param>
         </member>
@@ -724,7 +724,7 @@
         </member>
         <member name="M:Proyect.CancelHandler.#ctor(Proyect.BaseHandler)">
             <summary>
-            Inicializa una nueva instancia de la clase <see cref="T:Proyect.AutorizationHandler"/>. Esta clase procesa si la perosna que envio el mensaje esta registrada.
+            Inicializa una nueva instancia de la clase <see cref="T:Proyect.AutorizationHandler"/>. Esta clase procesa si la persona que envio el mensaje esta registrada.
             </summary>
             <param name="next">El próximo "handler".</param>
         </member>
