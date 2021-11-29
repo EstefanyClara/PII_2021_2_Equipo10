@@ -54,12 +54,12 @@ namespace Proyect
                 if (message.Text.ToLower().Replace(" ","").Equals("/si") & DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0) //Proceso si el mensaje esra para verificar que tipo de usuario es.
                 {
                     DataUserContainer.Instance.UserDataHistory[message.Id][1].Add("/si");
-                    response = "Usted se registrara como empresa en esta aplicacion\nIngrese el codigo: ";
+                    response = "Usted se registrará como empresa en esta aplicación\nIngrese el código: ";
                     return true;
                 }if (message.Text.ToLower().Replace(" ","").Equals("/no") & DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0) //Proceso si el mensaje esra para verificar que tipo de usuario es.
                 {
                     DataUserContainer.Instance.UserDataHistory[message.Id][1].Add("/no");
-                    response = "Usted se registrara como usuario en esta aplicacion\n¿Esta de acuerdo? (/si o /no)";
+                    response = "Usted se registrará como usuario en esta aplicación\n¿Está de acuerdo? (/si o /no)";
                     return true;
                 }if (DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0) //Me fijo en que instancia del hanlder esta, para saber si el mensaje que ingreso es valido.
                 {
@@ -76,20 +76,20 @@ namespace Proyect
                     case 1: //Si el lista de informacion tiene un elemento, significa que el usuario ingreso el primer dato necesario para registrase.
                     if(position.Equals("/si")) //Verifico si el usuario se va a registrar como compania o emprendedor.
                     {
+
                         userData.Add(message.Text); //Si el usuario se va a registrar como compnai, significa que ingreso el token, por lo que agrego el mensaje ingresado a la lista de informacion.
                         response = "Ingrese el nombre de su compania"; //Envio el mensaje de que deberia ingresar el usuario en su proxima interracion.
-
                     }else
                     {
                         if(message.Text.ToLower().Replace(" ","").Equals("/si")) //Regulo si el mensaje que ingreso el usuraio es valido.
                         {
-                            userData.Add("Emprendedor no necesita Token (este es u espacio momentaneo presente hasta que el emprendedor ingrese sus habilitaciones)"); //Coloco un dato hemifiero en el diccionario de infromacion, para cuando el usuario (emprendedor) ingrese otro dato, salte al siguiente case.
+                            userData.Add("Emprendedor no necesita Token (este es un espacio momentaneo presente hasta que el emprendedor ingrese sus habilitaciones)");
                             response = "Ingrese el nombre de su emprendimiento";
                             return true;
                         }if(message.Text.ToLower().Replace(" ","").Equals("/no")) //Regulo nuevamnete si el mensaje que ingreso el usuraio es valido.
                         {
                             DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
-                            response = "Recuerde que puede registraser como usuario en cualquier momento.\n\nPara registrarse como compania contacto con el administrador";
+                            response = "Recuerde que puede registraser como usuario en cualquier momento.\n\nPara registrarse como compañía contacte con el administrador";
                             return true;
                         }
                         response = "Dato erroneo ingrese /si o /no"; //Si el programa llego a este punto, significa que el usuario ingreso un dato diferente al esperado.
@@ -115,8 +115,9 @@ namespace Proyect
                             response = "Por favor ingrese un dato valido"; //Mensaje que se envia si el  mensaje ingresado no es valido.
                             return true;
                         }
-                        StringBuilder mensaje = new StringBuilder(); //Constuyo el siguinete mensaje que se le ingresara al usuario.
-                        mensaje.Append("A continuacion ingrese el rubro al cual pertenece.\n\nEliga entre los habilitados de la aplicacion indicando su indice.\n");
+                        StringBuilder mensaje = new StringBuilder();
+                        mensaje.Append("A continuación ingrese el rubro al cual pertenece.\n\nElija entre los habilitados de la aplicación indicando su indice.\n");
+                      
                         int indice = 0;
                         foreach(Rubro item in AppLogic.Instance.Rubros) //Itero la lista de rubros validos de la logica.
                         {
@@ -137,12 +138,12 @@ namespace Proyect
                                 return true;
                             }else
                             {
-                                response = "Numero invalido"; //El numero ingresado es invalido.
+                                response = "Número invalido";
                                 return true;
                             }
                         }else
                         {
-                            response = "El dato ingresado no es valido\nPor favor, revise que haya ingresado un numero (Ej:'1' Para elegir el primer rubro)"; // el dato ingresado no es un numero.
+                            response = "El dato ingresado no es valido\nPor favor, revise que haya ingresado un Número (Ej:'1' Para elegir el primer rubro)";
                             return true;
                         }
                     case 5: //La lista de informacion tiene cinco elementos, por lo que el usuario habra ingresado su mail de contacto.
@@ -151,6 +152,7 @@ namespace Proyect
                             userData.Add(message.Text.Trim(' '));
                             if (userData[0].Equals("/si")) //Verifico si el usuario se esta registando como compania o emprendedor, ya que en esta instacia los datos de registro diferien entre ambos.
                             {
+                                mensaje.Append("A continuación ingrese las habilitaciones que posee.\n\nElija entre los habilitados por la aplicación indicando su indice (puede elegir mas de una).\n");
                                 //Si el usuario se esta registrando como compania, envio un mensaje para que verifique si ingreso todos los datos bien.
                                 response = $"Por favor, veo si los datos ingresados son correctos.\nCodigo de registro: {userData[1]}\nNombre de la compania: {userData[2]}\nUbicacíon de la companiai: {userData[3]}\nRubro de la compania: {AppLogic.Instance.Rubros[Convert.ToInt32(userData[4])].RubroName}\nMail de contacto: {userData[5]}\n\nSi son correctos ingrese '/si', en caso contrario '/no'";
                             }else
@@ -179,7 +181,7 @@ namespace Proyect
                                 if(AppLogic.Instance.RegistrarCompany(userData[1], message.Id, userData[2], userData[3], AppLogic.Instance.Rubros[Convert.ToInt32(userData[4])], userData[5])) //Pregunto si el resgistro se dio correctamente, o si ingreso un token invalido.
                                 {
                                     DataUserContainer.Instance.UserDataHistory.Remove(message.Id); //Como ya se registro, elimino el usuario del diccionario que almacena los usuarios que estan interactaundo con el bot.
-                                    response = "Usted se a registrado con exito"; //Mensaje de aviso.
+                                    response = "Usted se a registrado con éxito"; //Mensaje de aviso.
                                     return true;
                                 }else
                                 {
@@ -189,8 +191,9 @@ namespace Proyect
                                 }
                             }if(message.Text.ToLower().Replace(" ","").Equals("/no")) //Verifico si el usuario quiere cancelar su registro.
                             {
-                                DataUserContainer.Instance.UserDataHistory.Remove(message.Id); //Elimino al usuario del diccionario de que teien a todos los usuarios que estan interactuando con el bot.
-                                response = "Se procedera a eliminar todos los datos ingresados.\n\nEn el caso de querer volver a registrarse, por favor use el comando '/Registrar'."; //Mensaje de aviso.
+
+                                DataUserContainer.Instance.UserDataHistory.Remove(message.Id);//Elimino al usuario del diccionario de que teien a todos los usuarios que estan interactuando con el bot.
+                                response = "Se procederá a eliminar todos los datos ingresados.\n\nEn el caso de querer volver a registrarse, por favor use el comando '/Registrar'.";
                                 return true;
                             }
                             response = "Dato incorrecto\n Por favor ingrese '/si' o '/no'."; //Mensaje que se envia si el usuario no ingreso ninguno de los datos esperados.
@@ -199,7 +202,7 @@ namespace Proyect
                         {
                             if(!message.Text.ToLower().Replace(" ","").Equals("/stop")) //Verifico si el usuario quiere dejar de agregar habilitaciones.
                             {
-                                if (userData[1] == "Emprendedor no necesita Token (este es u espacio momentaneo presente hasta que el emprendedor ingrese sus habilitaciones)") //Si el usuario ingreso alguna habiliatcion, verifico si la lista de informacion aun tiene el dato hefimero.
+                                if (userData[1] == "Emprendedor no necesita Token (este es un espacio momentaneo presente hasta que el emprendedor ingrese sus habilitaciones)")//Si el usuario ingreso alguna habiliatcion, verifico si la lista de informacion aun tiene el dato hefimero.
                                 {
                                     userData.RemoveAt(1); // Saco el dato hefimero para que se pueda remplazar por el indice de la habilitacion que ingreso.
                                     userData.Add("");
@@ -214,11 +217,11 @@ namespace Proyect
                                             habilitacion = habilitacion + "-" + message.Text.Replace(" ",""); //Agrego el nuevo indice con el delimitador "-".
                                             userData.RemoveAt(5);
                                             userData.Add(habilitacion);
-                                            response = "Se ha agregado la habilitacion";
+                                            response = "Se ha agregado la habilitación";
                                             return true;
                                         }else
                                         {
-                                            response = "La habilitacion indicada ya se encuentra selecionada"; //Mnesaje que se muestra si ya habia seleccionado el indice con anterioridad.
+                                            response = "La habilitacion indicada ya se encuentra seleccionada";//Mnesaje que se muestra si ya habia seleccionado el indice con anterioridad.
                                             return true;
                                         }
                                     }else
@@ -228,7 +231,7 @@ namespace Proyect
                                     }
                                 }else
                                 {
-                                    response = "El dato ingresado no es valido\nPor favor, revise que haya ingresado un numero (Ej:'1' Para elegir la primera habilitacion)"; //Mnesaje que se muetra si no ingreso un numero.
+                                    response = "El dato ingresado no es valido\nPor favor, revise que haya ingresado un número (Ej:'1' Para elegir la primera habilitacion)";//Mnesaje que se muetra si no ingreso un numero.
                                     return true;
                                 }
                             }
@@ -256,7 +259,7 @@ namespace Proyect
                             }
                         }
                         userData.Add(" ");//Agrego otro dato hefimero para que salte al proximo case.
-                        response = $"Por favor, veo si los datos ingresados son correctos.\nNombre: {userData[1]}\nUbicacion: {userData[2]}\nRubro: {AppLogic.Instance.Rubros[Convert.ToInt32(userData[3])].RubroName}\nMail de contacto: {userData[4]}\nHabilitaciones: {mensaje}\nEspecializacion: {userData[6]}\n\nSi son correctos ingrese '/si', en caso contrario '/no'"; //Envio un mensaje con la informacion que ingreso el usuario para que confirme su registro.
+                        response = $"Por favor, vea si los datos ingresados son correctos.\nNombre: {userData[1]}\nUbicación: {userData[2]}\nRubro: {AppLogic.Instance.Rubros[Convert.ToInt32(userData[3])].RubroName}\nMail de contacto: {userData[4]}\nHabilitaciones: {mensaje}\nEspecializacion: {userData[6]}\n\nSi son correctos ingrese '/si', en caso contrario '/no'"; //Envio un mensaje con la informacion que ingreso el usuario para que confirme su registro.
                         return true;
                     case 8:
                         if (message.Text.ToLower().Replace(" ","").Equals("/si")) //Verifico si quiere continuar con el registro.
@@ -277,8 +280,10 @@ namespace Proyect
                             return true;
                         }if(message.Text.ToLower().Replace(" ","").Equals("/no")) //Verifico si el usuario quiere cancelar su registro.
                         {
-                            DataUserContainer.Instance.UserDataHistory.Remove(message.Id); //Remuevo al usuario del diccionario de usuarios que estan interactuando con la aplicacion.
-                            response = "Se procedera a eliminar todos los datos ingresados.\n\nEn el caso de querer volver a registrarse, por favor use el comando '/Registrar'."; //Mensaje de confirmacion.
+
+                            DataUserContainer.Instance.UserDataHistory.Remove(message.Id);//Remuevo al usuario del diccionario de usuarios que estan interactuando con la aplicacion.
+                            response = "Se procederá a eliminar todos los datos ingresados.\n\nEn el caso de querer volver a registrarse, por favor use el comando '/Registrar'.";//Mensaje de confirmacio
+
                             return true;
                         }
                         response = "Dato incorrecto\n Por favor ingrese '/si' o '/no'."; //Mensaje que se envia si el usuario no ingreso el dato esperado.

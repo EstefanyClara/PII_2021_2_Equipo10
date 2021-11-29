@@ -30,15 +30,15 @@ namespace Proyect
             {
                 if( DataUserContainer.Instance.UserDataHistory.Keys.Contains(message.Id))
                 {
-                    response = "Para utilizar este comando primero debe terminar elproceso actual";
+                    response = "Para utilizar este comando primero debe terminar el proceso actual";
                     return true;
                 }else
                 {
                     StringBuilder mensaje = new StringBuilder();
-                    mensaje.Append("Los materiales constantes presentes en nuestra aplicacion actualmen son:\n");
+                    mensaje.Append("Los materiales constantes presentes en nuestra aplicación actualmente son:\n");
                     foreach(var item in AppLogic.Instance.GetConstantMaterials())
                     {
-                        mensaje.Append($"\n{item.Key.Category}: {(item.Value > 0 ? item.Value.ToString() + " Oferta/s" : "Sin ofertas que lo ofrescan de forma constante.")}");
+                        mensaje.Append($"\n{item.Key.Category}: {(item.Value > 0 ? item.Value.ToString() + " Oferta/s" : "Sin ofertas que se ofrezcan de forma constante.")}");
                     }
                     response = mensaje.ToString();
                 }
