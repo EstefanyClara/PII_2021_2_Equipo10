@@ -13,7 +13,7 @@
             "program": "${workspaceFolder}/src/Program/bin/Debug/net5.0/Program.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/Program",
-            "console": "internalConsole",
+            "console": "integratedTerminal",
             "stopAtEntry": false
         },
         {

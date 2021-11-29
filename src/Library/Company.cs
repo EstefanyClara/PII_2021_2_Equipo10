@@ -47,10 +47,10 @@ namespace Proyect
                 {
                         foreach (IOffer item in this.OffersPublished)
                         {
-                            if(item.Id == id)
-                            {
-                                return item;
-                            }
+                                if(item.Id == id)
+                                {
+                                        return item;
+                                }
                         }
                         return null;
                 }
@@ -171,5 +171,6 @@ namespace Proyect
                 {
                         offer.Qualifications.RemoveAt(qualificationIndex);
                 }
+
         }
 }

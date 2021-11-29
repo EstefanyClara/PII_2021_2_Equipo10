@@ -74,7 +74,7 @@ namespace Proyect
                 if ((message.Text.ToLower().Replace(" ","").Equals("/3") && DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0))
                 {
                     DataUserContainer.Instance.UserDataHistory[message.Id][1].Add("Clasificacion");
-                    response = "Indique la clasificacion de ofertas deseadas";
+                    response = "Indique la clasificación de ofertas deseadas";
                     return true;
                 }if (DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0)
                 {

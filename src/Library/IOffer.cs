@@ -24,7 +24,7 @@ namespace Proyect
         /// Obtiene las habilitaciones de la oferta.
         /// </summary>
         /// <value>qualifications</value>
-        List<Qualifications> Qualifications{get; set;}
+        IList<Qualifications> Qualifications{get; set;}
 
         /// <summary>
         /// Obtiene la lista de palabras clave de una oferta.

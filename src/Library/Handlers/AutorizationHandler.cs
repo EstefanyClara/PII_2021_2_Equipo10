@@ -9,7 +9,7 @@ namespace Proyect
     public class AutorizationHandler : BaseHandler
     {
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="AutorizationHandler"/>. Esta clase procesa si la perosna que envio el mensaje esta registrada.
+        /// Inicializa una nueva instancia de la clase <see cref="AutorizationHandler"/>. Esta clase procesa si la persona que envio el mensaje esta registrada.
         /// </summary>
         /// <param name="next">El próximo "handler".</param>
         public AutorizationHandler(BaseHandler next) : base(next)
@@ -34,7 +34,7 @@ namespace Proyect
                 }
                 else
                 {
-                                        response = "Antes de interactuar con la aplicacion debe registrarse";
+                    response = "Antes de interactuar con la aplicación debe registrarse. Para registrarse use el comando /Registar.";
                     return true;
                 }
             }

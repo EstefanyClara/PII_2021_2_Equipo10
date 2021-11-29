@@ -3,25 +3,23 @@ using System.Collections;
 using System.Text;
 using System;
 using System.Runtime.Serialization;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Proyect
 {
     /// <summary>
     /// Esta clase representa las ofertas constantes de las companias (Cumple con ISP).
     /// </summary>
-    [Serializable]
-    public class NonConstantOffer : IOffer
+    public class NonConstantOffer : IOffer, IJsonConvertible
     {
         private static int id = 0;
         private int ID;
+
         private ProductOffer product;
-
-        private List<Qualifications> qualifications;
-
+        private IList<Qualifications> qualifications;
         private ArrayList keyWords;
-
         private List<PurchaseData> purchesedData;
-
         private string datePublished;
 
         /// <summary>
@@ -36,11 +34,17 @@ namespace Proyect
         public NonConstantOffer(Classification tipo, double quantity, double cost, string ubicacion, List<Qualifications> qualifications, ArrayList keyWords)
         {
             this.product = new ProductOffer(tipo,quantity,cost,ubicacion);
-            this.purchesedData = new List<PurchaseData>();
             this.Qualifications = qualifications;
+            this.purchesedData = new List<PurchaseData>();
             this.KeyWords = keyWords;
             this.datePublished = Convert.ToString(DateTime.Now);
             this.ID = ++id;
+        }
+
+        [JsonConstructor]
+        public NonConstantOffer()
+        {
+            ConvertToJson();
         }
 
         public int Id
@@ -51,7 +55,8 @@ namespace Proyect
         /// <summary>
         /// Obtiene el producto de una oferta.
         /// </summary>
-        /// <value></value>
+        /// /// <value></value>
+        [JsonInclude]
         public ProductOffer Product
         {
             get
@@ -64,7 +69,8 @@ namespace Proyect
         /// Obtiene la lista de las habilitaciones de una oferta.
         /// </summary>
         /// <value></value>
-        public List<Qualifications> Qualifications
+        [JsonInclude]
+        public IList<Qualifications> Qualifications
         {
             get
             {
@@ -80,6 +86,7 @@ namespace Proyect
         /// Obtiene la lista de palbras clave de la oferta.
         /// </summary>
         /// <value></value>
+        [JsonInclude]
         public ArrayList KeyWords
         {
             get
@@ -182,6 +189,11 @@ namespace Proyect
                 }
             }
             return compra;
+        }
+
+        public string ConvertToJson()
+        {
+            return JsonSerializer.Serialize(this);
         }
     }
 }

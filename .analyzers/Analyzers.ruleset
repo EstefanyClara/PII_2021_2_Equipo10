@@ -5,10 +5,30 @@
     <Rule Id="SA1121" Action="None" />
     <Rule Id="SA1200" Action="None" />
     <Rule Id="SA1636" Action="None" />
+    <Rule Id="SA1028" Action="None" />
+    <Rule Id="SA1111" Action="None" />
+    <Rule Id="SA1202" Action="None" />
+    <Rule Id="SA1500" Action="None" />
+    <Rule Id="SA1013" Action="None" />
+    <Rule Id="SA1122" Action="None" />
+    <Rule Id="SA1003" Action="None" />
+    <Rule Id="SA1137" Action="None" />
+    <Rule Id="SA1101" Action="None" />
+    <Rule Id="SA1012" Action="None" />
   </Rules>
   <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
     <Rule Id="CA1014" Action="None" />
     <Rule Id="CA1303" Action="None" />
+    <Rule Id="CA1823" Action="None" />
+    <Rule Id="CA2007" Action="None" />
+    <Rule Id="CA1062" Action="None" />
+    <Rule Id="CA1031" Action="None" />
+    <Rule Id="CA2000" Action="None" />
+    <Rule Id="CA1309" Action="None" />
+    <Rule Id="CA1307" Action="None" />
+    <Rule Id="CA1305" Action="None" />
+    <Rule Id="CA1725" Action="None" />
+    <Rule Id="CA1304" Action="None" />
   </Rules>
 </RuleSet>
 

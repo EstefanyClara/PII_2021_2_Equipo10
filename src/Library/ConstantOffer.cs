@@ -16,7 +16,7 @@ namespace Proyect
         private int ID;
         private ProductOffer product;
 
-        private List<Qualifications> qualifications;
+        private IList<Qualifications> qualifications;
 
         private ArrayList keyWords;
 
@@ -41,13 +41,6 @@ namespace Proyect
             this.purchesedData = new List<PurchaseData>();
             this.datePublished = "Siempre";
             this.ID = ++id;
-        }
-
-        private ConstantOffer(SerializationInfo info, StreamingContext context)
-        {
-            this.datePublished = info.GetString("DatePublisehd");
-            this.product = (ProductOffer) info.GetValue("Product", typeof(ProductOffer));
-
         }
 
         /// <summary>
@@ -75,7 +68,7 @@ namespace Proyect
         /// Obtiene la lista de las habilitaciones de una oferta.
         /// </summary>
         /// <value>this.qualifications</value>
-        public List<Qualifications> Qualifications
+        public IList<Qualifications> Qualifications
         {
             get
             {

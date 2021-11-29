@@ -9,7 +9,7 @@ namespace Proyect
     public class CancelHandler : BaseHandler
     {
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="AutorizationHandler"/>. Esta clase procesa si la perosna que envio el mensaje esta registrada.
+        /// Inicializa una nueva instancia de la clase <see cref="AutorizationHandler"/>. Esta clase procesa si la persona que envio el mensaje esta registrada.
         /// </summary>
         /// <param name="next">El próximo "handler".</param>
         public CancelHandler(BaseHandler next) : base(next)
@@ -30,10 +30,10 @@ namespace Proyect
                 if( DataUserContainer.Instance.UserDataHistory.Keys.Contains(message.Id))
                 {
                     DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
-                    response = "Se regresara al estado inicial\n\nPuede usar los comando /Public -Para publicar una oferta\n/MisOfertas ver todas sus ofertas y modificarlas";
+                    response = "Se regresará al estado inicial\n\nPuede usar los comando /Public -Para publicar una oferta\n/MisOfertas ver todas sus ofertas y modificarlas.";
                 }else
                 {
-                    response = "Usted no se encuentra en ningun estado especifico.";
+                    response = "Usted no se encuentra en ningún estado especifico.";
                 }
                 return true;
             }
