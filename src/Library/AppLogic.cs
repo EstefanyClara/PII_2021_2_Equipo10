@@ -18,7 +18,7 @@ namespace Proyect
     {
         private LocationApiClient client = APILocationContainer.Instance.APIdeLocalizacion;
         private readonly static AppLogic _instance = new AppLogic();
-        private List<Company> companies;
+        private IList<Company> companies;
         private List<Emprendedor> entrepreneurs;
         private List<Rubro> validRubros = new List<Rubro>(){};//new Rubro("Alimentos"),new Rubro("Tecnologia"),new Rubro("Medicina")};
 
@@ -30,7 +30,7 @@ namespace Proyect
         /// Obtiene las companias que estan registradas.
         /// </summary>
         /// <value>companies.</value>
-        public List<Company> Companies
+        public IList<Company> Companies
         {
             get{return this.companies;}
             set{this.companies = value;}
@@ -117,14 +117,41 @@ namespace Proyect
             return System.Text.Json.JsonSerializer.Serialize(rubro, options);
         }
 
-        public string ConvertToJson(List<Company> rubro)
+        public string ConvertToJson2(List<Company> rubro)
         {
             JsonSerializerOptions options = new()
             {
                 ReferenceHandler = MyReferenceHandler.Preserve,
                 WriteIndented = true
             };
+            foreach(Company value in rubro)
+            {
+                foreach(IOffer item in value.OffersPublished)
+                    {
+                            if(item.GetType().Equals(typeof(ConstantOffer)))
+                            {
+                                    value.OfertasConstantes.Add(item as ConstantOffer);
+                            }else
+                            {
+                                    value.OfertasNoConstantes.Add(item as NonConstantOffer);
+                        }
+                    }
+                    value.OffersPublished.Clear();
+            }
+
             return System.Text.Json.JsonSerializer.Serialize(rubro, options);
+        }
+
+        public string ConvertToJson(IList<Company> rubro)
+        {
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = MyReferenceHandler.Preserve,
+                WriteIndented = true
+            };
+            CompanyDes c = new CompanyDes();
+            c.companias = this.Companies;
+            return c.ConvertToJson();
         }
 
         public List<Rubro> DeserializeRubros()
@@ -148,10 +175,16 @@ namespace Proyect
                 return JsonConvert.DeserializeObject<List<Emprendedor>>(json);
         }
 
-        public List<Company> DeserializeCompanies()
+        public IList<Company> DeserializeCompanies()
         {
                 string json = System.IO.File.ReadAllText(@"../Library/Persistencia/Companias.json");
-                return JsonConvert.DeserializeObject<List<Company>>(json);
+                CompanyDes companias = JsonConvert.DeserializeObject<CompanyDes>(json);
+                foreach(Company item in companias.companias)
+                {
+                    item.OffersPublished.AddRange(item.OfertasConstantes);
+                    item.OffersPublished.AddRange(item.OfertasNoConstantes);
+                }
+                return companias.companias;
         }
 
         private AppLogic()

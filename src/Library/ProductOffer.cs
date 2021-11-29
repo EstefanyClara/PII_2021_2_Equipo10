@@ -1,9 +1,15 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System;
+
+
 namespace Proyect
 {
     /// <summary>
     /// Representa el producto de una oferta (Esta en una relacion de composicion con la clase Offer, siendo product la clase compuesta).
     /// </summary>
-    public class ProductOffer
+    [Serializable]
+    public class ProductOffer : IJsonConvertible
     {
         private Classification classification;
         private double quantity;
@@ -13,6 +19,7 @@ namespace Proyect
         /// <summary>
         /// Obtiene un obtiene una instancia de clasificacion valida para un producto.
         /// </summary>
+        [JsonInclude]
         public Classification Classification
         {
             get
@@ -27,6 +34,7 @@ namespace Proyect
         /// <summary>
         /// Determina la cantidad de unidades de un producto.
         /// </summary>
+        [JsonInclude]
         public double Quantity
         {
             get
@@ -41,6 +49,7 @@ namespace Proyect
         /// <summary>
         /// Determina el precio por unidad de producto.
         /// </summary>
+        [JsonInclude]
         public double Price
         {
             get
@@ -55,6 +64,7 @@ namespace Proyect
         /// <summary>
         /// Determina la ubicacion de un producto.
         /// </summary>
+        [JsonInclude]
         public string Ubication
         {
             get
@@ -80,6 +90,28 @@ namespace Proyect
             this.Quantity = quantity;
             this.Price = price;
             this.Ubication = ubication; 
+        }
+
+        /// <summary>
+        /// jjj
+        /// </summary>
+        [JsonConstructor]
+        public ProductOffer()
+        {
+        }
+
+        /// <summary>
+        /// kkk
+        /// </summary>
+        /// <returns></returns>
+        public string ConvertToJson()
+        {
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = MyReferenceHandler.Preserve,
+                WriteIndented = true
+            };
+            return JsonSerializer.Serialize(this, options);
         }
     }
 }

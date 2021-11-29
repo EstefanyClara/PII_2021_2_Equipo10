@@ -1,3 +1,8 @@
+using System.Collections.Generic;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
+
 namespace Proyect
 {
     /// <summary>
@@ -28,6 +33,9 @@ namespace Proyect
         /// </summary>
         protected string user_Contact;
 
+        protected List<ConstantOffer> ofertasConstantes = new List<ConstantOffer>();
+        protected List<NonConstantOffer> ofertasNoConstantes = new List<NonConstantOffer>();
+
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="User"/>
         /// </summary>
@@ -47,6 +55,12 @@ namespace Proyect
             this.Rubro = rubro;
             this.user_Id = user_Id;
             this.User_Contact = user_Contact;
+        }
+
+        [JsonConstructor]
+        public User()
+        {
+
         }
         /// <summary>
         /// Propiedad get y set del atributo del nombre.
@@ -120,6 +134,20 @@ namespace Proyect
             {
                 this.user_Contact = value;
             }
+        }
+
+        [JsonInclude]
+        public List<ConstantOffer> OfertasConstantes
+        {
+            get{ return this.ofertasConstantes;}
+            set{this.ofertasConstantes = value;}
+        }
+
+        [JsonInclude]
+        public List<NonConstantOffer> OfertasNoConstantes
+        {
+            get{ return this.ofertasNoConstantes;}
+            set{this.ofertasNoConstantes = value;}
         }
     }
 }
