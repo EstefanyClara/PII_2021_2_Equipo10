@@ -22,7 +22,13 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:Proyect.Administrator.Invite(System.String,System.String,System.String,System.String,Proyect.Rubro,System.String)">
+        <member name="P:Proyect.Administrator.Admin_Id">
+            <summary>
+            Obteien la lista de id de aquellos que tienen el rol de administrador.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Proyect.Administrator.ConfirmCompanyRegistration(System.String,System.String,System.String,System.String,Proyect.Rubro,System.String)">
             <summary>
             Metodo que crea una compania si la misma ingreso un token correcto (Utiliza Creator).
             </summary>
@@ -32,6 +38,19 @@
             <param name="rubro"></param>
             <param name="user_Id"></param>
             <returns></returns>
+        </member>
+        <member name="M:Proyect.Administrator.Invite">
+            <summary>
+            Genera un codigo con el cual una compnai se podra registrar.
+            </summary>
+            <returns>Codigo con el cual una compania se podra registrar.</returns>
+        </member>
+        <member name="M:Proyect.Administrator.AddAdministrator(System.String,System.String)">
+            <summary>
+            Coloca el id de un usuario al la lista de id con rol de administrador.
+            </summary>
+            <param name="confirmCode"></param>
+            <param name="user_Id"></param>
         </member>
         <member name="T:Proyect.APILocationContainer">
             <summary>
@@ -98,6 +117,20 @@
             Obtiene la instancia de AppLogic.
             </summary>
             <value>_instance.</value>
+        </member>
+        <member name="M:Proyect.AppLogic.AddAdministrator(System.String,System.String)">
+            <summary>
+            Registra a un id de usuario, como administrador.
+            </summary>
+            <param name="user_id"></param>
+            <param name="confirmCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.AppLogic.Invite">
+            <summary>
+            Obtiene le codigo que un usuario usara si se quiere registrar como compania.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:Proyect.AppLogic.RegisterEntrepreneurs(System.String,System.String,System.String,Proyect.Rubro,System.Collections.Generic.List{Proyect.Qualifications},System.String,System.String)">
             <summary>
@@ -576,6 +609,25 @@
             <param name="context"></param>
             <returns></returns>
         </member>
+        <member name="T:Proyect.AdministratorHandler">
+            <summary>
+            Clase base para implementar el patrón Chain of Responsibility.
+            </summary>
+        </member>
+        <member name="M:Proyect.AdministratorHandler.#ctor(Proyect.BaseHandler)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Proyect.AutorizationHandler"/>. Esta clase procesa si la perosna que envio el mensaje esta registrada.
+            </summary>
+            <param name="next">El próximo "handler".</param>
+        </member>
+        <member name="M:Proyect.AdministratorHandler.InternalHandle(Proyect.IMessage,System.String@)">
+            <summary>
+            Procesa el mensaje "/registrar" y retorna true; retorna false en caso contrario.
+            </summary>
+            <param name="message">El mensaje a procesar.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
+        </member>
         <member name="T:Proyect.AutorizationHandler">
             <summary>
             Clase base para implementar el patrón Chain of Responsibility.
@@ -822,7 +874,7 @@
         </member>
         <member name="M:Proyect.RegisterHandler.#ctor(Proyect.BaseHandler)">
             <summary>
-            Inicializa una nueva instancia de la clase <see cref="T:Proyect.RegisterHandler"/>. Esta clase procesa el mensaje "/Registrar" de un usuario.
+            Inicializa una nueva instancia de la clase <see cref="T:Proyect.RegisterHandler"/>. Esta clase procesa el mensaje "/Registrar" de un usuario y todos los datos necerarios para registralo.
             </summary>
             <param name="next">El próximo "handler".</param>
         </member>
@@ -853,6 +905,25 @@
             <param name="response">La respuesta al mensaje procesado.</param>
             <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
+        <member name="T:Proyect.StartHandler">
+            <summary>
+            Clase base para implementar el patrón Chain of Responsibility.
+            </summary>
+        </member>
+        <member name="M:Proyect.StartHandler.#ctor(Proyect.BaseHandler)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Proyect.AutorizationHandler"/>. Esta clase procesa si la perosna que envio el mensaje esta registrada.
+            </summary>
+            <param name="next">El próximo "handler".</param>
+        </member>
+        <member name="M:Proyect.StartHandler.InternalHandle(Proyect.IMessage,System.String@)">
+            <summary>
+            Procesa el mensaje "/registrar" y retorna true; retorna false en caso contrario.
+            </summary>
+            <param name="message">El mensaje a procesar.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
+        </member>
         <member name="T:Proyect.IMessage">
             <summary>
             Interfaz para los mensajes.
@@ -873,6 +944,14 @@
             Id del chat.
             </summary>
             <value></value>
+        </member>
+        <member name="M:Proyect.IMessage.SendProfileImage(System.String,System.String)">
+            <summary>
+            Envia una imagen a un usuario
+            </summary>
+            <param name="mensaje"></param>
+            <param name="direccion"></param>
+            <returns></returns>
         </member>
         <member name="T:Proyect.IOffer">
             <summary>
@@ -1151,7 +1230,7 @@
             Adaptador de mensajes de Telegram a mensajes de la interfaz de usuario.
             </summary>
         </member>
-        <member name="M:Proyect.TelegramAdapter.#ctor(Telegram.Bot.Types.Message)">
+        <member name="M:Proyect.TelegramAdapter.#ctor(Telegram.Bot.Types.Message,Telegram.Bot.TelegramBotClient)">
             <summary>
             Crea una nueva instancia de la clase <see cref="T:Proyect.TelegramAdapter"/>.
             </summary>

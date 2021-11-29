@@ -2,12 +2,14 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Text;
 using System;
+using System.Runtime.Serialization;
 
 namespace Proyect
 {
     /// <summary>
     /// Esta clase representa las ofertas constantes de las companias (Cumple con ISP).
     /// </summary>
+    [Serializable]
     public class NonConstantOffer : IOffer
     {
         private static int id = 0;
@@ -147,8 +149,12 @@ namespace Proyect
         {
             foreach(Qualifications item in this.Qualifications)
             {
-                if(!emprendedor.Qualifications.Contains(item))
+                foreach (Qualifications value in emprendedor.Qualifications)
                 {
+                    if(value.QualificationName == item.QualificationName)
+                    {
+                        break;
+                    }
                     return false;
                 }
             }
