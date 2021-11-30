@@ -521,7 +521,6 @@ namespace Proyect
         {
             Dictionary<string, int> clasificationDictionary = new Dictionary<string, int>();
             ArrayList constantMaterials = new ArrayList();
-
             foreach(Classification item in Classifications)
             {
                 clasificationDictionary.Add(item.Category,0);

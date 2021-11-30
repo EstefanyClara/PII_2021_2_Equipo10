@@ -45,7 +45,16 @@ namespace Proyect
                 {
                     if (offer.KeyWords.Contains(keyWord))
                     {
-                        offersList.Add(offer);
+                        if(offer.GetType().Equals(typeof(ConstantOffer)))
+                        {
+                            offersList.Add(offer);
+                        }else
+                        {
+                            if(offer.PurchesedData.Count == 0)
+                            {
+                                offersList.Add(offer);
+                            }
+                        }
                     }
                 }
             }
@@ -66,7 +75,16 @@ namespace Proyect
                 {
                     if(offer.Product.Ubication == ubication)
                     {
-                        offersList.Add(offer);
+                        if(offer.GetType().Equals(typeof(ConstantOffer)))
+                        {
+                            offersList.Add(offer);
+                        }else
+                        {
+                            if(offer.PurchesedData.Count == 0)
+                            {
+                                offersList.Add(offer);
+                            }
+                        }
                     }
                 }
             }
@@ -87,7 +105,17 @@ namespace Proyect
                 {
                     if(offer.Product.Classification.Category == type)
                     {
-                        offersList.Add(offer);
+                        if(offer.GetType().Equals(typeof(ConstantOffer)))
+                        {
+                            offersList.Add(offer);
+                        }else
+                        {
+                            if(offer.PurchesedData.Count == 0)
+                            {
+                                offersList.Add(offer);
+                            }
+                        }
+                        
                     }
                 }
             }
