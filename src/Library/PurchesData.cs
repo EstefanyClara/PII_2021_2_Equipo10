@@ -3,7 +3,8 @@ using System;
 namespace Proyect
 {
     /// <summary>
-    /// Clase para guardar la fecha y quien compró las ofertas (Por SRP).
+    /// Clase para guardar la fecha y quien compró las ofertas (Por SRP), en defnitiva, la informacion de compra.
+    /// Esta en una relacion de composicion con la clases IOffer, siendo est ala clase componente.
     /// </summary>
     public class PurchaseData
     {
@@ -11,8 +12,9 @@ namespace Proyect
         private DateTime purchaseDate;
 
         /// <summary>
-        /// Metodo get del comprador.
+        /// El emprendedor que compro una oferta.
         /// </summary>
+        /// <value>El comprador.</value>
         public Emprendedor Buyer
         {
             get
@@ -26,8 +28,9 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Metodo get de la fecha de compra.
+        /// Fecha de compra de la oferta.
         /// </summary>
+        /// <value>La fecha de compra.</value>
         public DateTime PurchaseDate
         {
             get
@@ -37,14 +40,14 @@ namespace Proyect
             set
             {
                 this.purchaseDate = value;
-            
+
             }
         }
 
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="PurchaseData"/>
         /// </summary>
-        /// <param name="buyer"></param>
+        /// <param name="buyer">El comprador de la oferta.</param>
         public PurchaseData(Emprendedor buyer)
         {
             this.Buyer = buyer;

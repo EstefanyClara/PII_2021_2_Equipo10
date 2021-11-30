@@ -19,7 +19,7 @@ namespace Proyect
         /// <summary>
         /// Obtiene la instancia de OfferSearch.
         /// </summary>
-        /// <value></value>
+        /// <value>La instancia de offerserach.</value>
         public static OfferSearch Instance
         {
             get
@@ -29,15 +29,15 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Busca las ofertas con la palabra clave que se le pasa.
+        /// Busca las ofertas con la palabra clave que se le pasa (Por srp).
         /// </summary>
         /// <param name="word">Palabras claves de oferta.</param>
-        /// <returns>una lista con las offertas</returns>
+        /// <returns>Una lista con las offertas.</returns>
         public List<IOffer> SearchByKeywords(string word)
         {
-            string keyWord = word.Replace(".","");
-            keyWord = keyWord.Replace(",","");
-            keyWord = keyWord.Replace(" ","");
+            string keyWord = word.Replace(".", "");
+            keyWord = keyWord.Replace(",", "");
+            keyWord = keyWord.Replace(" ", "");
             List<IOffer> offersList = new List<IOffer>();
             foreach (Company company in AppLogic.Instance.Companies)
             {
@@ -45,12 +45,13 @@ namespace Proyect
                 {
                     if (offer.KeyWords.Contains(keyWord))
                     {
-                        if(offer.GetType().Equals(typeof(ConstantOffer)))
+                        if (offer.GetType().Equals(typeof(ConstantOffer)))
                         {
                             offersList.Add(offer);
-                        }else
+                        }
+                        else
                         {
-                            if(offer.PurchesedData.Count == 0)
+                            if (offer.PurchesedData.Count == 0)
                             {
                                 offersList.Add(offer);
                             }
@@ -62,10 +63,10 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Busca ofertas por ubicacion.
+        /// Busca ofertas por ubicacion (Por srp).
         /// </summary>
         /// <param name="ubication">Ubicacion de oferta.</param>
-        /// <returns>una lista con las offertas</returns>
+        /// <returns>Una lista con las ofertas.</returns>
         public List<IOffer> SearchByUbication(string ubication)
         {
             List<IOffer> offersList = new List<IOffer>();
@@ -73,14 +74,15 @@ namespace Proyect
             {
                 foreach (IOffer offer in company.OffersPublished)
                 {
-                    if(offer.Product.Ubication == ubication)
+                    if (offer.Product.Ubication.Contains(ubication))
                     {
-                        if(offer.GetType().Equals(typeof(ConstantOffer)))
+                        if (offer.GetType().Equals(typeof(ConstantOffer)))
                         {
                             offersList.Add(offer);
-                        }else
+                        }
+                        else
                         {
-                            if(offer.PurchesedData.Count == 0)
+                            if (offer.PurchesedData.Count == 0)
                             {
                                 offersList.Add(offer);
                             }
@@ -92,10 +94,10 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Busca ofertas por el tipo.
+        /// Busca ofertas por el tipo (Por srp).
         /// </summary>
         /// <param name="type">Tipo de oferta.</param>
-        /// <returns>una lista con las offertas</returns>
+        /// <returns>Una lista con las ofertas.</returns>
         public List<IOffer> SearchByType(string type)
         {
             List<IOffer> offersList = new List<IOffer>();
@@ -103,19 +105,20 @@ namespace Proyect
             {
                 foreach (IOffer offer in company.OffersPublished)
                 {
-                    if(offer.Product.Classification.Category == type)
+                    if (offer.Product.Classification.Category == type)
                     {
-                        if(offer.GetType().Equals(typeof(ConstantOffer)))
+                        if (offer.GetType().Equals(typeof(ConstantOffer)))
                         {
                             offersList.Add(offer);
-                        }else
+                        }
+                        else
                         {
-                            if(offer.PurchesedData.Count == 0)
+                            if (offer.PurchesedData.Count == 0)
                             {
                                 offersList.Add(offer);
                             }
                         }
-                        
+
                     }
                 }
             }

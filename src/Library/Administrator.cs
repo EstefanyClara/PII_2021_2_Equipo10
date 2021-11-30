@@ -22,7 +22,7 @@ namespace Proyect
 
         private Administrator()
         {
-            tokens = new List<string>(){"1234"};
+            tokens = new List<string>() { "1234" };
             admin_Id = new List<string>();
         }
 
@@ -76,8 +76,8 @@ namespace Proyect
         /// <param name="user_Id">El id de usuario.</param>
         /// <param name="user_Contact">El mail de conatcto de la compania.</param>
         /// <returns>La compania que si posee el codigo correcto, null en caso contrario.</returns>
-        public Company ConfirmCompanyRegistration(string companyToken,string user_Id, string name, string ubication, Rubro rubro, string user_Contact)
-        {   
+        public Company ConfirmCompanyRegistration(string companyToken, string user_Id, string name, string ubication, Rubro rubro, string user_Contact)
+        {
             if (tokens.Contains(companyToken))
             {
                 try
@@ -90,7 +90,8 @@ namespace Proyect
                     Console.WriteLine(e.Message);
                     throw e;
                 }
-            }else 
+            }
+            else
             {
                 return null;
             }
@@ -102,12 +103,12 @@ namespace Proyect
         /// <returns>Codigo con el cual una compania se podra registrar.</returns>
         public string Invite()
         {
-            List<string> tokenCharacters = new List<string>(){"$","&","#","!","?","¿","=","1","2","3","4","5","6","7","8","9"};
+            List<string> tokenCharacters = new List<string>() { "$", "&", "#", "!", "?", "¿", "=", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
             Random selector = new Random();
             string code = "";
-            for(int position = 0; position<=8; position++)
+            for (int position = 0; position <= 8; position++)
             {
-                code = code + tokenCharacters[selector.Next(0,16)];
+                code = code + tokenCharacters[selector.Next(0, 16)];
             }
             this.Tokens.Add(code);
             return code;
@@ -135,7 +136,7 @@ namespace Proyect
         /// <returns>True si es adminsatrdor, false en caso contrario.</returns>
         public bool IsAdministrator(string user_Id)
         {
-            if(this.Admin_Id.Contains(user_Id))
+            if (this.Admin_Id.Contains(user_Id))
             {
                 return true;
             }

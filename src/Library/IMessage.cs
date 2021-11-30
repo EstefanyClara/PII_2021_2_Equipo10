@@ -10,18 +10,18 @@ namespace Proyect
         /// <summary>
         /// Id del usuario.
         /// </summary>
-        string Id { get;}
+        string Id { get; }
 
         /// <summary>
         /// El mensaje.
         /// </summary>
-        string Text { get;set;}
+        string Text { get; set; }
 
         /// <summary>
         /// Id del chat.
         /// </summary>
         /// <value></value>
-        long MsgId{get;}
+        long MsgId { get; }
 
         /// <summary>
         /// Envia una imagen a un usuario.

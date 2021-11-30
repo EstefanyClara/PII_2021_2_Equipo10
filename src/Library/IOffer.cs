@@ -12,31 +12,31 @@ namespace Proyect
         /// Propiedad get y set del producto de la oferta.
         /// </summary>
         /// <value>El producto.</value>
-        ProductOffer Product{get; set;}
+        ProductOffer Product { get; set; }
 
         /// <summary>
         /// Propiedad get y set de las habilitaciones de la oferta.
         /// </summary>
         /// <value>Las habiliatciones.</value>
-        IList<Qualifications> Qualifications{get; set;}
+        IList<Qualifications> Qualifications { get; set; }
 
         /// <summary>
         /// Propierti de la lista de palabras clave de una oferta.
         /// </summary>
         /// <value>keyWords.</value>
-        ArrayList KeyWords{get;set;}
+        ArrayList KeyWords { get; set; }
 
         /// <summary>
         /// Propierti de la fecha de publicacion de la oferta.
         /// </summary>
         /// <value>DateTime</value>
-        string DatePublished{get;set;}
+        string DatePublished { get; set; }
 
         /// <summary>
         /// La informacion de compra de la oferta.
         /// </summary>
         /// <value>La lisat con la informacion de compra de la oferta.</value>
-        IList<PurchaseData> PurchesedData{get;set;}
+        IList<PurchaseData> PurchesedData { get; set; }
 
         /// <summary>
         /// Obtien toda la informacion de compra (compardor y fecha de compra), del peridodo de tiempo indicado.

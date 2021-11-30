@@ -35,19 +35,21 @@ namespace Proyect
 
         /// <summary>
         /// Lista de ofertas constantes, que posee el usuario (Uasada en la serializacion).
+        /// Esta propierti solo se utiliza en la serializacion.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>La lisat de ofertas consatnte de la compania.</returns>
         [JsonInclude]
-        public List<ConstantOffer> OfertasConstantes {get;set;}
+        public List<ConstantOffer> OfertasConstantes { get; set; }
 
         /// <summary>
         /// Lista de ofertas no constantes, que posee el usuario (Usadas en la serializacion).
         /// </summary>
-        /// <returns></returns>
+        /// <returns>La lista de ofertas no constantes.</returns>
         [JsonInclude]
-        public List<NonConstantOffer> OfertasNoConstantes {get;set;}
+        public List<NonConstantOffer> OfertasNoConstantes { get; set; }
+
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="User"/>
+        /// Inicializa una nueva instancia de la clase user. <see cref="User"/>
         /// </summary>
         /// <param name="name">Nombre del usuario.</param>
         /// <param name="ubication">Ubicacion del usuario.</param>
@@ -80,7 +82,7 @@ namespace Proyect
         /// <summary>
         /// Propiedad get y set del atributo del nombre.
         /// </summary>
-        /// <value></value>
+        /// <value>El nombre del usurio.</value>
         public string Name
         {
             get
@@ -95,7 +97,7 @@ namespace Proyect
         /// <summary>
         /// Propiedad get y set del atributo de la ubicacion.
         /// </summary>
-        /// <value></value>
+        /// <value>La ubicacion del usurio.</value>
         public string Ubication
         {
             get
@@ -110,7 +112,7 @@ namespace Proyect
         /// <summary>
         /// Propiedad get y set del atributo del rubro.
         /// </summary>
-        /// <value></value>
+        /// <value>El rubro al que pertnece el usurio.</value>
         public Rubro Rubro
         {
             get
@@ -126,7 +128,7 @@ namespace Proyect
         /// <summary>
         /// Obtiene el id del usuario.
         /// </summary>
-        /// <value></value>
+        /// <value>La id del usaurio.</value>
         public string User_Id
         {
             get
@@ -138,14 +140,14 @@ namespace Proyect
         /// <summary>
         /// Obtiene el contacto del usuraio.
         /// </summary>
-        /// <value></value>
+        /// <value>El conatcto del usurio.</value>
         public string User_Contact
         {
             get
             {
                 return this.user_Contact;
             }
-            set 
+            set
             {
                 this.user_Contact = value;
             }

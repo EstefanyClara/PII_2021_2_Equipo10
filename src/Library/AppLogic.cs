@@ -31,8 +31,8 @@ namespace Proyect
         /// <value>companies.</value>
         public IList<Company> Companies
         {
-            get{return this.companies;}
-            set{this.companies = value;}
+            get { return this.companies; }
+            set { this.companies = value; }
         }
 
         /// <summary>
@@ -41,8 +41,8 @@ namespace Proyect
         /// <value>entrepreneurs.</value>
         public IList<Emprendedor> Entrepreneurs
         {
-            get{return this.entrepreneurs;}
-            set{this.entrepreneurs = value;}
+            get { return this.entrepreneurs; }
+            set { this.entrepreneurs = value; }
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Proyect
         /// <value>validRubros.</value>
         public List<Rubro> Rubros
         {
-            get{return DeserializeRubros();}
+            get { return DeserializeRubros(); }
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Proyect
         /// <value>validQualifications.</value>
         public List<Qualifications> Qualifications
         {
-            get{return DeserializeQualifications();}
+            get { return DeserializeQualifications(); }
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Proyect
         /// <value>validClasification.</value>
         public List<Classification> Classifications
         {
-            get{return DeserializeClasification();}
+            get { return DeserializeClasification(); }
         }
 
         /// <summary>
@@ -139,19 +139,20 @@ namespace Proyect
                 ReferenceHandler = MyReferenceHandler.Preserve,
                 WriteIndented = true
             };
-            foreach(Emprendedor value in emprendedores)
+            foreach (Emprendedor value in emprendedores)
             {
-                foreach(IOffer item in value.PurchasedOffers)
+                foreach (IOffer item in value.PurchasedOffers)
+                {
+                    if (item.GetType().Equals(typeof(ConstantOffer)))
                     {
-                            if(item.GetType().Equals(typeof(ConstantOffer)))
-                            {
-                                    value.OfertasConstantes.Add(item as ConstantOffer);
-                            }else
-                            {
-                                    value.OfertasNoConstantes.Add(item as NonConstantOffer);
-                        }
+                        value.OfertasConstantes.Add(item as ConstantOffer);
                     }
-                    value.PurchasedOffers.Clear();
+                    else
+                    {
+                        value.OfertasNoConstantes.Add(item as NonConstantOffer);
+                    }
+                }
+                value.PurchasedOffers.Clear();
             }
             return System.Text.Json.JsonSerializer.Serialize(emprendedores, options);
         }
@@ -170,19 +171,20 @@ namespace Proyect
                 ReferenceHandler = MyReferenceHandler.Preserve,
                 WriteIndented = true
             };
-            foreach(Company value in companies)
+            foreach (Company value in companies)
             {
-                foreach(IOffer item in value.OffersPublished)
+                foreach (IOffer item in value.OffersPublished)
+                {
+                    if (item.GetType().Equals(typeof(ConstantOffer)))
                     {
-                            if(item.GetType().Equals(typeof(ConstantOffer)))
-                            {
-                                    value.OfertasConstantes.Add(item as ConstantOffer);
-                            }else
-                            {
-                                    value.OfertasNoConstantes.Add(item as NonConstantOffer);
-                        }
+                        value.OfertasConstantes.Add(item as ConstantOffer);
                     }
-                    value.OffersPublished.Clear();
+                    else
+                    {
+                        value.OfertasNoConstantes.Add(item as NonConstantOffer);
+                    }
+                }
+                value.OffersPublished.Clear();
             }
             return System.Text.Json.JsonSerializer.Serialize(companies, options);
         }
@@ -194,8 +196,8 @@ namespace Proyect
         /// <returns>La lista de rubros deserializada.</returns>
         public List<Rubro> DeserializeRubros()
         {
-                string json = System.IO.File.ReadAllText(@"../Library/Persistencia/Rubros.json");
-                return JsonConvert.DeserializeObject<List<Rubro>>(json);
+            string json = System.IO.File.ReadAllText(@"../Library/Persistencia/Rubros.json");
+            return JsonConvert.DeserializeObject<List<Rubro>>(json);
         }
 
         /// <summary>
@@ -205,8 +207,8 @@ namespace Proyect
         /// <returns>La lista de habiliatciones deserializada.</returns>
         public List<Qualifications> DeserializeQualifications()
         {
-                string json = System.IO.File.ReadAllText(@"../Library/Persistencia/Habilitaciones.json");
-                return JsonConvert.DeserializeObject<List<Qualifications>>(json);
+            string json = System.IO.File.ReadAllText(@"../Library/Persistencia/Habilitaciones.json");
+            return JsonConvert.DeserializeObject<List<Qualifications>>(json);
         }
 
         /// <summary>
@@ -216,8 +218,8 @@ namespace Proyect
         /// <returns>La lista de clasificaciones deserializada.</returns>
         public List<Classification> DeserializeClasification()
         {
-                string json = System.IO.File.ReadAllText(@"../Library/Persistencia/ClasificacionesProductos.json");
-                return JsonConvert.DeserializeObject<List<Classification>>(json);
+            string json = System.IO.File.ReadAllText(@"../Library/Persistencia/ClasificacionesProductos.json");
+            return JsonConvert.DeserializeObject<List<Classification>>(json);
         }
 
         /// <summary>
@@ -227,22 +229,22 @@ namespace Proyect
         /// <returns>La lisat de emprendedores deserializada.</returns>
         public IList<Emprendedor> DeserializeEntrenprenuers()
         {
-                string json = System.IO.File.ReadAllText(@"../Library/Persistencia/Emprendedores.json");
-                IList<Emprendedor> emprendedores = JsonConvert.DeserializeObject<IList<Emprendedor>>(json);
-                foreach(Emprendedor item in emprendedores)
+            string json = System.IO.File.ReadAllText(@"../Library/Persistencia/Emprendedores.json");
+            IList<Emprendedor> emprendedores = JsonConvert.DeserializeObject<IList<Emprendedor>>(json);
+            foreach (Emprendedor item in emprendedores)
+            {
+                foreach (IOffer value in item.OfertasConstantes)
                 {
-                    foreach(IOffer value in item.OfertasConstantes)
-                    {
-                        item.PurchasedOffers.Add(value);
-                    }
-                    foreach(IOffer value in item.OfertasNoConstantes)
-                    {
-                        item.PurchasedOffers.Add(value);
-                    }
-                    item.OfertasConstantes.Clear();
-                    item.OfertasNoConstantes.Clear();
+                    item.PurchasedOffers.Add(value);
                 }
-                return emprendedores;
+                foreach (IOffer value in item.OfertasNoConstantes)
+                {
+                    item.PurchasedOffers.Add(value);
+                }
+                item.OfertasConstantes.Clear();
+                item.OfertasNoConstantes.Clear();
+            }
+            return emprendedores;
         }
 
         /// <summary>
@@ -254,13 +256,13 @@ namespace Proyect
         {
             string json = System.IO.File.ReadAllText(@"../Library/Persistencia/Companias.json");
             IList<Company> companias = JsonConvert.DeserializeObject<IList<Company>>(json);
-            foreach(Company item in companias)
+            foreach (Company item in companias)
             {
-                foreach(IOffer value in item.OfertasConstantes)
+                foreach (IOffer value in item.OfertasConstantes)
                 {
                     item.OffersPublished.Add(value);
                 }
-                foreach(IOffer value in item.OfertasNoConstantes)
+                foreach (IOffer value in item.OfertasNoConstantes)
                 {
                     item.OffersPublished.Add(value);
                 }
@@ -308,8 +310,8 @@ namespace Proyect
         {
             return Administrator.Instance.Invite();
         }
-        
-        
+
+
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="Emprendedor"/>.
         /// Utiliza el patron creator.
@@ -352,7 +354,8 @@ namespace Proyect
             if (company == null)
             {
                 return false;
-            }else
+            }
+            else
             {
                 Companies.Add(company);
                 return true;
@@ -380,7 +383,7 @@ namespace Proyect
         /// <param name="keyWord">La palabra clave.</param>
         public void AddKeyWords(Company company, IOffer offer, string keyWord)
         {
-            company.AddKeyWords(offer,keyWord);
+            company.AddKeyWords(offer, keyWord);
         }
 
         /// <summary>
@@ -401,7 +404,7 @@ namespace Proyect
         /// <param name="company">La compania.</param>
         /// <param name="offer">La oferta.</param>
         /// <param name="qualificationIndex">La habilitacion.</param>
-        public void RemoveQualification(Company company, IOffer offer,int qualificationIndex)
+        public void RemoveQualification(Company company, IOffer offer, int qualificationIndex)
         {
             company.RemoveQualification(offer, qualificationIndex);
         }
@@ -431,7 +434,7 @@ namespace Proyect
         /// <param name="keyWords">La palabra clave.</param>
         public void PublicConstantOffer(Company company, Classification tipo, double quantity, double cost, string ubication, List<Qualifications> qualifications, ArrayList keyWords)
         {
-            company.PublicConstantOffer(tipo,quantity,cost,ubication,qualifications,keyWords);
+            company.PublicConstantOffer(tipo, quantity, cost, ubication, qualifications, keyWords);
         }
 
         /// <summary>
@@ -447,7 +450,7 @@ namespace Proyect
         /// <param name="keyWords">La palabra clave.</param>
         public void PublicNonConstantOffer(Company company, Classification tipo, double quantity, double cost, string ubication, List<Qualifications> qualifications, ArrayList keyWords)
         {
-            company.PublicNonConstantOffer(tipo,quantity,cost,ubication,qualifications,keyWords);
+            company.PublicNonConstantOffer(tipo, quantity, cost, ubication, qualifications, keyWords);
         }
 
         /// <summary>
@@ -542,9 +545,9 @@ namespace Proyect
         {
             Dictionary<string, int> clasificationDictionary = new Dictionary<string, int>();
             ArrayList constantMaterials = new ArrayList();
-            foreach(Classification item in Classifications)
+            foreach (Classification item in Classifications)
             {
-                clasificationDictionary.Add(item.Category,0);
+                clasificationDictionary.Add(item.Category, 0);
             }
             foreach (Company company in Companies)
             {
@@ -618,7 +621,7 @@ namespace Proyect
         /// <returns>La compnai que tiene ese id.</returns>
         public Company GetCompany(string user_Id)
         {
-            foreach(Company item in this.Companies)
+            foreach (Company item in this.Companies)
             {
                 if (item.User_Id == user_Id)
                 {

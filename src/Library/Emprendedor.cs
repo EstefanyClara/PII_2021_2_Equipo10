@@ -22,7 +22,7 @@ namespace Proyect
         /// <param name="specializations">Especializaciones del emprendedor.</param>
         /// <param name="user_Id">Identificacion del emprendedor.</param>
         /// <param name="user_Contact">Contacto del emprendedor.</param>
-        public Emprendedor(string user_Id, string name, string ubication, Rubro rubro,string user_Contact, List<Qualifications> qualifications, string specializations):base(user_Id, name, ubication, rubro, user_Contact)
+        public Emprendedor(string user_Id, string name, string ubication, Rubro rubro, string user_Contact, List<Qualifications> qualifications, string specializations) : base(user_Id, name, ubication, rubro, user_Contact)
         {
             this.Qualifications = qualifications;
             this.Specializations = specializations;
@@ -92,10 +92,10 @@ namespace Proyect
         public List<IOffer> GetOffersAccepted(int periodTime)
         {
             List<IOffer> ofertas = new List<IOffer>();
-            foreach(IOffer offer in this.PurchasedOffers)
+            foreach (IOffer offer in this.PurchasedOffers)
             {
                 IList<PurchaseData> infoDeCompraOferta = offer.GetPeriodTimeOffersAcceptedData(periodTime, this);
-                if(infoDeCompraOferta.Count >= 1)
+                if (infoDeCompraOferta.Count >= 1)
                 {
                     ofertas.Add(offer);
                 }

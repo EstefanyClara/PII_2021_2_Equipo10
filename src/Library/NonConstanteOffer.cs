@@ -19,15 +19,15 @@ namespace Proyect
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="NonConstantOffer"/>
         /// </summary>
-        /// <param name="tipo"></param>
-        /// <param name="quantity"></param>
-        /// <param name="cost"></param>
-        /// <param name="ubicacion"></param>
-        /// <param name="qualifications"></param>
-        /// <param name="keyWords"></param>
+        /// <param name="tipo">El tipo del producto a ofertas.</param>
+        /// <param name="quantity">La cantidad del producto a ofertas.</param>
+        /// <param name="cost">El costo del producto a ofertar.</param>
+        /// <param name="ubicacion">La ubicacion del producto a ofertar.</param>
+        /// <param name="qualifications">La habiliatciones de la oferta.</param>
+        /// <param name="keyWords">Las palabras clave asociadas a la oferta.</param>
         public NonConstantOffer(Classification tipo, double quantity, double cost, string ubicacion, List<Qualifications> qualifications, ArrayList keyWords)
         {
-            this.product = new ProductOffer(tipo,quantity,cost,ubicacion);
+            this.product = new ProductOffer(tipo, quantity, cost, ubicacion);
             this.Qualifications = qualifications;
             this.purchesedData = new List<PurchaseData>();
             this.KeyWords = keyWords;
@@ -46,14 +46,15 @@ namespace Proyect
         /// <summary>
         /// Obtiene el producto de una oferta.
         /// </summary>
-        /// /// <value></value>
+        /// <value>Producto.</value>
         [JsonInclude]
         public ProductOffer Product
         {
             get
             {
                 return this.product;
-            }set
+            }
+            set
             {
                 this.product = value;
             }
@@ -62,7 +63,7 @@ namespace Proyect
         /// <summary>
         /// Obtiene la lista de las habilitaciones de una oferta.
         /// </summary>
-        /// <value></value>
+        /// <value>Lista de habiliatciones.</value>
         [JsonInclude]
         public IList<Qualifications> Qualifications
         {
@@ -79,7 +80,7 @@ namespace Proyect
         /// <summary>
         /// Obtiene la lista de palbras clave de la oferta.
         /// </summary>
-        /// <value></value>
+        /// <value>Lista de palabras calve.</value>
         [JsonInclude]
         public ArrayList KeyWords
         {
@@ -96,13 +97,14 @@ namespace Proyect
         /// <summary>
         /// Obtiene la informacion de el o los compardores de esta oferta constante.
         /// </summary>
-        /// <value></value>
+        /// <value>Lista de informacion de compra.</value>
         public IList<PurchaseData> PurchesedData
         {
             get
             {
                 return this.purchesedData;
-            }set
+            }
+            set
             {
                 this.purchesedData = value;
             }
@@ -111,10 +113,10 @@ namespace Proyect
         /// <summary>
         /// Obtiene la fecha de publicacion de la oferta.
         /// </summary>
-        /// <value>dateTime</value>
+        /// <value>Fecha de compra.</value>
         public string DatePublished
         {
-            get 
+            get
             {
                 return this.datePublished;
             }
@@ -126,14 +128,15 @@ namespace Proyect
 
 
         /// <summary>
-        /// Obtiene la informacion de compra de la oferta (expert).
+        /// Obtiene la informacion de compra de la oferta, en el tiempo indicado (Por expert).
+        /// Esta operacion es polimorfica.
         /// </summary>
-        /// <param name="periodTime"></param>
-        /// <returns>si la oferta se compro antes de la fecha estipulada, devuelve la iformacion de compra, en caso contrario, devuelve un striing indicando dicha situacion</returns>
+        /// <param name="periodTime">El periodo de tiempo.</param>
+        /// <returns>Si la oferta se compro antes de la fecha estipulada, devuelve la iformacion de compra, en caso contrario, devuelve un string indicando dicha situacion</returns>
         public IList<PurchaseData> GetPeriodTimeOffersAcceptedData(int periodTime)
         {
             TimeSpan diference = this.PurchesedData[0].PurchaseDate - DateTime.Now;
-            if(Convert.ToDouble(diference.TotalHours) <= periodTime*24)
+            if (Convert.ToDouble(diference.TotalHours) <= periodTime * 24)
             {
                 return this.PurchesedData;
             }
@@ -141,15 +144,16 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene la informacion de compra del emprendedor especificado, en el tiempo especificado.
+        /// Obtiene la informacion de compra del emprendedor especificado, en el tiempo especificado (Por expert).
+        /// Esta operacion es polimorfica.
         /// </summary>
-        /// <param name="periodTime"></param>
-        /// <param name="emprendedor"></param>
-        /// <returns></returns>
+        /// <param name="periodTime">El periodo de tiempo.</param>
+        /// <param name="emprendedor">El emprendedor.</param>
+        /// <returns>La lisat de informacion de compra.</returns>
         public IList<PurchaseData> GetPeriodTimeOffersAcceptedData(int periodTime, Emprendedor emprendedor)
         {
             TimeSpan diference = this.PurchesedData[0].PurchaseDate - DateTime.Now;
-            if(Convert.ToDouble(diference.TotalHours) <= periodTime*24)
+            if (Convert.ToDouble(diference.TotalHours) <= periodTime * 24)
             {
                 return this.PurchesedData;
             }
@@ -157,16 +161,17 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Coloca el emprendedor y la fecha de compra, en la informacion de compra.
+        /// Coloca el emprendedor y la fecha de compra, en la informacion de compra (Por expert).
         /// </summary>
-        /// <param name="emprendedor"></param>
+        /// <param name="emprendedor">El emprendedor.</param>
+        /// <returns>Mensaje de confirmacion.</returns>
         public bool PutBuyer(Emprendedor emprendedor)
         {
-            foreach(Qualifications item in this.Qualifications)
+            foreach (Qualifications item in this.Qualifications)
             {
                 foreach (Qualifications value in emprendedor.Qualifications)
                 {
-                    if(value.QualificationName == item.QualificationName)
+                    if (value.QualificationName == item.QualificationName)
                     {
                         break;
                     }
@@ -182,14 +187,14 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene la infromacion de compra de un emprendedor.
+        /// Obtiene la infromacion de compra de un emprendedor en esepcifico (Por expert).
         /// </summary>
-        /// <param name="emprendedor"></param>
-        /// <returns></returns>
+        /// <param name="emprendedor">El emprendedor.</param>
+        /// <returns>La lista de informacíon de compra.</returns>
         public IList<PurchaseData> GetEntrepreneursPurchaseData(Emprendedor emprendedor)
         {
             List<PurchaseData> compra = new List<PurchaseData>();
-            foreach(PurchaseData item in this.PurchesedData)
+            foreach (PurchaseData item in this.PurchesedData)
             {
                 if (item.Buyer.Equals(emprendedor))
                 {

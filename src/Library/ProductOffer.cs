@@ -9,7 +9,7 @@ namespace Proyect
     /// Representa el producto de una oferta (Esta en una relacion de composicion con la clase Offer, siendo product la clase compuesta).
     /// </summary>
     [Serializable]
-    public class ProductOffer : IJsonConvertible
+    public class ProductOffer
     {
         private Classification classification;
         private double quantity;
@@ -19,6 +19,7 @@ namespace Proyect
         /// <summary>
         /// Obtiene un obtiene una instancia de clasificacion valida para un producto.
         /// </summary>
+        /// <value>La clasificacion del producto.</value>
         [JsonInclude]
         public Classification Classification
         {
@@ -32,8 +33,9 @@ namespace Proyect
             }
         }
         /// <summary>
-        /// Determina la cantidad de unidades de un producto.
+        /// Obtiene un obtiene una instancia de clasificacion valida para un producto.
         /// </summary>
+        /// <value>La cantidad del producto.</value>
         [JsonInclude]
         public double Quantity
         {
@@ -47,8 +49,9 @@ namespace Proyect
             }
         }
         /// <summary>
-        /// Determina el precio por unidad de producto.
+        /// Obtiene un obtiene una instancia de clasificacion valida para un producto.
         /// </summary>
+        /// <value>La price del producto.</value>
         [JsonInclude]
         public double Price
         {
@@ -62,8 +65,9 @@ namespace Proyect
             }
         }
         /// <summary>
-        /// Determina la ubicacion de un producto.
+        /// Obtiene un obtiene una instancia de clasificacion valida para un producto.
         /// </summary>
+        /// <value>La ubicacion del producto.</value>
         [JsonInclude]
         public string Ubication
         {
@@ -89,29 +93,15 @@ namespace Proyect
             this.Classification = classification;
             this.Quantity = quantity;
             this.Price = price;
-            this.Ubication = ubication; 
+            this.Ubication = ubication;
         }
 
         /// <summary>
-        /// jjj
+        /// Constructor para el json.
         /// </summary>
         [JsonConstructor]
         public ProductOffer()
         {
-        }
-
-        /// <summary>
-        /// kkk
-        /// </summary>
-        /// <returns></returns>
-        public string ConvertToJson()
-        {
-            JsonSerializerOptions options = new()
-            {
-                ReferenceHandler = MyReferenceHandler.Preserve,
-                WriteIndented = true
-            };
-            return JsonSerializer.Serialize(this, options);
         }
     }
 }
