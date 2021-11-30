@@ -97,7 +97,7 @@ namespace Proyect
             string code = "";
             for(int position = 0; position<=8; position++)
             {
-                code = code + tokenCharacters[selector.Next(0,17)];
+                code = code + tokenCharacters[selector.Next(0,16)];
             }
             this.Tokens.Add(code);
             return code;
@@ -113,6 +113,20 @@ namespace Proyect
             if (confirmCode == "145879")
             {
                 this.Admin_Id.Add(user_Id);
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Procesa si el id de usuario ingresado, es un id de un administrador.
+        /// </summary>
+        /// <param name="user_Id"></param>
+        /// <returns></returns>
+        public bool IsAdministrator(string user_Id)
+        {
+            if(this.Admin_Id.Contains(user_Id))
+            {
                 return true;
             }
             return false;

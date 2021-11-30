@@ -53,6 +53,13 @@
             <param name="confirmCode"></param>
             <param name="user_Id"></param>
         </member>
+        <member name="M:Proyect.Administrator.IsAdministrator(System.String)">
+            <summary>
+            Procesa si el id de usuario ingresado, es un id de un administrador.
+            </summary>
+            <param name="user_Id"></param>
+            <returns></returns>
+        </member>
         <member name="T:Proyect.APILocationContainer">
             <summary>
             Contenedor de la instancia de la api de localizacion (clase singleton, solo hay una instancia).
@@ -113,6 +120,64 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Proyect.AppLogic.ConvertToJson(System.Collections.Generic.List{Proyect.Qualifications})">
+            <summary>
+            Metodo que convierte a json la lista de emprendedores.
+            </summary>
+            <param name="habilitaciones"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.AppLogic.ConvertToJson(System.Collections.Generic.List{Proyect.Classification})">
+            <summary>
+            Convierte a json la lista de clasificaciones.
+            </summary>
+            <param name="rubro"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.AppLogic.ConvertToJson(System.Collections.Generic.IList{Proyect.Emprendedor})">
+            <summary>
+            Convierte a json la lista de emprendedores.
+            </summary>
+            <param name="emprendedores"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.AppLogic.ConvertToJson(System.Collections.Generic.IList{Proyect.Company})">
+            <summary>
+            Convierte a json la lista de companias.
+            </summary>
+            <param name="companies"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.AppLogic.DeserializeRubros">
+            <summary>
+            Deserializa la listas de rubros del archivo json.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.AppLogic.DeserializeQualifications">
+            <summary>
+            Deserializa la lista de habilitaciones del archivo json.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.AppLogic.DeserializeClasification">
+            <summary>
+            Deserializa la lista de clasificaciones del archivo json.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.AppLogic.DeserializeEntrenprenuers">
+            <summary>
+            Deserializa la lista de emprendedores del archivo json.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.AppLogic.DeserializeCompanies">
+            <summary>
+            Deserializa la listas de companias del archivo json.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="P:Proyect.AppLogic.Instance">
             <summary>
             Obtiene la instancia de AppLogic.
@@ -144,6 +209,7 @@
             <param name="habilitaciones">Las habilitaciones que tiene el emprendedor.</param>
             <param name="especializaciones">Las especializaciones que tiene el emprendedor.</param>
             <param name="user_Id">Id que tiene el emprendedor.</param> 
+            <param name="user_Contact">Contacto del emprendedor.</param> 
         </member>
         <member name="M:Proyect.AppLogic.RegistrarCompany(System.String,System.String,System.String,System.String,Proyect.Rubro,System.String)">
             <summary>
@@ -154,6 +220,7 @@
             <param name="name"></param>
             <param name="ubication"></param>
             <param name="rubro"></param>
+            <param name="user_Contact">Contacto de la compania.</param>
             <returns>mensaje de confirmacion</returns>
         </member>
         <member name="M:Proyect.AppLogic.RemoveKeyWords(Proyect.Company,Proyect.IOffer,System.Int32)">
@@ -463,12 +530,6 @@
             <summary>
             Constructor utilizado en la serializacion.
             </summary>
-        </member>
-        <member name="P:Proyect.ConstantOffer.Id">
-            <summary>
-            Id por el cual se va a identificar la oferta dentro de nuestro programa.
-            </summary>
-            <value></value>
         </member>
         <member name="P:Proyect.ConstantOffer.Product">
             <summary>
@@ -1147,12 +1208,6 @@
             </summary>
             <param name="type">Tipo de oferta.</param>
             <returns>una lista con las offertas</returns>
-        </member>
-        <member name="T:Proyect.EmprendedoresDes">
-            <summary>
-            Esta clase administrador invita a los usuarios a registarse.
-            Clase singleton, solo una instancia de administrador. 
-            </summary>
         </member>
         <member name="T:Proyect.IJsonConvertible">
             <summary>

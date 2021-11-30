@@ -171,7 +171,7 @@ namespace Proyect
                                     mensaje.Append($"-{item.QualificationName}");
                                 }
                                 userData.Add(indice.ToString());
-                                response = $"Oferta {indice}.\n\nClasificacion: {oferta.Product.Classification}\nPrecio: {oferta.Product.Price}\nCantidad: {oferta.Product.Quantity}\nUbicacion: {oferta.Product.Ubication}\nHabilitaciones necesarias: {mensaje}\n\n\nPuede utilizar /Distancia para obetenr un mapa de la oferta junto con su distancia actual\nPuede hacer uso de /map para obtener un mapa de la ubicacion de la oferta.";
+                                response = $"Oferta {indice}.\n\nClasificacion: {oferta.Product.Classification.Category}\nPrecio: {oferta.Product.Price}\nCantidad: {oferta.Product.Quantity}\nUbicacion: {oferta.Product.Ubication}\nHabilitaciones necesarias: {mensaje}\n\n\nPuede utilizar /Distancia para obetenr un mapa de la oferta junto con su distancia actual\nPuede hacer uso de /map para obtener un mapa de la ubicacion de la oferta.";
                                 return true;
                             }
                         }else

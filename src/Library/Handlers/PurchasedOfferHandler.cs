@@ -147,13 +147,13 @@ namespace Proyect
                                     }
                                     foreach(string item in oferta.KeyWords)
                                     {
-                                        mensajeHabilitaciones.Append($"|{item}| ");
+                                        mensajeKeyWords.Append($"|{item}| ");
                                     }
                                     StringBuilder mensajeCompraData = new StringBuilder();
                                     IList<PurchaseData> datosDeCompra = new List<PurchaseData>();
                                     if (userData[0].Equals("company"))
                                     {
-                                        int index = 0;
+                                        int index = 1;
                                         if(userData.Count == 2)
                                         {
                                             datosDeCompra = oferta.GetPeriodTimeOffersAcceptedData(Convert.ToInt32(userData[1]));
@@ -163,10 +163,10 @@ namespace Proyect
                                         }
                                         foreach(PurchaseData item in datosDeCompra)
                                         {
-                                            mensajeCompraData.Append($"\n{index}--{item.Buyer} la acepto el {item.PurchaseDate}");
+                                            mensajeCompraData.Append($"\n{index++}--{item.Buyer} la acepto el {item.PurchaseDate}");
                                         }
                                         DataUserContainer.Instance.UserDataHistory[message.Id][0].Add("/oferta");
-                                        response = $"Oferta {number}.\nPublicada el: {oferta.DatePublished}\n\nClasificación del producto: {oferta.Product.Classification}\nCantidad del producto: {oferta.Product.Quantity}\nPrecio de compra: {oferta.Product.Price}\nUbicación del producto: {oferta.Product.Ubication}\nRequerimientos necesarios:{mensajeHabilitaciones}\nPalabras claves asociadas: {mensajeKeyWords}\n\nEmprendedor/es que la aceptaron: {mensajeCompraData}\n\n Usted puede seleccionar al comprador indicando su indice para obtener más detalles, o utilizar /Cancel para salir."; 
+                                        response = $"Oferta {number}.\nPublicada el: {oferta.DatePublished}\n\nClasificación del producto: {oferta.Product.Classification.Category}\nCantidad del producto: {oferta.Product.Quantity}\nPrecio de compra: {oferta.Product.Price}\nUbicación del producto: {oferta.Product.Ubication}\nRequerimientos necesarios:{mensajeHabilitaciones}\nPalabras claves asociadas: {mensajeKeyWords}\n\nEmprendedor/es que la aceptaron: {mensajeCompraData}\n\n Usted puede seleccionar al comprador indicando su indice para obtener más detalles, o utilizar /Cancel para salir."; 
                                         return true;
                                     }else
                                     {
@@ -183,7 +183,7 @@ namespace Proyect
                                         }
                                         DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
                                         DataUserContainer.Instance.UserOfferDataSelection.Remove(message.Id);
-                                        response = $"Oferta {number}.\nPublicada el: {oferta.DatePublished}\n\nClasificación del producto: {oferta.Product.Classification}\nCantidad del producto: {oferta.Product.Quantity}\nPrecio de compra: {oferta.Product.Price}\nUbicación del producto: {oferta.Product.Ubication}\nRequerimientos necesarios:{mensajeHabilitaciones}\nPalabras claves asociadas: {mensajeKeyWords}\nFecha de compra: {mensajeCompraData}"; 
+                                        response = $"Oferta {number}.\nPublicada el: {oferta.DatePublished}\n\nClasificación del producto: {oferta.Product.Classification.Category}\nCantidad del producto: {oferta.Product.Quantity}\nPrecio de compra: {oferta.Product.Price}\nUbicación del producto: {oferta.Product.Ubication}\nRequerimientos necesarios:{mensajeHabilitaciones}\nPalabras claves asociadas: {mensajeKeyWords}\nFecha de compra: {mensajeCompraData}"; 
                                         return true;
                                     }
                                 }else
@@ -214,7 +214,7 @@ namespace Proyect
                         if (int.TryParse(comando[0], out number))
                         {
                             IList<PurchaseData> datosDeCompra = new List<PurchaseData>();
-                            if(userData.Count == 2)
+                            if(userData.Count == 3)
                             {
                                 datosDeCompra = DataUserContainer.Instance.UserOfferDataSelection[message.Id][Convert.ToInt32(userData[userData.Count-1])].GetPeriodTimeOffersAcceptedData(Convert.ToInt32(userData[1]));
                             }else

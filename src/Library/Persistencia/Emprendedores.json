@@ -1,7 +1,95 @@
 {
   "$id": "1",
-  "Emprendedores": {
-    "$id": "2",
-    "$values": []
-  }
+  "$values": [
+    {
+      "$id": "2",
+      "Qualifications": {
+        "$id": "3",
+        "$values": [
+          {
+            "$id": "4",
+            "QualificationName": "Vehiculo propio."
+          }
+        ]
+      },
+      "Specializations": "Maderas",
+      "PurchasedOffers": {
+        "$id": "5",
+        "$values": []
+      },
+      "OfertasConstantes": {
+        "$id": "6",
+        "$values": []
+      },
+      "OfertasNoConstantes": {
+        "$id": "7",
+        "$values": [
+          {
+            "$id": "8",
+            "Product": {
+              "$id": "9",
+              "Classification": {
+                "$id": "10",
+                "Category": "Organicos"
+              },
+              "Quantity": 20,
+              "Price": 300,
+              "Ubication": "Cerro"
+            },
+            "Qualifications": {
+              "$id": "11",
+              "$values": []
+            },
+            "KeyWords": {
+              "$id": "12",
+              "$values": [
+                "Org\u00E1nicos",
+                "Alimentos"
+              ]
+            },
+            "PurchesedData": {
+              "$id": "13",
+              "$values": [
+                {
+                  "$id": "14",
+                  "Buyer": null,
+                  "PurchaseDate": "2021-11-30T09:49:07.8118991-03:00"
+                }
+              ]
+            },
+            "DatePublished": "30/11/2021 9:45:40"
+          },
+          {
+            "$ref": "8"
+          },
+          {
+            "$ref": "8"
+          },
+          {
+            "$ref": "8"
+          },
+          {
+            "$ref": "8"
+          },
+          {
+            "$ref": "8"
+          },
+          {
+            "$ref": "8"
+          },
+          {
+            "$ref": "8"
+          }
+        ]
+      },
+      "Name": "Matias Corp",
+      "Ubication": "Centro",
+      "Rubro": {
+        "$id": "15",
+        "RubroName": "Metales"
+      },
+      "User_Id": "2128982774",
+      "User_Contact": "Matias@gmail.com"
+    }
+  ]
 }

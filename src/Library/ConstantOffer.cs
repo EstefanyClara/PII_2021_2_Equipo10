@@ -13,8 +13,6 @@ namespace Proyect
     /// </summary>
     public class ConstantOffer : IOffer
     {
-        private static int id = 0;
-        private int ID;
         private ProductOffer product;
 
         private IList<Qualifications> qualifications;
@@ -40,8 +38,7 @@ namespace Proyect
             this.Qualifications = qualifications;
             this.KeyWords = keyWords;
             this.purchesedData = new List<PurchaseData>();
-            this.datePublished = "Siempre";
-            this.ID = ++id;
+            this.datePublished = DateTime.Now.ToString();
         }
 
         /// <summary>
@@ -51,15 +48,6 @@ namespace Proyect
         public ConstantOffer()
         {
 
-        }
-
-        /// <summary>
-        /// Id por el cual se va a identificar la oferta dentro de nuestro programa.
-        /// </summary>
-        /// <value></value>
-        public int Id
-        {
-            get{return this.ID;}
         }
 
         /// <summary>
@@ -130,7 +118,16 @@ namespace Proyect
         /// Obtiene la fecha de publicacion de la oferta.
         /// </summary>
         /// <value></value>
-        public string DatePublished{get {return this.datePublished;}}
+        public string DatePublished
+        {
+            get 
+            {
+                return this.datePublished;
+            }set
+            {
+                this.datePublished = value;
+            }
+        }
 
         /// <summary>
         /// Obtiene la informacion de compra de todos los emprendedores que aceptaron la oferta en el tiempo estipulado(Patron expert).
