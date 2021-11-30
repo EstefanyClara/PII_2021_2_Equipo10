@@ -1143,6 +1143,37 @@
             <param name="emprendedor">El emprendedor.</param>
             <returns>Mensaje de confirmacion.</returns>
         </member>
+        <member name="T:Proyect.MessageTest">
+            <summary>
+            Calse mensaje utilizada para los test.
+            </summary>
+        </member>
+        <member name="P:Proyect.MessageTest.Id">
+            <summary>
+            ropierty del id del usuario.
+            </summary>
+            <value>El id del usurio.</value>
+        </member>
+        <member name="P:Proyect.MessageTest.MsgId">
+            <summary>
+            Propierty del chat id de cada usaurio.
+            </summary>
+            <value>El chat id del usurio.</value>
+        </member>
+        <member name="P:Proyect.MessageTest.Text">
+            <summary>
+            El texto que envia el usaurio.
+            </summary>
+            <value>El texto.</value>
+        </member>
+        <member name="M:Proyect.MessageTest.SendProfileImage(System.String,System.String)">
+            <summary>
+            Metodo que envia una imagen a un usuiro.
+            </summary>
+            <param name="mensaje">El mensaje que se mostrara con la imagen.</param>
+            <param name="direccion">La dirrecion de donde se sacara la imagen.</param>
+            <returns></returns>
+        </member>
         <member name="T:Proyect.NonConstantOffer">
             <summary>
             Esta clase representa las ofertas no constantes de las companias (Cumple con ISP).
@@ -1320,7 +1351,7 @@
             <summary>
             Obtiene un obtiene una instancia de clasificacion valida para un producto.
             </summary>
-            <value>La Price del producto.</value>
+            <value>La price del producto.</value>
         </member>
         <member name="P:Proyect.ProductOffer.Ubication">
             <summary>
@@ -1339,29 +1370,32 @@
         </member>
         <member name="M:Proyect.ProductOffer.#ctor">
             <summary>
-            jjj
+            Constructor para el json.
             </summary>
         </member>
         <member name="T:Proyect.PurchaseData">
             <summary>
-            Clase para guardar la fecha y quien compró las ofertas (Por SRP).
+            Clase para guardar la fecha y quien compró las ofertas (Por SRP), en defnitiva, la informacion de compra.
+            Esta en una relacion de composicion con la clases IOffer, siendo est ala clase componente.
             </summary>
         </member>
         <member name="P:Proyect.PurchaseData.Buyer">
             <summary>
-            Metodo get del comprador.
+            El emprendedor que compro una oferta.
             </summary>
+            <value>El comprador.</value>
         </member>
         <member name="P:Proyect.PurchaseData.PurchaseDate">
             <summary>
-            Metodo get de la fecha de compra.
+            Fecha de compra de la oferta.
             </summary>
+            <value>La fecha de compra.</value>
         </member>
         <member name="M:Proyect.PurchaseData.#ctor(Proyect.Emprendedor)">
             <summary>
             Inicializa una nueva instancia de la clase <see cref="T:Proyect.PurchaseData"/>
             </summary>
-            <param name="buyer"></param>
+            <param name="buyer">El comprador de la oferta.</param>
         </member>
         <member name="T:Proyect.Qualifications">
             <summary>
@@ -1372,24 +1406,24 @@
             <summary>
             Propiedad del nombre de la habilitacion.
             </summary>
-            <value></value>
+            <value>La habiliatcion, el nombre en si.</value>
         </member>
         <member name="M:Proyect.Qualifications.#ctor(System.String)">
             <summary>
             Inicializa una nueva instancia de la clase <see cref="T:Proyect.Qualifications"/>
             </summary>
-            <param name="qualificationName">Nombre de las habilitaciones.</param>
+            <param name="qualificationName">Nombre de la habilitacion.</param>
         </member>
         <member name="T:Proyect.Rubro">
             <summary>
-            Clase que representa el rubro de una compania o emprendedor.
+            Clase que representa el rubro de una compañia o emprendedor.
             </summary>
         </member>
         <member name="P:Proyect.Rubro.RubroName">
             <summary>
             Propierty del nombre del rubro.
             </summary>
-            <value></value>
+            <value>El nombre del rubro.</value>
         </member>
         <member name="M:Proyect.Rubro.#ctor(System.String)">
             <summary>
@@ -1400,37 +1434,40 @@
         <member name="T:Proyect.TelegramAdapter">
             <summary>
             Adaptador de mensajes de Telegram a mensajes de la interfaz de usuario.
+            Esto permite que la aplicacion sirba para otras apps apartes de telegram.
             </summary>
         </member>
         <member name="M:Proyect.TelegramAdapter.#ctor(Telegram.Bot.Types.Message,Telegram.Bot.TelegramBotClient)">
             <summary>
             Crea una nueva instancia de la clase <see cref="T:Proyect.TelegramAdapter"/>.
             </summary>
-            <param name="message"></param>
-            <param name="bot"></param>
+            <param name="message">El mensaje, en este caso es de telegram.</param>
+            <param name="bot">El bot, en este caso de telegram.</param>
         </member>
         <member name="P:Proyect.TelegramAdapter.Text">
             <summary>
-            El mensaje recibido.
+            El mensaje ingresado.
             </summary>
+            <value>El texto del mensaje.</value>
         </member>
         <member name="P:Proyect.TelegramAdapter.Id">
             <summary>
-            Identificador del usuario que envió el mensaje.
+            El id de usurio.
             </summary>
+            <value>El id de suario.</value>
         </member>
         <member name="P:Proyect.TelegramAdapter.MsgId">
             <summary>
             Identificador del chat.
             </summary>
-            <value></value>
+            <value>El id del chat de telegram.</value>
         </member>
         <member name="M:Proyect.TelegramAdapter.SendProfileImage(System.String,System.String)">
             <summary>
-            Metodo que se encarga de neviar una foto al chat de telegram (Su utiliza el patron adapter).
+            Metodo que se encarga de enviar una foto al chat de telegram (Su utiliza el patron adapter).
             </summary>
-            <param name="mensaje"></param>
-            <param name="direccion"></param>
+            <param name="mensaje">El mensaje que se ingresa para enviar con la foto.</param>
+            <param name="direccion">La dirrecion de donde se sacara la foto.</param>
             <returns></returns>
         </member>
         <member name="T:Proyect.User">
@@ -1466,18 +1503,19 @@
         <member name="P:Proyect.User.OfertasConstantes">
             <summary>
             Lista de ofertas constantes, que posee el usuario (Uasada en la serializacion).
+            Esta propierti solo se utiliza en la serializacion.
             </summary>
-            <returns></returns>
+            <returns>La lisat de ofertas consatnte de la compania.</returns>
         </member>
         <member name="P:Proyect.User.OfertasNoConstantes">
             <summary>
             Lista de ofertas no constantes, que posee el usuario (Usadas en la serializacion).
             </summary>
-            <returns></returns>
+            <returns>La lista de ofertas no constantes.</returns>
         </member>
         <member name="M:Proyect.User.#ctor(System.String,System.String,System.String,Proyect.Rubro,System.String)">
             <summary>
-            Inicializa una nueva instancia de la clase <see cref="T:Proyect.User"/>
+            Inicializa una nueva instancia de la clase user. <see cref="T:Proyect.User"/>
             </summary>
             <param name="name">Nombre del usuario.</param>
             <param name="ubication">Ubicacion del usuario.</param>
@@ -1494,31 +1532,31 @@
             <summary>
             Propiedad get y set del atributo del nombre.
             </summary>
-            <value></value>
+            <value>El nombre del usurio.</value>
         </member>
         <member name="P:Proyect.User.Ubication">
             <summary>
             Propiedad get y set del atributo de la ubicacion.
             </summary>
-            <value></value>
+            <value>La ubicacion del usurio.</value>
         </member>
         <member name="P:Proyect.User.Rubro">
             <summary>
             Propiedad get y set del atributo del rubro.
             </summary>
-            <value></value>
+            <value>El rubro al que pertnece el usurio.</value>
         </member>
         <member name="P:Proyect.User.User_Id">
             <summary>
             Obtiene el id del usuario.
             </summary>
-            <value></value>
+            <value>La id del usaurio.</value>
         </member>
         <member name="P:Proyect.User.User_Contact">
             <summary>
             Obtiene el contacto del usuraio.
             </summary>
-            <value></value>
+            <value>El conatcto del usurio.</value>
         </member>
     </members>
 </doc>
