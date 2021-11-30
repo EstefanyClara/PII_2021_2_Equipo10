@@ -35,7 +35,8 @@ namespace Proyect
                         DataUserContainer.Instance.UserOfferDataSelection.Remove(message.Id);
                     }
                     response = "Regresando al estado inicial...";
-                }else
+                }
+                else
                 {
                     response = "Usted no se encuentra en ningún estado especifico.";
                 }

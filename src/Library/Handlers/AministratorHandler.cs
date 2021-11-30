@@ -9,7 +9,7 @@ namespace Proyect
     public class AdministratorHandler : BaseHandler
     {
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="AutorizationHandler"/>. Esta clase procesa si la perosna que envio el mensaje esta registrada.
+        /// Inicializa una nueva instancia de la clase <see cref="AutorizationHandler"/>. Esta clase procesa si la persona que envio el mensaje esta registrada.
         /// </summary>
         /// <param name="next">El próximo "handler".</param>
         public AdministratorHandler(BaseHandler next) : base(next)
@@ -32,14 +32,16 @@ namespace Proyect
                 {
                     if(AppLogic.Instance.AddAdministrator(message.Id, comando[1]))
                     {
-                        response = "Usted tiene el rol de admiistrador";
+                        response = "Usted tiene el rol de administrador";
                         return true;
-                    }else
+                    }
+                    else
                     {
                         response = "El codigo ingresado no es correcto";
                         return true;
                     }
-                }if(comando.Count() == 1 && comando[0].Equals("/invitar") && Administrator.Instance.IsAdministrator(message.Id))
+                }
+                if(comando.Count() == 1 && comando[0].Equals("/invitar") && Administrator.Instance.IsAdministrator(message.Id))
                 {
                     response = AppLogic.Instance.Invite();
                     return true;

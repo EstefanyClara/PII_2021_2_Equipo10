@@ -22,7 +22,7 @@ namespace Proyect
         public EmptyUserBuilderException (string message) : base(message) { }
         
         /// <summary>
-        /// Construtor con mensaje y excepcion encadenada.
+        /// Constructor con mensaje y excepcion encadenada.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="inner"></param>

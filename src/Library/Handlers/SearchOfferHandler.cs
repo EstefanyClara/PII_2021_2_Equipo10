@@ -38,24 +38,27 @@ namespace Proyect
                 }
                 if(!DataUserContainer.Instance.UserDataHistory.Keys.Contains(message.Id))
                 {
-                    response = "Indique como quiere buscar ofertas\n/1 - Palabra clave.\n/2 - Ubicacíon\n/3 - Clasificación";
+                    response = "Indique como quiere buscar ofertas\n/1 - Palabra clave.\n/2 - Ubicación\n/3 - Clasificación";
                     List<List<string>> lista = new List<List<string>>() {new List<string>(),new List<string>()};
                     DataUserContainer.Instance.UserDataHistory.Add(message.Id, lista);
                     DataUserContainer.Instance.UserDataHistory[message.Id][0].Add("/buscar");
                     return true;
-                }else
+                }
+                else
                 {
                     if (DataUserContainer.Instance.UserDataHistory[message.Id][0][0].Equals("/buscar"))
                     {
                         response = "Usted ya esta en proceso de busqueda";
                         return true;
-                    }else
+                    }
+                    else
                     {
                         response = string.Empty;
                         return false;
                     }
                 }
-            }if(DataUserContainer.Instance.UserDataHistory.Keys.Contains(message.Id) && DataUserContainer.Instance.UserDataHistory[message.Id][0][0].Equals("/buscar"))
+            }
+            if(DataUserContainer.Instance.UserDataHistory.Keys.Contains(message.Id) && DataUserContainer.Instance.UserDataHistory[message.Id][0][0].Equals("/buscar"))
             {
                 if ((message.Text.ToLower().Replace(" ","").Equals("/1") && DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0))
                 {
@@ -81,7 +84,8 @@ namespace Proyect
                     }
                     response = mensaje.ToString();
                     return true;
-                }if (DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0)
+                }
+                if (DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0)
                 {
                     response = "Debe ingresar /1, /2, o /3";
                     return true;
@@ -104,7 +108,8 @@ namespace Proyect
                         DataUserContainer.Instance.UserDataHistory[message.Id][1].Add("/comprar");
                         response = sb.ToString();
                         return true;
-                    }else
+                    }
+                    else
                     {
                         DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
                         DataUserContainer.Instance.UserOfferDataSelection.Remove(message.Id);
@@ -126,7 +131,8 @@ namespace Proyect
                         DataUserContainer.Instance.UserDataHistory[message.Id][1].Add("/comprar");
                         response = sb.ToString();
                         return true;
-                    }else
+                    }
+                    else
                     {
                         DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
                         DataUserContainer.Instance.UserOfferDataSelection.Remove(message.Id);
@@ -154,19 +160,22 @@ namespace Proyect
                                 DataUserContainer.Instance.UserDataHistory[message.Id][1].Add("/comprar");
                                 response = sb.ToString();
                                 return true;
-                            }else
+                            }
+                            else
                             {
                                 DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
                                 DataUserContainer.Instance.UserOfferDataSelection.Remove(message.Id);
                                 response = "No se encontaron ofertan con dicha clasificacion.";
                                 return true;
                             }  
-                        }else
+                        }
+                        else
                         {
                             response = "Número invalido";
                             return true;
                         }
-                    }else
+                    }
+                    else
                     {
                         response = "El dato ingresado no es valido\nPor favor, revise que haya ingresado un número (Ej:'1' Para elegir la primera clasificacion)";
                         return true;
@@ -182,7 +191,8 @@ namespace Proyect
                             {
                                 response = "Esa oferta no existe";
                                 return true;
-                            }else
+                            }
+                            else
                             {
                                 IOffer oferta = DataUserContainer.Instance.UserOfferDataSelection[message.Id][indice-1];
                                 StringBuilder mensaje = new StringBuilder();
@@ -194,7 +204,8 @@ namespace Proyect
                                 response = $"Oferta {indice}.\n\nClasificacion: {oferta.Product.Classification.Category}\nPrecio: {oferta.Product.Price}\nCantidad: {oferta.Product.Quantity}\nUbicacion: {oferta.Product.Ubication}\nHabilitaciones necesarias: {mensaje}\n\n\nPuede utilizar /Distancia para obetenr un mapa de la oferta junto con su distancia actual\nPuede hacer uso de /map para obtener un mapa de la ubicacion de la oferta.";
                                 return true;
                             }
-                        }else
+                        }
+                        else
                         {
                             response = "Numero no valido";
                             return true;
@@ -208,20 +219,23 @@ namespace Proyect
                             AsyncContext.Run(() => message.SendProfileImage(AppLogic.Instance.ObteinOfferDistance(emp, offer), @"route.png"));
                             response = string.Empty;
                             return true;
-                        }if(message.Text.ToLower().Trim(' ').Equals("/map"))
+                        }
+                        if(message.Text.ToLower().Trim(' ').Equals("/map"))
                         {
                             AppLogic.Instance.ObteinOfferMap(offer);
                             AsyncContext.Run(() => message.SendProfileImage($"Este es el mapa de la oferta que esta en {offer.Product.Ubication}", @"map.png"));
                             response = string.Empty;
                             return true;
-                        }if (message.Text.ToLower().Trim(' ').Equals("/comprar"))
+                        }
+                        if (message.Text.ToLower().Trim(' ').Equals("/comprar"))
                         {
                             if(AppLogic.Instance.AccepOffer(emp, DataUserContainer.Instance.UserOfferDataSelection[message.Id][Convert.ToInt32(userData[2])-1]))
                             {
                                 response = "Oferta comprada con exito!";
                                 DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
                                 DataUserContainer.Instance.UserOfferDataSelection.Remove(message.Id);
-                            }else
+                            }
+                            else
                             {
                                 response = "Esta oferta ya no esta disponible, o usted no posee las habilitaciones necesarias.";
                                 DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
