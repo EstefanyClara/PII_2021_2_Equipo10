@@ -14,7 +14,7 @@ namespace Proyect
         /// <param name="next">El próximo "handler".</param>
         public AutorizationHandler(BaseHandler next) : base(next)
         {
-            this.Keywords = new string[] {"/registrar"};
+            this.Keywords = new string[] { "/registrar" };
         }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace Proyect
         /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         protected override bool InternalHandle(IMessage message, out string response)
         {
-            if (!this.Keywords.Contains(message.Text.ToLower().Replace(" ","")) & !DataUserContainer.Instance.UserDataHistory.Keys.Contains(message.Id))
+            if (!this.Keywords.Contains(message.Text.ToLower().Replace(" ", "")) & !DataUserContainer.Instance.UserDataHistory.Keys.Contains(message.Id))
             {
                 if (AppLogic.Instance.GetCompany(message.Id) != null | AppLogic.Instance.GetEmprendedor(message.Id) != null)
                 {

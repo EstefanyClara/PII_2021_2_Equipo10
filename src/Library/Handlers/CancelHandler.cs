@@ -14,7 +14,7 @@ namespace Proyect
         /// <param name="next">El próximo "handler".</param>
         public CancelHandler(BaseHandler next) : base(next)
         {
-            this.Keywords = new string[] {"/cancel"};
+            this.Keywords = new string[] { "/cancel" };
         }
 
         /// <summary>
@@ -25,17 +25,18 @@ namespace Proyect
         /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         protected override bool InternalHandle(IMessage message, out string response)
         {
-            if (this.Keywords.Contains(message.Text.ToLower().Replace(" ","")))
+            if (this.Keywords.Contains(message.Text.ToLower().Replace(" ", "")))
             {
-                if( DataUserContainer.Instance.UserDataHistory.Keys.Contains(message.Id))
+                if (DataUserContainer.Instance.UserDataHistory.Keys.Contains(message.Id))
                 {
                     DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
-                    if(DataUserContainer.Instance.UserOfferDataSelection.Keys.Contains(message.Id))
+                    if (DataUserContainer.Instance.UserOfferDataSelection.Keys.Contains(message.Id))
                     {
                         DataUserContainer.Instance.UserOfferDataSelection.Remove(message.Id);
                     }
                     response = "Regresando al estado inicial...";
-                }else
+                }
+                else
                 {
                     response = "Usted no se encuentra en ningún estado especifico.";
                 }

@@ -10,14 +10,14 @@ namespace Proyect
     {
         private readonly static DataUserContainer _instance = new DataUserContainer();
 
-        private Dictionary<string,List<List<string>>> userDataHistory;
+        private Dictionary<string, List<List<string>>> userDataHistory;
 
-        private Dictionary<string,List<IOffer>> userOfferDataSelection;
+        private Dictionary<string, List<IOffer>> userOfferDataSelection;
 
         private DataUserContainer()
         {
-            this.userDataHistory = new Dictionary<string, List<List<string>>> ();
-            this.userOfferDataSelection = new Dictionary<string, List<IOffer>> ();
+            this.userDataHistory = new Dictionary<string, List<List<string>>>();
+            this.userOfferDataSelection = new Dictionary<string, List<IOffer>>();
         }
 
         /// <summary>
@@ -26,16 +26,16 @@ namespace Proyect
         /// <value>La instancia de la clase.</value>
         public static DataUserContainer Instance
         {
-            get{return _instance;}
+            get { return _instance; }
         }
 
         /// <summary>
         /// Obtiene el diccionario donde se guardan los mensajes de un usuario.
         /// </summary>
         /// <value>Diccionario con clave el chat ID de un usuario, y lista de la histroia de usuario.</value>
-        public Dictionary<string,List<List<string>>> UserDataHistory
+        public Dictionary<string, List<List<string>>> UserDataHistory
         {
-            get{return this.userDataHistory;}
+            get { return this.userDataHistory; }
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Proyect
         /// <value></value>
         public Dictionary<string, List<IOffer>> UserOfferDataSelection
         {
-            get{return this.userOfferDataSelection;}
+            get { return this.userOfferDataSelection; }
         }
 
     }

@@ -15,7 +15,7 @@ namespace Proyect
         /// <param name="next">El próximo "handler".</param>
         public MeHandler(BaseHandler next) : base(next)
         {
-            this.Keywords = new string[] {"/me"};
+            this.Keywords = new string[] { "/me" };
         }
 
         /// <summary>
@@ -26,18 +26,19 @@ namespace Proyect
         /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         protected override bool InternalHandle(IMessage message, out string response)
         {
-            if(this.Keywords.Contains(message.Text.ToLower().Replace(" ","")))
+            if (this.Keywords.Contains(message.Text.ToLower().Replace(" ", "")))
             {
                 Company company = AppLogic.Instance.GetCompany(message.Id);
                 if (company != null)
                 {
                     response = $"Nombre: {company.Name}\nRubro al que pertenece: {company.Rubro.RubroName}\nUbicacíon: {company.Ubication}\nContacto: {company.User_Contact}";
                     return true;
-                }else
+                }
+                else
                 {
                     Emprendedor emprendedor = AppLogic.Instance.GetEmprendedor(message.Id);
                     StringBuilder mensaje = new StringBuilder();
-                    foreach(Qualifications item in emprendedor.Qualifications)
+                    foreach (Qualifications item in emprendedor.Qualifications)
                     {
                         mensaje.Append($"\n-{item.QualificationName}");
                     }

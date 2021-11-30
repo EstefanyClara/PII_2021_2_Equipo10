@@ -1,15 +1,12 @@
 using System.Collections.Generic;
 using System.Collections;
-using System.Text;
 using System;
-using System.Runtime.Serialization;
-using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Proyect
 {
     /// <summary>
-    /// Esta clase representa las ofertas constantes de las companias (Cumple con ISP).
+    /// Esta clase representa las ofertas no constantes de las companias (Cumple con ISP).
     /// </summary>
     public class NonConstantOffer : IOffer
     {

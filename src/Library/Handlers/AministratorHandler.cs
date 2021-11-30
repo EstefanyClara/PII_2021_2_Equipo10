@@ -14,7 +14,7 @@ namespace Proyect
         /// <param name="next">El próximo "handler".</param>
         public AdministratorHandler(BaseHandler next) : base(next)
         {
-            this.Keywords = new string[] {"/nuevoadministrador","/invitar"};
+            this.Keywords = new string[] { "/nuevoadministrador", "/invitar" };
         }
 
         /// <summary>
@@ -26,20 +26,22 @@ namespace Proyect
         protected override bool InternalHandle(IMessage message, out string response)
         {
             string[] comando = message.Text.Trim(' ').ToLower().Split(" ");
-            if(comando.Count() <= 2)
+            if (comando.Count() <= 2)
             {
                 if (comando.Count() == 2 && comando[0].Equals("/nuevoadministrador"))
                 {
-                    if(AppLogic.Instance.AddAdministrator(message.Id, comando[1]))
+                    if (AppLogic.Instance.AddAdministrator(message.Id, comando[1]))
                     {
                         response = "Usted tiene el rol de admiistrador";
                         return true;
-                    }else
+                    }
+                    else
                     {
                         response = "El codigo ingresado no es correcto";
                         return true;
                     }
-                }if(comando.Count() == 1 && comando[0].Equals("/invitar") && Administrator.Instance.IsAdministrator(message.Id))
+                }
+                if (comando.Count() == 1 && comando[0].Equals("/invitar") && Administrator.Instance.IsAdministrator(message.Id))
                 {
                     response = AppLogic.Instance.Invite();
                     return true;

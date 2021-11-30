@@ -88,7 +88,7 @@ namespace Proyect
         /// Obtiene una lista de ofertas que fueron aceptadas en un periodo de tiempo (Por Expert).
         /// </summary>
         /// <param name="periodTime">Periodo de tiempo.</param>
-        /// <returns>La lisat de ofertas.</returns>
+        /// <returns>La lista de ofertas.</returns>
         public List<IOffer> GetOffersAccepted(int periodTime)
         {
             List<IOffer> ofertas = new List<IOffer>();

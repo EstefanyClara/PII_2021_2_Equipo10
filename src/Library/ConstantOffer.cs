@@ -23,12 +23,12 @@ namespace Proyect
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="ConstantOffer"/>
         /// </summary>
-        /// <param name="tipo"></param>
-        /// <param name="quantity"></param>
-        /// <param name="cost"></param>
-        /// <param name="ubicacion"></param>
-        /// <param name="qualifications"></param>
-        /// <param name="keyWords"></param>
+        /// <param name="tipo">El tipo del producto a ofertas.</param>
+        /// <param name="quantity">La cantidad del producto a ofertas.</param>
+        /// <param name="cost">El costo del producto a ofertar.</param>
+        /// <param name="ubicacion">La ubicacion del producto a ofertar.</param>
+        /// <param name="qualifications">La habiliatciones de la oferta.</param>
+        /// <param name="keyWords">Las palabras clave asociadas a la oferta.</param>
         public ConstantOffer(Classification tipo, double quantity, double cost, string ubicacion, List<Qualifications> qualifications, ArrayList keyWords)
         {
             this.product = new ProductOffer(tipo,quantity,cost,ubicacion);
@@ -50,7 +50,7 @@ namespace Proyect
         /// <summary>
         /// Obtiene el producto de una oferta.
         /// </summary>
-        /// <value>this.product</value>
+        /// <value>El producto.</value>
         public ProductOffer Product
         {
             get
@@ -66,7 +66,7 @@ namespace Proyect
         /// <summary>
         /// Obtiene la lista de las habilitaciones de una oferta.
         /// </summary>
-        /// <value>this.qualifications</value>
+        /// <value>Las habiliatciones.</value>
         public IList<Qualifications> Qualifications
         {
             get
@@ -82,7 +82,7 @@ namespace Proyect
         /// <summary>
         /// Obtiene la lista de palbras clave de la oferta.
         /// </summary>
-        /// <value></value>
+        /// <value>La palabras clave.</value>
         public ArrayList KeyWords
         {
             get
@@ -96,9 +96,9 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene la informacion de el o los compardores de esta oferta constante.
+        /// Obtiene la informacion de el o los compardores de esta oferta constante (Informacion de compra).
         /// </summary>
-        /// <value></value>
+        /// <value>La lisat de infromacion de compra.</value>
         public IList<PurchaseData> PurchesedData
         {
             get
@@ -114,7 +114,7 @@ namespace Proyect
         /// <summary>
         /// Obtiene la fecha de publicacion de la oferta.
         /// </summary>
-        /// <value></value>
+        /// <value>La fecha de publicacion.</value>
         public string DatePublished
         {
             get 
@@ -128,8 +128,9 @@ namespace Proyect
 
         /// <summary>
         /// Obtiene la informacion de compra de todos los emprendedores que aceptaron la oferta en el tiempo estipulado(Patron expert).
+        /// Esta operacion es polimorfica.
         /// </summary>
-        /// <param name="periodTime"></param>
+        /// <param name="periodTime">El periodo de tiempo.</param>
         /// <returns>Mensaje con la infromacion de compra de la oferta, si la misma entra dentro del rango estipulado, en caso contrario, mensaje que indica dicha situacion.</returns>
         public IList<PurchaseData> GetPeriodTimeOffersAcceptedData(int periodTime)
         {
@@ -147,9 +148,10 @@ namespace Proyect
 
         /// <summary>
         /// Obtiene la informacion de compra del emprendedor especificado en el tiempo ingresado.
+        /// Esta operacion es polimorfica.
         /// </summary>
-        /// <param name="periodTime"></param>
-        /// <param name="emprendedor"></param>
+        /// <param name="periodTime">El periodo de tiempo.</param>
+        /// <param name="emprendedor">Emprendedor.</param>
         /// <returns></returns>
         public IList<PurchaseData> GetPeriodTimeOffersAcceptedData(int periodTime, Emprendedor emprendedor)
         {
@@ -166,10 +168,10 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene la informacion de compra del emprendedor especificado
+        /// Obtiene la informacion de compra del emprendedor especificado.
         /// </summary>
-        /// <param name="emprendedor"></param>
-        /// <returns></returns>
+        /// <param name="emprendedor">El emprendedor.</param>
+        /// <returns>La lista con la informacion de compra.</returns>
         public IList<PurchaseData> GetEntrepreneursPurchaseData(Emprendedor emprendedor)
         {
             List<PurchaseData> infoCompras = new List<PurchaseData>();
@@ -186,7 +188,8 @@ namespace Proyect
         /// <summary>
         /// Agrega un nuevo comprador a la lista de compradores de esta oferta constante (Se utiliza creator, y expert).
         /// </summary>
-        /// <param name="emprendedor"></param>
+        /// <param name="emprendedor">El emprendedor.</param>
+        /// <returns>Mensaje de confirmacion.</returns>
         public bool PutBuyer(Emprendedor emprendedor)
         {
             foreach(Qualifications item in this.Qualifications)

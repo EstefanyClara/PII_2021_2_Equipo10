@@ -15,7 +15,7 @@ namespace Proyect
         /// <param name="next">El próximo "handler".</param>
         public GetConstantMaterialsHandler(BaseHandler next) : base(next)
         {
-            this.Keywords = new string[] {"/materialesconstantes"};
+            this.Keywords = new string[] { "/materialesconstantes" };
         }
 
         /// <summary>
@@ -26,17 +26,18 @@ namespace Proyect
         /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         protected override bool InternalHandle(IMessage message, out string response)
         {
-            if (this.Keywords.Contains(message.Text.ToLower().Replace(" ","")))
+            if (this.Keywords.Contains(message.Text.ToLower().Replace(" ", "")))
             {
-                if( DataUserContainer.Instance.UserDataHistory.Keys.Contains(message.Id))
+                if (DataUserContainer.Instance.UserDataHistory.Keys.Contains(message.Id))
                 {
                     response = "Para utilizar este comando primero debe terminar el proceso actual";
                     return true;
-                }else
+                }
+                else
                 {
                     StringBuilder mensaje = new StringBuilder();
                     mensaje.Append("Los materiales constantes presentes en nuestra aplicación actualmente son:\n");
-                    foreach(var item in AppLogic.Instance.GetConstantMaterials())
+                    foreach (var item in AppLogic.Instance.GetConstantMaterials())
                     {
                         mensaje.Append($"\n{item.Key}: {(item.Value > 0 ? item.Value.ToString() + " Oferta/s" : "Sin ofertas que se ofrezcan de forma constante.")}");
                     }

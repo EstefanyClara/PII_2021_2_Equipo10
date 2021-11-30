@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 
@@ -53,7 +54,7 @@ namespace Proyect
                 /// Se Asigno esta responsabilidad por expert (La clase company es la que conoce la lista de ls ofertas que publica).
                 /// Tambien, se asigno esta reponsabilidad siguinedo el patron creator, company contiene objetos IOffer.
                 /// </summary>
-                /// <param name="tipo">El tipo del producto a ofertas.</param>
+                /// /// <param name="tipo">El tipo del producto a ofertas.</param>
                 /// <param name="quantity">La cantidad del producto a ofertas.</param>
                 /// <param name="cost">El costo del producto a ofertar.</param>
                 /// <param name="ubication">La ubicacion del producto a ofertar.</param>
