@@ -23,7 +23,7 @@ namespace Proyect
         /// <summary>
         /// El mensaje.
         /// </summary>
-        string Text { get;}
+        string Text { get;set;}
 
         /// <summary>
         /// Id del chat.

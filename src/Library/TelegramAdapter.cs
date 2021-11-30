@@ -41,6 +41,10 @@ namespace Proyect
             {
                 return this.message.Text;
             }
+            set
+            {
+                this.Text = value;
+            }
         }
 
         /// <summary>
