@@ -657,7 +657,7 @@
         </member>
         <member name="M:Proyect.EmptyUserBuilderException.#ctor(System.String,System.Exception)">
             <summary>
-            Construtor con mensaje y excepcion encadenada.
+            Constructor con mensaje y excepcion encadenada.
             </summary>
             <param name="message"></param>
             <param name="inner"></param>
@@ -678,7 +678,7 @@
         </member>
         <member name="M:Proyect.AdministratorHandler.#ctor(Proyect.BaseHandler)">
             <summary>
-            Inicializa una nueva instancia de la clase <see cref="T:Proyect.AutorizationHandler"/>. Esta clase procesa si la perosna que envio el mensaje esta registrada.
+            Inicializa una nueva instancia de la clase <see cref="T:Proyect.AutorizationHandler"/>. Esta clase procesa si la persona que envio el mensaje esta registrada.
             </summary>
             <param name="next">El próximo "handler".</param>
         </member>
@@ -819,7 +819,7 @@
         </member>
         <member name="T:Proyect.DataUserContainer">
             <summary>
-            Clase contenedora del historia de mensajes que un usuario manda
+            Clase contenedora del historia de mensajes que un usuario manda.
             </summary>
         </member>
         <member name="P:Proyect.DataUserContainer.Instance">
@@ -847,7 +847,7 @@
         </member>
         <member name="M:Proyect.GetConstantMaterialsHandler.#ctor(Proyect.BaseHandler)">
             <summary>
-            Inicializa una nueva instancia de la clase <see cref="T:Proyect.GetConstantMaterialsHandler"/>. Esta clase procesa si la perosna que envio el mensaje esta registrada.
+            Inicializa una nueva instancia de la clase <see cref="T:Proyect.GetConstantMaterialsHandler"/>. Esta clase procesa si la persona que envio el mensaje esta registrada.
             </summary>
             <param name="next">El próximo "handler".</param>
         </member>
@@ -898,7 +898,7 @@
         </member>
         <member name="M:Proyect.MeHandler.#ctor(Proyect.BaseHandler)">
             <summary>
-            Inicializa una nueva instancia de la clase <see cref="T:Proyect.AutorizationHandler"/>. Esta clase procesa si la perosna que envio el mensaje esta registrada.
+            Inicializa una nueva instancia de la clase <see cref="T:Proyect.AutorizationHandler"/>. Esta clase procesa si la persona que envio el mensaje esta registrada.
             </summary>
             <param name="next">El próximo "handler".</param>
         </member>
@@ -936,7 +936,7 @@
         </member>
         <member name="M:Proyect.PurchasedOfferHandler.#ctor(Proyect.BaseHandler)">
             <summary>
-            Inicializa una nueva instancia de la clase <see cref="T:Proyect.PurchasedOfferHandler"/>. Esta clase procesa si la perosna que envio el mensaje esta registrada.
+            Inicializa una nueva instancia de la clase <see cref="T:Proyect.PurchasedOfferHandler"/>. Esta clase procesa si la persona que envio el mensaje esta registrada.
             </summary>
             <param name="next">El próximo "handler".</param>
         </member>
@@ -955,7 +955,7 @@
         </member>
         <member name="M:Proyect.RegisterHandler.#ctor(Proyect.BaseHandler)">
             <summary>
-            Inicializa una nueva instancia de la clase <see cref="T:Proyect.RegisterHandler"/>. Esta clase procesa el mensaje "/Registrar" de un usuario y todos los datos necerarios para registralo.
+            Inicializa una nueva instancia de la clase <see cref="T:Proyect.RegisterHandler"/>. Esta clase procesa el mensaje "/Registrar" de un usuario y todos los datos necesarios para registrarlo.
             </summary>
             <param name="next">El próximo "handler".</param>
         </member>
@@ -993,7 +993,7 @@
         </member>
         <member name="M:Proyect.StartHandler.#ctor(Proyect.BaseHandler)">
             <summary>
-            Inicializa una nueva instancia de la clase <see cref="T:Proyect.AutorizationHandler"/>. Esta clase procesa si la perosna que envio el mensaje esta registrada.
+            Inicializa una nueva instancia de la clase <see cref="T:Proyect.AutorizationHandler"/>. Esta clase procesa si la persona que envio el mensaje esta registrada.
             </summary>
             <param name="next">El próximo "handler".</param>
         </member>
