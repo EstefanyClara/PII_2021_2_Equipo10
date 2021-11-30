@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace Proyect
 {
@@ -8,17 +9,18 @@ namespace Proyect
     /// Esta clase administrador invita a los usuarios a registarse.
     /// Clase singleton, solo una instancia de administrador. 
     /// </summary>
-    public sealed class Administrator
+    public sealed class Administrator : IJsonConvertible
     {
 
         private readonly static Administrator _instance = new Administrator();
-        private List<string> tokens;
+        private IList<string> tokens;
 
-        private List<string> admin_Id;
+        private IList<string> admin_Id;
 
         private Administrator()
         {
             tokens = new List<string>(){"1234"};
+            admin_Id = new List<string>();
         }
 
         /// <summary>
@@ -37,11 +39,15 @@ namespace Proyect
         /// Obteien la lista de tokes que el administardo coloca.
         /// </summary>
         /// <value></value>
-        public List<string> Tokens
+        public IList<string> Tokens
         {
             get
             {
                 return this.tokens;
+            }
+            set
+            {
+                this.tokens = value;
             }
         }
 
@@ -49,11 +55,11 @@ namespace Proyect
         /// Obteien la lista de id de aquellos que tienen el rol de administrador.
         /// </summary>
         /// <value></value>
-        public List<string> Admin_Id
+        public IList<string> Admin_Id
         {
             get
             {
-                return this.Tokens;
+                return this.admin_Id;
             }
         }
         /// <summary>
@@ -130,6 +136,31 @@ namespace Proyect
                 return true;
             }
             return false;
+        }
+
+        /// <summary>
+        /// Convierte a json la lista de codigos para que una compnai se pueda registrar.
+        /// </summary>
+        /// <returns>La lista de tokens serializada.</returns>
+        public string ConvertToJson()
+        {
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = MyReferenceHandler.Preserve,
+                WriteIndented = true
+            };
+            return System.Text.Json.JsonSerializer.Serialize(this.Tokens, options);
+        }
+
+        public void Deserialize()
+        {
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = MyReferenceHandler.Preserve,
+                WriteIndented = true
+            };
+            string json = System.IO.File.ReadAllText(@"../Library/Persistencia/CompanyCodes.json");
+            this.Tokens = JsonConvert.DeserializeObject<IList<string>>(json);
         }
     }
 }

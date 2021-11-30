@@ -60,6 +60,12 @@
             <param name="user_Id"></param>
             <returns></returns>
         </member>
+        <member name="M:Proyect.Administrator.ConvertToJson">
+            <summary>
+            Convierte a json la lista de codigos para que una compnai se pueda registrar.
+            </summary>
+            <returns>La lista de tokens serializada.</returns>
+        </member>
         <member name="T:Proyect.APILocationContainer">
             <summary>
             Contenedor de la instancia de la api de localizacion (clase singleton, solo hay una instancia).
