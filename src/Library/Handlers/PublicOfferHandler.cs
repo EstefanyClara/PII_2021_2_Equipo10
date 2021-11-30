@@ -42,13 +42,15 @@ namespace Proyect
                     DataUserContainer.Instance.UserDataHistory.Add(message.Id,lista);
                     DataUserContainer.Instance.UserDataHistory[message.Id][0].Add("/public");
                     return true;
-                }else
+                }
+                else
                 {
                     if (DataUserContainer.Instance.UserDataHistory[message.Id][0][0].Equals("/public"))
                     {
                         response = "Usted ya esta en proceso de publicación";
                         return true;
-                    }else
+                    }
+                    else
                     {
                         response = string.Empty;
                         return false;
@@ -69,7 +71,8 @@ namespace Proyect
                     }
                     response = mensaje.ToString();
                     return true;
-                }if (DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0)
+                }
+                if (DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0)
                 {
                     response = "Debe ingresar /si o /no";
                     return true;
@@ -87,11 +90,13 @@ namespace Proyect
                                 number--;
                                 userData.Add(number.ToString());
                                 response = "Ahora ingrese la cantida en del producto (en kilogramos)";
-                            }else
+                            }
+                            else
                             {
                                 response = "Número invalido";
                             }
-                        }else
+                        }
+                        else
                         {
                             response = "El dato ingresado no es valido\nPor favor, revise que haya ingresado un número (Ej:'1' Para elegir la primera clasificacion)";
                         }
@@ -102,7 +107,8 @@ namespace Proyect
                         {
                             userData.Add(cantidad.ToString());
                             response = "Ahora ingrese el costo del producto (en pesos uruguayos)";
-                        }else
+                        }
+                        else
                         {
                             response = "El dato ingresado no es valido\nPor favor, revise que haya ingresado un número (Ej:'1' Para elegir el primer rubro)";
                         }
@@ -112,7 +118,8 @@ namespace Proyect
                         {
                             userData.Add(cantidad.ToString());
                             response = "Ahora ingrese la ubicacion del producto";
-                        }else
+                        }
+                        else
                         {
                             response = "El dato ingresado no es valido\nPor favor, revise que haya ingresado un número (Ej:'1' Para elegir el primer rubro)";
                         }
@@ -131,7 +138,8 @@ namespace Proyect
                             }
                             userData.Add("");
                             response = mensaje.ToString();
-                        }else
+                        }
+                        else
                         {
                             response = "Por favor ingrese un dato valido";
                         }
@@ -151,16 +159,20 @@ namespace Proyect
                                         userData.Add(habilitacion);
                                         response = "Se ha agregado la habilitación. Recuerde que puede hacer /stop para dejar de agregar habiliatciones.";
                                         return true;
-                                    }else
+                                    }
+                                    else
                                     {
                                         response = "La habilitación indicada ya se encuentra seleccionada";
                                         return true;
                                     }                           
-                                }else{  
+                                }
+                                else
+                                {  
                                     response = "El índice ingresado no es valido";
                                     return true;
                                 }
-                            }else
+                            }
+                            else
                             {
                                 response = "El dato ingresado no es valido\nPor favor, revise que haya ingresado un número (Ej:'1' Para elegir la primera habilitacion)";
                                 return true;
@@ -180,7 +192,8 @@ namespace Proyect
                                     userData.Add(message.Text+",");
                                     response = "Se ha/n agregado la/s palabra clave";
                                     return true;
-                                }else
+                                }
+                                else
                                 {
                                     string palabraIngresada = message.Text.Replace(".","").Trim(' ');
                                     string[] palabras = userData[6].Split(",");
@@ -193,23 +206,26 @@ namespace Proyect
                                                 return true;
                                             }
                                         }
-                                        string words = userData[6];
-                                        words = words + "," + palabraIngresada;
-                                        userData.RemoveAt(6);
-                                        userData.Add(words);
-                                        response = "Se ha agregado la palabra clave";
-                                        return true;
+                                    string words = userData[6];
+                                    words = words + "," + palabraIngresada;
+                                    userData.RemoveAt(6);
+                                    userData.Add(words);
+                                    response = "Se ha agregado la palabra clave";
+                                    return true;
                                 }
-                            }else
+                            }
+                            else
                             {
                                 response = "Por favor ingrese un dato valido";
                                 return true;
                             }
-                        }if (!userData[6].Contains(","))
+                        }
+                        if (!userData[6].Contains(","))
                         {
                             response = "Debe ingresar al menos una palabra clave";
                             return true;
-                        }else
+                        }
+                        else
                         {
                             userData.Add(" ");
                             StringBuilder mensaje = new StringBuilder();
@@ -257,14 +273,16 @@ namespace Proyect
                             if (userData[0].Equals("/si"))
                             {
                                 AppLogic.Instance.PublicConstantOffer(compania, AppLogic.Instance.Classifications[Convert.ToInt32(userData[1])], Convert.ToDouble(userData[2]), Convert.ToDouble(userData[3]), userData[4], lista, words);
-                            }if (userData[0].Equals("/no"))
+                            }
+                            if (userData[0].Equals("/no"))
                             {
                                 AppLogic.Instance.PublicNonConstantOffer(compania, AppLogic.Instance.Classifications[Convert.ToInt32(userData[1])], Convert.ToDouble(userData[2]), Convert.ToDouble(userData[3]), userData[4], lista, words);
                             }
                             DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
                             response = "Usted a publicado la oferta con éxito";
                             return true;
-                        }if(message.Text.ToLower().Replace(" ","").Equals("/no"))
+                        }
+                        if(message.Text.ToLower().Replace(" ","").Equals("/no"))
                         {
                             DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
                             response = "Se procederá a eliminar todos los datos ingresados.\n\nEn el caso de querer volver a querer publicar una oferta, por favor use el comando '/Public'.";

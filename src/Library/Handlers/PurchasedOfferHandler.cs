@@ -11,7 +11,7 @@ namespace Proyect
     public class PurchasedOfferHandler : BaseHandler
     {
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="PurchasedOfferHandler"/>. Esta clase procesa si la perosna que envio el mensaje esta registrada.
+        /// Inicializa una nueva instancia de la clase <see cref="PurchasedOfferHandler"/>. Esta clase procesa si la persona que envio el mensaje esta registrada.
         /// </summary>
         /// <param name="next">El próximo "handler".</param>
         public PurchasedOfferHandler(BaseHandler next) : base(next)
@@ -48,17 +48,20 @@ namespace Proyect
                             {
                                 response = "Debe ingresar /misofertasaceptadas o /misofertasaceptadas (número) para obtener sus ofertas aceptadas.";
                                 return true;
-                            }if (number < 1)
+                            }
+                            if (number < 1)
                             {
                                 response = "Debe ingresar un número mayor o igual a 1 en el periodo de dias";
                                 return true;
                             }
                             DataUserContainer.Instance.UserDataHistory[message.Id][1].Add(comando[1]);
-                        }else
+                        }
+                        else
                         {
                             comandoSolo = true;
                         }
-                    }else
+                    }
+                    else
                     {
                         response = "Comando no valido\n\nSi quiere ver las ofertas aceptadas puede ingresar /misofertasaceptadas y obtener todas sus ofertas aceptadas o /mis ofertas aceptadas (dia) para obtener las ofertas aceptadas desde la actualidad hasta el (dias) atras. (Ej: si ingresa '/misofertasaceptadas 2' obtendrá todas las ofertas aceptadas en los ultimos dos dias.";
                         return true;
@@ -72,7 +75,8 @@ namespace Proyect
                         if (comandoSolo)
                         {
                             listaOfertas = AppLogic.Instance.GetOffersAccepted(AppLogic.Instance.GetCompany(message.Id));
-                        }else
+                        }
+                        else
                         {
                             listaOfertas = AppLogic.Instance.GetOffersAccepted(AppLogic.Instance.GetCompany(message.Id),number);
                         }
@@ -96,7 +100,8 @@ namespace Proyect
                         if (comandoSolo)
                         {
                             listaOfertas = AppLogic.Instance.GetOffersAccepted(AppLogic.Instance.GetEmprendedor(message.Id));
-                        }else
+                        }
+                        else
                         {
                             listaOfertas = AppLogic.Instance.GetOffersAccepted(AppLogic.Instance.GetEmprendedor(message.Id),number);
                         }
@@ -116,7 +121,8 @@ namespace Proyect
                     }
                     DataUserContainer.Instance.UserOfferDataSelection.Add(message.Id, listaOfertas);
                     response = mensaje.ToString();
-                }else
+                }
+                else
                 {
                     response = "No puede realizar esta acción en este momento";
                 }
@@ -157,7 +163,8 @@ namespace Proyect
                                         if(userData.Count == 2)
                                         {
                                             datosDeCompra = oferta.GetPeriodTimeOffersAcceptedData(Convert.ToInt32(userData[1]));
-                                        }else
+                                        }
+                                        else
                                         {
                                             datosDeCompra = oferta.PurchesedData;
                                         }
@@ -168,12 +175,14 @@ namespace Proyect
                                         DataUserContainer.Instance.UserDataHistory[message.Id][0].Add("/oferta");
                                         response = $"Oferta {number}.\nPublicada el: {oferta.DatePublished}\n\nClasificación del producto: {oferta.Product.Classification.Category}\nCantidad del producto: {oferta.Product.Quantity}\nPrecio de compra: {oferta.Product.Price}\nUbicación del producto: {oferta.Product.Ubication}\nRequerimientos necesarios:{mensajeHabilitaciones}\nPalabras claves asociadas: {mensajeKeyWords}\n\nEmprendedor/es que la aceptaron: {mensajeCompraData}\n\n Usted puede seleccionar al comprador indicando su indice para obtener más detalles, o utilizar /Cancel para salir."; 
                                         return true;
-                                    }else
+                                    }
+                                    else
                                     {
                                         if(userData.Count > 2)
                                         {
                                             datosDeCompra = oferta.GetPeriodTimeOffersAcceptedData(Convert.ToInt32(userData[1]), AppLogic.Instance.GetEmprendedor(message.Id));
-                                        }else
+                                        }
+                                        else
                                         {
                                             datosDeCompra = oferta.GetEntrepreneursPurchaseData(AppLogic.Instance.GetEmprendedor(message.Id));
                                         }
@@ -186,27 +195,32 @@ namespace Proyect
                                         response = $"Oferta {number}.\nPublicada el: {oferta.DatePublished}\n\nClasificación del producto: {oferta.Product.Classification.Category}\nCantidad del producto: {oferta.Product.Quantity}\nPrecio de compra: {oferta.Product.Price}\nUbicación del producto: {oferta.Product.Ubication}\nRequerimientos necesarios:{mensajeHabilitaciones}\nPalabras claves asociadas: {mensajeKeyWords}\nFecha de compra: {mensajeCompraData}"; 
                                         return true;
                                     }
-                                }else
+                                }
+                                else
                                 {
                                     response = "Debe ingresar un número valido";
                                     return true;
                                 }
-                            }else
+                            }
+                            else
                             {
                                 response = "Debe ingresar el comando y un número";
                                 return true;
                             }
-                        }else
+                        }
+                        else
                         {
                             response = "El comando ingresado no es valido, recuerde ingresar /oferta (indice de la oferta) para ver los detalles de compra de una oferta";
                             return true;
                         }
-                    }else
+                    }
+                    else
                     {
                         response = "Para ver una oferta en especifico debe ingresar el comando /oferta (indice de la oferta)";
                         return true;
                     }
-                }else
+                }
+                else
                 {
                     if(comando.Count() == 1)
                     {
@@ -217,7 +231,8 @@ namespace Proyect
                             if(userData.Count == 3)
                             {
                                 datosDeCompra = DataUserContainer.Instance.UserOfferDataSelection[message.Id][Convert.ToInt32(userData[userData.Count-1])].GetPeriodTimeOffersAcceptedData(Convert.ToInt32(userData[1]));
-                            }else
+                            }
+                            else
                             {
                                 datosDeCompra = DataUserContainer.Instance.UserOfferDataSelection[message.Id][Convert.ToInt32(userData[userData.Count-1])].PurchesedData;
                             }
@@ -231,15 +246,18 @@ namespace Proyect
                                 DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
                                 DataUserContainer.Instance.UserOfferDataSelection.Remove(message.Id);
                                 response = $"Comprador {number}\n\nNombre: {datosDeCompra[number-1].Buyer.Name}\nRubo al que pertenece: {datosDeCompra[number-1].Buyer.Rubro}\nUbicación: {datosDeCompra[number-1].Buyer.Ubication}\nContacto: {datosDeCompra[number-1].Buyer.User_Contact}\nHabilitaciones que posee: {mensajeHabilitaciones}\nFecha de compra: {datosDeCompra[number-1].PurchaseDate}.";
-                            }else
+                            }
+                            else
                             {
                                 response ="Debe ingresar un número valido";
                             }
-                        }else
+                        }
+                        else
                         {
                             response = "Debe ingresar un número que concuerde con algun índice";
                         }
-                    }else
+                    }
+                    else
                     {
                         response = "Debe ingresar solo el índice del comprador que quiere ver";
                     }

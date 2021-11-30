@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Proyect
 {
     /// <summary>
-    /// Clase contenedora del historia de mensajes que un usuario manda
+    /// Clase contenedora del historia de mensajes que un usuario manda.
     /// </summary>
     public sealed class DataUserContainer
     {

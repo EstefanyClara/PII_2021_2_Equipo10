@@ -10,7 +10,7 @@ namespace Proyect
     public class GetConstantMaterialsHandler : BaseHandler
     {
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="GetConstantMaterialsHandler"/>. Esta clase procesa si la perosna que envio el mensaje esta registrada.
+        /// Inicializa una nueva instancia de la clase <see cref="GetConstantMaterialsHandler"/>. Esta clase procesa si la persona que envio el mensaje esta registrada.
         /// </summary>
         /// <param name="next">El próximo "handler".</param>
         public GetConstantMaterialsHandler(BaseHandler next) : base(next)
@@ -32,7 +32,8 @@ namespace Proyect
                 {
                     response = "Para utilizar este comando primero debe terminar el proceso actual";
                     return true;
-                }else
+                }
+                else
                 {
                     StringBuilder mensaje = new StringBuilder();
                     mensaje.Append("Los materiales constantes presentes en nuestra aplicación actualmente son:\n");
