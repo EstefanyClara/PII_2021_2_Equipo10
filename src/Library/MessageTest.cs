@@ -13,7 +13,18 @@ namespace Proyect
         private long msgid;
 
         /// <summary>
-        /// ropierty del id del usuario.
+        /// Constructor de la clase message para el text.
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="MSGID"></param>
+        public MessageTest(string ID,int MSGID)
+        {
+            this.id = ID;
+            this.msgid = MSGID;
+        }
+
+        /// <summary>
+        /// Propierty get y set del id.
         /// </summary>
         /// <value>El id del usurio.</value>
         public string Id
