@@ -7,7 +7,10 @@ namespace Proyect
 {
     /// <summary>
     /// Esta clase administrador invita a los usuarios a registarse.
-    /// Clase singleton, solo una instancia de administrador. 
+    /// Clase singleton, solo una instancia de administrador.
+    /// Esta clase contiene ademas, la lista de codigos para que una compnai se pueda registrar.
+    /// Tambien contien la lista de id de usuarios, que tienen poderio de administrador.
+    /// Serializamos solo la lista de codigos, para asi mantener el encpasulamiento, ya que adminsitrador solo deberia tener un constructor privado.
     /// </summary>
     public sealed class Administrator : IJsonConvertible
     {
@@ -26,7 +29,7 @@ namespace Proyect
         /// <summary>
         /// Obtiene la instancia de administrador.
         /// </summary>
-        /// <value></value>
+        /// <value>La instacia unica de administrador.</value>
         public static Administrator Instance
         {
             get
@@ -36,9 +39,9 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obteien la lista de tokes que el administardo coloca.
+        /// Obteien la lista de tokes que el administardo crea, y que se usan para registrar companias..
         /// </summary>
-        /// <value></value>
+        /// <value>La lista de codigos.</value>
         public IList<string> Tokens
         {
             get
@@ -54,7 +57,7 @@ namespace Proyect
         /// <summary>
         /// Obteien la lista de id de aquellos que tienen el rol de administrador.
         /// </summary>
-        /// <value></value>
+        /// <value>La lista de id de administradors.</value>
         public IList<string> Admin_Id
         {
             get
@@ -64,14 +67,15 @@ namespace Proyect
         }
         /// <summary>
         /// Metodo que crea una compania si la misma ingreso un token correcto (Utiliza Creator).
+        /// Tiene esta repsnsabiliad, ya que es la tien ela lista de tokes para validad (Por expert).
         /// </summary>
-        /// <param name="companyToken"></param>
-        /// <param name="name"></param>
-        /// <param name="ubication"></param>
-        /// <param name="rubro"></param>
-        /// <param name="user_Id"></param>
-        /// <param name="user_Contact"></param>
-        /// <returns></returns>
+        /// <param name="companyToken">El codigo de regsitro.</param>
+        /// <param name="name">El nombre de la compania.</param>
+        /// <param name="ubication">La ubicacion de la compañia.</param>
+        /// <param name="rubro">El rubor de la compañia.</param>
+        /// <param name="user_Id">El id de usuario.</param>
+        /// <param name="user_Contact">El mail de conatcto de la compania.</param>
+        /// <returns>La compania que si posee el codigo correcto, null en caso contrario.</returns>
         public Company ConfirmCompanyRegistration(string companyToken,string user_Id, string name, string ubication, Rubro rubro, string user_Contact)
         {   
             if (tokens.Contains(companyToken))
@@ -93,7 +97,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Genera un codigo con el cual una compnai se podra registrar.
+        /// Genera un codigo con el cual una compañia se podra registrar (Por expert).
         /// </summary>
         /// <returns>Codigo con el cual una compania se podra registrar.</returns>
         public string Invite()
@@ -110,10 +114,10 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Coloca el id de un usuario al la lista de id con rol de administrador.
+        /// Coloca el id de un usuario al la lista de id con rol de administrador (Por expert).
         /// </summary>
-        /// <param name="confirmCode"></param>
-        /// <param name="user_Id"></param>
+        /// <param name="confirmCode">El codigo de confirmacion.</param>
+        /// <param name="user_Id">El id de usuario.</param>
         public bool AddAdministrator(string confirmCode, string user_Id)
         {
             if (confirmCode == "145879")
@@ -125,10 +129,10 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Procesa si el id de usuario ingresado, es un id de un administrador.
+        /// Procesa si el id de usuario ingresado, es un id de un administrador (Por expert).
         /// </summary>
-        /// <param name="user_Id"></param>
-        /// <returns></returns>
+        /// <param name="user_Id">El id de usuario.</param>
+        /// <returns>True si es adminsatrdor, false en caso contrario.</returns>
         public bool IsAdministrator(string user_Id)
         {
             if(this.Admin_Id.Contains(user_Id))
@@ -139,7 +143,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Convierte a json la lista de codigos para que una compnai se pueda registrar.
+        /// Convierte a json la lista de codigos para que una compañia se pueda registrar (Por expert).
         /// </summary>
         /// <returns>La lista de tokens serializada.</returns>
         public string ConvertToJson()
@@ -152,6 +156,9 @@ namespace Proyect
             return System.Text.Json.JsonSerializer.Serialize(this.Tokens, options);
         }
 
+        /// <summary>
+        /// Deserializa la lista de codigos (Por expert).
+        /// </summary>
         public void Deserialize()
         {
             JsonSerializerOptions options = new()

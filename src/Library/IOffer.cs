@@ -1,73 +1,74 @@
 using System.Collections.Generic;
 using System.Collections;
-using System;
-using System.Text.Json;
-using Newtonsoft.Json.Serialization;
-using Newtonsoft.Json;
-using System.Runtime.Serialization;
 
 namespace Proyect
 {
     /// <summary>
-    /// Interfaz para las ofertas de una compania.
+    /// Interfaz para las ofertas de una compania, la utilizaron ambos tipos de ofertas, y si se quieren agrregar mas, tambien habran de utilizar esta interfaz.
     /// </summary>
     public interface IOffer
     {
         /// <summary>
-        /// Obtiene el producto de la oferta.
+        /// Propiedad get y set del producto de la oferta.
         /// </summary>
-        /// <value></value>
-        ProductOffer Product{get;}
+        /// <value>El producto.</value>
+        ProductOffer Product{get; set;}
 
         /// <summary>
-        /// Obtiene las habilitaciones de la oferta.
+        /// Propiedad get y set de las habilitaciones de la oferta.
         /// </summary>
-        /// <value>qualifications</value>
+        /// <value>Las habiliatciones.</value>
         IList<Qualifications> Qualifications{get; set;}
 
         /// <summary>
-        /// Obtiene la lista de palabras clave de una oferta.
+        /// Propierti de la lista de palabras clave de una oferta.
         /// </summary>
-        /// <value>keyWords</value>
+        /// <value>keyWords.</value>
         ArrayList KeyWords{get;set;}
 
         /// <summary>
-        /// Obtiene la fecha de publicacion de la oferta.
+        /// Propierti de la fecha de publicacion de la oferta.
         /// </summary>
         /// <value>DateTime</value>
-        string DatePublished{get;}
+        string DatePublished{get;set;}
 
         /// <summary>
         /// La informacion de compra de la oferta.
         /// </summary>
-        /// <value></value>
-        IList<PurchaseData> PurchesedData{get;}
+        /// <value>La lisat con la informacion de compra de la oferta.</value>
+        IList<PurchaseData> PurchesedData{get;set;}
 
         /// <summary>
-        /// Obtien todas las ofertas que le fueron aceptadas en un periodo de tiempo.
+        /// Obtien toda la informacion de compra (compardor y fecha de compra), del peridodo de tiempo indicado.
+        /// Por expert le asiganmaos esta responsabiliad (Es la que tiene la lisat de informacion de compra).
         /// </summary>
         /// <param name="periodTime"></param>
-        /// <returns>mensaje con la informacion de compra de sus ofertas</returns>
+        /// <returns>La lisat con la infromacion de compra.</returns>
         IList<PurchaseData> GetPeriodTimeOffersAcceptedData(int periodTime);
 
         /// <summary>
-        /// Obtiene la infromacion de compra del emprendedor indicado, en el tiempo establecido.
+        /// Obtiene la infromacion de compra del emprendedor indicado, en el perido de tiempo establecido.
+        /// Por expert le asiganmaos esta responsabiliad (Es la que tiene la lisat de informacion de compra).
         /// </summary>
-        /// <param name="periodTime"></param>
-        /// <param name="emprendedor"></param>
-        /// <returns></returns>
+        /// <param name="periodTime">El perido de tiempo.</param>
+        /// <param name="emprendedor">El emprendedor.</param>
+        /// <returns>La lista con la inforamcion de compra.</returns>
         IList<PurchaseData> GetPeriodTimeOffersAcceptedData(int periodTime, Emprendedor emprendedor);
 
         /// <summary>
-        /// Obtiene todos los datos de compra de la oferta, del emprendedor indicado.
+        /// Obtiene todos los datos de compra de la oferta del emprendedor indicado.
+        /// Por expert le asiganmaos esta responsabiliad (Es la que tiene la lisat de informacion de compra).
         /// </summary>
-        /// <param name="emprendedor"></param>
-        /// <returns></returns>
+        /// <param name="emprendedor">El emprendedor.</param>
+        /// <returns>La informacion de compra.</returns>
         IList<PurchaseData> GetEntrepreneursPurchaseData(Emprendedor emprendedor);
+
         /// <summary>
-        /// Le asigna el emprendedor y la fecha de compra a la oferta, una vez es comprada.
+        /// Le asigna el emprendedor y la fecha de compra a la oferta, una vez es comprada (La informacion de compra).
+        /// Por expert le asiganmaos esta responsabiliad (Es la que tiene la lista de informacion de compra).
         /// </summary>
-        /// <param name="emprendedor"></param>
+        /// <param name="emprendedor">El emprendedor.</param>
+        /// <returns>Mensaje de confirmacion.</returns>
         bool PutBuyer(Emprendedor emprendedor);
     }
 }

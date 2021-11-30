@@ -2,9 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Ucu.Poo.Locations.Client;
-using System.Threading.Tasks;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 
 namespace Proyect
@@ -14,6 +12,7 @@ namespace Proyect
     /// Solo hay una instancia de esta clase, y es la que colabora con todas las demas.
     /// Esta clase guarda las instancias tanto de campanias y de emprendedores, asi como de los rubros, clasificaciones, y habilitaciones (La usa de manera muy cercana).
     /// Todos lso comabios qu ese hagan a algun objeto, pasan por esta clase, esto permite que sea mas facilemnete el utilizar la logica del programa, sin depender de los handlers.
+    /// En la serializacion, solo serializamos la lista, patra asi mantener el encapsulamiento, ya que la logica solo debria tener un constructor privado.
     /// </summary>
     public sealed class AppLogic
     {
