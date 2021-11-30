@@ -1,4 +1,79 @@
 {
   "$id": "1",
-  "$values": []
+  "$values": [
+    {
+      "$id": "2",
+      "Qualifications": {
+        "$id": "3",
+        "$values": [
+          {
+            "$id": "4",
+            "QualificationName": "Transporte pesado."
+          }
+        ]
+      },
+      "Specializations": "Especialista en transporte de metales pesados",
+      "PurchasedOffers": {
+        "$id": "5",
+        "$values": []
+      },
+      "OfertasConstantes": {
+        "$id": "6",
+        "$values": []
+      },
+      "OfertasNoConstantes": {
+        "$id": "7",
+        "$values": [
+          {
+            "$id": "8",
+            "Product": {
+              "$id": "9",
+              "Classification": {
+                "$id": "10",
+                "Category": "Metales"
+              },
+              "Quantity": 100,
+              "Price": 300,
+              "Ubication": "Centro"
+            },
+            "Qualifications": {
+              "$id": "11",
+              "$values": [
+                {
+                  "$id": "12",
+                  "QualificationName": "Transporte pesado."
+                }
+              ]
+            },
+            "KeyWords": {
+              "$id": "13",
+              "$values": [
+                "Metal",
+                "/top"
+              ]
+            },
+            "PurchesedData": {
+              "$id": "14",
+              "$values": [
+                {
+                  "$id": "15",
+                  "Buyer": null,
+                  "PurchaseDate": "2021-11-30T12:00:13.9445993-03:00"
+                }
+              ]
+            },
+            "DatePublished": "30/11/2021 9:36:10"
+          }
+        ]
+      },
+      "Name": "Matias",
+      "Ubication": "Av. 8 de Octubre 2738",
+      "Rubro": {
+        "$id": "16",
+        "RubroName": "Metales"
+      },
+      "User_Id": "2128982774",
+      "User_Contact": "Matias@gmail.ocm"
+    }
+  ]
 }

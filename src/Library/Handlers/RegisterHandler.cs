@@ -59,7 +59,7 @@ namespace Proyect
                 }if (message.Text.ToLower().Replace(" ","").Equals("/no") & DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0) //Proceso si el mensaje esra para verificar que tipo de usuario es.
                 {
                     DataUserContainer.Instance.UserDataHistory[message.Id][1].Add("/no");
-                    response = "Usted se registrará como usuario en esta aplicación\n¿Está de acuerdo? (/si o /no)";
+                    response = "Usted se registrará como emprendedor en esta aplicación\n¿Está de acuerdo? (/si o /no)";
                     return true;
                 }if (DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0) //Me fijo en que instancia del hanlder esta, para saber si el mensaje que ingreso es valido.
                 {
@@ -84,12 +84,12 @@ namespace Proyect
                         if(message.Text.ToLower().Replace(" ","").Equals("/si")) //Regulo si el mensaje que ingreso el usuraio es valido.
                         {
                             userData.Add("Emprendedor no necesita Token (este es un espacio momentaneo presente hasta que el emprendedor ingrese sus habilitaciones)");
-                            response = "Ingrese el nombre de su emprendimiento";
+                            response = "Ingrese su nombre";
                             return true;
                         }if(message.Text.ToLower().Replace(" ","").Equals("/no")) //Regulo nuevamnete si el mensaje que ingreso el usuraio es valido.
                         {
                             DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
-                            response = "Recuerde que puede registraser como usuario en cualquier momento.\n\nPara registrarse como compañía contacte con el administrador";
+                            response = "Recuerde que puede registraser como emprendedor en cualquier momento.\n\nPara registrarse como compañía contacte con el administrador";
                             return true;
                         }
                         response = "Dato erroneo ingrese /si o /no"; //Si el programa llego a este punto, significa que el usuario ingreso un dato diferente al esperado.
@@ -100,14 +100,14 @@ namespace Proyect
                         if (!message.Text.Contains("?")) //Regulo si el mensaje tiene algun caracter no valido.
                         {
                             userData.Add(message.Text); //El nombre.
-                            response = "Ingrese su ubicacíon actual:"; //Proximo tipo de informacion a ingresar.
+                            response = "Ingrese su ubicacíon actual, cuanto mas especifico sea, mas exactos seran nustros servcios (Ejemplo de ubicacion especifica: Av. 8 de Octubre 2738)\nUbicacíon: "; //Proximo tipo de informacion a ingresar.
                         }else
                         {
                             response = "Por favor ingrese un dato valido."; //Mensaje que se envia si el  mensaje ingresado no es valido.
                         }
                         return true;
                     case 3: //La lista de informacion tiene tres elementos, por lo que el usuario habra ingresado su ubicacíon.
-                        if (!message.Text.Contains(",") & !message.Text.Contains(".")) // Regulo si el mensaje tiene caracteres no validos.
+                        if (!message.Text.Contains("?")) // Regulo si el mensaje tiene caracteres no validos.
                         {
                             userData.Add(message.Text); //La ubicacion de la compania
                         }else
@@ -163,13 +163,13 @@ namespace Proyect
                                 foreach (Qualifications item in AppLogic.Instance.Qualifications)
                                 {
                                     index++;
-                                    mensaje.Append($"{index}-{item.QualificationName}\n");
+                                    mensaje.Append($"\n{index}-{item.QualificationName}");
                                 }
                                 response = mensaje.ToString();
                             }
                         }else
                         {
-                            response = "Debe ingresar un formato valido para el mail. (Ej: C4Bot@gamil.com)"; //Mensaje que se muestra si el usuario no ingreso un mensaje con los caracteres necesarios.
+                            response = "Debe ingresar un formato valido para el mail. (Ej: C4Bot@gmail.com)"; //Mensaje que se muestra si el usuario no ingreso un mensaje con los caracteres necesarios.
                         }
                         return true;
                     case 6: //La lista de informacion tiene cinco elementos, por lo que el usuario habra ingreado o el indice de la habiliatcion que tiene, o el mensaje de confirmacion de registro.
@@ -216,7 +216,7 @@ namespace Proyect
                                             habilitacion = habilitacion + "-" + message.Text.Replace(" ",""); //Agrego el nuevo indice con el delimitador "-".
                                             userData.RemoveAt(5);
                                             userData.Add(habilitacion);
-                                            response = "Se ha agregado la habilitacion.\nSi ya no quoere agregar mas, puede hacer /stop.";
+                                            response = "Se ha agregado la habilitacion.\nSi ya no quiere agregar mas puede hacer /stop.";
                                             return true;
                                         }else
                                         {
@@ -230,7 +230,7 @@ namespace Proyect
                                     }
                                 }else
                                 {
-                                    response = "El dato ingresado no es valido\nPor favor, revise que haya ingresado un número (Ej:'1' Para elegir la primera habilitacion)";//Mnesaje que se muetra si no ingreso un numero.
+                                    response = "El dato ingresado no es valido.\nPor favor, revise que haya ingresado un número (Ej:'1' Para elegir la primera habilitacion)";//Mnesaje que se muetra si no ingreso un numero.
                                     return true;
                                 }
                             }
@@ -239,7 +239,7 @@ namespace Proyect
                         userData.Add(""); //Agrego a la lista de informacion un dato hefimero, para que salte al proimo case la siguinete vez que entre al handler.
                         return true;
                     case 7: //Si la lista de informacion tiene siete elementos, signifca que el usurio, que se quiere registrar como emprendedor, ingreso su especializacio.
-                        if (!message.Text.Contains("")) //Regulo si el mensaje contiene caracteres no validos.
+                        if (!message.Text.Contains("?")) //Regulo si el mensaje contiene caracteres no validos.
                         {
                             userData.RemoveAt(6);//Remueveo el dato hefimero y agrego el dato ingresado por el usuario.
                             userData.Add(message.Text);

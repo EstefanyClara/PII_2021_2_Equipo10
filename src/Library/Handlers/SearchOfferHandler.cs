@@ -1,10 +1,8 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using System.Collections;
 using System.Text;
 using Nito.AsyncEx;
-using System.Threading.Tasks;
 
 namespace Proyect
 {
@@ -40,7 +38,7 @@ namespace Proyect
                 }
                 if(!DataUserContainer.Instance.UserDataHistory.Keys.Contains(message.Id))
                 {
-                    response = "Indique como quiere buscar ofertas\n/1 - Nombre\n/2 - Ubicacion\n/3 - Clasificación";
+                    response = "Indique como quiere buscar ofertas\n/1 - Palabra clave.\n/2 - Ubicacíon\n/3 - Clasificación";
                     List<List<string>> lista = new List<List<string>>() {new List<string>(),new List<string>()};
                     DataUserContainer.Instance.UserDataHistory.Add(message.Id, lista);
                     DataUserContainer.Instance.UserDataHistory[message.Id][0].Add("/buscar");
@@ -74,7 +72,14 @@ namespace Proyect
                 if ((message.Text.ToLower().Replace(" ","").Equals("/3") && DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0))
                 {
                     DataUserContainer.Instance.UserDataHistory[message.Id][1].Add("Clasificacion");
-                    response = "Indique la clasificación de ofertas deseadas";
+                    StringBuilder mensaje = new StringBuilder();
+                    mensaje.Append("Indique la clasificación de ofertas deseadas indicando su indice.");
+                    int indice = 1;
+                    foreach (Classification item in AppLogic.Instance.Classifications)
+                    {
+                        mensaje.Append($"{indice++}-{item.Category}\n");
+                    }
+                    response = mensaje.ToString();
                     return true;
                 }if (DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 0)
                 {
@@ -86,9 +91,9 @@ namespace Proyect
                 int index = 1;
                 if(userData[0].Equals("Nombre") && DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 1)
                 {
-                    if(AppLogic.Instance.SearchOfferByKeywords(message.Text) != null)
+                    List<IOffer> list = AppLogic.Instance.SearchOfferByKeywords(message.Text.Trim(' '));
+                    if(list.Count != 0)
                     {
-                        List<IOffer> list = AppLogic.Instance.SearchOfferByKeywords(message.Text.Trim(' '));
                         DataUserContainer.Instance.UserOfferDataSelection.Add(message.Id, list);
                         DataUserContainer.Instance.UserOfferDataSelection[message.Id] = list;
                         StringBuilder sb = new StringBuilder($"Ofertas de {message.Text} disponibles - Escriba el número de la oferta para verla mas a detalle");
@@ -108,9 +113,9 @@ namespace Proyect
                 }
                 if(userData[0].Equals("Ubicacion") && DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 1)
                 {
-                    if(AppLogic.Instance.SearchOfferByUbication(message.Text) != null)
+                    List<IOffer> list = AppLogic.Instance.SearchOfferByUbication(message.Text.Trim(' '));
+                    if(list.Count != 0)
                     {
-                        List<IOffer> list = AppLogic.Instance.SearchOfferByUbication(message.Text.Trim(' '));
                         DataUserContainer.Instance.UserOfferDataSelection.Add(message.Id, list);
                         DataUserContainer.Instance.UserOfferDataSelection[message.Id] = list;
                         StringBuilder sb = new StringBuilder($"Ofertas en {message.Text} disponibles - Escriba el número de la oferta verla mas a detalle");
@@ -131,26 +136,41 @@ namespace Proyect
                 }
                 if(userData[0].Equals("Clasificacion") && DataUserContainer.Instance.UserDataHistory[message.Id][1].Count == 1)
                 {
-                    if(AppLogic.Instance.SearchOfferByType(message.Text) != null)
+                    int number;
+                    if (int.TryParse(message.Text, out number))
                     {
-                        List<IOffer> list = AppLogic.Instance.SearchOfferByType(message.Text);
-                        DataUserContainer.Instance.UserOfferDataSelection.Add(message.Id, list);
-                        DataUserContainer.Instance.UserOfferDataSelection[message.Id] = list;
-                        StringBuilder sb = new StringBuilder($"Ofertas de tipo {message.Text} disponibles - Escriba el número de la oferta verla mas a detalle");
-                        foreach (IOffer item in list)
+                        if (AppLogic.Instance.Classifications.Count - number >= 0)
                         {
-                            sb.Append($"\n{index++} - {item.Product.Classification.Category} - cantidad: {item.Product.Quantity} - precio unitario: {item.Product.Price} - ubicación: {item.Product.Ubication} - fecha de publicación: {item.DatePublished}");
+                            List<IOffer> list = AppLogic.Instance.SearchOfferByType(AppLogic.Instance.Classifications[number-1].Category);
+                            if(list.Count != 0)
+                            {
+                                DataUserContainer.Instance.UserOfferDataSelection.Add(message.Id, list);
+                                DataUserContainer.Instance.UserOfferDataSelection[message.Id] = list;
+                                StringBuilder sb = new StringBuilder($"Ofertas de tipo {message.Text} disponibles - Escriba el número de la oferta verla mas a detalle");
+                                foreach (IOffer item in list)
+                                {
+                                    sb.Append($"\n{index++} - {item.Product.Classification.Category} - cantidad: {item.Product.Quantity} - precio unitario: {item.Product.Price} - ubicación: {item.Product.Ubication} - fecha de publicación: {item.DatePublished}");
+                                }
+                                DataUserContainer.Instance.UserDataHistory[message.Id][1].Add("/comprar");
+                                response = sb.ToString();
+                                return true;
+                            }else
+                            {
+                                DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
+                                DataUserContainer.Instance.UserOfferDataSelection.Remove(message.Id);
+                                response = "No se encontaron ofertan con dicha clasificacion.";
+                                return true;
+                            }  
+                        }else
+                        {
+                            response = "Número invalido";
+                            return true;
                         }
-                        DataUserContainer.Instance.UserDataHistory[message.Id][1].Add("/comprar");
-                        response = sb.ToString();
-                        return true;
                     }else
                     {
-                        DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
-                        DataUserContainer.Instance.UserOfferDataSelection.Remove(message.Id);
-                        response = "No se encontaron ofertan con dicha clasificacion.";
+                        response = "El dato ingresado no es valido\nPor favor, revise que haya ingresado un número (Ej:'1' Para elegir la primera clasificacion)";
                         return true;
-                    }  
+                    }
                 }
                 switch(userData.Count)
                 {
@@ -171,7 +191,7 @@ namespace Proyect
                                     mensaje.Append($"-{item.QualificationName}");
                                 }
                                 userData.Add(indice.ToString());
-                                response = $"Oferta {indice}.\n\nClasificacion: {oferta.Product.Classification}\nPrecio: {oferta.Product.Price}\nCantidad: {oferta.Product.Quantity}\nUbicacion: {oferta.Product.Ubication}\nHabilitaciones necesarias: {mensaje}\n\n\nPuede utilizar /Distancia para obetenr un mapa de la oferta junto con su distancia actual\nPuede hacer uso de /map para obtener un mapa de la ubicacion de la oferta.";
+                                response = $"Oferta {indice}.\n\nClasificacion: {oferta.Product.Classification.Category}\nPrecio: {oferta.Product.Price}\nCantidad: {oferta.Product.Quantity}\nUbicacion: {oferta.Product.Ubication}\nHabilitaciones necesarias: {mensaje}\n\n\nPuede utilizar /Distancia para obetenr un mapa de la oferta junto con su distancia actual\nPuede hacer uso de /map para obtener un mapa de la ubicacion de la oferta.";
                                 return true;
                             }
                         }else

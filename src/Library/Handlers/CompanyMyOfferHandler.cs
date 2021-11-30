@@ -228,18 +228,18 @@ namespace Proyect
                                         {
                                             if (AppLogic.Instance.Qualifications.Count - number >= 0)
                                             {
-                                                if (!compania.OffersPublished[Convert.ToInt32(userData[0])].Qualifications.Contains(AppLogic.Instance.Qualifications[number-1]))
+                                                foreach(Qualifications item in compania.OffersPublished[Convert.ToInt32(userData[0])].Qualifications)
                                                 {
+                                                    if (item.QualificationName.Equals(AppLogic.Instance.Qualifications[number-1].QualificationName))
+                                                    {
+                                                        response = "La habilitación ya se encuentra en la oferta";
+                                                        return true;
+                                                    }
+                                                }
                                                     DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
                                                     AppLogic.Instance.AddQualification(compania,compania.OffersPublished[Convert.ToInt32(userData[0])],AppLogic.Instance.Qualifications[number-1]);
                                                     response = $"se agregó {AppLogic.Instance.Qualifications[number-1].QualificationName} a la oferta seleccionada";
                                                     return true;
-                                                    
-                                                }else
-                                                {
-                                                    response = "La habilitación ya se encuentra en la oferta";
-                                                    
-                                                }
                                             }else
                                             {
                                                 response = "Número invalido";

@@ -38,7 +38,7 @@ namespace Proyect
                     mensaje.Append("Los materiales constantes presentes en nuestra aplicación actualmente son:\n");
                     foreach(var item in AppLogic.Instance.GetConstantMaterials())
                     {
-                        mensaje.Append($"\n{item.Key.Category}: {(item.Value > 0 ? item.Value.ToString() + " Oferta/s" : "Sin ofertas que se ofrezcan de forma constante.")}");
+                        mensaje.Append($"\n{item.Key}: {(item.Value > 0 ? item.Value.ToString() + " Oferta/s" : "Sin ofertas que se ofrezcan de forma constante.")}");
                     }
                     response = mensaje.ToString();
                 }

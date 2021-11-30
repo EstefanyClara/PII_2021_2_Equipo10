@@ -1,7 +1,177 @@
 {
   "$id": "1",
-  "companias": {
-    "$id": "2",
-    "$values": []
-  }
+  "$values": [
+    {
+      "$id": "2",
+      "OffersPublished": {
+        "$id": "3",
+        "$values": []
+      },
+      "OfertasConstantes": {
+        "$id": "4",
+        "$values": [
+          {
+            "$id": "5",
+            "Product": {
+              "$id": "6",
+              "Classification": {
+                "$id": "7",
+                "Category": "Metales"
+              },
+              "Quantity": 20,
+              "Price": 300,
+              "Ubication": "Centro"
+            },
+            "Qualifications": {
+              "$id": "8",
+              "$values": [
+                {
+                  "$id": "9",
+                  "QualificationName": "Transporte pesado."
+                }
+              ]
+            },
+            "KeyWords": {
+              "$id": "10",
+              "$values": [
+                "T\u00F3xicos"
+              ]
+            },
+            "PurchesedData": {
+              "$id": "11",
+              "$values": []
+            },
+            "DatePublished": "30/11/2021 1:24:19"
+          },
+          {
+            "$id": "12",
+            "Product": {
+              "$id": "13",
+              "Classification": {
+                "$id": "14",
+                "Category": "Plasticos"
+              },
+              "Quantity": 300,
+              "Price": 399,
+              "Ubication": "Centro"
+            },
+            "Qualifications": {
+              "$id": "15",
+              "$values": [
+                {
+                  "$id": "16",
+                  "QualificationName": "Vehiculo propio."
+                },
+                {
+                  "$id": "17",
+                  "QualificationName": "Espacio para grandes volumenes de producto"
+                }
+              ]
+            },
+            "KeyWords": {
+              "$id": "18",
+              "$values": [
+                "Plasticos",
+                "Botellas"
+              ]
+            },
+            "PurchesedData": {
+              "$id": "19",
+              "$values": []
+            },
+            "DatePublished": "30/11/2021 9:46:50"
+          }
+        ]
+      },
+      "OfertasNoConstantes": {
+        "$id": "20",
+        "$values": [
+          {
+            "$id": "21",
+            "Product": {
+              "$id": "22",
+              "Classification": {
+                "$id": "23",
+                "Category": "Metales"
+              },
+              "Quantity": 100,
+              "Price": 300,
+              "Ubication": "Centro"
+            },
+            "Qualifications": {
+              "$id": "24",
+              "$values": [
+                {
+                  "$id": "25",
+                  "QualificationName": "Transporte pesado."
+                }
+              ]
+            },
+            "KeyWords": {
+              "$id": "26",
+              "$values": [
+                "Metal",
+                "/top"
+              ]
+            },
+            "PurchesedData": {
+              "$id": "27",
+              "$values": [
+                {
+                  "$id": "28",
+                  "Buyer": {
+                    "$id": "29",
+                    "Qualifications": {
+                      "$id": "30",
+                      "$values": [
+                        {
+                          "$id": "31",
+                          "QualificationName": "Transporte pesado."
+                        }
+                      ]
+                    },
+                    "Specializations": "Especialista en transporte de metales pesados",
+                    "PurchasedOffers": {
+                      "$id": "32",
+                      "$values": []
+                    },
+                    "OfertasConstantes": {
+                      "$id": "33",
+                      "$values": []
+                    },
+                    "OfertasNoConstantes": {
+                      "$id": "34",
+                      "$values": [
+                        {
+                          "$ref": "21"
+                        }
+                      ]
+                    },
+                    "Name": "Matias",
+                    "Ubication": "Av. 8 de Octubre 2738",
+                    "Rubro": {
+                      "$id": "35",
+                      "RubroName": "Metales"
+                    },
+                    "User_Id": "2128982774",
+                    "User_Contact": "Matias@gmail.ocm"
+                  },
+                  "PurchaseDate": "2021-11-30T12:00:13.9445993-03:00"
+                }
+              ]
+            },
+            "DatePublished": "30/11/2021 9:36:10"
+          }
+        ]
+      },
+      "Name": "MatiasCoro",
+      "Ubication": "Centro",
+      "Rubro": {
+        "$id": "36",
+        "RubroName": "Metales"
+      },
+      "User_Id": "1688753395",
+      "User_Contact": "Matiascabreraclavijo@gmail.com"
+    }
+  ]
 }

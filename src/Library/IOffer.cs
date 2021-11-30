@@ -13,7 +13,6 @@ namespace Proyect
     /// </summary>
     public interface IOffer
     {
-        int Id{get;}
         /// <summary>
         /// Obtiene el producto de la oferta.
         /// </summary>
@@ -42,14 +41,14 @@ namespace Proyect
         /// La informacion de compra de la oferta.
         /// </summary>
         /// <value></value>
-        List<PurchaseData> PurchesedData{get;}
+        IList<PurchaseData> PurchesedData{get;}
 
         /// <summary>
         /// Obtien todas las ofertas que le fueron aceptadas en un periodo de tiempo.
         /// </summary>
         /// <param name="periodTime"></param>
         /// <returns>mensaje con la informacion de compra de sus ofertas</returns>
-        List<PurchaseData> GetPeriodTimeOffersAcceptedData(int periodTime);
+        IList<PurchaseData> GetPeriodTimeOffersAcceptedData(int periodTime);
 
         /// <summary>
         /// Obtiene la infromacion de compra del emprendedor indicado, en el tiempo establecido.
@@ -57,14 +56,14 @@ namespace Proyect
         /// <param name="periodTime"></param>
         /// <param name="emprendedor"></param>
         /// <returns></returns>
-        List<PurchaseData> GetPeriodTimeOffersAcceptedData(int periodTime, Emprendedor emprendedor);
+        IList<PurchaseData> GetPeriodTimeOffersAcceptedData(int periodTime, Emprendedor emprendedor);
 
         /// <summary>
         /// Obtiene todos los datos de compra de la oferta, del emprendedor indicado.
         /// </summary>
         /// <param name="emprendedor"></param>
         /// <returns></returns>
-        List<PurchaseData> GetEntrepreneursPurchaseData(Emprendedor emprendedor);
+        IList<PurchaseData> GetEntrepreneursPurchaseData(Emprendedor emprendedor);
         /// <summary>
         /// Le asigna el emprendedor y la fecha de compra a la oferta, una vez es comprada.
         /// </summary>

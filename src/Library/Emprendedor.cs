@@ -10,7 +10,7 @@ namespace Proyect
     /// </summary>
     public class Emprendedor : User
     {
-        private List<Qualifications> qualifications;
+        private IList<Qualifications> qualifications;
 
         private string specializations;
 
@@ -24,6 +24,7 @@ namespace Proyect
         /// <param name="qualifications">Hablitaciones del emprendedor.</param>
         /// <param name="specializations">Especializaciones del emprendedor.</param>
         /// <param name="user_Id">Identificacion del emprendedor.</param>
+        /// <param name="user_Contact">Contacto del emprendedor.</param>
         public Emprendedor(string user_Id, string name, string ubication, Rubro rubro,string user_Contact, List<Qualifications> qualifications, string specializations):base(user_Id, name, ubication, rubro, user_Contact)
         {
             this.Qualifications = qualifications;
@@ -34,7 +35,7 @@ namespace Proyect
         /// Propiedad get y set de las habilitaciones.
         /// </summary>
         /// <value>this.qualifications</value>
-        public List<Qualifications> Qualifications
+        public IList<Qualifications> Qualifications
         {
             get
             {
@@ -71,6 +72,10 @@ namespace Proyect
             {
                 return this.purchasedOffer;
             }
+            set
+            {
+                this.purchasedOffer = value;
+            }
         }
 
         /// <summary>
@@ -93,7 +98,7 @@ namespace Proyect
             List<IOffer> ofertas = new List<IOffer>();
             foreach(IOffer offer in this.PurchasedOffers)
             {
-                List<PurchaseData> infoDeCompraOferta = offer.GetPeriodTimeOffersAcceptedData(periodTime, this);
+                IList<PurchaseData> infoDeCompraOferta = offer.GetPeriodTimeOffersAcceptedData(periodTime, this);
                 if(infoDeCompraOferta.Count >= 1)
                 {
                     ofertas.Add(offer);

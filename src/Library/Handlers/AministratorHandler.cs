@@ -39,7 +39,7 @@ namespace Proyect
                         response = "El codigo ingresado no es correcto";
                         return true;
                     }
-                }if(comando.Count() == 1 && comando[0].Equals("/invitar"))
+                }if(comando.Count() == 1 && comando[0].Equals("/invitar") && Administrator.Instance.IsAdministrator(message.Id))
                 {
                     response = AppLogic.Instance.Invite();
                     return true;

@@ -28,11 +28,6 @@ namespace Proyect
             }
         }
 
-        public IOffer GetOffer(int i)
-        {
-            return AppLogic.Instance.GetOffer(i);
-        }
-
         /// <summary>
         /// Busca las ofertas con la palabra clave que se le pasa.
         /// </summary>

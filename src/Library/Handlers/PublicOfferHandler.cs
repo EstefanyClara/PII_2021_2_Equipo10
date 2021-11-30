@@ -149,7 +149,7 @@ namespace Proyect
                                         habilitacion = habilitacion + "-" + message.Text.Replace(" ","");
                                         userData.RemoveAt(5);
                                         userData.Add(habilitacion);
-                                        response = "Se ha agregado la habilitación";
+                                        response = "Se ha agregado la habilitación. Recuerde que puede hacer /stop para dejar de agregar habiliatciones.";
                                         return true;
                                     }else
                                     {

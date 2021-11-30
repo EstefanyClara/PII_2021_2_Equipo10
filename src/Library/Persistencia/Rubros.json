@@ -12,6 +12,10 @@
     {
       "$id": "4",
       "RubroName": "Medicina"
+    },
+    {
+      "$id": "5",
+      "RubroName": "Metales"
     }
   ]
 }

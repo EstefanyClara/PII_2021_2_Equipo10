@@ -5,9 +5,17 @@ using System.Text.Json.Serialization;
 
 namespace Proyect
 {
+    /// <summary>
+    /// Handler utilizado para la serializacion.
+    /// </summary>
     public class MyReferenceHandler : ReferenceHandler
     {
         private static MyReferenceHandler instance;
+
+        /// <summary>
+        /// La instancia del hanlder de referencia.
+        /// </summary>
+        /// <value></value>
         public static MyReferenceHandler Instance
         {
             get
@@ -20,9 +28,22 @@ namespace Proyect
             }
         }
 
+        /// <summary>
+        /// Constructor del handler.
+        /// </summary>
+        /// <returns></returns>
         public MyReferenceHandler() => Reset();
         private ReferenceResolver _rootedResolver;
+
+        /// <summary>
+        /// Resolvedor de referencias.
+        /// </summary>
+        /// <returns></returns>
         public override ReferenceResolver CreateResolver() => _rootedResolver;
+
+        /// <summary>
+        /// Reseteador del hanlder.
+        /// </summary>
         public void Reset() => _rootedResolver = new MyReferenceResolver();
     }
 

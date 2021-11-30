@@ -33,9 +33,19 @@ namespace Proyect
         /// </summary>
         protected string user_Contact;
 
-        protected List<ConstantOffer> ofertasConstantes = new List<ConstantOffer>();
-        protected List<NonConstantOffer> ofertasNoConstantes = new List<NonConstantOffer>();
+        /// <summary>
+        /// Lista de ofertas constantes, que posee el usuario (Uasada en la serializacion).
+        /// </summary>
+        /// <returns></returns>
+        [JsonInclude]
+        public List<ConstantOffer> OfertasConstantes {get;set;}
 
+        /// <summary>
+        /// Lista de ofertas no constantes, que posee el usuario (Usadas en la serializacion).
+        /// </summary>
+        /// <returns></returns>
+        [JsonInclude]
+        public List<NonConstantOffer> OfertasNoConstantes {get;set;}
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="User"/>
         /// </summary>
@@ -50,6 +60,8 @@ namespace Proyect
             {
                 throw new EmptyUserBuilderException("Los datos ingresados no son validos, nombre o ubicacion vacios");
             }
+            this.OfertasNoConstantes = new List<NonConstantOffer>();
+            this.OfertasConstantes = new List<ConstantOffer>();
             this.Name = name;
             this.Ubication = ubication;
             this.Rubro = rubro;
@@ -57,6 +69,9 @@ namespace Proyect
             this.User_Contact = user_Contact;
         }
 
+        /// <summary>
+        /// Constructor para la serializacion.
+        /// </summary>
         [JsonConstructor]
         public User()
         {
@@ -134,20 +149,6 @@ namespace Proyect
             {
                 this.user_Contact = value;
             }
-        }
-
-        [JsonInclude]
-        public List<ConstantOffer> OfertasConstantes
-        {
-            get{ return this.ofertasConstantes;}
-            set{this.ofertasConstantes = value;}
-        }
-
-        [JsonInclude]
-        public List<NonConstantOffer> OfertasNoConstantes
-        {
-            get{ return this.ofertasNoConstantes;}
-            set{this.ofertasNoConstantes = value;}
         }
     }
 }
