@@ -18,7 +18,7 @@ namespace Proyect
         /// <summary>
         /// Id del usuario.
         /// </summary>
-        string Id { get;}
+        string Id { get;set;}
 
         /// <summary>
         /// El mensaje.
@@ -29,7 +29,7 @@ namespace Proyect
         /// Id del chat.
         /// </summary>
         /// <value></value>
-        long MsgId{get;}
+        long MsgId{get;set;}
 
         /// <summary>
         /// Envia una imagen a un usuario

@@ -15,6 +15,12 @@ namespace Proyect
         private string text;
         private long msgid;
 
+        public MessageTest(string ID,int MSGID)
+        {
+            this.id = ID;
+            this.msgid = MSGID;
+        }
+
         public string Id
         {
             get{return this.id;}

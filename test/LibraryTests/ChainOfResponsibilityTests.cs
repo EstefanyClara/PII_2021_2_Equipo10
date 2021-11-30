@@ -19,7 +19,7 @@ namespace Tests
         SearchOfferHandler searchOfferHandler = new SearchOfferHandler(null);
         PurchasedOfferHandler purchasedOfferHandler = new PurchasedOfferHandler(null);
         AdministratorHandler administratorHandler = new AdministratorHandler(null);
-        IMessage message = new MessageTest();
+        IMessage message;
 
 
 
@@ -35,14 +35,17 @@ namespace Tests
             searchOfferHandler.Next = purchasedOfferHandler;
             purchasedOfferHandler.Next = administratorHandler;
 
-            
+            handler = autorizationHandler;
+
+            message = new MessageTest("761714026",1234);
 
         }
 
         [Test]
-        public void TestRegisterHandlesRegister()
+        public void TestAuthorizarionDelegatesRegister()
         {
-            message.Text = registerHandler.Keywords[0];
+            message.Text = autorizationHandler.Keywords[0];
+
             string response;
 
             IHandler result = handler.Handle(message,out response);

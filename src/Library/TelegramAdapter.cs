@@ -55,6 +55,10 @@ namespace Proyect
             {
                 return this.id.ToString();
             }
+            set
+            {
+                this.id = int.Parse(value);
+            }
         }
         
         /// <summary>
@@ -66,6 +70,10 @@ namespace Proyect
             get
             {
                 return this.msgId;
+            }
+            set
+            {
+                this.msgId = value;
             }
         }
 
