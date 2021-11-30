@@ -37,6 +37,7 @@
             <param name="ubication"></param>
             <param name="rubro"></param>
             <param name="user_Id"></param>
+            <param name="user_Contact"></param>
             <returns></returns>
         </member>
         <member name="M:Proyect.Administrator.Invite">
@@ -365,19 +366,13 @@
             <param name="ubication">Ubicacion de la compania.</param>
             <param name="rubro">Rubro de la compania.</param>
             <param name="user_Id">Identificacion de la compania.</param>
+            <param name="user_Contact">Contacto de la compania.</param>
         </member>
         <member name="P:Proyect.Company.OffersPublished">
             <summary>
             Metodo que retorna una lista con las ofertas publicadas por la empresa.
             </summary>
             <value>this.offers</value>
-        </member>
-        <member name="M:Proyect.Company.GetOffer(System.Int32)">
-            <summary>
-            Devuelve una oferta especifica si la encuentra en su coleccion.
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
         </member>
         <member name="M:Proyect.Company.PublicConstantOffer(Proyect.Classification,System.Double,System.Double,System.String,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.ArrayList)">
             <summary>
@@ -464,6 +459,11 @@
             <param name="qualifications"></param>
             <param name="keyWords"></param>
         </member>
+        <member name="M:Proyect.ConstantOffer.#ctor">
+            <summary>
+            Constructor utilizado en la serializacion.
+            </summary>
+        </member>
         <member name="P:Proyect.ConstantOffer.Id">
             <summary>
             Id por el cual se va a identificar la oferta dentro de nuestro programa.
@@ -543,6 +543,7 @@
             <param name="qualifications">Hablitaciones del emprendedor.</param>
             <param name="specializations">Especializaciones del emprendedor.</param>
             <param name="user_Id">Identificacion del emprendedor.</param>
+            <param name="user_Contact">Contacto del emprendedor.</param>
         </member>
         <member name="P:Proyect.Emprendedor.Qualifications">
             <summary>
@@ -1051,6 +1052,11 @@
             <param name="qualifications"></param>
             <param name="keyWords"></param>
         </member>
+        <member name="M:Proyect.NonConstantOffer.#ctor">
+            <summary>
+            Constructor utilizado en la serilizacion.
+            </summary>
+        </member>
         <member name="P:Proyect.NonConstantOffer.Product">
             <summary>
             Obtiene el producto de una oferta.
@@ -1142,12 +1148,6 @@
             <param name="type">Tipo de oferta.</param>
             <returns>una lista con las offertas</returns>
         </member>
-        <member name="T:Proyect.CompanyDes">
-            <summary>
-            Esta clase administrador invita a los usuarios a registarse.
-            Clase singleton, solo una instancia de administrador. 
-            </summary>
-        </member>
         <member name="T:Proyect.EmprendedoresDes">
             <summary>
             Esta clase administrador invita a los usuarios a registarse.
@@ -1166,6 +1166,34 @@
             Json utilizando JsonSerializer.Deserialize.
             </summary>
             <returns>El objeto convertido a texto en formato Json.</returns>
+        </member>
+        <member name="T:Proyect.MyReferenceHandler">
+            <summary>
+            Handler utilizado para la serializacion.
+            </summary>
+        </member>
+        <member name="P:Proyect.MyReferenceHandler.Instance">
+            <summary>
+            La instancia del hanlder de referencia.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Proyect.MyReferenceHandler.#ctor">
+            <summary>
+            Constructor del handler.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.MyReferenceHandler.CreateResolver">
+            <summary>
+            Resolvedor de referencias.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Proyect.MyReferenceHandler.Reset">
+            <summary>
+            Reseteador del hanlder.
+            </summary>
         </member>
         <member name="T:Proyect.ProductOffer">
             <summary>
@@ -1277,6 +1305,7 @@
             Crea una nueva instancia de la clase <see cref="T:Proyect.TelegramAdapter"/>.
             </summary>
             <param name="message"></param>
+            <param name="bot"></param>
         </member>
         <member name="P:Proyect.TelegramAdapter.Text">
             <summary>
@@ -1293,6 +1322,14 @@
             Identificador del chat.
             </summary>
             <value></value>
+        </member>
+        <member name="M:Proyect.TelegramAdapter.SendProfileImage(System.String,System.String)">
+            <summary>
+            Metodo que se encarga de neviar una foto al chat de telegram (Su utiliza el patron adapter).
+            </summary>
+            <param name="mensaje"></param>
+            <param name="direccion"></param>
+            <returns></returns>
         </member>
         <member name="T:Proyect.User">
             <summary>
@@ -1324,6 +1361,18 @@
             Contacto del usurario.
             </summary>
         </member>
+        <member name="P:Proyect.User.OfertasConstantes">
+            <summary>
+            Lista de ofertas constantes, que posee el usuario (Uasada en la serializacion).
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Proyect.User.OfertasNoConstantes">
+            <summary>
+            Lista de ofertas no constantes, que posee el usuario (Usadas en la serializacion).
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Proyect.User.#ctor(System.String,System.String,System.String,Proyect.Rubro,System.String)">
             <summary>
             Inicializa una nueva instancia de la clase <see cref="T:Proyect.User"/>
@@ -1333,6 +1382,11 @@
             <param name="rubro">Rubro del usuario.</param>
             <param name="user_Id">Rubro del usuario.</param>
             <param name="user_Contact">Rubro del usuario.</param>
+        </member>
+        <member name="M:Proyect.User.#ctor">
+            <summary>
+            Constructor para la serializacion.
+            </summary>
         </member>
         <member name="P:Proyect.User.Name">
             <summary>

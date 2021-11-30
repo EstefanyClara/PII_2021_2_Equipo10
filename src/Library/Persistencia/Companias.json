@@ -7,22 +7,57 @@
         "$id": "3",
         "$values": []
       },
+      "OfertasConstantes": {
+        "$id": "4",
+        "$values": [
+          {
+            "$id": "5",
+            "Id": 0,
+            "Product": {
+              "$id": "6",
+              "Classification": {
+                "$id": "7",
+                "Category": "Metales"
+              },
+              "Quantity": 20,
+              "Price": 300,
+              "Ubication": "Centro"
+            },
+            "Qualifications": {
+              "$id": "8",
+              "$values": [
+                {
+                  "$id": "9",
+                  "QualificationName": "Transporte pesado."
+                }
+              ]
+            },
+            "KeyWords": {
+              "$id": "10",
+              "$values": [
+                "Toxciso"
+              ]
+            },
+            "PurchesedData": {
+              "$id": "11",
+              "$values": []
+            },
+            "DatePublished": null
+          }
+        ]
+      },
+      "OfertasNoConstantes": {
+        "$id": "12",
+        "$values": []
+      },
       "Name": "Jdbd",
       "Ubication": "Jebd",
       "Rubro": {
-        "$id": "4",
+        "$id": "13",
         "RubroName": "Medicina"
       },
       "User_Id": "1688753395",
-      "User_Contact": "Matiascabreraclavijo@gmail.com",
-      "OfertasConstantes": {
-        "$id": "5",
-        "$values": []
-      },
-      "OfertasNoConstantes": {
-        "$id": "6",
-        "$values": []
-      }
+      "User_Contact": "Matiascabreraclavijo@gmail.com"
     }
   ]
 }
