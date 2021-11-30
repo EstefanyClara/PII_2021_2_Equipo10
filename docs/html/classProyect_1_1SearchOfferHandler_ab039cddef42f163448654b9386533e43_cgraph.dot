@@ -1,0 +1,35 @@
+digraph "Proyect.SearchOfferHandler.InternalHandle"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Proyect.SearchOfferHandler.\lInternalHandle",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Procesa el mensaje \"/registrar\" y retorna true; retorna false en caso contrario."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Proyect.AppLogic.AccepOffer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1AppLogic.html#a687b14caad4049eb4ebd9b9b579fd983",tooltip="Metodo para aceptar una oferta. Como app logic es la que conoce todos los datos para habilitar la ope..."];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Proyect.Emprendedor.AddPurchased\lOffer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1Emprendedor.html#aff77c5915ade872b394712743a722d45",tooltip="Metodo para agregar una oferta a la lista de ofertas que el emprendedor acepto (Por expert)."];
+  Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Proyect.IOffer.PutBuyer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$interfaceProyect_1_1IOffer.html#a596365415fbc8ad8e7f88ef2022996e9",tooltip="Le asigna el emprendedor y la fecha de compra a la oferta, una vez es comprada."];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Proyect.AppLogic.GetEmprendedor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1AppLogic.html#aa2f58473e2f2b26f891f38d6af67d3ec",tooltip="Obtiene el emprendedor mendiante el ingreso de un id de usuario."];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Proyect.AppLogic.ObteinOffer\lDistance",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1AppLogic.html#a25410666841e99064065371f7ddcc7dc",tooltip="Metodo que permite obtener la distancia entre un emprendedor y un producto."];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="Proyect.AppLogic.ObteinOfferMap",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1AppLogic.html#a445aac40fb42aba4486861880bd20c7f",tooltip="Metodo que obtiene el mapa de la ubicacion de una oferta."];
+  Node1 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="Proyect.AppLogic.SearchOffer\lByKeywords",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1AppLogic.html#a2fb173e90531825c5255b4e8dfbadeaf",tooltip="Metodo que se encarga de buscar las ofertas por palabra clave. Le delega la responsabilidada a OfferS..."];
+  Node8 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="Proyect.OfferSearch.Search\lByKeywords",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1OfferSearch.html#a6d04dadf960454609cb9a0516b61e983",tooltip="Busca las ofertas con la palabra clave que se le pasa."];
+  Node1 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="Proyect.AppLogic.SearchOffer\lByType",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1AppLogic.html#a94024e32b05cc5834859a180aabc49c4",tooltip="Metodo que se encarga de buscar las ofertas por tipo. Le delega la responsabilidada a OfferSearch (Po..."];
+  Node10 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="Proyect.OfferSearch.Search\lByType",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1OfferSearch.html#ae51b1323e7310449918f9dba195f4d8f",tooltip="Busca ofertas por el tipo."];
+  Node1 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="Proyect.AppLogic.SearchOffer\lByUbication",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1AppLogic.html#a38f8d3e217cd2cbfab68be1eed8f970f",tooltip="Metodo que se encarga de buscar las ofertas por ubicacion. Le delega la responsabilidada a OfferSearc..."];
+  Node12 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="Proyect.OfferSearch.Search\lByUbication",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1OfferSearch.html#a145795706177121ff9a2d08fd3258329",tooltip="Busca ofertas por ubicacion."];
+  Node1 -> Node14 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="Proyect.IMessage.SendProfile\lImage",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$interfaceProyect_1_1IMessage.html#a57c479d9753cd0ac149f1ecb06ac9d19",tooltip="Envia una imagen a un usuario"];
+}

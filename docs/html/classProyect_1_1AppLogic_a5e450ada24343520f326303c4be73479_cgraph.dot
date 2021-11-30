@@ -1,0 +1,13 @@
+digraph "Proyect.AppLogic.GetOffersAccepted"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Proyect.AppLogic.GetOffers\lAccepted",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Obtiene la cantidad de ofertas que fueron aceptadas en un periodo de tiempo establecido por el usuari..."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Proyect.Emprendedor.GetOffers\lAccepted",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1Emprendedor.html#a5a28f7f805d5b8709ef8de615ef689d3",tooltip="Obtiene la cantidad de ofertas que fueron aceptadas en un periodo de tiempo (Expert)...."];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Proyect.IOffer.GetPeriod\lTimeOffersAcceptedData",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$interfaceProyect_1_1IOffer.html#a2740788e3b3c4d7a46b8cf852e28cf0a",tooltip="Obtien todas las ofertas que le fueron aceptadas en un periodo de tiempo."];
+}

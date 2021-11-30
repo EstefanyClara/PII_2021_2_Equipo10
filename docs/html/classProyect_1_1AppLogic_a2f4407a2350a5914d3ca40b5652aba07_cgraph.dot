@@ -1,0 +1,11 @@
+digraph "Proyect.AppLogic.RegistrarCompany"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Proyect.AppLogic.Registrar\lCompany",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Registra a una compania"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Proyect.Administrator.Confirm\lCompanyRegistration",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1Administrator.html#a16169f01f92da78282d456ad6230d51f",tooltip="Metodo que crea una compania si la misma ingreso un token correcto (Utiliza Creator)."];
+}

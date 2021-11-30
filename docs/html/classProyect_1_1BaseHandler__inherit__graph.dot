@@ -1,0 +1,32 @@
+digraph "Proyect.BaseHandler"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{Proyect.BaseHandler\n|+ Next\l+ Keywords\l|+ BaseHandler()\l+ BaseHandler()\l+ Handle()\l+ Cancel()\l# InternalHandle()\l# InternalCancel()\l# CanHandle()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Clase base para implementar el patrón Chain of Responsibility."];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node2 [label="{IHandler\n|+ Next\l|+ Handle()\l+ Cancel()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$interfaceProyect_1_1IHandler.html",tooltip="Interfaz para implementar el patrón Chain of Responsibility. En ese patrón se pasa un mensaje a travé..."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node3 [label="{Proyect.AdministratorHandler\n||+ AdministratorHandler()\l# InternalHandle()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1AdministratorHandler.html",tooltip="Clase base para implementar el patrón Chain of Responsibility."];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node4 [label="{Proyect.AutorizationHandler\n||+ AutorizationHandler()\l# InternalHandle()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1AutorizationHandler.html",tooltip="Clase base para implementar el patrón Chain of Responsibility."];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node5 [label="{Proyect.CancelHandler\n||+ CancelHandler()\l# InternalHandle()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1CancelHandler.html",tooltip="Clase base para implementar el patrón Chain of Responsibility."];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node6 [label="{Proyect.CompanyMyOfferHandler\n||+ CompanyMyOfferHandler()\l# InternalHandle()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1CompanyMyOfferHandler.html",tooltip="Clase base para implementar el patrón Chain of Responsibility."];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node7 [label="{Proyect.GetConstantMaterials\lHandler\n||+ GetConstantMaterialsHandler()\l# InternalHandle()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1GetConstantMaterialsHandler.html",tooltip="Clase base para implementar el patrón Chain of Responsibility."];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node8 [label="{Proyect.MeHandler\n||+ MeHandler()\l# InternalHandle()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1MeHandler.html",tooltip="Clase base para implementar el patrón Chain of Responsibility."];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node9 [label="{Proyect.PublicOfferHandler\n||+ PublicOfferHandler()\l# InternalHandle()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1PublicOfferHandler.html",tooltip="Clase base para implementar el patrón Chain of Responsibility."];
+  Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node10 [label="{Proyect.PurchasedOfferHandler\n||+ PurchasedOfferHandler()\l# InternalHandle()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1PurchasedOfferHandler.html",tooltip="Clase base para implementar el patrón Chain of Responsibility."];
+  Node1 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node11 [label="{Proyect.RegisterHandler\n||+ RegisterHandler()\l# InternalHandle()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1RegisterHandler.html",tooltip="Clase base para implementar el patrón Chain of Responsibility."];
+  Node1 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node12 [label="{Proyect.SearchOfferHandler\n||+ SearchOfferHandler()\l# InternalHandle()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1SearchOfferHandler.html",tooltip="Clase base para implementar el patrón Chain of Responsibility."];
+  Node1 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node13 [label="{Proyect.StartHandler\n||+ StartHandler()\l# InternalHandle()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1StartHandler.html",tooltip="Clase base para implementar el patrón Chain of Responsibility."];
+}

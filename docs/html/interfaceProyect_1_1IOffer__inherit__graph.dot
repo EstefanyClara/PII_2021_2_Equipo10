@@ -1,0 +1,12 @@
+digraph "Proyect.IOffer"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{Proyect.IOffer\n|+ Product\l+ Qualifications\l+ KeyWords\l+ DatePublished\l+ PurchesedData\l|+ GetPeriodTimeOffersAccepted\lData()\l+ GetPeriodTimeOffersAccepted\lData()\l+ GetEntrepreneursPurchase\lData()\l+ PutBuyer()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Interfaz para las ofertas de una compania."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node2 [label="{Proyect.ConstantOffer\n|+ Product\l+ Qualifications\l+ KeyWords\l+ PurchesedData\l+ DatePublished\l|+ ConstantOffer()\l+ ConstantOffer()\l+ GetPeriodTimeOffersAccepted\lData()\l+ GetPeriodTimeOffersAccepted\lData()\l+ GetEntrepreneursPurchase\lData()\l+ PutBuyer()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1ConstantOffer.html",tooltip="Representa las ofertas constantes de las companias (Es del tipo IOffer, a quien usa,..."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node3 [label="{Proyect.NonConstantOffer\n|+ Product\l+ Qualifications\l+ KeyWords\l+ PurchesedData\l+ DatePublished\l|+ NonConstantOffer()\l+ NonConstantOffer()\l+ GetPeriodTimeOffersAccepted\lData()\l+ GetPeriodTimeOffersAccepted\lData()\l+ PutBuyer()\l+ GetEntrepreneursPurchase\lData()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1NonConstantOffer.html",tooltip="Esta clase representa las ofertas constantes de las companias (Cumple con ISP)."];
+}

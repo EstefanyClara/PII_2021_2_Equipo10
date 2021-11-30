@@ -1,0 +1,11 @@
+digraph "Proyect.AppLogic.AddKeyWords"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="Proyect.AppLogic.AddKeyWords",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Agrega las palabras clave de una oferta. Le delaga la responsabilidad a Company (La epxerta)."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Proyect.CompanyMyOfferHandler.\lInternalHandle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1CompanyMyOfferHandler.html#a32af3162617a6937334c733af2d5d6d7",tooltip="Procesa el mensaje \"/registrar\" y retorna true; retorna false en caso contrario."];
+}

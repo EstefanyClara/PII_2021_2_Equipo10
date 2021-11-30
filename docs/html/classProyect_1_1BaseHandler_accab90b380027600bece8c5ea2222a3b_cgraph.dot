@@ -1,0 +1,13 @@
+digraph "Proyect.BaseHandler.Handle"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Proyect.BaseHandler.Handle",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Procesa el mensaje o la pasa al siguiente \"handler\" si existe."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Proyect.IHandler.Handle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$interfaceProyect_1_1IHandler.html#ae44ac589d31f488f06aa075b3be38dd1",tooltip="Procesa el mensaje o la pasa al siguiente \"handler\" si existe."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Proyect.BaseHandler.Internal\lHandle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1BaseHandler.html#a38b099103965bbe0dce9e771696bc087",tooltip="Este método debe ser sobreescrito por las clases sucesores. La clase sucesora procesa el mensaje y re..."];
+}

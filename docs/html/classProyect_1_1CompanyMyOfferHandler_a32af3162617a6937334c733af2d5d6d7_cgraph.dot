@@ -1,0 +1,29 @@
+digraph "Proyect.CompanyMyOfferHandler.InternalHandle"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Proyect.CompanyMyOfferHandler.\lInternalHandle",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Procesa el mensaje \"/registrar\" y retorna true; retorna false en caso contrario."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Proyect.AppLogic.AddKeyWords",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1AppLogic.html#a7e215fd8b167f96c8daebe14217ed90c",tooltip="Agrega las palabras clave de una oferta. Le delaga la responsabilidad a Company (La epxerta)."];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Proyect.Company.AddKeyWords",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1Company.html#a1f8d0d117baa7f5ef70273fa81cccfa7",tooltip="Agrega palabras clave a una oferta (Por expert)."];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Proyect.AppLogic.AddQualification",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1AppLogic.html#ade7ae31c16b1d2a9216ab1bab265b070",tooltip="Agrega habilitaciones a una oferta. Le delega la responsabilidad a company (La experta)"];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Proyect.Company.AddQualification",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1Company.html#a5614c33b0804031805424bfcdb969b96",tooltip="Agrega habilitaciones a la oferta (Por expert)."];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Proyect.AppLogic.GetCompany",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1AppLogic.html#a1c920c1201dd6a6882c4c3e0a1286bb9",tooltip="Obtiene la compania mediente el id de usuraui ingreado."];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="Proyect.AppLogic.RemoveKey\lWords",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1AppLogic.html#afc85d0716b30b8323f2727e14dadbdad",tooltip="Remueve palabras clave de la oferta de una compania. Le delega la responsabilidad a company (La exper..."];
+  Node7 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="Proyect.Company.RemoveKey\lWords",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1Company.html#a177930f6354094c5890f8a63aab499c4",tooltip="Remueve palabras clave de una oferta (Por expert)."];
+  Node1 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="Proyect.AppLogic.RemoveOffer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1AppLogic.html#a82c5a2c5f538e49e15704f521ef1e0ba",tooltip="Remueve la oferta de una compania. Le delega la responsabilidad a company (La experta)."];
+  Node1 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="Proyect.AppLogic.RemoveQualification",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1AppLogic.html#a2d57eec9d6ab914e77b9674e0a2ce986",tooltip="Remueve las habilitaciones de una compania. Le delega la responsabilidad a compani (La experta)."];
+  Node10 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="Proyect.Company.RemoveQualification",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1Company.html#a18fc4d3e5ab9b12b752847630d21a643",tooltip="Remueve la habilitacion de una oferta (Por expert)."];
+}

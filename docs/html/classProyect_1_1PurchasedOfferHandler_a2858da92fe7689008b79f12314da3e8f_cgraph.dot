@@ -1,0 +1,23 @@
+digraph "Proyect.PurchasedOfferHandler.InternalHandle"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Proyect.PurchasedOfferHandler.\lInternalHandle",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Procesa el mensaje \"/registrar\" y retorna true; retorna false en caso contrario."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Proyect.AppLogic.GetCompany",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1AppLogic.html#a1c920c1201dd6a6882c4c3e0a1286bb9",tooltip="Obtiene la compania mediente el id de usuraui ingreado."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Proyect.AppLogic.GetEmprendedor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1AppLogic.html#aa2f58473e2f2b26f891f38d6af67d3ec",tooltip="Obtiene el emprendedor mendiante el ingreso de un id de usuario."];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Proyect.IOffer.GetEntrepreneurs\lPurchaseData",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$interfaceProyect_1_1IOffer.html#a2a2fb3994752ff887e2e225b43dc07f6",tooltip="Obtiene todos los datos de compra de la oferta, del emprendedor indicado."];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Proyect.AppLogic.GetOffers\lAccepted",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1AppLogic.html#a2ef9b6e1470ec22825abf4e74fe3bf27",tooltip="Obtiene un string con la indicando si sus ofertas fueron o no fueron aceptadas, en caso de que si,..."];
+  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Proyect.Company.GetOffers\lAccepted",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1Company.html#a5e519233b63a3380f9adf3bccab63c6e",tooltip="Obtiene un string con todas las ofertas que fueron o no fueron aceptadas por emprendedores(por expert..."];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="Proyect.IOffer.GetPeriod\lTimeOffersAcceptedData",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$interfaceProyect_1_1IOffer.html#a2740788e3b3c4d7a46b8cf852e28cf0a",tooltip="Obtien todas las ofertas que le fueron aceptadas en un periodo de tiempo."];
+  Node1 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="Proyect.Qualifications.Qualifications",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1Qualifications.html#ab1459c612c25f9a2e433a2744aa3dd66",tooltip="Inicializa una nueva instancia de la clase Qualifications"];
+}

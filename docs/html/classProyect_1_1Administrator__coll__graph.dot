@@ -1,0 +1,8 @@
+digraph "Proyect.Administrator"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{Proyect.Administrator\n|+ Instance\l+ Tokens\l+ Admin_Id\l|+ ConfirmCompanyRegistration()\l+ Invite()\l+ AddAdministrator()\l+ IsAdministrator()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Esta clase administrador invita a los usuarios a registarse. Clase singleton, solo una instancia de a..."];
+}

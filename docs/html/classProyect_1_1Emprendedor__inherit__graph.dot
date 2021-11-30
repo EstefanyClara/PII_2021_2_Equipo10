@@ -1,0 +1,10 @@
+digraph "Proyect.Emprendedor"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{Proyect.Emprendedor\n|+ Qualifications\l+ Specializations\l+ PurchasedOffers\l|+ Emprendedor()\l+ AddPurchasedOffer()\l+ GetOffersAccepted()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Esta clase representa un Emprendedor, hereda de user (Tienen relaciontaxonomica)."];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node2 [label="{User\n|+ OfertasConstantes\l+ OfertasNoConstantes\l+ Name\l+ Ubication\l+ Rubro\l+ User_Id\l+ User_Contact\l# name\l# ubication\l# rubro\l# user_Id\l# user_Contact\l|+ User()\l+ User()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1User.html",tooltip="Superclase user de Emprendedor y Company (quienes estan en una relaciontaxonomica con esta clase)."];
+}
