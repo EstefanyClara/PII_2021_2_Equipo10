@@ -64,6 +64,7 @@ namespace Proyect
         /// <param name="ubication"></param>
         /// <param name="rubro"></param>
         /// <param name="user_Id"></param>
+        /// <param name="user_Contact"></param>
         /// <returns></returns>
         public Company ConfirmCompanyRegistration(string companyToken,string user_Id, string name, string ubication, Rubro rubro, string user_Contact)
         {   

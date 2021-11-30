@@ -78,7 +78,7 @@ namespace Proyect
                         }
                         foreach(IOffer item in listaOfertas)
                         {
-                            List<PurchaseData> purchaseData = new List<PurchaseData>();
+                            IList<PurchaseData> purchaseData = new List<PurchaseData>();
                             if (comandoSolo)
                             {
                                 purchaseData = item.PurchesedData;
@@ -102,7 +102,7 @@ namespace Proyect
                         }
                         foreach(IOffer item in listaOfertas)
                         {
-                            List<PurchaseData> purchaseData = new List<PurchaseData>();
+                            IList<PurchaseData> purchaseData = new List<PurchaseData>();
                             if (comandoSolo)
                             {
                                 purchaseData = item.GetEntrepreneursPurchaseData(AppLogic.Instance.GetEmprendedor(message.Id));
@@ -150,7 +150,7 @@ namespace Proyect
                                         mensajeHabilitaciones.Append($"|{item}| ");
                                     }
                                     StringBuilder mensajeCompraData = new StringBuilder();
-                                    List<PurchaseData> datosDeCompra = new List<PurchaseData>();
+                                    IList<PurchaseData> datosDeCompra = new List<PurchaseData>();
                                     if (userData[0].Equals("company"))
                                     {
                                         int index = 0;
@@ -213,7 +213,7 @@ namespace Proyect
                         int number = 0;
                         if (int.TryParse(comando[0], out number))
                         {
-                            List<PurchaseData> datosDeCompra = new List<PurchaseData>();
+                            IList<PurchaseData> datosDeCompra = new List<PurchaseData>();
                             if(userData.Count == 2)
                             {
                                 datosDeCompra = DataUserContainer.Instance.UserOfferDataSelection[message.Id][Convert.ToInt32(userData[userData.Count-1])].GetPeriodTimeOffersAcceptedData(Convert.ToInt32(userData[1]));

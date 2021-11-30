@@ -23,6 +23,7 @@ namespace Proyect
         /// Crea una nueva instancia de la clase <see cref="TelegramAdapter"/>.
         /// </summary>
         /// <param name="message"></param>
+        /// <param name="bot"></param>
         public TelegramAdapter(Message message, TelegramBotClient bot)
         {
             this.message = message;
@@ -65,6 +66,12 @@ namespace Proyect
             }
         }
 
+        /// <summary>
+        /// Metodo que se encarga de neviar una foto al chat de telegram (Su utiliza el patron adapter).
+        /// </summary>
+        /// <param name="mensaje"></param>
+        /// <param name="direccion"></param>
+        /// <returns></returns>
         public async Task SendProfileImage(string mensaje, string direccion)
         {
             if (bot != null)

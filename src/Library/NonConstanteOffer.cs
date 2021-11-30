@@ -11,15 +11,12 @@ namespace Proyect
     /// <summary>
     /// Esta clase representa las ofertas constantes de las companias (Cumple con ISP).
     /// </summary>
-    public class NonConstantOffer : IOffer, IJsonConvertible
+    public class NonConstantOffer : IOffer
     {
-        private static int id = 0;
-        private int ID;
-
         private ProductOffer product;
         private IList<Qualifications> qualifications;
         private ArrayList keyWords;
-        private List<PurchaseData> purchesedData;
+        private IList<PurchaseData> purchesedData;
         private string datePublished;
 
         /// <summary>
@@ -38,18 +35,15 @@ namespace Proyect
             this.purchesedData = new List<PurchaseData>();
             this.KeyWords = keyWords;
             this.datePublished = Convert.ToString(DateTime.Now);
-            this.ID = ++id;
         }
 
+
+        /// <summary>
+        /// Constructor utilizado en la serilizacion.
+        /// </summary>
         [JsonConstructor]
         public NonConstantOffer()
         {
-            ConvertToJson();
-        }
-
-        public int Id
-        {
-            get{return this.ID;}
         }
 
         /// <summary>
@@ -62,6 +56,9 @@ namespace Proyect
             get
             {
                 return this.product;
+            }set
+            {
+                this.product = value;
             }
         }
 
@@ -103,11 +100,14 @@ namespace Proyect
         /// Obtiene la informacion de el o los compardores de esta oferta constante.
         /// </summary>
         /// <value></value>
-        public List<PurchaseData> PurchesedData
+        public IList<PurchaseData> PurchesedData
         {
             get
             {
                 return this.purchesedData;
+            }set
+            {
+                this.purchesedData = value;
             }
         }
 
@@ -115,14 +115,25 @@ namespace Proyect
         /// Obtiene la fecha de publicacion de la oferta.
         /// </summary>
         /// <value>dateTime</value>
-        public string DatePublished{get {return this.datePublished;}}
+        public string DatePublished
+        {
+            get 
+            {
+                return this.datePublished;
+            }
+            set
+            {
+                this.datePublished = value;
+            }
+        }
+
 
         /// <summary>
         /// Obtiene la informacion de compra de la oferta (expert).
         /// </summary>
         /// <param name="periodTime"></param>
         /// <returns>si la oferta se compro antes de la fecha estipulada, devuelve la iformacion de compra, en caso contrario, devuelve un striing indicando dicha situacion</returns>
-        public List<PurchaseData> GetPeriodTimeOffersAcceptedData(int periodTime)
+        public IList<PurchaseData> GetPeriodTimeOffersAcceptedData(int periodTime)
         {
             TimeSpan diference = this.PurchesedData[0].PurchaseDate - DateTime.Now;
             if(Convert.ToDouble(diference.TotalHours) <= periodTime*24)
@@ -138,7 +149,7 @@ namespace Proyect
         /// <param name="periodTime"></param>
         /// <param name="emprendedor"></param>
         /// <returns></returns>
-        public List<PurchaseData> GetPeriodTimeOffersAcceptedData(int periodTime, Emprendedor emprendedor)
+        public IList<PurchaseData> GetPeriodTimeOffersAcceptedData(int periodTime, Emprendedor emprendedor)
         {
             TimeSpan diference = this.PurchesedData[0].PurchaseDate - DateTime.Now;
             if(Convert.ToDouble(diference.TotalHours) <= periodTime*24)
@@ -178,7 +189,7 @@ namespace Proyect
         /// </summary>
         /// <param name="emprendedor"></param>
         /// <returns></returns>
-        public List<PurchaseData> GetEntrepreneursPurchaseData(Emprendedor emprendedor)
+        public IList<PurchaseData> GetEntrepreneursPurchaseData(Emprendedor emprendedor)
         {
             List<PurchaseData> compra = new List<PurchaseData>();
             foreach(PurchaseData item in this.PurchesedData)
@@ -189,11 +200,6 @@ namespace Proyect
                 }
             }
             return compra;
-        }
-
-        public string ConvertToJson()
-        {
-            return JsonSerializer.Serialize(this);
         }
     }
 }

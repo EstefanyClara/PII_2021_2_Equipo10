@@ -239,7 +239,7 @@ namespace Proyect
                         userData.Add(""); //Agrego a la lista de informacion un dato hefimero, para que salte al proimo case la siguinete vez que entre al handler.
                         return true;
                     case 7: //Si la lista de informacion tiene siete elementos, signifca que el usurio, que se quiere registrar como emprendedor, ingreso su especializacio.
-                        if (!message.Text.Contains("")) //Regulo si el mensaje contiene caracteres no validos.
+                        if (!message.Text.Contains("?")) //Regulo si el mensaje contiene caracteres no validos.
                         {
                             userData.RemoveAt(6);//Remueveo el dato hefimero y agrego el dato ingresado por el usuario.
                             userData.Add(message.Text);

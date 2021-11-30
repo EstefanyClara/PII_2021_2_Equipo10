@@ -4,6 +4,7 @@ using System.Text;
 using System;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Proyect
 {
@@ -20,7 +21,7 @@ namespace Proyect
 
         private ArrayList keyWords;
 
-        private List<PurchaseData> purchesedData;
+        private IList<PurchaseData> purchesedData;
 
         private string datePublished;
 
@@ -44,6 +45,15 @@ namespace Proyect
         }
 
         /// <summary>
+        /// Constructor utilizado en la serializacion.
+        /// </summary>
+        [JsonConstructor]
+        public ConstantOffer()
+        {
+
+        }
+
+        /// <summary>
         /// Id por el cual se va a identificar la oferta dentro de nuestro programa.
         /// </summary>
         /// <value></value>
@@ -61,6 +71,10 @@ namespace Proyect
             get
             {
                 return this.product;
+            }
+            set
+            {
+                this.product = value;
             }
         }
 
@@ -100,11 +114,15 @@ namespace Proyect
         /// Obtiene la informacion de el o los compardores de esta oferta constante.
         /// </summary>
         /// <value></value>
-        public List<PurchaseData> PurchesedData
+        public IList<PurchaseData> PurchesedData
         {
             get
             {
                 return this.purchesedData;
+            }
+            set
+            {
+                this.purchesedData = value;
             }
         }
 
@@ -119,7 +137,7 @@ namespace Proyect
         /// </summary>
         /// <param name="periodTime"></param>
         /// <returns>Mensaje con la infromacion de compra de la oferta, si la misma entra dentro del rango estipulado, en caso contrario, mensaje que indica dicha situacion.</returns>
-        public List<PurchaseData> GetPeriodTimeOffersAcceptedData(int periodTime)
+        public IList<PurchaseData> GetPeriodTimeOffersAcceptedData(int periodTime)
         {
             List<PurchaseData> infoCompras = new List<PurchaseData>();
             foreach(PurchaseData item in this.PurchesedData)
@@ -139,7 +157,7 @@ namespace Proyect
         /// <param name="periodTime"></param>
         /// <param name="emprendedor"></param>
         /// <returns></returns>
-        public List<PurchaseData> GetPeriodTimeOffersAcceptedData(int periodTime, Emprendedor emprendedor)
+        public IList<PurchaseData> GetPeriodTimeOffersAcceptedData(int periodTime, Emprendedor emprendedor)
         {
             List<PurchaseData> infoCompras = new List<PurchaseData>();
             foreach(PurchaseData item in this.PurchesedData)
@@ -158,7 +176,7 @@ namespace Proyect
         /// </summary>
         /// <param name="emprendedor"></param>
         /// <returns></returns>
-        public List<PurchaseData> GetEntrepreneursPurchaseData(Emprendedor emprendedor)
+        public IList<PurchaseData> GetEntrepreneursPurchaseData(Emprendedor emprendedor)
         {
             List<PurchaseData> infoCompras = new List<PurchaseData>();
             foreach(PurchaseData item in this.PurchesedData)

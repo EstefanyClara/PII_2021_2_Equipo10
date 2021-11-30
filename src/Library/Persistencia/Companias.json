@@ -1,7 +1,28 @@
 {
   "$id": "1",
-  "companias": {
-    "$id": "2",
-    "$values": []
-  }
+  "$values": [
+    {
+      "$id": "2",
+      "OffersPublished": {
+        "$id": "3",
+        "$values": []
+      },
+      "Name": "Jdbd",
+      "Ubication": "Jebd",
+      "Rubro": {
+        "$id": "4",
+        "RubroName": "Medicina"
+      },
+      "User_Id": "1688753395",
+      "User_Contact": "Matiascabreraclavijo@gmail.com",
+      "OfertasConstantes": {
+        "$id": "5",
+        "$values": []
+      },
+      "OfertasNoConstantes": {
+        "$id": "6",
+        "$values": []
+      }
+    }
+  ]
 }

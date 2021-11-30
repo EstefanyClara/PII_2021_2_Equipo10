@@ -3,7 +3,7 @@
   "$values": [
     {
       "$id": "2",
-      "QualificationName": "Vehiculo propio"
+      "QualificationName": "Vehiculo propio."
     },
     {
       "$id": "3",
@@ -12,6 +12,10 @@
     {
       "$id": "4",
       "QualificationName": "Lugar habilitado para conservar desechos toxicos"
+    },
+    {
+      "$id": "5",
+      "QualificationName": "Transporte pesado."
     }
   ]
 }

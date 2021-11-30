@@ -109,6 +109,7 @@ namespace Ucu.Poo.TelegramBot
             System.IO.File.WriteAllText(@"../Library/Persistencia/ClasificacionesProductos.json", AppLogic.Instance.ConvertToJson(AppLogic.Instance.Classifications));
             System.IO.File.WriteAllText(@"../Library/Persistencia/Rubros.json", AppLogic.Instance.ConvertToJson(AppLogic.Instance.Rubros));
             System.IO.File.WriteAllText(@"../Library/Persistencia/Emprendedores.json", AppLogic.Instance.ConvertToJson(AppLogic.Instance.Entrepreneurs));
+            System.IO.File.Delete(@"../Library/Persistencia/Companias.json");
             System.IO.File.WriteAllText(@"../Library/Persistencia/Companias.json", AppLogic.Instance.ConvertToJson(AppLogic.Instance.Companies));
         }
 

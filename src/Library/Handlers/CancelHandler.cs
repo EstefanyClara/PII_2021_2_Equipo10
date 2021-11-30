@@ -30,6 +30,10 @@ namespace Proyect
                 if( DataUserContainer.Instance.UserDataHistory.Keys.Contains(message.Id))
                 {
                     DataUserContainer.Instance.UserDataHistory.Remove(message.Id);
+                    if(DataUserContainer.Instance.UserOfferDataSelection.Keys.Contains(message.Id))
+                    {
+                        DataUserContainer.Instance.UserOfferDataSelection.Remove(message.Id);
+                    }
                     response = "Se regresará al estado inicial\n\nPuede usar los comando /Public -Para publicar una oferta\n/MisOfertas ver todas sus ofertas y modificarlas.";
                 }else
                 {

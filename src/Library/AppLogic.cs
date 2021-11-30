@@ -19,7 +19,7 @@ namespace Proyect
         private LocationApiClient client = APILocationContainer.Instance.APIdeLocalizacion;
         private readonly static AppLogic _instance = new AppLogic();
         private IList<Company> companies;
-        private List<Emprendedor> entrepreneurs;
+        private IList<Emprendedor> entrepreneurs;
         private List<Rubro> validRubros = new List<Rubro>(){};//new Rubro("Alimentos"),new Rubro("Tecnologia"),new Rubro("Medicina")};
 
         private List<Qualifications> validQualifications = new List<Qualifications>(){};//new Qualifications("Vehiculo propio"),new Qualifications("Espacio para grandes volumenes de producto"),new Qualifications("Lugar habilitado para conservar desechos toxicos")};
@@ -40,7 +40,7 @@ namespace Proyect
         /// Obtiene los emprendedores que estan registrados.
         /// </summary>
         /// <value>entrepreneurs.</value>
-        public List<Emprendedor> Entrepreneurs
+        public IList<Emprendedor> Entrepreneurs
         {
             get{return this.entrepreneurs;}
             set{this.entrepreneurs = value;}
@@ -107,17 +107,31 @@ namespace Proyect
 
             return System.Text.Json.JsonSerializer.Serialize(rubro, options);
         }
-        public string ConvertToJson(List<Emprendedor> rubro)
+        public string ConvertToJson(IList<Emprendedor> rubro)
         {
             JsonSerializerOptions options = new()
             {
                 ReferenceHandler = MyReferenceHandler.Preserve,
                 WriteIndented = true
             };
-            return System.Text.Json.JsonSerializer.Serialize(rubro, options);
+            EmprendedoresDes e = new EmprendedoresDes();
+            e.Emprendedores = rubro;
+            return e.ConvertToJson();
         }
 
-        public string ConvertToJson2(List<Company> rubro)
+        public string ConvertToJson2(IList<Company> rubro)
+        {
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = MyReferenceHandler.Preserve,
+                WriteIndented = true
+            };
+            CompanyDes c = new CompanyDes();
+            c.companias = rubro;
+            return c.ConvertToJson();
+        }
+
+        public string ConvertToJson(IList<Company> rubro)
         {
             JsonSerializerOptions options = new()
             {
@@ -138,22 +152,8 @@ namespace Proyect
                     }
                     value.OffersPublished.Clear();
             }
-
             return System.Text.Json.JsonSerializer.Serialize(rubro, options);
         }
-
-        public string ConvertToJson(IList<Company> rubro)
-        {
-            JsonSerializerOptions options = new()
-            {
-                ReferenceHandler = MyReferenceHandler.Preserve,
-                WriteIndented = true
-            };
-            CompanyDes c = new CompanyDes();
-            c.companias = this.Companies;
-            return c.ConvertToJson();
-        }
-
         public List<Rubro> DeserializeRubros()
         {
                 string json = System.IO.File.ReadAllText(@"../Library/Persistencia/Rubros.json");
@@ -169,22 +169,63 @@ namespace Proyect
                 string json = System.IO.File.ReadAllText(@"../Library/Persistencia/ClasificacionesProductos.json");
                 return JsonConvert.DeserializeObject<List<Classification>>(json);
         }
-        public List<Emprendedor> DeserializeEntrenprenuers()
+        public IList<Emprendedor> DeserializeEntrenprenuers()
         {
                 string json = System.IO.File.ReadAllText(@"../Library/Persistencia/Emprendedores.json");
-                return JsonConvert.DeserializeObject<List<Emprendedor>>(json);
+                EmprendedoresDes emprendedores = JsonConvert.DeserializeObject<EmprendedoresDes>(json);
+                foreach(Emprendedor item in emprendedores.Emprendedores)
+                {
+                    foreach(IOffer value in item.OfertasConstantes)
+                    {
+                        item.PurchasedOffers.Add(value);
+                    }
+                    foreach(IOffer value in item.OfertasNoConstantes)
+                    {
+                        item.PurchasedOffers.Add(value);
+                    }
+                }
+                return emprendedores.Emprendedores;
         }
 
-        public IList<Company> DeserializeCompanies()
+        public IList<Company> DeserializeCompanies2()
         {
                 string json = System.IO.File.ReadAllText(@"../Library/Persistencia/Companias.json");
                 CompanyDes companias = JsonConvert.DeserializeObject<CompanyDes>(json);
                 foreach(Company item in companias.companias)
                 {
-                    item.OffersPublished.AddRange(item.OfertasConstantes);
-                    item.OffersPublished.AddRange(item.OfertasNoConstantes);
+                    foreach(IOffer value in item.OfertasConstantes)
+                    {
+                        item.OffersPublished.Add(value);
+                    }
+                    foreach(IOffer value in item.OfertasNoConstantes)
+                    {
+                        item.OffersPublished.Add(value);
+                    }
+                    item.OfertasConstantes.Clear();
+                    item.OfertasNoConstantes.Clear();
                 }
                 return companias.companias;
+        }
+
+                public IList<Company> DeserializeCompanies()
+        {
+                string json = System.IO.File.ReadAllText(@"../Library/Persistencia/Companias.json");
+                IList<Company> companias = JsonConvert.DeserializeObject<IList<Company>>(json);
+                foreach(Company item in companias)
+                {
+                    foreach(IOffer value in item.OfertasConstantes)
+                    {
+                        item.OffersPublished.Add(value);
+                    }
+                    foreach(IOffer value in item.OfertasNoConstantes)
+                    {
+                        item.OffersPublished.Add(value);
+                    }
+                    item.OfertasConstantes.Clear();
+                    item.OfertasNoConstantes.Clear();
+                }
+
+                return companias;
         }
 
         private AppLogic()
@@ -458,15 +499,14 @@ namespace Proyect
         /// Por expert tiene esta responsabilidad.
         /// </summary>
         /// <returns>Un string con aquellos materiales que son recuerrentes.</returns>
-        public Dictionary<Classification, int> GetConstantMaterials()
+        public Dictionary<string, int> GetConstantMaterials()
         {
-
-            Dictionary<Classification, int> clasificationDictionary = new Dictionary<Classification, int>();
+            Dictionary<string, int> clasificationDictionary = new Dictionary<string, int>();
             ArrayList constantMaterials = new ArrayList();
 
             foreach(Classification item in Classifications)
             {
-                clasificationDictionary.Add(item,0);
+                clasificationDictionary.Add(item.Category,0);
             }
             foreach (Company company in Companies)
             {
@@ -475,7 +515,7 @@ namespace Proyect
                     if (offer.GetType().Equals(typeof(ConstantOffer)))
                     {
                         constantMaterials.Add(offer.Product);
-                        clasificationDictionary[offer.Product.Classification] += 1;
+                        clasificationDictionary[offer.Product.Classification.Category] += 1;
                     }
                 }
             }
