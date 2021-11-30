@@ -34,7 +34,7 @@ namespace Proyect
                 }
                 else
                 {
-                    response = "Antes de interactuar con la aplicación debe registrarse. Para registrarse use el comando /Registar.";
+                    response = "Antes de interactuar con la aplicación debe registrarse. Para registrarse use el comando /Registrar.";
                     return true;
                 }
             }

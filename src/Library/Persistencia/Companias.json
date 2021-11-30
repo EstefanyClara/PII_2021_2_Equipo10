@@ -116,87 +116,58 @@
             },
             "PurchesedData": {
               "$id": "27",
-              "$values": []
-            },
-            "DatePublished": "30/11/2021 9:36:10"
-          },
-          {
-            "$id": "28",
-            "Product": {
-              "$id": "29",
-              "Classification": {
-                "$id": "30",
-                "Category": "Organicos"
-              },
-              "Quantity": 20,
-              "Price": 300,
-              "Ubication": "Cerro"
-            },
-            "Qualifications": {
-              "$id": "31",
-              "$values": []
-            },
-            "KeyWords": {
-              "$id": "32",
-              "$values": [
-                "Org\u00E1nicos",
-                "Alimentos"
-              ]
-            },
-            "PurchesedData": {
-              "$id": "33",
               "$values": [
                 {
-                  "$id": "34",
+                  "$id": "28",
                   "Buyer": {
-                    "$id": "35",
+                    "$id": "29",
                     "Qualifications": {
-                      "$id": "36",
+                      "$id": "30",
                       "$values": [
                         {
-                          "$id": "37",
-                          "QualificationName": "Vehiculo propio."
+                          "$id": "31",
+                          "QualificationName": "Transporte pesado."
                         }
                       ]
                     },
-                    "Specializations": "Maderas",
+                    "Specializations": "Especialista en transporte de metales pesados",
                     "PurchasedOffers": {
-                      "$id": "38",
+                      "$id": "32",
                       "$values": []
                     },
                     "OfertasConstantes": {
-                      "$id": "39",
+                      "$id": "33",
                       "$values": []
                     },
                     "OfertasNoConstantes": {
-                      "$id": "40",
+                      "$id": "34",
                       "$values": [
                         {
-                          "$ref": "28"
+                          "$ref": "21"
                         }
                       ]
                     },
-                    "Name": "Matias Corp",
-                    "Ubication": "Centro",
+                    "Name": "Matias",
+                    "Ubication": "Av. 8 de Octubre 2738",
                     "Rubro": {
-                      "$id": "41",
+                      "$id": "35",
                       "RubroName": "Metales"
                     },
                     "User_Id": "2128982774",
-                    "User_Contact": "Matias@gmail.com"
+                    "User_Contact": "Matias@gmail.ocm"
                   },
-                  "PurchaseDate": "2021-11-30T09:49:07.8118991-03:00"
+                  "PurchaseDate": "2021-11-30T12:00:13.9445993-03:00"
                 }
               ]
             },
-            "DatePublished": "30/11/2021 9:45:40"
+            "DatePublished": "30/11/2021 9:36:10"
           }
         ]
       },
       "Name": "MatiasCoro",
       "Ubication": "Centro",
       "Rubro": {
-        "$id": "42",
+        "$id": "36",
         "RubroName": "Metales"
       },
       "User_Id": "1688753395",

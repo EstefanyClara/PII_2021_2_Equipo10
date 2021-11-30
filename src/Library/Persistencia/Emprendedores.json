@@ -8,11 +8,11 @@
         "$values": [
           {
             "$id": "4",
-            "QualificationName": "Vehiculo propio."
+            "QualificationName": "Transporte pesado."
           }
         ]
       },
-      "Specializations": "Maderas",
+      "Specializations": "Especialista en transporte de metales pesados",
       "PurchasedOffers": {
         "$id": "5",
         "$values": []
@@ -30,66 +30,50 @@
               "$id": "9",
               "Classification": {
                 "$id": "10",
-                "Category": "Organicos"
+                "Category": "Metales"
               },
-              "Quantity": 20,
+              "Quantity": 100,
               "Price": 300,
-              "Ubication": "Cerro"
+              "Ubication": "Centro"
             },
             "Qualifications": {
               "$id": "11",
-              "$values": []
-            },
-            "KeyWords": {
-              "$id": "12",
-              "$values": [
-                "Org\u00E1nicos",
-                "Alimentos"
-              ]
-            },
-            "PurchesedData": {
-              "$id": "13",
               "$values": [
                 {
-                  "$id": "14",
-                  "Buyer": null,
-                  "PurchaseDate": "2021-11-30T09:49:07.8118991-03:00"
+                  "$id": "12",
+                  "QualificationName": "Transporte pesado."
                 }
               ]
             },
-            "DatePublished": "30/11/2021 9:45:40"
-          },
-          {
-            "$ref": "8"
-          },
-          {
-            "$ref": "8"
-          },
-          {
-            "$ref": "8"
-          },
-          {
-            "$ref": "8"
-          },
-          {
-            "$ref": "8"
-          },
-          {
-            "$ref": "8"
-          },
-          {
-            "$ref": "8"
+            "KeyWords": {
+              "$id": "13",
+              "$values": [
+                "Metal",
+                "/top"
+              ]
+            },
+            "PurchesedData": {
+              "$id": "14",
+              "$values": [
+                {
+                  "$id": "15",
+                  "Buyer": null,
+                  "PurchaseDate": "2021-11-30T12:00:13.9445993-03:00"
+                }
+              ]
+            },
+            "DatePublished": "30/11/2021 9:36:10"
           }
         ]
       },
-      "Name": "Matias Corp",
-      "Ubication": "Centro",
+      "Name": "Matias",
+      "Ubication": "Av. 8 de Octubre 2738",
       "Rubro": {
-        "$id": "15",
+        "$id": "16",
         "RubroName": "Metales"
       },
       "User_Id": "2128982774",
-      "User_Contact": "Matias@gmail.com"
+      "User_Contact": "Matias@gmail.ocm"
     }
   ]
 }

@@ -31,7 +31,7 @@ namespace Proyect
                 Company company = AppLogic.Instance.GetCompany(message.Id);
                 if (company != null)
                 {
-                    response = $"Nombre: {company.Name}\nRubro al que pertenece: {company.Rubro}\nUbicacíon: {company.Ubication}\nContacto:{company.User_Contact}";
+                    response = $"Nombre: {company.Name}\nRubro al que pertenece: {company.Rubro.RubroName}\nUbicacíon: {company.Ubication}\nContacto: {company.User_Contact}";
                     return true;
                 }else
                 {

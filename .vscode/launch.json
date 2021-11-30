@@ -14,7 +14,8 @@
             "args": [],
             "cwd": "${workspaceFolder}/src/Program",
             "console": "integratedTerminal",
-            "stopAtEntry": false
+            "stopAtEntry": false,
+            "requireExactSource": false
         },
         {
             "name": ".NET Core Attach",

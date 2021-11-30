@@ -225,6 +225,8 @@ namespace Proyect
                     {
                         item.PurchasedOffers.Add(value);
                     }
+                    item.OfertasConstantes.Clear();
+                    item.OfertasNoConstantes.Clear();
                 }
                 return emprendedores;
         }

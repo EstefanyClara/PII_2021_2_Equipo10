@@ -48,7 +48,7 @@ namespace Proyect
                             {
                                 response = "Debe ingresar /misofertasaceptadas o /misofertasaceptadas (número) para obtener sus ofertas aceptadas.";
                                 return true;
-                            }if (number >=1)
+                            }if (number < 1)
                             {
                                 response = "Debe ingresar un número mayor o igual a 1 en el periodo de dias";
                                 return true;
@@ -143,11 +143,11 @@ namespace Proyect
                                     StringBuilder mensajeKeyWords = new StringBuilder();
                                     foreach(Qualifications item in oferta.Qualifications)
                                     {
-                                        mensajeHabilitaciones.Append($"\n{item.QualificationName}");
+                                        mensajeHabilitaciones.Append($"\n--{item.QualificationName}");
                                     }
                                     foreach(string item in oferta.KeyWords)
                                     {
-                                        mensajeKeyWords.Append($"|{item}| ");
+                                        mensajeKeyWords.Append($"-{item}- ");
                                     }
                                     StringBuilder mensajeCompraData = new StringBuilder();
                                     IList<PurchaseData> datosDeCompra = new List<PurchaseData>();
@@ -170,7 +170,7 @@ namespace Proyect
                                         return true;
                                     }else
                                     {
-                                        if(userData.Count == 2)
+                                        if(userData.Count > 2)
                                         {
                                             datosDeCompra = oferta.GetPeriodTimeOffersAcceptedData(Convert.ToInt32(userData[1]), AppLogic.Instance.GetEmprendedor(message.Id));
                                         }else
