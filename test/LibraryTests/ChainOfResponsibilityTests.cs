@@ -16,6 +16,7 @@ namespace Tests
         IHandler handler;
         AutorizationHandler autorizationHandler = new AutorizationHandler(null);
         CancelHandler cancelHandler = new CancelHandler(null);
+        MeHandler meHandler = new MeHandler(null);
         RegisterHandler registerHandler = new RegisterHandler(null);
         PublicOfferHandler publicOfferHandler = new PublicOfferHandler(null);
         GetConstantMaterialsHandler getConstantMaterialsHandler = new GetConstantMaterialsHandler(null);
@@ -34,13 +35,14 @@ namespace Tests
         public void Setup()
         {
             autorizationHandler.Next = cancelHandler;
-            cancelHandler.Next = registerHandler;
-            registerHandler.Next = publicOfferHandler;
-            publicOfferHandler.Next = getConstantMaterialsHandler;
-            getConstantMaterialsHandler.Next = companyMyOfferHandler;
+            cancelHandler.Next = getConstantMaterialsHandler;
+            getConstantMaterialsHandler.Next = meHandler;
+            meHandler.Next = companyMyOfferHandler;
             companyMyOfferHandler.Next = searchOfferHandler;
             searchOfferHandler.Next = purchasedOfferHandler;
             purchasedOfferHandler.Next = administratorHandler;
+            administratorHandler.Next = registerHandler;
+            registerHandler.Next = publicOfferHandler;
 
             handler = autorizationHandler;
 
@@ -91,13 +93,37 @@ namespace Tests
 
             List<List<string>> lista = new List<List<string>>() {new List<string>(),new List<string>()};
             DataUserContainer.Instance.UserDataHistory.Add(message.Id, lista);
-            DataUserContainer.Instance.UserDataHistory[message.Id][0].Add("ss");
-            DataUserContainer.Instance.UserDataHistory[message.Id][0][0] = "/buscar";
+            DataUserContainer.Instance.UserDataHistory[message.Id][0].Add("");
 
             IHandler result = handler.Handle(message,out response);
             Assert.That(result,Is.Not.Null);
             Assert.That(response, Is.EqualTo("¿La oferta que desea publicar es constante?(/si o /no)\n\nUna oferta constante son aquellas que siempre estan disponibles y las pueden aceptar varios emprendedores, mientras que las no constante solo la puede aceptar un emprendedor"));
         }
+
+        [Test]
+        public void TestMeHandlerShowInfo()
+        {
+            Company company = new Company("761714026","LucasCorp","Tres cruces",rubro,"lukaszury@gmail.com");
+            AppLogic.Instance.Companies.Add(company);
+
+            message.Text = meHandler.Keywords[0];
+            string response;
+
+            List<List<string>> lista = new List<List<string>>() {new List<string>(),new List<string>()};
+            DataUserContainer.Instance.UserDataHistory.Add(message.Id, lista);
+
+             IHandler result = handler.Handle(message,out response);
+            Assert.That(result,Is.Not.Null);
+            Assert.That(response, Is.EqualTo($"Nombre: {company.Name}\nRubro al que pertenece: {company.Rubro.RubroName}\nUbicación: {company.Ubication}\nContacto: {company.User_Contact}"));
+        }
+
+        [Test]
+        public void TestGetConstatMateriaHandlerShowMaterials()
+        {
+
+        }
+
+        
 
     }
 }
