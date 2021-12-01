@@ -1,0 +1,9 @@
+digraph "Graphical Class Hierarchy"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="Proyect.ProductOffer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1ProductOffer.html",tooltip="Representa el producto de una oferta (Esta en una relacion de composicion con la clase Offer,..."];
+}

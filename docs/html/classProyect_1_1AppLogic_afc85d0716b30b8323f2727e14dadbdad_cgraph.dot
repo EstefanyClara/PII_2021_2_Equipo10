@@ -1,0 +1,11 @@
+digraph "Proyect.AppLogic.RemoveKeyWords"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Proyect.AppLogic.RemoveKey\lWords",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Remueve palabras clave de la oferta de una compania. Le delega la responsabilidad a company (La exper..."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Proyect.Company.RemoveKey\lWords",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1Company.html#a177930f6354094c5890f8a63aab499c4",tooltip="Remueve palabras clave de una oferta (Por expert)."];
+}
