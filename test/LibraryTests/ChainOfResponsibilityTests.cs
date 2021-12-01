@@ -27,6 +27,7 @@ namespace Tests
         SearchOfferHandler searchOfferHandler = new SearchOfferHandler(null);
         PurchasedOfferHandler purchasedOfferHandler = new PurchasedOfferHandler(null);
         AdministratorHandler administratorHandler = new AdministratorHandler(null);
+        StartHandler startHandler = new StartHandler(null);
         IMessage message;
         Rubro rubro;
         Qualifications qualifications;
@@ -51,6 +52,7 @@ namespace Tests
             purchasedOfferHandler.Next = administratorHandler;
             administratorHandler.Next = registerHandler;
             registerHandler.Next = publicOfferHandler;
+            publicOfferHandler.Next = startHandler;
 
             handler = autorizationHandler;
 
@@ -151,6 +153,16 @@ namespace Tests
             IHandler result = handler.Handle(message,out response);
             Assert.That(result, Is.Not.Null);
             Assert.That(response, Is.EqualTo($"Estas son las ofertas publicadas, que fueron aceptadas por emprendedores:\n"));
+        }
+        [Test]
+        public void TestStartHandlerMessage()
+        {
+            message.Text = startHandler.Keywords[0];
+            string response;
+            IHandler result = handler.Handle(message,out response);
+            Assert.That(result, Is.Not.Null);
+            Assert.That(response, Is.EqualTo($"¡Hola! C4Bot es un ChatBot dedicado a conectar organizaciones o empresas que ofertan ciertos productos, con emprendedores que necesitan o hacen uso de esos productos.\n\nLa lógica de este bot esta orientada en un sistema de historia de usuario en donde a partir de un comando ingresado se puede hacer nada más que de ciertos comandos permitidos en el contexto en el que se encuentre.\n\nDentro de las funcionalidades actuales estan las de Registrarse con /Registrar donde decidirá que tipo de usuario será, dependiendo de si cumple ciertos requerimientos.\n\nFuncionalidades para las organizaciones o compañías:\nCon /Public podrá publicar una oferta, siguiendo los pasos correspondientes.\nCon /MisOfertas podrá ver todas su ofertas publicadas, y gestionar las mismas modificandolas o eliminandolas.\nCon /MisOfertasAceptadas podra ver todas las ofertas que publicó que fueron aceptadas por emprendedores.\nCon /MaterialesConstantes podra obtener información acerca de cuantas ofertas constantes tiene cierto tipo de material.\n Con /Me podra ver todos sus datos.\n\nFuncionalidades para los emprendedores:\nCon /MaterialesConstantes podra obtener información acerca de cuantas ofertas constantes tiene cierto tipo de material para asi poder regular sus insumos.\nCon /MisOfertasAceptadas podrá ver una lista de ofertas que acepto con la información de compra.\nCon /Buscar podra buscar las ofertas por palabra calve, ubicacion o nombre.\nCon /Me podra ver todos sus datos.\n\nCon /Cancel cualquier usuario podra cancelar su operacion actual, así y volver al principio."));
+
         }
     }
 }

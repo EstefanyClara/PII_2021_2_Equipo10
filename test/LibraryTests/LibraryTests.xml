@@ -12,6 +12,7 @@
         <member name="T:Tests.ChainOfResponsibilityTests">
             <summary>
             Test para probar la parte de delegacion de los Handlers.
+            Los test funcionan correctamente de manera individual, al ejetucarlos con el comando dotnet test se encuentram fallas.
             </summary>
         </member>
         <member name="M:Tests.ChainOfResponsibilityTests.Setup">
