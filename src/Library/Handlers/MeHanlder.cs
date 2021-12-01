@@ -10,7 +10,7 @@ namespace Proyect
     public class MeHandler : BaseHandler
     {
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="AutorizationHandler"/>. Esta clase procesa si la perosna que envio el mensaje esta registrada.
+        /// Inicializa una nueva instancia de la clase <see cref="AutorizationHandler"/>. Esta clase procesa si la persona que envio el mensaje esta registrada.
         /// </summary>
         /// <param name="next">El próximo "handler".</param>
         public MeHandler(BaseHandler next) : base(next)
@@ -31,7 +31,7 @@ namespace Proyect
                 Company company = AppLogic.Instance.GetCompany(message.Id);
                 if (company != null)
                 {
-                    response = $"Nombre: {company.Name}\nRubro al que pertenece: {company.Rubro.RubroName}\nUbicacíon: {company.Ubication}\nContacto: {company.User_Contact}";
+                    response = $"Nombre: {company.Name}\nRubro al que pertenece: {company.Rubro.RubroName}\nUbicación: {company.Ubication}\nContacto: {company.User_Contact}";
                     return true;
                 }
                 else

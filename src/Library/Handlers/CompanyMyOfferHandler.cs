@@ -299,7 +299,7 @@ namespace Proyect
                                 return true;
                         }
                     }
-                    response = "El comando ingresado no es valido.\nRecuerde que puede utilizar: \n-/RemoverOferta para eliminar una oferta\n-/AgregarKeyWord para agregar una palabra clave a la oferta\n-/RemoverKeyWord para sacar una palabra clave de la oferta\n-/AgregarHabilitacion para agregar habilitacion a la oferta\n/ReomverHabilitacion para eliminar una habilitacion a la oferta";
+                    response = "El comando ingresado no es valido.\nRecuerde que puede utilizar: \n-/RemoverOferta para eliminar una oferta\n-/AgregarKeyWord para agregar una palabra clave a la oferta\n-/RemoverKeyWord para sacar una palabra clave de la oferta\n-/AgregarHabilitacion para agregar habilitacion a la oferta\n/RemoverHabilitacion para eliminar una habilitacion a la oferta";
                     return true;
                 }
 
