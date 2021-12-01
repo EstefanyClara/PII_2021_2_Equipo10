@@ -91,6 +91,7 @@ namespace Tests
 
             List<List<string>> lista = new List<List<string>>() {new List<string>(),new List<string>()};
             DataUserContainer.Instance.UserDataHistory.Add(message.Id, lista);
+            DataUserContainer.Instance.UserDataHistory[message.Id][0].Add("ss");
             DataUserContainer.Instance.UserDataHistory[message.Id][0][0] = "/buscar";
 
             IHandler result = handler.Handle(message,out response);
