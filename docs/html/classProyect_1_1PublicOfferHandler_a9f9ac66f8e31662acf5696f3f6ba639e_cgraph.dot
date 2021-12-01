@@ -1,0 +1,19 @@
+digraph "Proyect.PublicOfferHandler.InternalHandle"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Proyect.PublicOfferHandler.\lInternalHandle",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Procesa el mensaje /public\" y retorna true; retorna false en caso contrario."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Proyect.AppLogic.GetCompany",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1AppLogic.html#a1c920c1201dd6a6882c4c3e0a1286bb9",tooltip="Obtiene la compania mediente el id de usuario ingresado. Como AppLogic tiene la lista de copanias,..."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Proyect.AppLogic.PublicConstant\lOffer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1AppLogic.html#a5e7359f51b7b17dbcbcbb463dcd8e545",tooltip="Publica una oferta constante de la compania que se le ingresa. ÑLe delaga la responsabilidad a compan..."];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Proyect.Company.PublicConstant\lOffer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1Company.html#a70d2754fa9824a71144f20030f7e7bbd",tooltip="Crea una instancia de una oferta constante y se la agrega a la lista de ofertas de la compania...."];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Proyect.AppLogic.PublicNon\lConstantOffer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1AppLogic.html#aa0a946be1e2072424020d8fa28a17aab",tooltip="Publica una oferta no constante de la compania que se le ingresa. Le delega la responsabilidad a comp..."];
+  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Proyect.Company.PublicNon\lConstantOffer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1Company.html#ae468756cac24ee415516aa159d478c80",tooltip="Crea una instacia de una oferta no constante y se la agrega a la lista de ofertas de la compania...."];
+}

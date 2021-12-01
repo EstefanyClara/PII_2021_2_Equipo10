@@ -1,0 +1,25 @@
+var dir_f741251061e5c7c7ed48ab45c3348f11 =
+[
+    [ "Exepciones", "dir_3997d5ff038d8b7ce689ce42294a499c.html", "dir_3997d5ff038d8b7ce689ce42294a499c" ],
+    [ "Handlers", "dir_ced77c5e65fcc785192f6c260493445c.html", "dir_ced77c5e65fcc785192f6c260493445c" ],
+    [ "obj", "dir_489a34f874ee199237b4241587f8b6f5.html", "dir_489a34f874ee199237b4241587f8b6f5" ],
+    [ "Persistencia", "dir_de1a2ade5468530f31c43ea989f522eb.html", "dir_de1a2ade5468530f31c43ea989f522eb" ],
+    [ "Administrator.cs", "Administrator_8cs_source.html", null ],
+    [ "APILocationContainer.cs", "APILocationContainer_8cs_source.html", null ],
+    [ "AppLogic.cs", "AppLogic_8cs_source.html", null ],
+    [ "Classification.cs", "Classification_8cs_source.html", null ],
+    [ "Company.cs", "Company_8cs_source.html", null ],
+    [ "ConstantOffer.cs", "ConstantOffer_8cs_source.html", null ],
+    [ "Emprendedor.cs", "Emprendedor_8cs_source.html", null ],
+    [ "IMessage.cs", "IMessage_8cs_source.html", null ],
+    [ "IOffer.cs", "IOffer_8cs_source.html", null ],
+    [ "MessageTest.cs", "MessageTest_8cs_source.html", null ],
+    [ "NonConstanteOffer.cs", "NonConstanteOffer_8cs_source.html", null ],
+    [ "OffersSerachs.cs", "OffersSerachs_8cs_source.html", null ],
+    [ "ProductOffer.cs", "ProductOffer_8cs_source.html", null ],
+    [ "PurchesData.cs", "PurchesData_8cs_source.html", null ],
+    [ "Qualifications.cs", "Qualifications_8cs_source.html", null ],
+    [ "Rubro.cs", "Rubro_8cs_source.html", null ],
+    [ "TelegramAdapter.cs", "TelegramAdapter_8cs_source.html", null ],
+    [ "User.cs", "User_8cs_source.html", null ]
+];
