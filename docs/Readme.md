@@ -6,4 +6,4 @@ Reflexiones grupales.
 
 -Si bien es util el aprender a programar y resolver conflictos por cuenta propia, sentimos que perdimos mucho tiempo tratando de buscar como hacer ciertas cosas, o resolver ciertos errores, y no estabamos del todo seguros si mientras programabamos, cumpliamos o no algunos patrones y/o principios.
 
--Mota para uso del programa, pasar hacer uso del mismo, tendran que desacragar en la misma carpeta de donde se encuentra el proyecto, el repositorio de la API Location que ofrecieron para usar.
+-Nota para uso del programa, pasar hacer uso del mismo, tendran que desacragar en la misma carpeta de donde se encuentra el proyecto, el repositorio de la API Location que ofrecieron para usar.
