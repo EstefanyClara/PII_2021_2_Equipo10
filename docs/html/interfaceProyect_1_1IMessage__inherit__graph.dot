@@ -1,0 +1,12 @@
+digraph "Proyect.IMessage"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{Proyect.IMessage\n|+ Id\l+ Text\l+ MsgId\l|+ SendProfileImage()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Interfaz para los mensajes, que se utilizara para el patron adapter."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node2 [label="{Proyect.MessageTest\n|+ Id\l+ MsgId\l+ Text\l|+ MessageTest()\l+ SendProfileImage()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1MessageTest.html",tooltip="Clase mensaje utilizada para los test."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node3 [label="{Proyect.TelegramAdapter\n|+ Text\l+ Id\l+ MsgId\l|+ TelegramAdapter()\l+ SendProfileImage()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1TelegramAdapter.html",tooltip="Adaptador de mensajes de Telegram a mensajes de la interfaz de usuario. Esto permite que la aplicacio..."];
+}

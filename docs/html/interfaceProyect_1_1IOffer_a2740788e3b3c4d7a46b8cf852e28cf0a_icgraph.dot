@@ -1,0 +1,17 @@
+digraph "Proyect.IOffer.GetPeriodTimeOffersAcceptedData"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="Proyect.IOffer.GetPeriod\lTimeOffersAcceptedData",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Obtiene toda la informacion de compra (compardor y fecha de compra), del peridodo de tiempo indicado...."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Proyect.Company.GetOffers\lAccepted",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1Company.html#a33663f1056c5f129789d3d961aa658e5",tooltip="Obtiene la cantidad de ofertas que publico la compania, que fueron aceptadas en un periodo de tiempo ..."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Proyect.Emprendedor.GetOffers\lAccepted",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1Emprendedor.html#a5a28f7f805d5b8709ef8de615ef689d3",tooltip="Obtiene una lista de ofertas que fueron aceptadas en un periodo de tiempo (Por Expert)."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Proyect.AppLogic.GetOffers\lAccepted",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1AppLogic.html#a5e450ada24343520f326303c4be73479",tooltip="Obtiene la cantidad de ofertas que fueron aceptadas en un periodo de tiempo establecido por el usuari..."];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Proyect.PurchasedOfferHandler.\lInternalHandle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1PurchasedOfferHandler.html#a2858da92fe7689008b79f12314da3e8f",tooltip="Procesa el mensaje \"/misofertasaceptadas\" y \"/oferta\" y retorna true; retorna false en caso contrario..."];
+}

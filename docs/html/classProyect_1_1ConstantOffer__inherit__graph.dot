@@ -1,0 +1,10 @@
+digraph "Proyect.ConstantOffer"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{Proyect.ConstantOffer\n|+ Product\l+ Qualifications\l+ KeyWords\l+ PurchesedData\l+ DatePublished\l|+ ConstantOffer()\l+ ConstantOffer()\l+ GetPeriodTimeOffersAccepted\lData()\l+ GetPeriodTimeOffersAccepted\lData()\l+ GetEntrepreneursPurchase\lData()\l+ PutBuyer()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Representa las ofertas constantes de las companias (Es del tipo IOffer, a quien usa,..."];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node2 [label="{IOffer\n|+ Product\l+ Qualifications\l+ KeyWords\l+ DatePublished\l+ PurchesedData\l|+ GetPeriodTimeOffersAccepted\lData()\l+ GetPeriodTimeOffersAccepted\lData()\l+ GetEntrepreneursPurchase\lData()\l+ PutBuyer()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$interfaceProyect_1_1IOffer.html",tooltip="Interfaz para las ofertas de una compania, la utilizaron ambos tipos de ofertas, y si se quieren agre..."];
+}

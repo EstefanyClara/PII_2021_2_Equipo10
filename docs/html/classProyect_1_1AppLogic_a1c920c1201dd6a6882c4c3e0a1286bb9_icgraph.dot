@@ -1,0 +1,21 @@
+digraph "Proyect.AppLogic.GetCompany"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="Proyect.AppLogic.GetCompany",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Obtiene la compania mediente el id de usuario ingresado. Como AppLogic tiene la lista de copanias,..."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Proyect.AutorizationHandler.\lInternalHandle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1AutorizationHandler.html#aa7d9bd4e79a94aad7901b65e8501aab3",tooltip="Procesa el mensaje \"/registrar\" y retorna flase; retorna true en caso contrario."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Proyect.CompanyMyOfferHandler.\lInternalHandle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1CompanyMyOfferHandler.html#a32af3162617a6937334c733af2d5d6d7",tooltip="Procesa el mensaje \"/misofertas\", \"/removeroferta\", \"/removerkeyword\", \"/removerhabilitacion\",..."];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Proyect.MeHandler.Internal\lHandle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1MeHandler.html#aa6f85d2e48f25191537c9d881ed295fe",tooltip="Procesa el mensaje \"/me\" y retorna true; retorna false en caso contrario."];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Proyect.PublicOfferHandler.\lInternalHandle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1PublicOfferHandler.html#a9f9ac66f8e31662acf5696f3f6ba639e",tooltip="Procesa el mensaje /public\" y retorna true; retorna false en caso contrario."];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Proyect.PurchasedOfferHandler.\lInternalHandle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1PurchasedOfferHandler.html#a2858da92fe7689008b79f12314da3e8f",tooltip="Procesa el mensaje \"/misofertasaceptadas\" y \"/oferta\" y retorna true; retorna false en caso contrario..."];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="Proyect.RegisterHandler.\lInternalHandle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1RegisterHandler.html#affa8f3bd4e3891f6294e1b0459002c93",tooltip="Procesa el mensaje \"/registrar\" y retorna true; retorna false en caso contrario."];
+}

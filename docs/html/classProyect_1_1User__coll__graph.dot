@@ -1,0 +1,12 @@
+digraph "Proyect.User"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{Proyect.User\n|+ OfertasConstantes\l+ OfertasNoConstantes\l+ Name\l+ Ubication\l+ Rubro\l+ User_Id\l+ User_Contact\l|+ User()\l+ User()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Superclase user de Emprendedor y Company (quienes estan en una relaciontaxonomica con esta clase)."];
+  Node2 -> Node1 [color="grey25",fontsize="10",style="solid",label=" #name\n#ubication\n#user_Contact\n#user_Id" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node2 [label="{string\n||}",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node3 -> Node1 [color="grey25",fontsize="10",style="solid",label=" #rubro" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node3 [label="{Proyect.Rubro\n|+ RubroName\l|+ Rubro()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1Rubro.html",tooltip="Clase que representa el rubro de una compania o emprendedor."];
+}
