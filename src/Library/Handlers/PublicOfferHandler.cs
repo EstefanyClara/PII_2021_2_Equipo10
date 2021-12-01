@@ -21,7 +21,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Procesa el mensaje "/registrar" y retorna true; retorna false en caso contrario.
+        /// Procesa el mensaje /public" y retorna true; retorna false en caso contrario.
         /// </summary>
         /// <param name="message">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado.</param>

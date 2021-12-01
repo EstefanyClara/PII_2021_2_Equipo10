@@ -7,6 +7,7 @@ namespace Proyect
 {
     /// <summary>
     /// Clase base para implementar el patrón Chain of Responsibility.
+    /// Hereda de Base Handler.
     /// </summary>
     public class PurchasedOfferHandler : BaseHandler
     {
@@ -20,7 +21,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Procesa el mensaje "/registrar" y retorna true; retorna false en caso contrario.
+        /// Procesa el mensaje "/misofertasaceptadas" y "/oferta" y retorna true; retorna false en caso contrario.
         /// </summary>
         /// <param name="message">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado.</param>

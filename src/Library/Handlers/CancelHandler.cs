@@ -5,20 +5,21 @@ namespace Proyect
 {
     /// <summary>
     /// Clase base para implementar el patrón Chain of Responsibility.
+    /// Hereda de base handler.
     /// </summary>
     public class CancelHandler : BaseHandler
     {
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="AutorizationHandler"/>. Esta clase procesa si la persona que envio el mensaje esta registrada.
+        /// Inicializa una nueva instancia de la clase <see cref="CancelHandler"/>. Esta clase procesa el mensaje /back y pone a un usurio al estado inicial.
         /// </summary>
         /// <param name="next">El próximo "handler".</param>
         public CancelHandler(BaseHandler next) : base(next)
         {
-            this.Keywords = new string[] { "/cancel" };
+            this.Keywords = new string[] { "/back" };
         }
 
         /// <summary>
-        /// Procesa el mensaje "/registrar" y retorna true; retorna false en caso contrario.
+        /// Procesa el mensaje "/back" y retorna true; retorna false en caso contrario.
         /// </summary>
         /// <param name="message">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado.</param>

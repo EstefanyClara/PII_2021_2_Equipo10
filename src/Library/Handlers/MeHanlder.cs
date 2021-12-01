@@ -6,11 +6,12 @@ namespace Proyect
 {
     /// <summary>
     /// Clase base para implementar el patrón Chain of Responsibility.
+    /// Hereda de base hanlder.
     /// </summary>
     public class MeHandler : BaseHandler
     {
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="AutorizationHandler"/>. Esta clase procesa si la persona que envio el mensaje esta registrada.
+        /// Inicializa una nueva instancia de la clase <see cref="MeHandler"/>. Esta clase procesa el mensaej "/me" y envia un mensaje con la informacion del usuario correspondiente.
         /// </summary>
         /// <param name="next">El próximo "handler".</param>
         public MeHandler(BaseHandler next) : base(next)
@@ -19,7 +20,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Procesa el mensaje "/registrar" y retorna true; retorna false en caso contrario.
+        /// Procesa el mensaje "/me" y retorna true; retorna false en caso contrario.
         /// </summary>
         /// <param name="message">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado.</param>

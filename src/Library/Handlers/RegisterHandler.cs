@@ -315,3 +315,5 @@ namespace Proyect
         }
     }
 }
+
+/*Los demas hanlders son analogos a este, funcionana con la msima logica, y en elagunos casos sos mas sencillos*/

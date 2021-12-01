@@ -5,6 +5,7 @@ namespace Proyect
 {
     /// <summary>
     /// Clase base para implementar el patrón Chain of Responsibility.
+    /// Hereda de base handler.
     /// </summary>
     public class AutorizationHandler : BaseHandler
     {
@@ -18,7 +19,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Procesa el mensaje "/registrar" y retorna true; retorna false en caso contrario.
+        /// Procesa el mensaje "/registrar" y retorna flase; retorna true en caso contrario.
         /// </summary>
         /// <param name="message">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado.</param>

@@ -8,11 +8,12 @@ namespace Proyect
 {
     /// <summary>
     /// Clase base para implementar el patrón Chain of Responsibility.
+    /// Hereda de base hanlders.
     /// </summary>
     public class SearchOfferHandler : BaseHandler
     {
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="SearchOfferHandler"/>. Esta clase procesa el mensaje public, para publicar una oferta.
+        /// Inicializa una nueva instancia de la clase <see cref="SearchOfferHandler"/>. Esta clase procesa el mensaje /buscar, para buscar una oferta de diferentes formas.
         /// </summary>
         /// <param name="next">El próximo "handler".</param>
         public SearchOfferHandler(BaseHandler next) : base(next)
@@ -21,7 +22,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Procesa el mensaje "/registrar" y retorna true; retorna false en caso contrario.
+        /// Procesa el mensaje "/buscar" y retorna true; retorna false en caso contrario.
         /// </summary>
         /// <param name="message">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado.</param>

@@ -7,11 +7,12 @@ namespace Proyect
 {
     /// <summary>
     /// Clase base para implementar el patrón Chain of Responsibility.
+    /// Hereda de base hanlder.
     /// </summary>
     public class CompanyMyOfferHandler : BaseHandler
     {
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="CompanyMyOfferHandler"/>. Esta clase elimina la oferta publicada de una compania.
+        /// Inicializa una nueva instancia de la clase <see cref="CompanyMyOfferHandler"/>. Esta clase permite administrar todas las ofertas de una compania.
         /// </summary>
         /// <param name="next">El próximo "handler".</param>
         public CompanyMyOfferHandler(BaseHandler next) : base(next)
@@ -20,7 +21,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Procesa el mensaje "/registrar" y retorna true; retorna false en caso contrario.
+        /// Procesa el mensaje "/misofertas", "/removeroferta", "/removerkeyword", "/removerhabilitacion", "/agregarkeyword", "/agregarhabilitacion" y "/oferta" y retorna true; retorna false en caso contrario.
         /// </summary>
         /// <param name="message">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado.</param>

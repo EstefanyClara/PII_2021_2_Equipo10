@@ -6,11 +6,12 @@ namespace Proyect
 {
     /// <summary>
     /// Clase base para implementar el patrón Chain of Responsibility.
+    /// Hereda de base hanlder.
     /// </summary>
     public class GetConstantMaterialsHandler : BaseHandler
     {
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="GetConstantMaterialsHandler"/>. Esta clase procesa si la persona que envio el mensaje esta registrada.
+        /// Inicializa una nueva instancia de la clase <see cref="GetConstantMaterialsHandler"/>. Esta clase procesa el mensaje "/materialesconstantes" y envia un mensaje con informacion sobre la cantidad de ofertas que tiene cada material constante.
         /// </summary>
         /// <param name="next">El próximo "handler".</param>
         public GetConstantMaterialsHandler(BaseHandler next) : base(next)
@@ -19,7 +20,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Procesa el mensaje "/registrar" y retorna true; retorna false en caso contrario.
+        /// Procesa el mensaje "/materialesconstantes" y retorna true; retorna false en caso contrario.
         /// </summary>
         /// <param name="message">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado.</param>

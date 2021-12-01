@@ -5,6 +5,7 @@ namespace Proyect
 {
     /// <summary>
     /// Clase contenedora del historia de mensajes que un usuario manda.
+    /// Esta es una clase singleton, solo hay una instancia de ella.
     /// </summary>
     public sealed class DataUserContainer
     {
@@ -41,7 +42,7 @@ namespace Proyect
         /// <summary>
         /// Obtiene el diccionario donde se guardan las ofertas que selecciono el usuario mientras usaba la aplicacion.
         /// </summary>
-        /// <value></value>
+        /// <value>Diccionario donde se guardan las ofertas del usurio.</value>
         public Dictionary<string, List<IOffer>> UserOfferDataSelection
         {
             get { return this.userOfferDataSelection; }
