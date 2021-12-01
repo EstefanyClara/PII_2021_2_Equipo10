@@ -71,6 +71,13 @@ namespace Ucu.Poo.TelegramBot
             }else
             {
                 AppLogic.Instance.Companies = AppLogic.Instance.DeserializeCompanies();
+            }if(!System.IO.File.Exists(@"../Library/Persistencia/CompanyCodes.json"))
+            {
+                string json = Administrator.Instance.ConvertToJson();
+                System.IO.File.WriteAllText(@"../Library/Persistencia/CompanyCodes.json", json);
+            }else
+            {
+                Administrator.Instance.Deserialize();
             }
 
             Bot = new TelegramBotClient(Token);
@@ -109,8 +116,8 @@ namespace Ucu.Poo.TelegramBot
             System.IO.File.WriteAllText(@"../Library/Persistencia/ClasificacionesProductos.json", AppLogic.Instance.ConvertToJson(AppLogic.Instance.Classifications));
             System.IO.File.WriteAllText(@"../Library/Persistencia/Rubros.json", AppLogic.Instance.ConvertToJson(AppLogic.Instance.Rubros));
             System.IO.File.WriteAllText(@"../Library/Persistencia/Emprendedores.json", AppLogic.Instance.ConvertToJson(AppLogic.Instance.Entrepreneurs));
-            System.IO.File.Delete(@"../Library/Persistencia/Companias.json");
             System.IO.File.WriteAllText(@"../Library/Persistencia/Companias.json", AppLogic.Instance.ConvertToJson(AppLogic.Instance.Companies));
+                        System.IO.File.WriteAllText(@"../Library/Persistencia/CompanyCodes.json", Administrator.Instance.ConvertToJson());
         }
 
         /// <summary>

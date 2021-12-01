@@ -8,9 +8,9 @@ namespace Proyect
         private string category;
 
         /// <summary>
-        /// Obtiene el valor de una clasificacion para un Producto.
+        /// Obtiene una clasificacion para un Producto.
         /// </summary>
-        /// <value>this.category</value>
+        /// <value>La clasificacion.</value>
         public string Category
         {
             get

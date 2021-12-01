@@ -24,7 +24,7 @@ namespace Proyect
         public static APILocationContainer Instance
         {
 
-            get{return _instance;}
+            get { return _instance; }
 
         }
 
@@ -35,7 +35,7 @@ namespace Proyect
         public LocationApiClient APIdeLocalizacion
         {
 
-            get{return this.client;}
+            get { return this.client; }
 
         }
 

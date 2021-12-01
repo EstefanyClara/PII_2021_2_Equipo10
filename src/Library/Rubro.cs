@@ -1,20 +1,19 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace   Proyect
+namespace Proyect
 {
     /// <summary>
-    /// Clase que representa el rubro de una compania o emprendedor.
+    /// Clase que representa el rubro de una compañia o emprendedor.
     /// </summary>
-    
-    public class Rubro 
+    public class Rubro
     {
         private string rubroName;
 
         /// <summary>
         /// Propierty del nombre del rubro.
         /// </summary>
-        /// <value></value>
+        /// <value>El nombre del rubro.</value>
         public string RubroName
         {
             get

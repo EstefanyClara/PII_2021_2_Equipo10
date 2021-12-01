@@ -10,6 +10,7 @@ namespace Proyect
 {
     /// <summary>
     /// Adaptador de mensajes de Telegram a mensajes de la interfaz de usuario.
+    /// Esto permite que la aplicacion sirba para otras apps apartes de telegram.
     /// </summary>
     public class TelegramAdapter : IMessage
     {
@@ -22,8 +23,8 @@ namespace Proyect
         /// <summary>
         /// Crea una nueva instancia de la clase <see cref="TelegramAdapter"/>.
         /// </summary>
-        /// <param name="message"></param>
-        /// <param name="bot"></param>
+        /// <param name="message">El mensaje, en este caso es de telegram.</param>
+        /// <param name="bot">El bot, en este caso de telegram.</param>
         public TelegramAdapter(Message message, TelegramBotClient bot)
         {
             this.message = message;
@@ -33,8 +34,9 @@ namespace Proyect
         }
 
         /// <summary>
-        /// El mensaje recibido.
+        /// El mensaje ingresado.
         /// </summary>
+        /// <value>El texto del mensaje.</value>
         public string Text
         {
             get
@@ -48,8 +50,9 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Identificador del usuario que envió el mensaje.
+        /// El id de usurio.
         /// </summary>
+        /// <value>El id de suario.</value>
         public string Id
         {
             get
@@ -61,11 +64,11 @@ namespace Proyect
                 this.id = int.Parse(value);
             }
         }
-        
+
         /// <summary>
         /// Identificador del chat.
         /// </summary>
-        /// <value></value>
+        /// <value>El id del chat de telegram.</value>
         public long MsgId
         {
             get
@@ -79,10 +82,10 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Metodo que se encarga de neviar una foto al chat de telegram (Su utiliza el patron adapter).
+        /// Metodo que se encarga de enviar una foto al chat de telegram (Su utiliza el patron adapter).
         /// </summary>
-        /// <param name="mensaje"></param>
-        /// <param name="direccion"></param>
+        /// <param name="mensaje">El mensaje que se ingresa para enviar con la foto.</param>
+        /// <param name="direccion">La dirrecion de donde se sacara la foto.</param>
         /// <returns></returns>
         public async Task SendProfileImage(string mensaje, string direccion)
         {
@@ -100,6 +103,6 @@ namespace Proyect
                     caption: mensaje
                 );
             }
-    }
+        }
     }
 }

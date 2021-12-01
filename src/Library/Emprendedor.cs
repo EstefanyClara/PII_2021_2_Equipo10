@@ -1,12 +1,9 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Collections;
 
 namespace Proyect
 {
     /// <summary>
-    /// Esta clase representa un Emprendedor, hereda de user (Tienen relaciontaxonomica). 
+    /// Esta clase representa un Emprendedor, hereda de user (Tienen relacion taxonomica, cumple con el ISP). 
     /// </summary>
     public class Emprendedor : User
     {
@@ -25,7 +22,7 @@ namespace Proyect
         /// <param name="specializations">Especializaciones del emprendedor.</param>
         /// <param name="user_Id">Identificacion del emprendedor.</param>
         /// <param name="user_Contact">Contacto del emprendedor.</param>
-        public Emprendedor(string user_Id, string name, string ubication, Rubro rubro,string user_Contact, List<Qualifications> qualifications, string specializations):base(user_Id, name, ubication, rubro, user_Contact)
+        public Emprendedor(string user_Id, string name, string ubication, Rubro rubro, string user_Contact, List<Qualifications> qualifications, string specializations) : base(user_Id, name, ubication, rubro, user_Contact)
         {
             this.Qualifications = qualifications;
             this.Specializations = specializations;
@@ -34,7 +31,7 @@ namespace Proyect
         /// <summary>
         /// Propiedad get y set de las habilitaciones.
         /// </summary>
-        /// <value>this.qualifications</value>
+        /// <value>Las habiliatciones.</value>
         public IList<Qualifications> Qualifications
         {
             get
@@ -47,9 +44,9 @@ namespace Proyect
             }
         }
         /// <summary>
-        /// Propiedad Specializations.
+        /// Propiedad de get y set de las especializaciones.
         /// </summary>
-        /// <value>this.specializations</value>
+        /// <value>La especializaciones.</value>
         public string Specializations
         {
             get
@@ -65,7 +62,7 @@ namespace Proyect
         /// <summary>
         /// Obtiene la lista de ofertas ofertas aceptadas por el emprendedor.
         /// </summary>
-        /// <value>this.purchasedOffer</value>
+        /// <value>tLa lista de ofertas que el emprendeodr acepto.</value>
         public List<IOffer> PurchasedOffers
         {
             get
@@ -81,25 +78,24 @@ namespace Proyect
         /// <summary>
         /// Metodo para agregar una oferta a la lista de ofertas que el emprendedor acepto (Por expert).
         /// </summary>
-        /// <param name="offer"></param>
+        /// <param name="offer">La oferta a agregar.</param>
         public void AddPurchasedOffer(IOffer offer)
         {
             this.purchasedOffer.Add(offer);
         }
 
         /// <summary>
-        /// Obtiene la cantidad de ofertas que fueron aceptadas en un periodo de tiempo (Expert).
-        /// Es una operacion polimorfica.
+        /// Obtiene una lista de ofertas que fueron aceptadas en un periodo de tiempo (Por Expert).
         /// </summary>
         /// <param name="periodTime">Periodo de tiempo.</param>
-        /// <returns>message</returns>
+        /// <returns>La lista de ofertas.</returns>
         public List<IOffer> GetOffersAccepted(int periodTime)
         {
             List<IOffer> ofertas = new List<IOffer>();
-            foreach(IOffer offer in this.PurchasedOffers)
+            foreach (IOffer offer in this.PurchasedOffers)
             {
                 IList<PurchaseData> infoDeCompraOferta = offer.GetPeriodTimeOffersAcceptedData(periodTime, this);
-                if(infoDeCompraOferta.Count >= 1)
+                if (infoDeCompraOferta.Count >= 1)
                 {
                     ofertas.Add(offer);
                 }

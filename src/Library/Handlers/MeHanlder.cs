@@ -6,38 +6,40 @@ namespace Proyect
 {
     /// <summary>
     /// Clase base para implementar el patrón Chain of Responsibility.
+    /// Hereda de base hanlder.
     /// </summary>
     public class MeHandler : BaseHandler
     {
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="AutorizationHandler"/>. Esta clase procesa si la perosna que envio el mensaje esta registrada.
+        /// Inicializa una nueva instancia de la clase <see cref="MeHandler"/>. Esta clase procesa el mensaej "/me" y envia un mensaje con la informacion del usuario correspondiente.
         /// </summary>
         /// <param name="next">El próximo "handler".</param>
         public MeHandler(BaseHandler next) : base(next)
         {
-            this.Keywords = new string[] {"/me"};
+            this.Keywords = new string[] { "/me" };
         }
 
         /// <summary>
-        /// Procesa el mensaje "/registrar" y retorna true; retorna false en caso contrario.
+        /// Procesa el mensaje "/me" y retorna true; retorna false en caso contrario.
         /// </summary>
         /// <param name="message">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado.</param>
         /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         protected override bool InternalHandle(IMessage message, out string response)
         {
-            if(this.Keywords.Contains(message.Text.ToLower().Replace(" ","")))
+            if (this.Keywords.Contains(message.Text.ToLower().Replace(" ", "")))
             {
                 Company company = AppLogic.Instance.GetCompany(message.Id);
                 if (company != null)
                 {
-                    response = $"Nombre: {company.Name}\nRubro al que pertenece: {company.Rubro.RubroName}\nUbicacíon: {company.Ubication}\nContacto: {company.User_Contact}";
+                    response = $"Nombre: {company.Name}\nRubro al que pertenece: {company.Rubro.RubroName}\nUbicación: {company.Ubication}\nContacto: {company.User_Contact}";
                     return true;
-                }else
+                }
+                else
                 {
                     Emprendedor emprendedor = AppLogic.Instance.GetEmprendedor(message.Id);
                     StringBuilder mensaje = new StringBuilder();
-                    foreach(Qualifications item in emprendedor.Qualifications)
+                    foreach (Qualifications item in emprendedor.Qualifications)
                     {
                         mensaje.Append($"\n-{item.QualificationName}");
                     }

@@ -49,17 +49,13 @@ namespace Proyect
         /// <param name="responder">La respuesta al mensaje procesado.</param>
         /// <returns>true si el mensaje fue procesado; false en caso contrario</returns>
         protected abstract bool InternalHandle(IMessage message, out string responder);
-        // {
-        //     throw new InvalidOperationException("Este método debe ser sobrescrito");
-        // }
 
         /// <summary>
         /// Este método puede ser sobreescrito en las clases sucesores que procesan varios mensajes cambiando de estado
-        /// entre mensajes deben sobreescribir este método para volver al estado inicial. En la clase base no hace nada.
+        /// entre mensajes.
         /// </summary>
         protected virtual void InternalCancel()
         {
-            // Intencionalmente en blanco.
         }
 
         /// <summary>
@@ -72,8 +68,6 @@ namespace Proyect
         /// <returns>true si el mensaje puede ser pocesado; false en caso contrario.</returns>
         protected virtual bool CanHandle(IMessage message)
         {
-            // Cuando no hay palabras clave este método debe ser sobreescrito por las clases sucesoras y por lo tanto
-            // este método no debería haberse invocado.
             if (this.Keywords == null || this.Keywords.Length == 0)
             {
                 throw new InvalidOperationException("No hay palabras clave que puedan ser procesadas");
@@ -106,8 +100,8 @@ namespace Proyect
 
         /// <summary>
         /// Retorna este "handler" al estado inicial. En los "handler" sin estado no hace nada. Los "handlers" que
-        /// procesan varios mensajes cambiando de estado entre mensajes deben sobreescribir este método para volver al
-        /// estado inicial.
+        /// procesan varios mensajes cambiando de estado entre mensajes.
+        /// 
         /// </summary>
         public virtual void Cancel()
         {
