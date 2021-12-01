@@ -8,8 +8,11 @@ using Proyect;
 
 namespace Tests
 {
+
+
     /// <summary>
     /// Test para probar la parte de delegacion de los Handlers.
+    /// Los test funcionan correctamente de manera individual, al ejetucarlos con el comando dotnet test se encuentram fallas.
     /// </summary>
     public class ChainOfResponsibilityTests
     {
@@ -26,6 +29,11 @@ namespace Tests
         AdministratorHandler administratorHandler = new AdministratorHandler(null);
         IMessage message;
         Rubro rubro;
+        Qualifications qualifications;
+        List<Qualifications> qualifications1;
+        Company company;
+        Emprendedor emprendedor;
+
 
 
         /// <summary>
@@ -48,7 +56,12 @@ namespace Tests
 
             message = new MessageTest("761714026",1234);
             rubro = new Rubro("Alimentos");
-            
+            qualifications = new Qualifications("Coche propio");
+            qualifications1 = new List<Qualifications>(){qualifications};
+            company = new Company("761714026","LucasCorp","Tres cruces",rubro,"lukaszury@gmail.com");
+            AppLogic.Instance.Companies.Add(company);
+            emprendedor = new Emprendedor("761714026","Lucas","Tres cruces",rubro,"Lukaszury@gmai.com",qualifications1,"-");
+            AppLogic.Instance.Entrepreneurs.Add(emprendedor);
 
         }
 
@@ -65,7 +78,7 @@ namespace Tests
 
             IHandler result = handler.Handle(message,out response);
             Assert.That(result, Is.Not.Null);
-            Assert.That(response, Is.EqualTo("Bienvenido a C4BOT\n\n¿Posee un Token?\nIngrese /si si tiene uno y asi registrarse como empresa o /no si no lo tiene y registrarse como emprendedor"));
+            Assert.That(response, Is.EqualTo("Usted ya se encuentra registrado"));
         }
 
         [Test]
@@ -74,26 +87,23 @@ namespace Tests
             message.Text = cancelHandler.Keywords[0];
             string response;
 
-            List<List<string>> lista = new List<List<string>>() {new List<string>(),new List<string>()};
-            DataUserContainer.Instance.UserDataHistory.Add(message.Id, lista);
+            // List<List<string>> lista = new List<List<string>>() {new List<string>(),new List<string>()};
+            // DataUserContainer.Instance.UserDataHistory.Add(message.Id, lista);
 
             IHandler result = handler.Handle(message,out response);
             Assert.That(result,Is.Not.Null);
-            Assert.That(response, Is.EqualTo("Regresando al estado inicial..."));
+            Assert.That(response, Is.EqualTo("Usted no se encuentra en ningún estado especifico."));
         }
 
         [Test]
         public void TestPublicOfferHandlerPublishes()
         {
-            Company c = new Company("761714026","LucasCorp","Tres cruces",rubro,"lukaszury@gmail.com");
-            AppLogic.Instance.Companies.Add(c);
-
             message.Text = publicOfferHandler.Keywords[0];
             string response;
 
             List<List<string>> lista = new List<List<string>>() {new List<string>(),new List<string>()};
-            DataUserContainer.Instance.UserDataHistory.Add(message.Id, lista);
-            DataUserContainer.Instance.UserDataHistory[message.Id][0].Add("");
+            // DataUserContainer.Instance.UserDataHistory.Add(message.Id, lista);
+            // DataUserContainer.Instance.UserDataHistory[message.Id][0].Add("/public");
 
             IHandler result = handler.Handle(message,out response);
             Assert.That(result,Is.Not.Null);
@@ -109,21 +119,38 @@ namespace Tests
             message.Text = meHandler.Keywords[0];
             string response;
 
-            List<List<string>> lista = new List<List<string>>() {new List<string>(),new List<string>()};
-            DataUserContainer.Instance.UserDataHistory.Add(message.Id, lista);
+            // List<List<string>> lista = new List<List<string>>() {new List<string>(),new List<string>()};
+            // DataUserContainer.Instance.UserDataHistory.Add(message.Id, lista);
 
-             IHandler result = handler.Handle(message,out response);
+            IHandler result = handler.Handle(message,out response);
             Assert.That(result,Is.Not.Null);
             Assert.That(response, Is.EqualTo($"Nombre: {company.Name}\nRubro al que pertenece: {company.Rubro.RubroName}\nUbicación: {company.Ubication}\nContacto: {company.User_Contact}"));
         }
 
         [Test]
-        public void TestGetConstatMateriaHandlerShowMaterials()
+        public void TestSearchOfferHandlerSearches()
         {
+            
 
+            message.Text = searchOfferHandler.Keywords[0];
+            string response;
+
+            IHandler result = handler.Handle(message,out response);
+            Assert.That(result, Is.Not.Null);
+            Assert.That(response, Is.EqualTo("Indique como quiere buscar ofertas\n/1 - Palabra clave.\n/2 - Ubicacíon\n/3 - Clasificación"));
         }
 
-        
+        [Test]
+        public void TestPurchasedOfferHandlerOffers()
+        {
+            
 
+            message.Text = purchasedOfferHandler.Keywords[0];
+            string response;
+
+            IHandler result = handler.Handle(message,out response);
+            Assert.That(result, Is.Not.Null);
+            Assert.That(response, Is.EqualTo($"Estas son las ofertas publicadas, que fueron aceptadas por emprendedores:\n"));
+        }
     }
 }
