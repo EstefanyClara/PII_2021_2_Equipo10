@@ -9,5 +9,21 @@
             Clase para testeo de creacion y autenticacion de las empresas y emprendedores
             </summary>
         </member>
+        <member name="T:Tests.ChainOfResponsibilityTests">
+            <summary>
+            Test para probar la parte de delegacion de los Handlers.
+            </summary>
+        </member>
+        <member name="M:Tests.ChainOfResponsibilityTests.Setup">
+            <summary>
+            Setup de los handlers y mensaje.
+            </summary>
+        </member>
+        <member name="M:Tests.ChainOfResponsibilityTests.TestAuthorizarionDelegatesRegister">
+            <summary>
+            Se testea que el handler de autorización delegue la responsabilidad
+            de registrarse al handler de registro
+            </summary>
+        </member>
     </members>
 </doc>
