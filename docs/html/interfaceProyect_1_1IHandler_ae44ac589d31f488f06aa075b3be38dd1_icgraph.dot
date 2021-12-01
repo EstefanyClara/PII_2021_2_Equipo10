@@ -1,0 +1,13 @@
+digraph "Proyect.IHandler.Handle"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="Proyect.IHandler.Handle",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Procesa el mensaje o la pasa al siguiente \"handler\" si existe."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Proyect.BaseHandler.Handle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classProyect_1_1BaseHandler.html#accab90b380027600bece8c5ea2222a3b",tooltip="Procesa el mensaje o la pasa al siguiente \"handler\" si existe."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Tests.ChainOfResponsibility\lTests.TestAuthorizarionDelegates\lRegister",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTests_1_1ChainOfResponsibilityTests.html#ab41a8dd8829db38951d6df9ad2ad20a5",tooltip="Se testea que el handler de autorización delegue la responsabilidad de registrarse al handler de regi..."];
+}
