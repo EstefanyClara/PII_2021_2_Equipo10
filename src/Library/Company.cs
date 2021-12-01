@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Proyect
 {
     /// <summary>
-    /// Esta clase representa la compañia y hereda de user (cumple con el principio ISP, porque no depende de tipos que no usa, ya que utiliza todos los metodos y propiedades de user).
+    /// Esta clase representa la compania y hereda de user (cumple con el principio ISP, porque no depende de tipos que no usa, ya que utiliza todos los metodos y propiedades de user).
     /// </summary>
     public class Company : User
     {
@@ -36,13 +36,13 @@ namespace Proyect
         /// <summary>
         /// Crea una instancia de una oferta constante y se la agrega a la lista de ofertas de la compania.
         /// Se Asigno esta responsabilidad por expert (La clase company es la que conoce la lista de las ofertas que publica).
-        /// Tambien, se asigno esta reponsabilidad siguinedo el patron creator, company contiene objetos IOffer.
+        /// Tambien, se asigno esta responsabilidad siguiendo el patron creator, company contiene objetos IOffer.
         /// </summary>
         /// <param name="tipo">El tipo del producto a ofertas.</param>
         /// <param name="quantity">La cantidad del producto a ofertas.</param>
         /// <param name="cost">El costo del producto a ofertar.</param>
         /// <param name="ubication">La ubicacion del producto a ofertar.</param>
-        /// <param name="qualifications">La habiliatciones de la oferta.</param>
+        /// <param name="qualifications">La habilitaciones de la oferta.</param>
         /// <param name="keyWords">Las palabras clave asociadas a la oferta.</param>
         public void PublicConstantOffer(Classification tipo, double quantity, double cost, string ubication, List<Qualifications> qualifications, ArrayList keyWords)
         {
@@ -50,9 +50,9 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Crea una instacion de una oferta no constante y se la agrega a la lista de ofertas de la compania.
+        /// Crea una instacia de una oferta no constante y se la agrega a la lista de ofertas de la compania.
         /// Se Asigno esta responsabilidad por expert (La clase company es la que conoce la lista de ls ofertas que publica).
-        /// Tambien, se asigno esta reponsabilidad siguinedo el patron creator, company contiene objetos IOffer.
+        /// Tambien, se asigno esta responsabilidad siguiendo el patron creator, company contiene objetos IOffer.
         /// </summary>
         /// /// <param name="tipo">El tipo del producto a ofertas.</param>
         /// <param name="quantity">La cantidad del producto a ofertas.</param>

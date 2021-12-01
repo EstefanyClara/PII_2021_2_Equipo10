@@ -19,7 +19,7 @@ namespace Proyect
         /// <summary>
         /// Obtiene la instancia de OfferSearch.
         /// </summary>
-        /// <value>La instancia de offerserach.</value>
+        /// <value>La instancia de offersearch.</value>
         public static OfferSearch Instance
         {
             get
@@ -32,7 +32,7 @@ namespace Proyect
         /// Busca las ofertas con la palabra clave que se le pasa (Por srp).
         /// </summary>
         /// <param name="word">Palabras claves de oferta.</param>
-        /// <returns>Una lista con las offertas.</returns>
+        /// <returns>Una lista con las ofertas.</returns>
         public List<IOffer> SearchByKeywords(string word)
         {
             string keyWord = word.Replace(".", "");

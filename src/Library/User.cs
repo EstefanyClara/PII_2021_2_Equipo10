@@ -19,7 +19,7 @@ namespace Proyect
         /// </summary>
         protected string ubication;
         /// <summary>
-        /// El rubro al que pertnece el usuario.
+        /// El rubro al que pertenece el usuario.
         /// </summary>
         protected Rubro rubro;
 
@@ -34,8 +34,8 @@ namespace Proyect
         protected string user_Contact;
 
         /// <summary>
-        /// Lista de ofertas constantes, que posee el usuario (Uasada en la serializacion).
-        /// Esta propierti solo se utiliza en la serializacion.
+        /// Lista de ofertas constantes, que posee el usuario (Usada en la seralizacion).
+        /// Esta property solo se utiliza en la seralizacion.
         /// </summary>
         /// <returns>La lisat de ofertas consatnte de la compania.</returns>
         [JsonInclude]
@@ -72,7 +72,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Constructor para la serializacion.
+        /// Constructor para la seralizacion.
         /// </summary>
         [JsonConstructor]
         public User()
@@ -112,7 +112,7 @@ namespace Proyect
         /// <summary>
         /// Propiedad get y set del atributo del rubro.
         /// </summary>
-        /// <value>El rubro al que pertnece el usurio.</value>
+        /// <value>El rubro al que pertenece el usurio.</value>
         public Rubro Rubro
         {
             get
@@ -128,7 +128,7 @@ namespace Proyect
         /// <summary>
         /// Obtiene el id del usuario.
         /// </summary>
-        /// <value>La id del usaurio.</value>
+        /// <value>La id del usuario.</value>
         public string User_Id
         {
             get
@@ -138,9 +138,9 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene el contacto del usuraio.
+        /// Obtiene el contacto del usuario.
         /// </summary>
-        /// <value>El conatcto del usurio.</value>
+        /// <value>El contacto del usurio.</value>
         public string User_Contact
         {
             get

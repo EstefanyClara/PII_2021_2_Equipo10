@@ -4,14 +4,14 @@ using System.Text.Json.Serialization;
 namespace Proyect
 {
     /// <summary>
-    /// Clase que representa el rubro de una compañia o emprendedor.
+    /// Clase que representa el rubro de una compania o emprendedor.
     /// </summary>
     public class Rubro
     {
         private string rubroName;
 
         /// <summary>
-        /// Propierty del nombre del rubro.
+        /// Property del nombre del rubro.
         /// </summary>
         /// <value>El nombre del rubro.</value>
         public string RubroName

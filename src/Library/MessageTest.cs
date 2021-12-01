@@ -4,7 +4,7 @@ namespace Proyect
 {
 
     /// <summary>
-    /// Calse mensaje utilizada para los test.
+    /// Clase mensaje utilizada para los test.
     /// </summary>
     public class MessageTest : IMessage
     {
@@ -24,7 +24,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Propierty get y set del id.
+        /// Property get y set del id.
         /// </summary>
         /// <value>El id del usurio.</value>
         public string Id
@@ -34,7 +34,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Propierty del chat id de cada usaurio.
+        /// Property del chat id de cada usuario.
         /// </summary>
         /// <value>El chat id del usurio.</value>
         public long MsgId
@@ -54,7 +54,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Metodo que envia una imagen a un usuiro.
+        /// Metodo que envia una imagen a un usuario.
         /// </summary>
         /// <param name="mensaje">El mensaje que se mostrara con la imagen.</param>
         /// <param name="direccion">La dirrecion de donde se sacara la imagen.</param>

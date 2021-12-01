@@ -31,7 +31,7 @@ namespace Ucu.Poo.TelegramBot
         // El token provisto por Telegram al crear el bot.
         //
         // *Importante*:
-        // Para probar este ejemplo, crea un bot nuevo y eeemplaza este token por el de tu bot.
+        // Para probar este ejemplo, crea un bot nuevo y reemplaza este token por el de tu bot.
         private static string Token = "2143817414:AAFIP8z5dIEL2guavfT6SdZMob7BtXqHcMI";
 
         private static IHandler firstHandler;
