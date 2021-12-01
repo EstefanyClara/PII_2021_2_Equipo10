@@ -1054,6 +1054,7 @@
             <summary>
             Id del usuario.
             </summary>
+            <value>El id.</value>
         </member>
         <member name="P:Proyect.IMessage.Text">
             <summary>
@@ -1064,7 +1065,7 @@
             <summary>
             Id del chat.
             </summary>
-            <value></value>
+            <value>El chat id.</value>
         </member>
         <member name="M:Proyect.IMessage.SendProfileImage(System.String,System.String)">
             <summary>
@@ -1148,9 +1149,16 @@
             Calse mensaje utilizada para los test.
             </summary>
         </member>
+        <member name="M:Proyect.MessageTest.#ctor(System.String,System.Int32)">
+            <summary>
+            Constructor de la clase message para el text.
+            </summary>
+            <param name="ID"></param>
+            <param name="MSGID"></param>
+        </member>
         <member name="P:Proyect.MessageTest.Id">
             <summary>
-            ropierty del id del usuario.
+            Propierty get y set del id.
             </summary>
             <value>El id del usurio.</value>
         </member>
