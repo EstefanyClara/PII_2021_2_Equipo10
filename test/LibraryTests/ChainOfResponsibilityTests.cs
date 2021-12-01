@@ -83,6 +83,9 @@ namespace Tests
             Assert.That(response, Is.EqualTo("Usted ya se encuentra registrado"));
         }
 
+        /// <summary>
+        /// Se testea si se cancela la operacion actual.
+        /// </summary>
         [Test]
         public void TestCancelHandlerCancels()
         {
@@ -97,6 +100,9 @@ namespace Tests
             Assert.That(response, Is.EqualTo("Usted no se encuentra en ningún estado especifico."));
         }
 
+        /// <summary>
+        /// Se testea que se pueda acceder al mensaje para iniciar la publicacion de una oferta.
+        /// </summary>
         [Test]
         public void TestPublicOfferHandlerPublishes()
         {
@@ -112,6 +118,9 @@ namespace Tests
             Assert.That(response, Is.EqualTo("¿La oferta que desea publicar es constante?(/si o /no)\n\nUna oferta constante son aquellas que siempre estan disponibles y las pueden aceptar varios emprendedores, mientras que las no constante solo la puede aceptar un emprendedor"));
         }
 
+        /// <summary>
+        /// Se testea que se muestre la lista con los datos de la compania.
+        /// </summary>
         [Test]
         public void TestMeHandlerShowInfo()
         {
@@ -129,6 +138,10 @@ namespace Tests
             Assert.That(response, Is.EqualTo($"Nombre: {company.Name}\nRubro al que pertenece: {company.Rubro.RubroName}\nUbicación: {company.Ubication}\nContacto: {company.User_Contact}"));
         }
 
+        /// <summary>
+        /// Se testea que se muestren las opciones que se verian si un usuario quiere buscar
+        /// ya sea por nombre, ubicacion o clasificacion.
+        /// </summary>
         [Test]
         public void TestSearchOfferHandlerSearches()
         {
@@ -142,6 +155,9 @@ namespace Tests
             Assert.That(response, Is.EqualTo("Indique como quiere buscar ofertas\n/1 - Palabra clave.\n/2 - Ubicacíon\n/3 - Clasificación"));
         }
 
+        /// <summary>
+        /// Se testea que se muestre las ofertas que se le aceptaron a una compania por los emprendedores.
+        /// </summary>
         [Test]
         public void TestPurchasedOfferHandlerOffers()
         {
@@ -154,6 +170,10 @@ namespace Tests
             Assert.That(result, Is.Not.Null);
             Assert.That(response, Is.EqualTo($"Estas son las ofertas publicadas, que fueron aceptadas por emprendedores:\n"));
         }
+
+        /// <summary>
+        /// Se testea que se muestre el mensaje de bienvenida a cualquier usuario.
+        /// </summary>
         [Test]
         public void TestStartHandlerMessage()
         {
