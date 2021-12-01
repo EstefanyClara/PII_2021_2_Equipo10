@@ -27,7 +27,7 @@ namespace Proyect
         /// <param name="quantity">La cantidad del producto a ofertas.</param>
         /// <param name="cost">El costo del producto a ofertar.</param>
         /// <param name="ubicacion">La ubicacion del producto a ofertar.</param>
-        /// <param name="qualifications">La habiliatciones de la oferta.</param>
+        /// <param name="qualifications">La habilitaciones de la oferta.</param>
         /// <param name="keyWords">Las palabras clave asociadas a la oferta.</param>
         public ConstantOffer(Classification tipo, double quantity, double cost, string ubicacion, List<Qualifications> qualifications, ArrayList keyWords)
         {
@@ -66,7 +66,7 @@ namespace Proyect
         /// <summary>
         /// Obtiene la lista de las habilitaciones de una oferta.
         /// </summary>
-        /// <value>Las habiliatciones.</value>
+        /// <value>Las habilitaciones.</value>
         public IList<Qualifications> Qualifications
         {
             get
@@ -98,7 +98,7 @@ namespace Proyect
         /// <summary>
         /// Obtiene la informacion de el o los compardores de esta oferta constante (Informacion de compra).
         /// </summary>
-        /// <value>La lisat de infromacion de compra.</value>
+        /// <value>La lista de infromacion de compra.</value>
         public IList<PurchaseData> PurchesedData
         {
             get

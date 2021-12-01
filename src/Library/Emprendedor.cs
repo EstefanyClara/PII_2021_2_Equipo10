@@ -18,7 +18,7 @@ namespace Proyect
         /// <param name="name">Nombre del emprendedor.</param>
         /// <param name="ubication">Ubicacion del emprendedor.</param>
         /// <param name="rubro">Rubro del emprendedor.</param>
-        /// <param name="qualifications">Hablitaciones del emprendedor.</param>
+        /// <param name="qualifications">Habilitaciones del emprendedor.</param>
         /// <param name="specializations">Especializaciones del emprendedor.</param>
         /// <param name="user_Id">Identificacion del emprendedor.</param>
         /// <param name="user_Contact">Contacto del emprendedor.</param>
@@ -31,7 +31,7 @@ namespace Proyect
         /// <summary>
         /// Propiedad get y set de las habilitaciones.
         /// </summary>
-        /// <value>Las habiliatciones.</value>
+        /// <value>Las habilitaciones.</value>
         public IList<Qualifications> Qualifications
         {
             get
@@ -62,7 +62,7 @@ namespace Proyect
         /// <summary>
         /// Obtiene la lista de ofertas ofertas aceptadas por el emprendedor.
         /// </summary>
-        /// <value>tLa lista de ofertas que el emprendeodr acepto.</value>
+        /// <value>tLa lista de ofertas que el emprendedor acepto.</value>
         public List<IOffer> PurchasedOffers
         {
             get

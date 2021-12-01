@@ -6,14 +6,14 @@ using System.Text.Json.Serialization;
 namespace Proyect
 {
     /// <summary>
-    /// Handler utilizado para la serializacion.
+    /// Handler utilizado para la seralizacion.
     /// </summary>
     public class MyReferenceHandler : ReferenceHandler
     {
         private static MyReferenceHandler instance;
 
         /// <summary>
-        /// La instancia del hanlder de referencia.
+        /// La instancia del handler de referencia.
         /// </summary>
         /// <value></value>
         public static MyReferenceHandler Instance
@@ -42,7 +42,7 @@ namespace Proyect
         public override ReferenceResolver CreateResolver() => _rootedResolver;
 
         /// <summary>
-        /// Reseteador del hanlder.
+        /// Reseteador del handler.
         /// </summary>
         public void Reset() => _rootedResolver = new MyReferenceResolver();
     }

@@ -4,7 +4,7 @@ using System.Collections;
 namespace Proyect
 {
     /// <summary>
-    /// Interfaz para las ofertas de una compania, la utilizaron ambos tipos de ofertas, y si se quieren agrregar mas, tambien habran de utilizar esta interfaz.
+    /// Interfaz para las ofertas de una compania, la utilizaron ambos tipos de ofertas, y si se quieren agregar mas, tambien habran de utilizar esta interfaz.
     /// </summary>
     public interface IOffer
     {
@@ -17,17 +17,17 @@ namespace Proyect
         /// <summary>
         /// Propiedad get y set de las habilitaciones de la oferta.
         /// </summary>
-        /// <value>Las habiliatciones.</value>
+        /// <value>Las habilitaciones.</value>
         IList<Qualifications> Qualifications { get; set; }
 
         /// <summary>
-        /// Propierti de la lista de palabras clave de una oferta.
+        /// Property de la lista de palabras clave de una oferta.
         /// </summary>
         /// <value>keyWords.</value>
         ArrayList KeyWords { get; set; }
 
         /// <summary>
-        /// Propierti de la fecha de publicacion de la oferta.
+        /// Property de la fecha de publicacion de la oferta.
         /// </summary>
         /// <value>DateTime</value>
         string DatePublished { get; set; }
@@ -39,16 +39,16 @@ namespace Proyect
         IList<PurchaseData> PurchesedData { get; set; }
 
         /// <summary>
-        /// Obtien toda la informacion de compra (compardor y fecha de compra), del peridodo de tiempo indicado.
-        /// Por expert le asiganmaos esta responsabiliad (Es la que tiene la lisat de informacion de compra).
+        /// Obtiene toda la informacion de compra (compardor y fecha de compra), del peridodo de tiempo indicado.
+        /// Por expert le asignamos esta responsabilidad (Es la que tiene la lista de informacion de compra).
         /// </summary>
         /// <param name="periodTime"></param>
-        /// <returns>La lisat con la infromacion de compra.</returns>
+        /// <returns>La lista con la infromacion de compra.</returns>
         IList<PurchaseData> GetPeriodTimeOffersAcceptedData(int periodTime);
 
         /// <summary>
         /// Obtiene la infromacion de compra del emprendedor indicado, en el perido de tiempo establecido.
-        /// Por expert le asiganmaos esta responsabiliad (Es la que tiene la lisat de informacion de compra).
+        /// Por expert le asignamos esta responsabilidad (Es la que tiene la lista de informacion de compra).
         /// </summary>
         /// <param name="periodTime">El perido de tiempo.</param>
         /// <param name="emprendedor">El emprendedor.</param>
@@ -57,7 +57,7 @@ namespace Proyect
 
         /// <summary>
         /// Obtiene todos los datos de compra de la oferta del emprendedor indicado.
-        /// Por expert le asiganmaos esta responsabiliad (Es la que tiene la lisat de informacion de compra).
+        /// Por expert le asignamos esta responsabilidad (Es la que tiene la lista de informacion de compra).
         /// </summary>
         /// <param name="emprendedor">El emprendedor.</param>
         /// <returns>La informacion de compra.</returns>
@@ -65,7 +65,7 @@ namespace Proyect
 
         /// <summary>
         /// Le asigna el emprendedor y la fecha de compra a la oferta, una vez es comprada (La informacion de compra).
-        /// Por expert le asiganmaos esta responsabiliad (Es la que tiene la lista de informacion de compra).
+        /// Por expert le asignamos esta responsabilidad (Es la que tiene la lista de informacion de compra).
         /// </summary>
         /// <param name="emprendedor">El emprendedor.</param>
         /// <returns>Mensaje de confirmacion.</returns>

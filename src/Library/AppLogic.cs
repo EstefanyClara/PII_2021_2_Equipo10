@@ -11,8 +11,8 @@ namespace Proyect
     /// Clase singleton para guardar los datos de la Aplicacion.
     /// Solo hay una instancia de esta clase, y es la que colabora con todas las demas.
     /// Esta clase guarda las instancias tanto de campanias y de emprendedores, asi como de los rubros, clasificaciones, y habilitaciones (La usa de manera muy cercana).
-    /// Todos lso comabios qu ese hagan a algun objeto, pasan por esta clase, esto permite que sea mas facilemnete el utilizar la logica del programa, sin depender de los handlers.
-    /// En la serializacion, solo serializamos la lista, patra asi mantener el encapsulamiento, ya que la logica solo debria tener un constructor privado.
+    /// Todos lso comabios qu ese hagan a algun objeto, pasan por esta clase, esto permite que sea mas facilmente el utilizar la logica del programa, sin depender de los handlers.
+    /// En la serializacion, solo serializamos la lista, para asi mantener el encapsulamiento, ya que la logica solo debria tener un constructor privado.
     /// </summary>
     public sealed class AppLogic
     {
@@ -66,7 +66,7 @@ namespace Proyect
         /// <summary>
         /// Obtiene la lista de clasificaciones/categorias registradas para los productos.
         /// </summary>
-        /// <value>validClasification.</value>
+        /// <value>validClassification.</value>
         public List<Classification> Classifications
         {
             get { return DeserializeClasification(); }
@@ -75,7 +75,7 @@ namespace Proyect
         /// <summary>
         /// Convierte a Json la lista de rubros (así cuando se quiera agregar uno nuevo, no hay que detener el programa).
         /// Este metodo lo posee AppLogic, porque es la que tiene la lista (es la experta en la informacion). 
-        /// Este es un metodo polimorfico.
+        /// Este es un metodo polimorfismo.
         /// </summary>
         /// <param name="rubro">La lista de rubros antes de serializar.</param>
         /// <returns>La lisat de rubros serializada.</returns>
@@ -91,12 +91,12 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Convierte a Json la lista de habiliatciones (así cuando se quiera agregar una nueva, no hay que detener el programa).
+        /// Convierte a Json la lista de habilitaciones (así cuando se quiera agregar una nueva, no hay que detener el programa).
         /// Este metodo lo posee AppLogic, porque es la que tiene la lista (es la experta en la informacion).
-        /// Este es un metodo polimorfico.
+        /// Este es un metodo polimorfismo.
         /// </summary>
-        /// <param name="habilitaciones">La lista de habiliatciones antes de serializarla.</param>
-        /// <returns>La lisat de habiliatciones serializada.</returns>
+        /// <param name="habilitaciones">La lista de habilitaciones antes de serializarla.</param>
+        /// <returns>La lista de habilitaciones serializada.</returns>
         public string ConvertToJson(List<Qualifications> habilitaciones)
         {
             JsonSerializerOptions options = new()
@@ -108,12 +108,12 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Convierte a Json la lista de calsificaciones (así cuando se quiera agregar una nueva, no hay que detener el programa).
+        /// Convierte a Json la lista de clasificaciones (así cuando se quiera agregar una nueva, no hay que detener el programa).
         /// Este metodo lo posee AppLogic, porque es la que tiene la lista (es la experta en la informacion).
-        /// Este es un metodo polimorfico.
+        /// Este es un metodo polimorfismo.
         /// </summary>
-        /// <param name="clasificaciones">La lisat de clasificaiones nates de serializar.</param>
-        /// <returns>La lisat de clasificaciones serializada.</returns>
+        /// <param name="clasificaciones">La lista de clasificaiones nates de serializar.</param>
+        /// <returns>La lista de clasificaciones serializada.</returns>
         public string ConvertToJson(List<Classification> clasificaciones)
         {
             JsonSerializerOptions options = new()
@@ -130,8 +130,8 @@ namespace Proyect
         /// Este metodo lo posee AppLogic, porque es la que tiene la lista (es la experta en la informacion).
         /// Este es un metodo polimorfico. 
         /// </summary>
-        /// <param name="emprendedores">La lisat de meprendedores antes de serializar.</param>
-        /// <returns>La lisat de emprendedores serializada.</returns>
+        /// <param name="emprendedores">La lisat de emprendedores antes de serializar.</param>
+        /// <returns>La lista de emprendedores serializada.</returns>
         public string ConvertToJson(IList<Emprendedor> emprendedores)
         {
             JsonSerializerOptions options = new()
@@ -163,7 +163,7 @@ namespace Proyect
         /// Este es un metodo polimorfico. 
         /// </summary>
         /// <param name="companies">La lisat de companias antes de serilizar.</param>
-        /// <returns>La lista de compnais serializada.</returns>
+        /// <returns>La lista de companias serializada.</returns>
         public string ConvertToJson(IList<Company> companies)
         {
             JsonSerializerOptions options = new()
@@ -204,7 +204,7 @@ namespace Proyect
         /// Deserializa la lista de habilitaciones del archivo json.
         /// AppLogic tiene la responsabilidad, porque es la que tiene la logica del programa y la que usa la lista (por expert).
         /// </summary>
-        /// <returns>La lista de habiliatciones deserializada.</returns>
+        /// <returns>La lista de habilitaciones deserializada.</returns>
         public List<Qualifications> DeserializeQualifications()
         {
             string json = System.IO.File.ReadAllText(@"../Library/Persistencia/Habilitaciones.json");
@@ -303,9 +303,9 @@ namespace Proyect
 
         /// <summary>
         /// Obtiene le codigo que un usuario usara si se quiere registrar como compania.
-        /// Le delega la responsabiliad a Administrator (La que tiene la lista de todos los codigos, y la que los maneja).
+        /// Le delega la responsabilidad a Administrator (La que tiene la lista de todos los codigos, y la que los maneja).
         /// </summary>
-        /// <returns>El codigo que usara una compnai para registrarse.</returns>
+        /// <returns>El codigo que usara una compnia para registrarse.</returns>
         public string Invite()
         {
             return Administrator.Instance.Invite();
@@ -338,12 +338,12 @@ namespace Proyect
 
         /// <summary>
         /// Registra a una compania
-        /// Le delaga la responsabilidad de crear la compnai a Administrator, la que tiene que comprara el codigo necesario para la companias.
+        /// Le delaga la responsabilidad de crear la compania a Administrator, la que tiene que comprara el codigo necesario para la companias.
         /// Guarda a la compania en la lista de companias (Por expert).
         /// </summary>
         /// <param name="companyToken">El codigo que ingreso una compnai para registrase.</param>
-        /// <param name="user_Id">El id de ususario.</param>
-        /// <param name="name">El nombre de la compañia.</param>
+        /// <param name="user_Id">El id de usuario.</param>
+        /// <param name="name">El nombre de la compania.</param>
         /// <param name="ubication">La ubicacion de la compania.</param>
         /// <param name="rubro">El rubro al que pertenece la compañia.</param>
         /// <param name="user_Contact">Contacto de la compania.</param>
@@ -376,7 +376,7 @@ namespace Proyect
 
         /// <summary>
         /// Agrega las palabras clave de una oferta.
-        /// Le delaga la responsabilidad a Company (La epxerta).
+        /// Le delaga la responsabilidad a Company (La experta).
         /// </summary>
         /// <param name="company">La compania.</param>
         /// <param name="offer">La oferta.</param>
@@ -422,7 +422,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Publica una ofert constante de la compania que se le ingresa.
+        /// Publica una oferta constante de la compania que se le ingresa.
         /// ÑLe delaga la responsabilidad a company (Por patron creator).
         /// </summary>
         /// <param name="company">La compania.</param>
@@ -438,7 +438,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Publica una oferta no constnte de la compania que se le ingresa.
+        /// Publica una oferta no constante de la compania que se le ingresa.
         /// Le delega la responsabilidad a company (Por patron creator).
         /// </summary>
         /// <param name="company">La compania.</param>
@@ -455,7 +455,7 @@ namespace Proyect
 
         /// <summary>
         /// Metodo que se encarga de buscar las ofertas por tipo.
-        /// Le delega la responsabilidada a OfferSearch (Por SRP).
+        /// Le delega la responsabilidad a OfferSearch (Por SRP).
         /// </summary>
         /// <param name="word">Tipo de oferta.</param>
         /// <returns>Un Lista con todas las ofertas que sean de ese tipo.</returns>
@@ -466,7 +466,7 @@ namespace Proyect
 
         /// <summary>
         /// Metodo que se encarga de buscar las ofertas por ubicacion.
-        /// Le delega la responsabilidada a OfferSearch (Por SRP).
+        /// Le delega la responsabilidad a OfferSearch (Por SRP).
         /// </summary>
         /// <param name="word">Ubicacion de la oferta.</param>
         /// <returns>Un Lista con todas las ofertas en la ubicacion dada.</returns>
@@ -477,10 +477,10 @@ namespace Proyect
 
         /// <summary>
         /// Metodo que se encarga de buscar las ofertas por palabra clave.
-        /// Le delega la responsabilidada a OfferSearch (Por SRP).
+        /// Le delega la responsabilidad a OfferSearch (Por SRP).
         /// </summary>
-        /// <param name="keyWord">La palabra clave que debeena tener las ofertas.</param>
-        /// <returns>Un Lista con todas las ofertas que tenga esa palabara clave.</returns>
+        /// <param name="keyWord">La palabra clave que deben tener las ofertas.</param>
+        /// <returns>Un Lista con todas las ofertas que tenga esa palabra clave.</returns>
         public List<IOffer> SearchOfferByKeywords(string keyWord)
         {
             return OfferSearch.Instance.SearchByKeywords(keyWord);
@@ -490,7 +490,8 @@ namespace Proyect
         /// Metodo para aceptar una oferta.
         /// Le delega la responsabilidad de determinar si la oferta puede o no ser aceptada por el emprendedor, a Offer, la que tiene todos los datos para saber si es posible la accion (Por expert).
         /// Le delega la responsabilidad de agregar una oferta, a Emprendedor, la que que tiene la lista de ofertas que acepto (Por expert).
-        /// AppLofic tiene la responsabiliad de enviar el mensaje de confirmacuon, porque es la que conoce todos los datos necesarios para determinar un resultado (Por expert).        /// </summary>
+        /// AppLogic tiene la responsabilidad de enviar el mensaje de confirmacion, porque es la que conoce todos los datos necesarios para determinar un resultado (Por expert).        
+        /// </summary>
         /// <param name="emprendedor">Emprendedor.</param>
         /// <param name="offer">Oferta a aceptar.</param>
         /// <returns>Mensaje de confirmacion si la oferta fue o no aceptada.</returns>
@@ -564,7 +565,7 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene una lista de las ofertas que fueron acepatadas de la compañia que se le ingresa.
+        /// Obtiene una lista de las ofertas que fueron acepatadas de la compania que se le ingresa.
         /// Es una operacion polimorfica.
         /// Le delega la responsabilidad a Company (La experta).
         /// </summary>
@@ -602,8 +603,8 @@ namespace Proyect
 
         /// <summary>
         /// Obtiene la cantidad de ofertas que fueron aceptadas en un periodo de tiempo establecido por el usuario.
-        /// Le delega la responasabilidad a emprendedor (La experta).
-        /// Es una operaciion polimorfica.
+        /// Le delega la responsabilidad a emprendedor (La experta).
+        /// Es una operacion polimorfica.
         /// </summary>
         /// <param name="emprendedor">Emprendedor.</param>
         /// <param name="periodTime">Periodo de tiempo establecido por el usuario.</param>
@@ -614,11 +615,11 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene la compania mediente el id de usuario ingreado.
-        /// Como AppLogic tiene la lista de copanias, tiene esta responsabiliad (Es la experta).
+        /// Obtiene la compania mediente el id de usuario ingresado.
+        /// Como AppLogic tiene la lista de copanias, tiene esta responsabilidad (Es la experta).
         /// </summary>
         /// <param name="user_Id">El id de usuario.</param>
-        /// <returns>La compnai que tiene ese id.</returns>
+        /// <returns>La compania que tiene ese id.</returns>
         public Company GetCompany(string user_Id)
         {
             foreach (Company item in this.Companies)
@@ -632,8 +633,8 @@ namespace Proyect
         }
 
         /// <summary>
-        /// Obtiene el emprendedor mendiante el ingreso de un id de usuario.
-        /// Como AppLogic tiene la lista de emprendedores, tiene esta respnsabilidad (Es la experta).
+        /// Obtiene el emprendedor mediante el ingreso de un id de usuario.
+        /// Como AppLogic tiene la lista de emprendedores, tiene esta responsabilidad (Es la experta).
         /// </summary>
         /// <param name="user_Id">El id de usuario.</param>
         /// <returns>El emprendedor que tiene ese id.</returns>

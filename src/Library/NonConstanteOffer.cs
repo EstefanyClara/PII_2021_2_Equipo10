@@ -23,7 +23,7 @@ namespace Proyect
         /// <param name="quantity">La cantidad del producto a ofertas.</param>
         /// <param name="cost">El costo del producto a ofertar.</param>
         /// <param name="ubicacion">La ubicacion del producto a ofertar.</param>
-        /// <param name="qualifications">La habiliatciones de la oferta.</param>
+        /// <param name="qualifications">La habilitaciones de la oferta.</param>
         /// <param name="keyWords">Las palabras clave asociadas a la oferta.</param>
         public NonConstantOffer(Classification tipo, double quantity, double cost, string ubicacion, List<Qualifications> qualifications, ArrayList keyWords)
         {
@@ -36,7 +36,7 @@ namespace Proyect
 
 
         /// <summary>
-        /// Constructor utilizado en la serilizacion.
+        /// Constructor utilizado en la serialization.
         /// </summary>
         [JsonConstructor]
         public NonConstantOffer()
@@ -63,7 +63,7 @@ namespace Proyect
         /// <summary>
         /// Obtiene la lista de las habilitaciones de una oferta.
         /// </summary>
-        /// <value>Lista de habiliatciones.</value>
+        /// <value>Lista de habilitaciones.</value>
         [JsonInclude]
         public IList<Qualifications> Qualifications
         {
@@ -132,7 +132,7 @@ namespace Proyect
         /// Esta operacion es polimorfica.
         /// </summary>
         /// <param name="periodTime">El periodo de tiempo.</param>
-        /// <returns>Si la oferta se compro antes de la fecha estipulada, devuelve la iformacion de compra, en caso contrario, devuelve un string indicando dicha situacion</returns>
+        /// <returns>Si la oferta se compro antes de la fecha estipulada, devuelve la informacion de compra, en caso contrario, devuelve un string indicando dicha situacion</returns>
         public IList<PurchaseData> GetPeriodTimeOffersAcceptedData(int periodTime)
         {
             TimeSpan diference = this.PurchesedData[0].PurchaseDate - DateTime.Now;
@@ -190,7 +190,7 @@ namespace Proyect
         /// Obtiene la infromacion de compra de un emprendedor en esepcifico (Por expert).
         /// </summary>
         /// <param name="emprendedor">El emprendedor.</param>
-        /// <returns>La lista de informacíon de compra.</returns>
+        /// <returns>La lista de informacion de compra.</returns>
         public IList<PurchaseData> GetEntrepreneursPurchaseData(Emprendedor emprendedor)
         {
             List<PurchaseData> compra = new List<PurchaseData>();

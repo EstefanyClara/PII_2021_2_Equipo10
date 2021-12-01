@@ -10,7 +10,7 @@ namespace Proyect
 {
     /// <summary>
     /// Adaptador de mensajes de Telegram a mensajes de la interfaz de usuario.
-    /// Esto permite que la aplicacion sirba para otras apps apartes de telegram.
+    /// Esto permite que la aplicacion sirva para otras apps apartes de telegram.
     /// </summary>
     public class TelegramAdapter : IMessage
     {
@@ -52,7 +52,7 @@ namespace Proyect
         /// <summary>
         /// El id de usurio.
         /// </summary>
-        /// <value>El id de suario.</value>
+        /// <value>El id de usuario.</value>
         public string Id
         {
             get
