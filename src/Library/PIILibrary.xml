@@ -6,11 +6,11 @@
     <members>
         <member name="T:Proyect.Administrator">
             <summary>
-            Esta clase administrador invita a los usuarios a registarse.
+            Esta clase administrador invita a los usuarios a registrarse.
             Clase singleton, solo una instancia de administrador.
-            Esta clase contiene ademas, la lista de codigos para que una compnai se pueda registrar.
-            Tambien contien la lista de id de usuarios, que tienen poderio de administrador.
-            Serializamos solo la lista de codigos, para asi mantener el encpasulamiento, ya que adminsitrador solo deberia tener un constructor privado.
+            Esta clase contiene ademas, la lista de codigos para que una company se pueda registrar.
+            Tambien contiene la lista de id de usuarios, que tienen poderio de administrador.
+            Serializamos solo la lista de codigos, para asi mantener el encapsulamiento, ya que administrador solo deberia tener un constructor privado.
             </summary>
         </member>
         <member name="P:Proyect.Administrator.Instance">
@@ -21,7 +21,7 @@
         </member>
         <member name="P:Proyect.Administrator.Tokens">
             <summary>
-            Obteien la lista de tokes que el administardo crea, y que se usan para registrar companias..
+            Obtiene la lista de tokes que el administrador crea, y que se usan para registrar companias.
             </summary>
             <value>La lista de codigos.</value>
         </member>
@@ -29,24 +29,24 @@
             <summary>
             Obteien la lista de id de aquellos que tienen el rol de administrador.
             </summary>
-            <value>La lista de id de administradors.</value>
+            <value>La lista de id de administradores.</value>
         </member>
         <member name="M:Proyect.Administrator.ConfirmCompanyRegistration(System.String,System.String,System.String,System.String,Proyect.Rubro,System.String)">
             <summary>
             Metodo que crea una compania si la misma ingreso un token correcto (Utiliza Creator).
-            Tiene esta repsnsabiliad, ya que es la tien ela lista de tokes para validad (Por expert).
+            Tiene esta responsabilidad, ya que es la tiene la lista de tokes para validad (Por expert).
             </summary>
             <param name="companyToken">El codigo de regsitro.</param>
             <param name="name">El nombre de la compania.</param>
-            <param name="ubication">La ubicacion de la compañia.</param>
-            <param name="rubro">El rubor de la compañia.</param>
+            <param name="ubication">La ubicacion de la compania.</param>
+            <param name="rubro">El rubor de la compania.</param>
             <param name="user_Id">El id de usuario.</param>
-            <param name="user_Contact">El mail de conatcto de la compania.</param>
+            <param name="user_Contact">El mail de contacto de la compania.</param>
             <returns>La compania que si posee el codigo correcto, null en caso contrario.</returns>
         </member>
         <member name="M:Proyect.Administrator.Invite">
             <summary>
-            Genera un codigo con el cual una compañia se podra registrar (Por expert).
+            Genera un codigo con el cual una compania se podra registrar (Por expert).
             </summary>
             <returns>Codigo con el cual una compania se podra registrar.</returns>
         </member>
@@ -62,11 +62,11 @@
             Procesa si el id de usuario ingresado, es un id de un administrador (Por expert).
             </summary>
             <param name="user_Id">El id de usuario.</param>
-            <returns>True si es adminsatrdor, false en caso contrario.</returns>
+            <returns>True si es administrador, false en caso contrario.</returns>
         </member>
         <member name="M:Proyect.Administrator.ConvertToJson">
             <summary>
-            Convierte a json la lista de codigos para que una compañia se pueda registrar (Por expert).
+            Convierte a json la lista de codigos para que una compania se pueda registrar (Por expert).
             </summary>
             <returns>La lista de tokens serializada.</returns>
         </member>
@@ -97,8 +97,8 @@
             Clase singleton para guardar los datos de la Aplicacion.
             Solo hay una instancia de esta clase, y es la que colabora con todas las demas.
             Esta clase guarda las instancias tanto de campanias y de emprendedores, asi como de los rubros, clasificaciones, y habilitaciones (La usa de manera muy cercana).
-            Todos lso comabios qu ese hagan a algun objeto, pasan por esta clase, esto permite que sea mas facilemnete el utilizar la logica del programa, sin depender de los handlers.
-            En la serializacion, solo serializamos la lista, patra asi mantener el encapsulamiento, ya que la logica solo debria tener un constructor privado.
+            Todos lso comabios qu ese hagan a algun objeto, pasan por esta clase, esto permite que sea mas facilmente el utilizar la logica del programa, sin depender de los handlers.
+            En la serializacion, solo serializamos la lista, para asi mantener el encapsulamiento, ya que la logica solo debria tener un constructor privado.
             </summary>
         </member>
         <member name="P:Proyect.AppLogic.Companies">
@@ -129,34 +129,34 @@
             <summary>
             Obtiene la lista de clasificaciones/categorias registradas para los productos.
             </summary>
-            <value>validClasification.</value>
+            <value>validClassification.</value>
         </member>
         <member name="M:Proyect.AppLogic.ConvertToJson(System.Collections.Generic.List{Proyect.Rubro})">
             <summary>
             Convierte a Json la lista de rubros (así cuando se quiera agregar uno nuevo, no hay que detener el programa).
             Este metodo lo posee AppLogic, porque es la que tiene la lista (es la experta en la informacion). 
-            Este es un metodo polimorfico.
+            Este es un metodo polimorfismo.
             </summary>
             <param name="rubro">La lista de rubros antes de serializar.</param>
             <returns>La lisat de rubros serializada.</returns>
         </member>
         <member name="M:Proyect.AppLogic.ConvertToJson(System.Collections.Generic.List{Proyect.Qualifications})">
             <summary>
-            Convierte a Json la lista de habiliatciones (así cuando se quiera agregar una nueva, no hay que detener el programa).
+            Convierte a Json la lista de habilitaciones (así cuando se quiera agregar una nueva, no hay que detener el programa).
             Este metodo lo posee AppLogic, porque es la que tiene la lista (es la experta en la informacion).
-            Este es un metodo polimorfico.
+            Este es un metodo polimorfismo.
             </summary>
-            <param name="habilitaciones">La lista de habiliatciones antes de serializarla.</param>
-            <returns>La lisat de habiliatciones serializada.</returns>
+            <param name="habilitaciones">La lista de habilitaciones antes de serializarla.</param>
+            <returns>La lista de habilitaciones serializada.</returns>
         </member>
         <member name="M:Proyect.AppLogic.ConvertToJson(System.Collections.Generic.List{Proyect.Classification})">
             <summary>
-            Convierte a Json la lista de calsificaciones (así cuando se quiera agregar una nueva, no hay que detener el programa).
+            Convierte a Json la lista de clasificaciones (así cuando se quiera agregar una nueva, no hay que detener el programa).
             Este metodo lo posee AppLogic, porque es la que tiene la lista (es la experta en la informacion).
-            Este es un metodo polimorfico.
+            Este es un metodo polimorfismo.
             </summary>
-            <param name="clasificaciones">La lisat de clasificaiones nates de serializar.</param>
-            <returns>La lisat de clasificaciones serializada.</returns>
+            <param name="clasificaciones">La lista de clasificaiones nates de serializar.</param>
+            <returns>La lista de clasificaciones serializada.</returns>
         </member>
         <member name="M:Proyect.AppLogic.ConvertToJson(System.Collections.Generic.IList{Proyect.Emprendedor})">
             <summary>
@@ -164,8 +164,8 @@
             Este metodo lo posee AppLogic, porque es la que tiene la lista (es la experta en la informacion).
             Este es un metodo polimorfico. 
             </summary>
-            <param name="emprendedores">La lisat de meprendedores antes de serializar.</param>
-            <returns>La lisat de emprendedores serializada.</returns>
+            <param name="emprendedores">La lisat de emprendedores antes de serializar.</param>
+            <returns>La lista de emprendedores serializada.</returns>
         </member>
         <member name="M:Proyect.AppLogic.ConvertToJson(System.Collections.Generic.IList{Proyect.Company})">
             <summary>
@@ -174,7 +174,7 @@
             Este es un metodo polimorfico. 
             </summary>
             <param name="companies">La lisat de companias antes de serilizar.</param>
-            <returns>La lista de compnais serializada.</returns>
+            <returns>La lista de companias serializada.</returns>
         </member>
         <member name="M:Proyect.AppLogic.DeserializeRubros">
             <summary>
@@ -188,7 +188,7 @@
             Deserializa la lista de habilitaciones del archivo json.
             AppLogic tiene la responsabilidad, porque es la que tiene la logica del programa y la que usa la lista (por expert).
             </summary>
-            <returns>La lista de habiliatciones deserializada.</returns>
+            <returns>La lista de habilitaciones deserializada.</returns>
         </member>
         <member name="M:Proyect.AppLogic.DeserializeClasification">
             <summary>
@@ -229,9 +229,9 @@
         <member name="M:Proyect.AppLogic.Invite">
             <summary>
             Obtiene le codigo que un usuario usara si se quiere registrar como compania.
-            Le delega la responsabiliad a Administrator (La que tiene la lista de todos los codigos, y la que los maneja).
+            Le delega la responsabilidad a Administrator (La que tiene la lista de todos los codigos, y la que los maneja).
             </summary>
-            <returns>El codigo que usara una compnai para registrarse.</returns>
+            <returns>El codigo que usara una compnia para registrarse.</returns>
         </member>
         <member name="M:Proyect.AppLogic.RegisterEntrepreneurs(System.String,System.String,System.String,Proyect.Rubro,System.Collections.Generic.List{Proyect.Qualifications},System.String,System.String)">
             <summary>
@@ -249,12 +249,12 @@
         <member name="M:Proyect.AppLogic.RegistrarCompany(System.String,System.String,System.String,System.String,Proyect.Rubro,System.String)">
             <summary>
             Registra a una compania
-            Le delaga la responsabilidad de crear la compnai a Administrator, la que tiene que comprara el codigo necesario para la companias.
+            Le delaga la responsabilidad de crear la compania a Administrator, la que tiene que comprara el codigo necesario para la companias.
             Guarda a la compania en la lista de companias (Por expert).
             </summary>
             <param name="companyToken">El codigo que ingreso una compnai para registrase.</param>
-            <param name="user_Id">El id de ususario.</param>
-            <param name="name">El nombre de la compañia.</param>
+            <param name="user_Id">El id de usuario.</param>
+            <param name="name">El nombre de la compania.</param>
             <param name="ubication">La ubicacion de la compania.</param>
             <param name="rubro">El rubro al que pertenece la compañia.</param>
             <param name="user_Contact">Contacto de la compania.</param>
@@ -272,7 +272,7 @@
         <member name="M:Proyect.AppLogic.AddKeyWords(Proyect.Company,Proyect.IOffer,System.String)">
             <summary>
             Agrega las palabras clave de una oferta.
-            Le delaga la responsabilidad a Company (La epxerta).
+            Le delaga la responsabilidad a Company (La experta).
             </summary>
             <param name="company">La compania.</param>
             <param name="offer">La oferta.</param>
@@ -306,7 +306,7 @@
         </member>
         <member name="M:Proyect.AppLogic.PublicConstantOffer(Proyect.Company,Proyect.Classification,System.Double,System.Double,System.String,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.ArrayList)">
             <summary>
-            Publica una ofert constante de la compania que se le ingresa.
+            Publica una oferta constante de la compania que se le ingresa.
             ÑLe delaga la responsabilidad a company (Por patron creator).
             </summary>
             <param name="company">La compania.</param>
@@ -319,7 +319,7 @@
         </member>
         <member name="M:Proyect.AppLogic.PublicNonConstantOffer(Proyect.Company,Proyect.Classification,System.Double,System.Double,System.String,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.ArrayList)">
             <summary>
-            Publica una oferta no constnte de la compania que se le ingresa.
+            Publica una oferta no constante de la compania que se le ingresa.
             Le delega la responsabilidad a company (Por patron creator).
             </summary>
             <param name="company">La compania.</param>
@@ -333,7 +333,7 @@
         <member name="M:Proyect.AppLogic.SearchOfferByType(System.String)">
             <summary>
             Metodo que se encarga de buscar las ofertas por tipo.
-            Le delega la responsabilidada a OfferSearch (Por SRP).
+            Le delega la responsabilidad a OfferSearch (Por SRP).
             </summary>
             <param name="word">Tipo de oferta.</param>
             <returns>Un Lista con todas las ofertas que sean de ese tipo.</returns>
@@ -341,7 +341,7 @@
         <member name="M:Proyect.AppLogic.SearchOfferByUbication(System.String)">
             <summary>
             Metodo que se encarga de buscar las ofertas por ubicacion.
-            Le delega la responsabilidada a OfferSearch (Por SRP).
+            Le delega la responsabilidad a OfferSearch (Por SRP).
             </summary>
             <param name="word">Ubicacion de la oferta.</param>
             <returns>Un Lista con todas las ofertas en la ubicacion dada.</returns>
@@ -349,17 +349,18 @@
         <member name="M:Proyect.AppLogic.SearchOfferByKeywords(System.String)">
             <summary>
             Metodo que se encarga de buscar las ofertas por palabra clave.
-            Le delega la responsabilidada a OfferSearch (Por SRP).
+            Le delega la responsabilidad a OfferSearch (Por SRP).
             </summary>
-            <param name="keyWord">La palabra clave que debeena tener las ofertas.</param>
-            <returns>Un Lista con todas las ofertas que tenga esa palabara clave.</returns>
+            <param name="keyWord">La palabra clave que deben tener las ofertas.</param>
+            <returns>Un Lista con todas las ofertas que tenga esa palabra clave.</returns>
         </member>
         <member name="M:Proyect.AppLogic.AccepOffer(Proyect.Emprendedor,Proyect.IOffer)">
             <summary>
             Metodo para aceptar una oferta.
             Le delega la responsabilidad de determinar si la oferta puede o no ser aceptada por el emprendedor, a Offer, la que tiene todos los datos para saber si es posible la accion (Por expert).
             Le delega la responsabilidad de agregar una oferta, a Emprendedor, la que que tiene la lista de ofertas que acepto (Por expert).
-            AppLofic tiene la responsabiliad de enviar el mensaje de confirmacuon, porque es la que conoce todos los datos necesarios para determinar un resultado (Por expert).        /// </summary>
+            AppLogic tiene la responsabilidad de enviar el mensaje de confirmacion, porque es la que conoce todos los datos necesarios para determinar un resultado (Por expert).        
+            </summary>
             <param name="emprendedor">Emprendedor.</param>
             <param name="offer">Oferta a aceptar.</param>
             <returns>Mensaje de confirmacion si la oferta fue o no aceptada.</returns>
@@ -389,7 +390,7 @@
         </member>
         <member name="M:Proyect.AppLogic.GetOffersAccepted(Proyect.Company)">
             <summary>
-            Obtiene una lista de las ofertas que fueron acepatadas de la compañia que se le ingresa.
+            Obtiene una lista de las ofertas que fueron acepatadas de la compania que se le ingresa.
             Es una operacion polimorfica.
             Le delega la responsabilidad a Company (La experta).
             </summary>
@@ -418,8 +419,8 @@
         <member name="M:Proyect.AppLogic.GetOffersAccepted(Proyect.Emprendedor,System.Int32)">
             <summary>
             Obtiene la cantidad de ofertas que fueron aceptadas en un periodo de tiempo establecido por el usuario.
-            Le delega la responasabilidad a emprendedor (La experta).
-            Es una operaciion polimorfica.
+            Le delega la responsabilidad a emprendedor (La experta).
+            Es una operacion polimorfica.
             </summary>
             <param name="emprendedor">Emprendedor.</param>
             <param name="periodTime">Periodo de tiempo establecido por el usuario.</param>
@@ -427,16 +428,16 @@
         </member>
         <member name="M:Proyect.AppLogic.GetCompany(System.String)">
             <summary>
-            Obtiene la compania mediente el id de usuario ingreado.
-            Como AppLogic tiene la lista de copanias, tiene esta responsabiliad (Es la experta).
+            Obtiene la compania mediente el id de usuario ingresado.
+            Como AppLogic tiene la lista de copanias, tiene esta responsabilidad (Es la experta).
             </summary>
             <param name="user_Id">El id de usuario.</param>
-            <returns>La compnai que tiene ese id.</returns>
+            <returns>La compania que tiene ese id.</returns>
         </member>
         <member name="M:Proyect.AppLogic.GetEmprendedor(System.String)">
             <summary>
-            Obtiene el emprendedor mendiante el ingreso de un id de usuario.
-            Como AppLogic tiene la lista de emprendedores, tiene esta respnsabilidad (Es la experta).
+            Obtiene el emprendedor mediante el ingreso de un id de usuario.
+            Como AppLogic tiene la lista de emprendedores, tiene esta responsabilidad (Es la experta).
             </summary>
             <param name="user_Id">El id de usuario.</param>
             <returns>El emprendedor que tiene ese id.</returns>
@@ -460,7 +461,7 @@
         </member>
         <member name="T:Proyect.Company">
             <summary>
-            Esta clase representa la compañia y hereda de user (cumple con el principio ISP, porque no depende de tipos que no usa, ya que utiliza todos los metodos y propiedades de user).
+            Esta clase representa la compania y hereda de user (cumple con el principio ISP, porque no depende de tipos que no usa, ya que utiliza todos los metodos y propiedades de user).
             </summary>
         </member>
         <member name="M:Proyect.Company.#ctor(System.String,System.String,System.String,Proyect.Rubro,System.String)">
@@ -483,20 +484,20 @@
             <summary>
             Crea una instancia de una oferta constante y se la agrega a la lista de ofertas de la compania.
             Se Asigno esta responsabilidad por expert (La clase company es la que conoce la lista de las ofertas que publica).
-            Tambien, se asigno esta reponsabilidad siguinedo el patron creator, company contiene objetos IOffer.
+            Tambien, se asigno esta responsabilidad siguiendo el patron creator, company contiene objetos IOffer.
             </summary>
             <param name="tipo">El tipo del producto a ofertas.</param>
             <param name="quantity">La cantidad del producto a ofertas.</param>
             <param name="cost">El costo del producto a ofertar.</param>
             <param name="ubication">La ubicacion del producto a ofertar.</param>
-            <param name="qualifications">La habiliatciones de la oferta.</param>
+            <param name="qualifications">La habilitaciones de la oferta.</param>
             <param name="keyWords">Las palabras clave asociadas a la oferta.</param>
         </member>
         <member name="M:Proyect.Company.PublicNonConstantOffer(Proyect.Classification,System.Double,System.Double,System.String,System.Collections.Generic.List{Proyect.Qualifications},System.Collections.ArrayList)">
             <summary>
-            Crea una instacion de una oferta no constante y se la agrega a la lista de ofertas de la compania.
+            Crea una instacia de una oferta no constante y se la agrega a la lista de ofertas de la compania.
             Se Asigno esta responsabilidad por expert (La clase company es la que conoce la lista de ls ofertas que publica).
-            Tambien, se asigno esta reponsabilidad siguinedo el patron creator, company contiene objetos IOffer.
+            Tambien, se asigno esta responsabilidad siguiendo el patron creator, company contiene objetos IOffer.
             </summary>
             /// <param name="tipo">El tipo del producto a ofertas.</param>
             <param name="quantity">La cantidad del producto a ofertas.</param>
@@ -561,7 +562,7 @@
             <param name="quantity">La cantidad del producto a ofertas.</param>
             <param name="cost">El costo del producto a ofertar.</param>
             <param name="ubicacion">La ubicacion del producto a ofertar.</param>
-            <param name="qualifications">La habiliatciones de la oferta.</param>
+            <param name="qualifications">La habilitaciones de la oferta.</param>
             <param name="keyWords">Las palabras clave asociadas a la oferta.</param>
         </member>
         <member name="M:Proyect.ConstantOffer.#ctor">
@@ -579,7 +580,7 @@
             <summary>
             Obtiene la lista de las habilitaciones de una oferta.
             </summary>
-            <value>Las habiliatciones.</value>
+            <value>Las habilitaciones.</value>
         </member>
         <member name="P:Proyect.ConstantOffer.KeyWords">
             <summary>
@@ -591,7 +592,7 @@
             <summary>
             Obtiene la informacion de el o los compardores de esta oferta constante (Informacion de compra).
             </summary>
-            <value>La lisat de infromacion de compra.</value>
+            <value>La lista de infromacion de compra.</value>
         </member>
         <member name="P:Proyect.ConstantOffer.DatePublished">
             <summary>
@@ -642,7 +643,7 @@
             <param name="name">Nombre del emprendedor.</param>
             <param name="ubication">Ubicacion del emprendedor.</param>
             <param name="rubro">Rubro del emprendedor.</param>
-            <param name="qualifications">Hablitaciones del emprendedor.</param>
+            <param name="qualifications">Habilitaciones del emprendedor.</param>
             <param name="specializations">Especializaciones del emprendedor.</param>
             <param name="user_Id">Identificacion del emprendedor.</param>
             <param name="user_Contact">Contacto del emprendedor.</param>
@@ -651,7 +652,7 @@
             <summary>
             Propiedad get y set de las habilitaciones.
             </summary>
-            <value>Las habiliatciones.</value>
+            <value>Las habilitaciones.</value>
         </member>
         <member name="P:Proyect.Emprendedor.Specializations">
             <summary>
@@ -663,7 +664,7 @@
             <summary>
             Obtiene la lista de ofertas ofertas aceptadas por el emprendedor.
             </summary>
-            <value>tLa lista de ofertas que el emprendeodr acepto.</value>
+            <value>tLa lista de ofertas que el emprendedor acepto.</value>
         </member>
         <member name="M:Proyect.Emprendedor.AddPurchasedOffer(Proyect.IOffer)">
             <summary>
@@ -714,17 +715,18 @@
         <member name="T:Proyect.AdministratorHandler">
             <summary>
             Clase base para implementar el patrón Chain of Responsibility.
+            Hereda de base Hanlder.
             </summary>
         </member>
         <member name="M:Proyect.AdministratorHandler.#ctor(Proyect.BaseHandler)">
             <summary>
-            Inicializa una nueva instancia de la clase <see cref="T:Proyect.AutorizationHandler"/>. Esta clase procesa si la persona que envio el mensaje esta registrada.
+            Inicializa una nueva instancia de la clase <see cref="T:Proyect.AdministratorHandler"/>. Esta clase procesa el mensaje de un uasurio para tener el rol de administrador.
             </summary>
             <param name="next">El próximo "handler".</param>
         </member>
         <member name="M:Proyect.AdministratorHandler.InternalHandle(Proyect.IMessage,System.String@)">
             <summary>
-            Procesa el mensaje "/registrar" y retorna true; retorna false en caso contrario.
+            Procesa el mensaje "/nuevoadministrador" y  "/invitar", retorna true; retorna false en caso contrario.
             </summary>
             <param name="message">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
@@ -733,6 +735,7 @@
         <member name="T:Proyect.AutorizationHandler">
             <summary>
             Clase base para implementar el patrón Chain of Responsibility.
+            Hereda de base handler.
             </summary>
         </member>
         <member name="M:Proyect.AutorizationHandler.#ctor(Proyect.BaseHandler)">
@@ -743,7 +746,7 @@
         </member>
         <member name="M:Proyect.AutorizationHandler.InternalHandle(Proyect.IMessage,System.String@)">
             <summary>
-            Procesa el mensaje "/registrar" y retorna true; retorna false en caso contrario.
+            Procesa el mensaje "/registrar" y retorna flase; retorna true en caso contrario.
             </summary>
             <param name="message">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
@@ -791,7 +794,7 @@
         <member name="M:Proyect.BaseHandler.InternalCancel">
             <summary>
             Este método puede ser sobreescrito en las clases sucesores que procesan varios mensajes cambiando de estado
-            entre mensajes deben sobreescribir este método para volver al estado inicial. En la clase base no hace nada.
+            entre mensajes.
             </summary>
         </member>
         <member name="M:Proyect.BaseHandler.CanHandle(Proyect.IMessage)">
@@ -815,24 +818,25 @@
         <member name="M:Proyect.BaseHandler.Cancel">
             <summary>
             Retorna este "handler" al estado inicial. En los "handler" sin estado no hace nada. Los "handlers" que
-            procesan varios mensajes cambiando de estado entre mensajes deben sobreescribir este método para volver al
-            estado inicial.
+            procesan varios mensajes cambiando de estado entre mensajes.
+            
             </summary>
         </member>
         <member name="T:Proyect.CancelHandler">
             <summary>
             Clase base para implementar el patrón Chain of Responsibility.
+            Hereda de base handler.
             </summary>
         </member>
         <member name="M:Proyect.CancelHandler.#ctor(Proyect.BaseHandler)">
             <summary>
-            Inicializa una nueva instancia de la clase <see cref="T:Proyect.AutorizationHandler"/>. Esta clase procesa si la persona que envio el mensaje esta registrada.
+            Inicializa una nueva instancia de la clase <see cref="T:Proyect.CancelHandler"/>. Esta clase procesa el mensaje /back y pone a un usurio al estado inicial.
             </summary>
             <param name="next">El próximo "handler".</param>
         </member>
         <member name="M:Proyect.CancelHandler.InternalHandle(Proyect.IMessage,System.String@)">
             <summary>
-            Procesa el mensaje "/registrar" y retorna true; retorna false en caso contrario.
+            Procesa el mensaje "/back" y retorna true; retorna false en caso contrario.
             </summary>
             <param name="message">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
@@ -841,17 +845,18 @@
         <member name="T:Proyect.CompanyMyOfferHandler">
             <summary>
             Clase base para implementar el patrón Chain of Responsibility.
+            Hereda de base hanlder.
             </summary>
         </member>
         <member name="M:Proyect.CompanyMyOfferHandler.#ctor(Proyect.BaseHandler)">
             <summary>
-            Inicializa una nueva instancia de la clase <see cref="T:Proyect.CompanyMyOfferHandler"/>. Esta clase elimina la oferta publicada de una compania.
+            Inicializa una nueva instancia de la clase <see cref="T:Proyect.CompanyMyOfferHandler"/>. Esta clase permite administrar todas las ofertas de una compania.
             </summary>
             <param name="next">El próximo "handler".</param>
         </member>
         <member name="M:Proyect.CompanyMyOfferHandler.InternalHandle(Proyect.IMessage,System.String@)">
             <summary>
-            Procesa el mensaje "/registrar" y retorna true; retorna false en caso contrario.
+            Procesa el mensaje "/misofertas", "/removeroferta", "/removerkeyword", "/removerhabilitacion", "/agregarkeyword", "/agregarhabilitacion" y "/oferta" y retorna true; retorna false en caso contrario.
             </summary>
             <param name="message">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
@@ -860,6 +865,7 @@
         <member name="T:Proyect.DataUserContainer">
             <summary>
             Clase contenedora del historia de mensajes que un usuario manda.
+            Esta es una clase singleton, solo hay una instancia de ella.
             </summary>
         </member>
         <member name="P:Proyect.DataUserContainer.Instance">
@@ -878,22 +884,23 @@
             <summary>
             Obtiene el diccionario donde se guardan las ofertas que selecciono el usuario mientras usaba la aplicacion.
             </summary>
-            <value></value>
+            <value>Diccionario donde se guardan las ofertas del usurio.</value>
         </member>
         <member name="T:Proyect.GetConstantMaterialsHandler">
             <summary>
             Clase base para implementar el patrón Chain of Responsibility.
+            Hereda de base hanlder.
             </summary>
         </member>
         <member name="M:Proyect.GetConstantMaterialsHandler.#ctor(Proyect.BaseHandler)">
             <summary>
-            Inicializa una nueva instancia de la clase <see cref="T:Proyect.GetConstantMaterialsHandler"/>. Esta clase procesa si la persona que envio el mensaje esta registrada.
+            Inicializa una nueva instancia de la clase <see cref="T:Proyect.GetConstantMaterialsHandler"/>. Esta clase procesa el mensaje "/materialesconstantes" y envia un mensaje con informacion sobre la cantidad de ofertas que tiene cada material constante.
             </summary>
             <param name="next">El próximo "handler".</param>
         </member>
         <member name="M:Proyect.GetConstantMaterialsHandler.InternalHandle(Proyect.IMessage,System.String@)">
             <summary>
-            Procesa el mensaje "/registrar" y retorna true; retorna false en caso contrario.
+            Procesa el mensaje "/materialesconstantes" y retorna true; retorna false en caso contrario.
             </summary>
             <param name="message">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
@@ -934,17 +941,18 @@
         <member name="T:Proyect.MeHandler">
             <summary>
             Clase base para implementar el patrón Chain of Responsibility.
+            Hereda de base hanlder.
             </summary>
         </member>
         <member name="M:Proyect.MeHandler.#ctor(Proyect.BaseHandler)">
             <summary>
-            Inicializa una nueva instancia de la clase <see cref="T:Proyect.AutorizationHandler"/>. Esta clase procesa si la persona que envio el mensaje esta registrada.
+            Inicializa una nueva instancia de la clase <see cref="T:Proyect.MeHandler"/>. Esta clase procesa el mensaej "/me" y envia un mensaje con la informacion del usuario correspondiente.
             </summary>
             <param name="next">El próximo "handler".</param>
         </member>
         <member name="M:Proyect.MeHandler.InternalHandle(Proyect.IMessage,System.String@)">
             <summary>
-            Procesa el mensaje "/registrar" y retorna true; retorna false en caso contrario.
+            Procesa el mensaje "/me" y retorna true; retorna false en caso contrario.
             </summary>
             <param name="message">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
@@ -963,7 +971,7 @@
         </member>
         <member name="M:Proyect.PublicOfferHandler.InternalHandle(Proyect.IMessage,System.String@)">
             <summary>
-            Procesa el mensaje "/registrar" y retorna true; retorna false en caso contrario.
+            Procesa el mensaje /public" y retorna true; retorna false en caso contrario.
             </summary>
             <param name="message">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
@@ -972,6 +980,7 @@
         <member name="T:Proyect.PurchasedOfferHandler">
             <summary>
             Clase base para implementar el patrón Chain of Responsibility.
+            Hereda de Base Handler.
             </summary>
         </member>
         <member name="M:Proyect.PurchasedOfferHandler.#ctor(Proyect.BaseHandler)">
@@ -982,7 +991,7 @@
         </member>
         <member name="M:Proyect.PurchasedOfferHandler.InternalHandle(Proyect.IMessage,System.String@)">
             <summary>
-            Procesa el mensaje "/registrar" y retorna true; retorna false en caso contrario.
+            Procesa el mensaje "/misofertasaceptadas" y "/oferta" y retorna true; retorna false en caso contrario.
             </summary>
             <param name="message">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
@@ -1010,17 +1019,18 @@
         <member name="T:Proyect.SearchOfferHandler">
             <summary>
             Clase base para implementar el patrón Chain of Responsibility.
+            Hereda de base hanlders.
             </summary>
         </member>
         <member name="M:Proyect.SearchOfferHandler.#ctor(Proyect.BaseHandler)">
             <summary>
-            Inicializa una nueva instancia de la clase <see cref="T:Proyect.SearchOfferHandler"/>. Esta clase procesa el mensaje public, para publicar una oferta.
+            Inicializa una nueva instancia de la clase <see cref="T:Proyect.SearchOfferHandler"/>. Esta clase procesa el mensaje /buscar, para buscar una oferta de diferentes formas.
             </summary>
             <param name="next">El próximo "handler".</param>
         </member>
         <member name="M:Proyect.SearchOfferHandler.InternalHandle(Proyect.IMessage,System.String@)">
             <summary>
-            Procesa el mensaje "/registrar" y retorna true; retorna false en caso contrario.
+            Procesa el mensaje "/buscar" y retorna true; retorna false en caso contrario.
             </summary>
             <param name="message">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
@@ -1029,17 +1039,18 @@
         <member name="T:Proyect.StartHandler">
             <summary>
             Clase base para implementar el patrón Chain of Responsibility.
+            Hereda de base hanlders.
             </summary>
         </member>
         <member name="M:Proyect.StartHandler.#ctor(Proyect.BaseHandler)">
             <summary>
-            Inicializa una nueva instancia de la clase <see cref="T:Proyect.AutorizationHandler"/>. Esta clase procesa si la persona que envio el mensaje esta registrada.
+            Inicializa una nueva instancia de la clase <see cref="T:Proyect.StartHandler"/>. Esta clase procesa el mensaje "/start" y muestras las funcionalidades bases del programa.
             </summary>
             <param name="next">El próximo "handler".</param>
         </member>
         <member name="M:Proyect.StartHandler.InternalHandle(Proyect.IMessage,System.String@)">
             <summary>
-            Procesa el mensaje "/registrar" y retorna true; retorna false en caso contrario.
+            Procesa el mensaje "/start" y retorna true; retorna false en caso contrario.
             </summary>
             <param name="message">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
@@ -1078,7 +1089,7 @@
         </member>
         <member name="T:Proyect.IOffer">
             <summary>
-            Interfaz para las ofertas de una compania, la utilizaron ambos tipos de ofertas, y si se quieren agrregar mas, tambien habran de utilizar esta interfaz.
+            Interfaz para las ofertas de una compania, la utilizaron ambos tipos de ofertas, y si se quieren agregar mas, tambien habran de utilizar esta interfaz.
             </summary>
         </member>
         <member name="P:Proyect.IOffer.Product">
@@ -1091,17 +1102,17 @@
             <summary>
             Propiedad get y set de las habilitaciones de la oferta.
             </summary>
-            <value>Las habiliatciones.</value>
+            <value>Las habilitaciones.</value>
         </member>
         <member name="P:Proyect.IOffer.KeyWords">
             <summary>
-            Propierti de la lista de palabras clave de una oferta.
+            Property de la lista de palabras clave de una oferta.
             </summary>
             <value>keyWords.</value>
         </member>
         <member name="P:Proyect.IOffer.DatePublished">
             <summary>
-            Propierti de la fecha de publicacion de la oferta.
+            Property de la fecha de publicacion de la oferta.
             </summary>
             <value>DateTime</value>
         </member>
@@ -1113,16 +1124,16 @@
         </member>
         <member name="M:Proyect.IOffer.GetPeriodTimeOffersAcceptedData(System.Int32)">
             <summary>
-            Obtien toda la informacion de compra (compardor y fecha de compra), del peridodo de tiempo indicado.
-            Por expert le asiganmaos esta responsabiliad (Es la que tiene la lisat de informacion de compra).
+            Obtiene toda la informacion de compra (compardor y fecha de compra), del peridodo de tiempo indicado.
+            Por expert le asignamos esta responsabilidad (Es la que tiene la lista de informacion de compra).
             </summary>
             <param name="periodTime"></param>
-            <returns>La lisat con la infromacion de compra.</returns>
+            <returns>La lista con la infromacion de compra.</returns>
         </member>
         <member name="M:Proyect.IOffer.GetPeriodTimeOffersAcceptedData(System.Int32,Proyect.Emprendedor)">
             <summary>
             Obtiene la infromacion de compra del emprendedor indicado, en el perido de tiempo establecido.
-            Por expert le asiganmaos esta responsabiliad (Es la que tiene la lisat de informacion de compra).
+            Por expert le asignamos esta responsabilidad (Es la que tiene la lista de informacion de compra).
             </summary>
             <param name="periodTime">El perido de tiempo.</param>
             <param name="emprendedor">El emprendedor.</param>
@@ -1131,7 +1142,7 @@
         <member name="M:Proyect.IOffer.GetEntrepreneursPurchaseData(Proyect.Emprendedor)">
             <summary>
             Obtiene todos los datos de compra de la oferta del emprendedor indicado.
-            Por expert le asiganmaos esta responsabiliad (Es la que tiene la lisat de informacion de compra).
+            Por expert le asignamos esta responsabilidad (Es la que tiene la lista de informacion de compra).
             </summary>
             <param name="emprendedor">El emprendedor.</param>
             <returns>La informacion de compra.</returns>
@@ -1139,14 +1150,14 @@
         <member name="M:Proyect.IOffer.PutBuyer(Proyect.Emprendedor)">
             <summary>
             Le asigna el emprendedor y la fecha de compra a la oferta, una vez es comprada (La informacion de compra).
-            Por expert le asiganmaos esta responsabiliad (Es la que tiene la lista de informacion de compra).
+            Por expert le asignamos esta responsabilidad (Es la que tiene la lista de informacion de compra).
             </summary>
             <param name="emprendedor">El emprendedor.</param>
             <returns>Mensaje de confirmacion.</returns>
         </member>
         <member name="T:Proyect.MessageTest">
             <summary>
-            Calse mensaje utilizada para los test.
+            Clase mensaje utilizada para los test.
             </summary>
         </member>
         <member name="M:Proyect.MessageTest.#ctor(System.String,System.Int32)">
@@ -1158,13 +1169,13 @@
         </member>
         <member name="P:Proyect.MessageTest.Id">
             <summary>
-            Propierty get y set del id.
+            Property get y set del id.
             </summary>
             <value>El id del usurio.</value>
         </member>
         <member name="P:Proyect.MessageTest.MsgId">
             <summary>
-            Propierty del chat id de cada usaurio.
+            Property del chat id de cada usuario.
             </summary>
             <value>El chat id del usurio.</value>
         </member>
@@ -1176,7 +1187,7 @@
         </member>
         <member name="M:Proyect.MessageTest.SendProfileImage(System.String,System.String)">
             <summary>
-            Metodo que envia una imagen a un usuiro.
+            Metodo que envia una imagen a un usuario.
             </summary>
             <param name="mensaje">El mensaje que se mostrara con la imagen.</param>
             <param name="direccion">La dirrecion de donde se sacara la imagen.</param>
@@ -1195,12 +1206,12 @@
             <param name="quantity">La cantidad del producto a ofertas.</param>
             <param name="cost">El costo del producto a ofertar.</param>
             <param name="ubicacion">La ubicacion del producto a ofertar.</param>
-            <param name="qualifications">La habiliatciones de la oferta.</param>
+            <param name="qualifications">La habilitaciones de la oferta.</param>
             <param name="keyWords">Las palabras clave asociadas a la oferta.</param>
         </member>
         <member name="M:Proyect.NonConstantOffer.#ctor">
             <summary>
-            Constructor utilizado en la serilizacion.
+            Constructor utilizado en la serialization.
             </summary>
         </member>
         <member name="P:Proyect.NonConstantOffer.Product">
@@ -1213,7 +1224,7 @@
             <summary>
             Obtiene la lista de las habilitaciones de una oferta.
             </summary>
-            <value>Lista de habiliatciones.</value>
+            <value>Lista de habilitaciones.</value>
         </member>
         <member name="P:Proyect.NonConstantOffer.KeyWords">
             <summary>
@@ -1239,7 +1250,7 @@
             Esta operacion es polimorfica.
             </summary>
             <param name="periodTime">El periodo de tiempo.</param>
-            <returns>Si la oferta se compro antes de la fecha estipulada, devuelve la iformacion de compra, en caso contrario, devuelve un string indicando dicha situacion</returns>
+            <returns>Si la oferta se compro antes de la fecha estipulada, devuelve la informacion de compra, en caso contrario, devuelve un string indicando dicha situacion</returns>
         </member>
         <member name="M:Proyect.NonConstantOffer.GetPeriodTimeOffersAcceptedData(System.Int32,Proyect.Emprendedor)">
             <summary>
@@ -1262,7 +1273,7 @@
             Obtiene la infromacion de compra de un emprendedor en esepcifico (Por expert).
             </summary>
             <param name="emprendedor">El emprendedor.</param>
-            <returns>La lista de informacíon de compra.</returns>
+            <returns>La lista de informacion de compra.</returns>
         </member>
         <member name="T:Proyect.OfferSearch">
             <summary>
@@ -1274,14 +1285,14 @@
             <summary>
             Obtiene la instancia de OfferSearch.
             </summary>
-            <value>La instancia de offerserach.</value>
+            <value>La instancia de offersearch.</value>
         </member>
         <member name="M:Proyect.OfferSearch.SearchByKeywords(System.String)">
             <summary>
             Busca las ofertas con la palabra clave que se le pasa (Por srp).
             </summary>
             <param name="word">Palabras claves de oferta.</param>
-            <returns>Una lista con las offertas.</returns>
+            <returns>Una lista con las ofertas.</returns>
         </member>
         <member name="M:Proyect.OfferSearch.SearchByUbication(System.String)">
             <summary>
@@ -1312,12 +1323,12 @@
         </member>
         <member name="T:Proyect.MyReferenceHandler">
             <summary>
-            Handler utilizado para la serializacion.
+            Handler utilizado para la seralizacion.
             </summary>
         </member>
         <member name="P:Proyect.MyReferenceHandler.Instance">
             <summary>
-            La instancia del hanlder de referencia.
+            La instancia del handler de referencia.
             </summary>
             <value></value>
         </member>
@@ -1335,7 +1346,7 @@
         </member>
         <member name="M:Proyect.MyReferenceHandler.Reset">
             <summary>
-            Reseteador del hanlder.
+            Reseteador del handler.
             </summary>
         </member>
         <member name="T:Proyect.ProductOffer">
@@ -1424,12 +1435,12 @@
         </member>
         <member name="T:Proyect.Rubro">
             <summary>
-            Clase que representa el rubro de una compañia o emprendedor.
+            Clase que representa el rubro de una compania o emprendedor.
             </summary>
         </member>
         <member name="P:Proyect.Rubro.RubroName">
             <summary>
-            Propierty del nombre del rubro.
+            Property del nombre del rubro.
             </summary>
             <value>El nombre del rubro.</value>
         </member>
@@ -1442,7 +1453,7 @@
         <member name="T:Proyect.TelegramAdapter">
             <summary>
             Adaptador de mensajes de Telegram a mensajes de la interfaz de usuario.
-            Esto permite que la aplicacion sirba para otras apps apartes de telegram.
+            Esto permite que la aplicacion sirva para otras apps apartes de telegram.
             </summary>
         </member>
         <member name="M:Proyect.TelegramAdapter.#ctor(Telegram.Bot.Types.Message,Telegram.Bot.TelegramBotClient)">
@@ -1462,7 +1473,7 @@
             <summary>
             El id de usurio.
             </summary>
-            <value>El id de suario.</value>
+            <value>El id de usuario.</value>
         </member>
         <member name="P:Proyect.TelegramAdapter.MsgId">
             <summary>
@@ -1495,7 +1506,7 @@
         </member>
         <member name="F:Proyect.User.rubro">
             <summary>
-            El rubro al que pertnece el usuario.
+            El rubro al que pertenece el usuario.
             </summary>
         </member>
         <member name="F:Proyect.User.user_Id">
@@ -1510,8 +1521,8 @@
         </member>
         <member name="P:Proyect.User.OfertasConstantes">
             <summary>
-            Lista de ofertas constantes, que posee el usuario (Uasada en la serializacion).
-            Esta propierti solo se utiliza en la serializacion.
+            Lista de ofertas constantes, que posee el usuario (Usada en la seralizacion).
+            Esta property solo se utiliza en la seralizacion.
             </summary>
             <returns>La lisat de ofertas consatnte de la compania.</returns>
         </member>
@@ -1533,7 +1544,7 @@
         </member>
         <member name="M:Proyect.User.#ctor">
             <summary>
-            Constructor para la serializacion.
+            Constructor para la seralizacion.
             </summary>
         </member>
         <member name="P:Proyect.User.Name">
@@ -1552,19 +1563,19 @@
             <summary>
             Propiedad get y set del atributo del rubro.
             </summary>
-            <value>El rubro al que pertnece el usurio.</value>
+            <value>El rubro al que pertenece el usurio.</value>
         </member>
         <member name="P:Proyect.User.User_Id">
             <summary>
             Obtiene el id del usuario.
             </summary>
-            <value>La id del usaurio.</value>
+            <value>La id del usuario.</value>
         </member>
         <member name="P:Proyect.User.User_Contact">
             <summary>
-            Obtiene el contacto del usuraio.
+            Obtiene el contacto del usuario.
             </summary>
-            <value>El conatcto del usurio.</value>
+            <value>El contacto del usurio.</value>
         </member>
     </members>
 </doc>
